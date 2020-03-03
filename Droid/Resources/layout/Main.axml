@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+    android:id="@+id/globalLayout"
+	>
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@android:color/holo_green_dark"
+		android:gravity="center"
+		android:text="sheeps VS wolf"
+		android:textColor="@android:color/black"
+        />
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+        android:id="@+id/sheeps_container"
+        android:layout_marginTop="8dp"
+        
+        >
+		<Button
+			android:id="@+id/addSheepButton"
+			android:gravity="center"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="50"
+            android:layout_marginRight="3dp"
+            android:layout_marginLeft="3dp"
+			android:text="Adding Sheep"
+			android:clickable="true"
+			android:textColor="#ff1a237e"
+			android:background="#ffffd600"
+			android:textSize="25dp"
+			android:textAllCaps="false"
+			android:textAlignment="center"
+			android:textStyle="italic|bold" />
+		<TextView
+			android:text="Number of Sheep"
+			android:gravity="center"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="50"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+			android:id="@+id/textViewNumbSheep"
+			android:textColor="#ffffd600"
+			android:background="#ff1a237e"
+			android:textAlignment="center"
+			android:textAllCaps="false"
+			android:textSize="25dp"
+			android:typeface="sans"
+			android:textStyle="normal|bold"
+			android:capitalize="words"
+			android:drawingCacheQuality="high"/>
+	</LinearLayout>
+    />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:hint="Enter the Name of the Sheep"
+        android:background="@android:color/holo_green_dark"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="8dp"
+        android:id="@+id/textNameOfSheep"
+        android:gravity="center"/>
+    <LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="150dp"
+        android:layout_marginTop="8dp">
+	
+	    <ListView
+		    android:minWidth="25px"
+		    android:minHeight="25px"
+            android:fastScrollEnabled="true"
+                android:fastScrollAlwaysVisible="true"
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:id="@+id/listOfSheeps"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/holo_green_light"
+            android:textColor="@android:color/black"/>
+    </LinearLayout>
+
+</LinearLayout>
