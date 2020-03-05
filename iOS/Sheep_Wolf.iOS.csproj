@@ -117,6 +117,10 @@
       <DependentUpon>TableViewCell.cs</DependentUpon>
     </Compile>
     <Compile Include="SheepTableSources.cs" />
+    <Compile Include="CardIDViewController.cs" />
+    <Compile Include="CardIDViewController.designer.cs">
+      <DependentUpon>CardIDViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

@@ -16,7 +16,7 @@ namespace Sheep_Wolf.iOS
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
-            var cell = tableView.DequeueReusableCell("cell") as TableViewCell;
+            var cell = (TableViewCell)tableView.DequeueReusableCell("cell");
             cell.UpdateCell(sheepNamesArray[indexPath.Row]);
             return cell;
         }

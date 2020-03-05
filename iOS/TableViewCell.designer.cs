@@ -16,11 +16,11 @@ namespace Sheep_Wolf.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITextView textTableViewSheep { get; set; }
+        UIKit.UILabel textTableViewSheep { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITextView textTableViewSheepsName { get; set; }
+        UIKit.UILabel textTableViewSheepsName { get; set; }
 
         void ReleaseDesignerOutlets ()
         {

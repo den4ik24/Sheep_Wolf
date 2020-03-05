@@ -19,10 +19,6 @@ namespace Sheep_Wolf.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITableView CustomTableView { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel LabelNumberSheep { get; set; }
 
         [Outlet]
@@ -42,11 +38,6 @@ namespace Sheep_Wolf.iOS
             if (ButtonAddSheep != null) {
                 ButtonAddSheep.Dispose ();
                 ButtonAddSheep = null;
-            }
-
-            if (CustomTableView != null) {
-                CustomTableView.Dispose ();
-                CustomTableView = null;
             }
 
             if (LabelNumberSheep != null) {

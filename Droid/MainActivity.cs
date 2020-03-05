@@ -11,14 +11,11 @@ namespace Sheep_Wolf.Droid
     {
         int count = 0;
 
-        //List<string> sheepNamesArray = new List<string>();
-
         Button addSheepButton;
         TextView textViewNumbSheep;
         ListView listOfSheeps;
         EditText textNameOfSheep;
 
-        //ArrayAdapter<string> adapter;
         SheepAdapter adapter;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -34,8 +31,7 @@ namespace Sheep_Wolf.Droid
             addSheepButton.Click += AddSheepButton_Click;
 
             textNameOfSheep = FindViewById<EditText>(Resource.Id.textNameOfSheep);
-            
-            //adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, sheepNamesArray);
+
             adapter = new SheepAdapter(this);
 
             listOfSheeps.Adapter = adapter;
@@ -51,10 +47,7 @@ namespace Sheep_Wolf.Droid
 
             else
             {
-                //sheepNamesArray.Add(textNameOfSheep.Text.ToString());   //
-
                 adapter.Add(textNameOfSheep.Text);
-
                 adapter.NotifyDataSetChanged();
                 textNameOfSheep.Text = "";
                 count++;

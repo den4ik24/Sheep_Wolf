@@ -53,9 +53,6 @@ namespace Sheep_Wolf.Droid
             {
                 view = LayoutInflater.From(context).Inflate(Resource.Layout.SheepCheckList, parent, false);
 
-                //var viewHolder = new ViewHolder();
-                //viewHolder.textView = view.FindViewById<TextView>(Resource.Id.textViewSheepsName);
-                //view.Tag = viewHolder;
                 var textview = view.FindViewById<TextView>(Resource.Id.textViewSheepsName);
                 view.Tag = new ViewHolder() { TextView = textview };
 
