@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_5" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="19290">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
@@ -11,7 +11,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController" storyboardIdentifier="ViewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -60,7 +60,7 @@
                                 <rect key="frame" x="20" y="146" width="374" height="716"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="39" id="17501" customClass="TableViewCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="39" id="17501" customClass="TableViewCell" restorationIdentifier="TableViewCell">
                                         <rect key="frame" x="0.0" y="28" width="374" height="39"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="17501" translatesAutoresizingMaskIntoConstraints="NO" id="17502">
@@ -93,6 +93,7 @@
                                         <connections>
                                             <outlet property="textTableViewSheep" destination="bxC-k1-67Z" id="name-outlet-bxC-k1-67Z"/>
                                             <outlet property="textTableViewSheepsName" destination="ILD-Wv-Ove" id="name-outlet-ILD-Wv-Ove"/>
+                                            <segue id="18975" destination="bGE-gk-XpV" kind="show" identifier="CellTable"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -122,10 +123,11 @@
                         <outlet property="listOfSheeps" destination="17500" id="name-outlet-17500"/>
                         <outlet property="textNameOfSheep" destination="oLw-ym-bm1" id="name-outlet-oLw-ym-bm1"/>
                     </connections>
+                    <navigationItem title="Title" id="19445" key="navigationItem"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="27.53906" y="-37.33529"/>
+            <point key="canvasLocation" x="426.5391" y="-58.33529"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="4zV-j3-RGc">
@@ -150,7 +152,7 @@
                                 <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vT7-2E-efL" misplaced="YES">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vT7-2E-efL" misplaced="YES" restorationIdentifier="labelSheepName">
                                 <rect key="frame" x="248" y="82" width="166" height="30"/>
                                 <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -198,7 +200,7 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OQZ-gJ-oW5" misplaced="YES">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OQZ-gJ-oW5" misplaced="YES" image="sheep.png">
                                 <rect key="frame" x="0.0" y="44" width="240" height="140"/>
                             </imageView>
                         </subviews>
@@ -225,11 +227,32 @@
                             <constraint firstItem="vT7-2E-efL" firstAttribute="trailing" secondItem="zNy-ab-qMY" secondAttribute="trailing" id="szW-WJ-J1L"/>
                         </constraints>
                     </view>
-                    <connections/>
+                    <connections>
+                        <outlet property="ImageSheep" destination="OQZ-gJ-oW5" id="name-outlet-OQZ-gJ-oW5"/>
+                        <outlet property="labelSheepName" destination="vT7-2E-efL" id="name-outlet-vT7-2E-efL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FNV-yv-YKF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="710.1449" y="-36.16071"/>
+            <point key="canvasLocation" x="975.1449" y="-53.16071"/>
+        </scene>
+        <scene sceneID="19289">
+            <objects>
+                <navigationController id="19290" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="19292">
+                        <rect key="frame" x="0.0" y="20" width="414" height="50"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue id="19446" destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="19293" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-105" y="-59"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="sheep.png" width="1920" height="1905"/>
+    </resources>
 </document>

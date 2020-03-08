@@ -14,5 +14,25 @@ namespace Sheep_Wolf.iOS
     [Register ("CardIDViewController")]
     partial class CardIDViewController
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIImageView ImageSheep { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel labelSheepName { get; set; }
+
+        void ReleaseDesignerOutlets ()
+        {
+            if (ImageSheep != null) {
+                ImageSheep.Dispose ();
+                ImageSheep = null;
+            }
+
+            if (labelSheepName != null) {
+                labelSheepName.Dispose ();
+                labelSheepName = null;
+            }
+        }
     }
 }

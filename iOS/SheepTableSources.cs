@@ -13,7 +13,7 @@ namespace Sheep_Wolf.iOS
         {
             sheepNamesArray = items;
         }
-
+        
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
             var cell = (TableViewCell)tableView.DequeueReusableCell("cell");
@@ -24,6 +24,14 @@ namespace Sheep_Wolf.iOS
         public override nint RowsInSection(UITableView tableview, nint section)
         {
             return sheepNamesArray.Count;
+          
+        }
+
+        public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
+        {
+            //base.RowSelected(tableView, indexPath);
+            sheepNamesArray[indexPath.Row].
+            tableView.DeselectRow(indexPath, true);
         }
 
         public override void WillDisplay(UITableView tableView, UITableViewCell cell, NSIndexPath indexPath)

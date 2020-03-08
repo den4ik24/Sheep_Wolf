@@ -8,11 +8,15 @@ namespace Sheep_Wolf.iOS
     {
         public TableViewCell (IntPtr handle) : base (handle)
         {
+            
         }
+
+
         public void UpdateCell(string name)
         {
             textTableViewSheepsName.Text = name;
             textTableViewSheep.Text = "Sheep";
         }
+        
     }
 }
