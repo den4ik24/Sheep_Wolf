@@ -15,9 +15,10 @@ namespace Sheep_Wolf.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            //labelSheepName.Text = textTableViewSheepsName.Text;
             ViewController viewController = Storyboard.InstantiateViewController("viewController") as ViewController;
             NavigationController.PushViewController(viewController, true);
+
+           // labelSheepName.Text = textTableViewSheepsName.Text;
         }
     }
 }

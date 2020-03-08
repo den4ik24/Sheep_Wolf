@@ -15,6 +15,7 @@ namespace Sheep_Wolf.iOS
         {
            
         }
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -26,12 +27,13 @@ namespace Sheep_Wolf.iOS
 
             //listOfSheeps[NSIndexPath.FromRowSection].AddGestureRecognizer(tapGesture);
 
-            void Tap(UITapGestureRecognizer tap1)
-            {
-                CardIDViewController cardIDViewController = Storyboard.InstantiateViewController("cardIDViewController") as CardIDViewController;
-                NavigationController.PushViewController(cardIDViewController, true);
-            }
 
+        }
+
+        void Tap(UITapGestureRecognizer tap1)
+        {
+            CardIDViewController cardIDViewController = Storyboard.InstantiateViewController("cardIDViewController") as CardIDViewController;
+            NavigationController.PushViewController(cardIDViewController, true);
         }
 
         private void ButtonAddSheep_TouchUpInside(object sender, EventArgs e)
@@ -68,13 +70,6 @@ namespace Sheep_Wolf.iOS
         //    }
         //}
 
-        //public virtual void RowSelected(UITableView tableView, NSIndexPath indexPath)
-        //{
-
-
-        //    sheepNamesArray[indexPath.Row].AddGestureRecognizer(tapGesture);
-        //    tableView.DeselectRow(indexPath, true);
-        //}
 
     }
 
