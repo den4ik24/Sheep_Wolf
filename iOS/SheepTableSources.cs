@@ -7,12 +7,13 @@ namespace Sheep_Wolf.iOS
 {
     public class TableSource : UITableViewSource
     {
-        //UITapGestureRecognizer tapGesture;
         List<string> sheepNamesArray = new List<string>();
-
-        public TableSource(List<string> items)
+        UIViewController controller;
+        string SNA;
+        public TableSource(List<string> items, UIViewController uIView)
         {
             sheepNamesArray = items;
+            controller = uIView;
         }
         
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
@@ -30,20 +31,14 @@ namespace Sheep_Wolf.iOS
 
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
-
-            //tapGesture = new UITapGestureRecognizer(Tap);
-            //tapGesture.NumberOfTapsRequired = 1;
-
-            //base.RowSelected(tableView, indexPath);
-            var SN = sheepNamesArray[indexPath.Row];
+           
+            SNA = sheepNamesArray[indexPath.Row];
             tableView.DeselectRow(indexPath, true);
 
-            //void Tap(UITapGestureRecognizer tap1)
-            //{
-            //    CardIDViewController cardIDViewController = Storyboard.InstantiateViewController("cardIDViewController") as CardIDViewController;
-            //    NavigationController.PushViewController(cardIDViewController, true);
-            //}
-
+            CardIDViewController cardIDViewController = controller.Storyboard.InstantiateViewController("CardIDViewController") as CardIDViewController;
+            controller.NavigationController.PushViewController(cardIDViewController, true);
+            cardIDViewController.SheepText = SNA;
+            
         }
 
         public override void WillDisplay(UITableView tableView, UITableViewCell cell, NSIndexPath indexPath)
