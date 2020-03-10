@@ -61,17 +61,17 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="39" id="17501" customClass="TableViewCell">
                                         <rect key="frame" x="0.0" y="28" width="414" height="39"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="17501" translatesAutoresizingMaskIntoConstraints="NO" id="17502">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="17501" translatesAutoresizingMaskIntoConstraints="NO" id="17502">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="39"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sheep's Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ILD-Wv-Ove">
-                                                    <rect key="frame" x="1" y="0.0" width="206" height="39"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sheep's Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ILD-Wv-Ove">
+                                                    <rect key="frame" x="0.0" y="0.0" width="207" height="39"/>
                                                     <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
                                                     <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sheep" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxC-k1-67Z">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sheep" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxC-k1-67Z">
                                                     <rect key="frame" x="207" y="0.0" width="207" height="39"/>
                                                     <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
@@ -80,21 +80,21 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="bxC-k1-67Z" firstAttribute="top" secondItem="17502" secondAttribute="top" id="4KE-zD-sar"/>
+                                                <constraint firstItem="bxC-k1-67Z" firstAttribute="width" secondItem="17502" secondAttribute="width" multiplier="0.5" id="2s7-Er-FcV"/>
                                                 <constraint firstItem="ILD-Wv-Ove" firstAttribute="leading" secondItem="17502" secondAttribute="leading" id="51H-vT-ZBk"/>
-                                                <constraint firstAttribute="bottom" secondItem="ILD-Wv-Ove" secondAttribute="bottom" id="FHV-0E-E13"/>
+                                                <constraint firstAttribute="bottom" secondItem="ILD-Wv-Ove" secondAttribute="bottom" id="Fih-eD-6Vt"/>
                                                 <constraint firstItem="ILD-Wv-Ove" firstAttribute="width" secondItem="17502" secondAttribute="width" multiplier="0.5" id="Gev-fI-QRs"/>
-                                                <constraint firstItem="bxC-k1-67Z" firstAttribute="leading" secondItem="ILD-Wv-Ove" secondAttribute="trailing" id="IHj-dv-I8r"/>
-                                                <constraint firstAttribute="trailing" secondItem="bxC-k1-67Z" secondAttribute="trailing" id="OzZ-Mt-ZRa"/>
-                                                <constraint firstAttribute="bottom" secondItem="bxC-k1-67Z" secondAttribute="bottom" id="XH2-tm-lIC"/>
+                                                <constraint firstItem="bxC-k1-67Z" firstAttribute="leading" secondItem="ILD-Wv-Ove" secondAttribute="trailing" id="JIH-1o-mlw"/>
+                                                <constraint firstItem="bxC-k1-67Z" firstAttribute="top" secondItem="17502" secondAttribute="top" id="O3j-F2-bpw"/>
+                                                <constraint firstAttribute="bottom" secondItem="bxC-k1-67Z" secondAttribute="bottom" id="Qps-qK-6Qw"/>
                                                 <constraint firstItem="ILD-Wv-Ove" firstAttribute="top" secondItem="17502" secondAttribute="top" id="byk-FX-EcW"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <constraints>
-                                            <constraint firstItem="17502" firstAttribute="leading" secondItem="17501" secondAttribute="leading" multiplier="0.5" constant="20" symbolic="YES" id="F0g-uA-cwg"/>
-                                            <constraint firstAttribute="trailing" secondItem="17502" secondAttribute="trailing" id="gL1-5d-2FF"/>
-                                            <constraint firstAttribute="bottom" secondItem="17502" secondAttribute="bottom" constant="20" symbolic="YES" id="kqa-wk-Oya"/>
-                                            <constraint firstAttribute="bottom" secondItem="17502" secondAttribute="bottom" multiplier="0.5" constant="20" symbolic="YES" id="shi-5w-hND"/>
+                                            <constraint firstItem="17502" firstAttribute="top" secondItem="17501" secondAttribute="top" constant="20" symbolic="YES" id="Rsz-I3-mg1"/>
+                                            <constraint firstAttribute="trailing" secondItem="17502" secondAttribute="trailing" id="WWP-Fr-KR0"/>
+                                            <constraint firstItem="17502" firstAttribute="width" secondItem="17501" secondAttribute="width" id="rfl-qE-ki4"/>
+                                            <constraint firstItem="17502" firstAttribute="height" secondItem="17501" secondAttribute="height" id="ytz-EQ-9XH"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="textTableViewSheep" destination="bxC-k1-67Z" id="name-outlet-bxC-k1-67Z"/>
