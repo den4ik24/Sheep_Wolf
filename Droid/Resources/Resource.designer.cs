@@ -41,32 +41,48 @@ namespace Sheep_Wolf.Droid
 			}
 		}
 		
-		public partial class Id
+		public partial class Drawable
 		{
 			
 			// aapt resource value: 0x7F010000
-			public const int addSheepButton = 2130771968;
+			public const int sheep = 2130771968;
 			
-			// aapt resource value: 0x7F010001
-			public const int globalLayout = 2130771969;
+			static Drawable()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
 			
-			// aapt resource value: 0x7F010002
-			public const int listOfSheeps = 2130771970;
+			private Drawable()
+			{
+			}
+		}
+		
+		public partial class Id
+		{
 			
-			// aapt resource value: 0x7F010003
-			public const int sheeps_container = 2130771971;
+			// aapt resource value: 0x7F020000
+			public const int addSheepButton = 2130837504;
 			
-			// aapt resource value: 0x7F010004
-			public const int textNameOfSheep = 2130771972;
+			// aapt resource value: 0x7F020001
+			public const int globalLayout = 2130837505;
 			
-			// aapt resource value: 0x7F010005
-			public const int textViewNumbSheep = 2130771973;
+			// aapt resource value: 0x7F020002
+			public const int listOfSheeps = 2130837506;
 			
-			// aapt resource value: 0x7F010006
-			public const int textViewSheep = 2130771974;
+			// aapt resource value: 0x7F020003
+			public const int sheeps_container = 2130837507;
 			
-			// aapt resource value: 0x7F010007
-			public const int textViewSheepsName = 2130771975;
+			// aapt resource value: 0x7F020004
+			public const int textNameOfSheep = 2130837508;
+			
+			// aapt resource value: 0x7F020005
+			public const int textViewNumbSheep = 2130837509;
+			
+			// aapt resource value: 0x7F020006
+			public const int textViewSheep = 2130837510;
+			
+			// aapt resource value: 0x7F020007
+			public const int textViewSheepsName = 2130837511;
 			
 			static Id()
 			{
@@ -81,11 +97,11 @@ namespace Sheep_Wolf.Droid
 		public partial class Layout
 		{
 			
-			// aapt resource value: 0x7F020000
-			public const int Main = 2130837504;
+			// aapt resource value: 0x7F030000
+			public const int Main = 2130903040;
 			
-			// aapt resource value: 0x7F020001
-			public const int SheepCheckList = 2130837505;
+			// aapt resource value: 0x7F030001
+			public const int SheepCheckList = 2130903041;
 			
 			static Layout()
 			{
@@ -100,8 +116,8 @@ namespace Sheep_Wolf.Droid
 		public partial class Mipmap
 		{
 			
-			// aapt resource value: 0x7F030000
-			public const int Icon = 2130903040;
+			// aapt resource value: 0x7F040000
+			public const int Icon = 2130968576;
 			
 			static Mipmap()
 			{
@@ -116,11 +132,11 @@ namespace Sheep_Wolf.Droid
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7F040000
-			public const int app_name = 2130968576;
+			// aapt resource value: 0x7F050000
+			public const int app_name = 2131034112;
 			
-			// aapt resource value: 0x7F040001
-			public const int hello = 2130968577;
+			// aapt resource value: 0x7F050001
+			public const int hello = 2131034113;
 			
 			static String()
 			{

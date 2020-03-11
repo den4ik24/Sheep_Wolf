@@ -10,17 +10,17 @@ namespace Sheep_Wolf.Droid
     public class SheepAdapter: BaseAdapter<string>
     {
         private readonly List<string> sheepNamesArray = new List<string>();
-        private Context context;
+        private readonly Context context;
 
         public void Add(string S)
         {
             sheepNamesArray.Add(S);
         }
 
-        public SheepAdapter(Context context)
+        public SheepAdapter(Context contextC)
         {
             
-            this.context = context;
+            context = contextC;
         }
 
         public override string this[int position]
