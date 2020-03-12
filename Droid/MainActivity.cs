@@ -33,7 +33,7 @@ namespace Sheep_Wolf.Droid
             textNameOfSheep = FindViewById<EditText>(Resource.Id.textNameOfSheep);
 
             adapter = new SheepAdapter(this);
-
+            
             listOfSheeps.Adapter = adapter;
         }
 

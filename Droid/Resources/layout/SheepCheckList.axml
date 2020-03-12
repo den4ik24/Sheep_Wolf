@@ -21,13 +21,14 @@
 		android:text="Sheep"
 		android:layout_width="0dp"
 		android:layout_height="match_parent"
-        android:layout_weight="50"
-        android:textColor="#ffffd600"
+		android:layout_weight="50"
+		android:textColor="#ffffd600"
 		android:background="#ff1a237e"
 		android:textAlignment="center"
 		android:textAllCaps="false"
 		android:textSize="25dp"
 		android:textStyle="normal|bold"
-		android:id="@+id/textViewSheep" />
+		android:id="@+id/textViewSheep"
+		android:layout_marginLeft="0.0dp" />
 	
 </LinearLayout>
