@@ -59,11 +59,6 @@ namespace Sheep_Wolf.Droid
             var holder = (ViewHolder)view.Tag;
             holder.TextView.Text = sheepNamesArray[position];
 
-            //var intent = new Intent();
-            //intent.SetClass(MainActivity, typeof(SheepID));
-            //intent.PutExtra("NAMEofSHEEP", sheepNamesArray[position]);
-            //StartActivity(intent);
-
             return view;
         }
     }

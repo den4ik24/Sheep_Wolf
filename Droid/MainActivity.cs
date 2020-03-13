@@ -41,7 +41,7 @@ namespace Sheep_Wolf.Droid
         private void ListOfSheeps_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             var intent = new Intent(this, typeof(SheepID));
-            intent.PutExtra("NAMEofSHEEP", e.Position);
+            intent.PutExtra("NAMEofSHEEP", listOfSheeps.GetItemAtPosition(e.Position).ToString());
             StartActivity(intent);
         }
 
