@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Foundation;
 using UIKit;
 
 namespace Sheep_Wolf.iOS
@@ -41,7 +40,6 @@ namespace Sheep_Wolf.iOS
             {
                 sheepNamesArray.Add(textNameOfSheep.Text.ToString());
                 listOfSheeps.Source = new TableSource(sheepNamesArray, this);
-                //listOfSheeps.TableFooterView = new UIView(CoreGraphics.CGRect.Empty);
                 listOfSheeps.ReloadData();
                 count++;
                 LabelNumberSheep.Text = count.ToString();

@@ -31,6 +31,7 @@
             android:text="Sheep's Name:"
             android:textColor="#ff1a237e"
 		    android:background="#ffffd600"
+            android:layout_marginTop="1dp"
 			android:id="@+id/textView1" />
 		<TextView
 			android:text="Text"
@@ -38,9 +39,10 @@
 			android:layout_height="match_parent"
             android:layout_weight="1"
             android:textSize="20dp"
-            android:textAlignment="textEnd"
+                android:gravity="right"
             android:textColor="#ff1a237e"
 		    android:background="#ffffd600"
+            android:layout_marginTop="1dp"
 			android:id="@+id/textViewSheepsName" />
 		<TextView
 			android:layout_width="match_parent"
@@ -50,6 +52,7 @@
             android:text="Title:"
             android:textColor="#ffffd600"
 		    android:background="#ff1a237e"
+            android:layout_marginTop="1dp"
 			android:id="@+id/textView3" />
 		<TextView
 			android:layout_width="match_parent"
@@ -60,6 +63,7 @@
             android:text="Sheep"
             android:textColor="#ffffd600"
 		    android:background="#ff1a237e"
+            android:layout_marginTop="1dp"
 			android:id="@+id/textView4" />
 	</LinearLayout>
     </LinearLayout>
