@@ -1,27 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content">
 
-    <LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-        android:layout_weight="1"
-        >
-
-	<ImageView
-		android:src="@drawable/sheep"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:layout_weight="1"
-    />
-
 	<LinearLayout
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-        android:layout_weight="1"
-		android:orientation="vertical"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+        >
+
+		<ImageView
+			android:src="@drawable/sheep"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+    />
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:orientation="vertical"
         >
 			<TextView
 				android:layout_width="match_parent"
@@ -53,7 +54,7 @@
 				android:layout_weight="1"
 				android:textSize="25dp"
 				android:text="Title:"
-                android:gravity="center_vertical"
+				android:gravity="center_vertical"
 				android:textColor="#ffffd600"
 				android:background="#ff1a237e"
 				android:layout_marginTop="1dp"
@@ -71,19 +72,26 @@
 				android:layout_marginTop="1dp"
 				android:id="@+id/textView4"
 				android:textStyle="bold|italic" />
+		</LinearLayout>
 	</LinearLayout>
-    </LinearLayout>
-      <LinearLayout
+	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-        android:layout_weight="1"
+		android:layout_weight="1"
         >
 		<View
-            android:visibility = "invisible"
+			android:visibility = "invisible"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:minWidth="25px"
 			android:minHeight="25px"
-			android:id="@+id/view1" />
-       </LinearLayout>
+			android:id="@+id/view1"/>
+		<ImageView
+			android:id="@+id/sheepFoto"
+			android:scaleType="fitCenter"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+    />
+	</LinearLayout>
 </LinearLayout>

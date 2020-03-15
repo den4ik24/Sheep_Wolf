@@ -6,14 +6,15 @@ using Android.Widget;
 namespace Sheep_Wolf.Droid
 {
 
-    public class SheepAdapter: BaseAdapter<string>
+    public class SheepAdapter: BaseAdapter<SheepClass>
     {
-        private readonly List<string> sheepNamesArray = new List<string>();
+        private readonly List<SheepClass> sheepNamesArray = new List<SheepClass>();
         private readonly Context context;
 
-        public void Add(string S)
+        public void Add(SheepClass S)
         {
             sheepNamesArray.Add(S);
+            
         }
 
         public SheepAdapter(Context contextC)
@@ -22,7 +23,7 @@ namespace Sheep_Wolf.Droid
             context = contextC;
         }
 
-        public override string this[int position]
+        public override SheepClass this[int position]
         {
             get
             {
@@ -53,11 +54,14 @@ namespace Sheep_Wolf.Droid
                 view = LayoutInflater.From(context).Inflate(Resource.Layout.SheepCheckList, parent, false);
 
                 var textview = view.FindViewById<TextView>(Resource.Id.textViewSheepsName);
+                //image
+
                 view.Tag = new ViewHolder() { TextView = textview };
 
             }
             var holder = (ViewHolder)view.Tag;
-            holder.TextView.Text = sheepNamesArray[position];
+
+            holder.TextView.Text = sheepNamesArray[position].Name;
 
             return view;
         }

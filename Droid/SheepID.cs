@@ -22,6 +22,9 @@ namespace Sheep_Wolf.Droid
             //int name = Intent.GetIntExtra("NAMEofSHEEP", -1);
             var name = Intent.Extras.GetString("NAMEofSHEEP");
             textViewSheepsName.Text = name.ToString();
+
+            var sheepURL = Intent.GetStringExtra("SheepsURL");
+
         }
     }
 }
