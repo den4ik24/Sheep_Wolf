@@ -8,12 +8,12 @@ namespace Sheep_Wolf.Droid
 
     public class SheepAdapter: BaseAdapter<SheepClass>
     {
-        private readonly List<SheepClass> sheepNamesArray = new List<SheepClass>();
+        private readonly List<SheepClass> sheepClassArray = new List<SheepClass>();
         private readonly Context context;
 
         public void Add(SheepClass S)
         {
-            sheepNamesArray.Add(S);
+            sheepClassArray.Add(S);
             
         }
 
@@ -27,7 +27,7 @@ namespace Sheep_Wolf.Droid
         {
             get
             {
-                return sheepNamesArray[position];
+                return sheepClassArray[position];
             }
         }
 
@@ -35,7 +35,7 @@ namespace Sheep_Wolf.Droid
         {
             get
             {
-                return sheepNamesArray.Count;
+                return sheepClassArray.Count;
             }
         }
 
@@ -61,7 +61,7 @@ namespace Sheep_Wolf.Droid
             }
             var holder = (ViewHolder)view.Tag;
 
-            holder.TextView.Text = sheepNamesArray[position].Name;
+            holder.TextView.Text = sheepClassArray[position].Name;
 
             return view;
         }

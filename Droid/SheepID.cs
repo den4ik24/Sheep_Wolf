@@ -19,7 +19,6 @@ namespace Sheep_Wolf.Droid
 
             textViewSheepsName = FindViewById<TextView>(Resource.Id.textViewSheepsName);
 
-            //int name = Intent.GetIntExtra("NAMEofSHEEP", -1);
             var name = Intent.Extras.GetString("NAMEofSHEEP");
             textViewSheepsName.Text = name.ToString();
 
