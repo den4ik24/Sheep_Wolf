@@ -1,39 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-	<TextView
-		android:text="Sheep's Name"
-		android:layout_width="0dp"
-		android:layout_height="match_parent"
-        android:layout_weight="50"
-		android:minWidth="25px"
-		android:minHeight="25px"
-        android:textColor="#ff1a237e"
-		android:background="#ffffd600"
-		android:textSize="25dp"
-		android:textAllCaps="false"
-		android:textAlignment="center"
-		android:textStyle="italic|bold"
-		android:id="@+id/textViewSheepsName" />
-	<ImageView
-		android:src="@android:drawable/ic_menu_gallery"
-		android:layout_width="wrap_content"
-		android:layout_height="match_parent"
-		android:id="@+id/fotoSheep" />
-	<TextView
-		android:text="Sheep"
-		android:layout_width="0dp"
-		android:layout_height="match_parent"
-		android:layout_weight="50"
-		android:textColor="#ffffd600"
-		android:background="#ff1a237e"
-		android:textAlignment="center"
-		android:textAllCaps="false"
-		android:textSize="25dp"
-		android:textStyle="normal|bold"
-		android:id="@+id/textViewSheep"
-		android:layout_marginLeft="0.0dp" />
+	<LinearLayout
+		android:orientation="horizontal"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+>
+		<TextView
+			android:text="Sheep's Name"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="50"
+			android:minWidth="25px"
+			android:minHeight="25px"
+			android:textColor="#ff1a237e"
+			android:background="#ffffd600"
+			android:textSize="25dp"
+			android:textAllCaps="false"
+			android:textAlignment="center"
+			android:textStyle="italic|bold"
+            android:freezesText="true"
+			android:id="@+id/textViewSheepsName" />
+
+    <ImageView
+			android:src="@android:drawable/ic_menu_gallery"
+			android:layout_width="60dp"
+			android:layout_height="60dp"
+			android:id="@+id/fotoSheep"/>
+
+		<TextView
+			android:text="Sheep"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="50"
+			android:textColor="#ffffd600"
+			android:background="#ff1a237e"
+			android:textAlignment="center"
+			android:textAllCaps="false"
+			android:textSize="25dp"
+			android:textStyle="normal|bold"
+			android:id="@+id/textViewSheep"
+            android:freezesText="true"
+			android:layout_marginLeft="0.0dp" />
+	</LinearLayout>
 	
 </LinearLayout>

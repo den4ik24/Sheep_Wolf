@@ -13,6 +13,7 @@
 		android:background="@android:color/holo_green_dark"
 		android:gravity="center"
 		android:text="sheeps VS wolf"
+        android:freezesText="true"
 		android:textColor="@android:color/black"
         />
 	<LinearLayout
@@ -34,7 +35,7 @@
 			android:clickable="true"
 			android:textColor="#ff1a237e"
 			android:background="#ffffd600"
-			android:textSize="25dp"
+			android:textSize="20dp"
 			android:textAllCaps="false"
 			android:textAlignment="center"
 			android:textStyle="italic|bold" />
@@ -51,10 +52,11 @@
 			android:background="#ff1a237e"
 			android:textAlignment="center"
 			android:textAllCaps="false"
-			android:textSize="25dp"
+			android:textSize="20dp"
 			android:typeface="sans"
 			android:textStyle="normal|bold"
 			android:capitalize="words"
+            android:freezesText="true"
 			android:drawingCacheQuality="high"/>
 	</LinearLayout>
     />
@@ -67,27 +69,29 @@
         android:textColor="@android:color/black"
         android:layout_marginTop="8dp"
         android:id="@+id/textNameOfSheep"
+        android:freezesText="true"
         android:gravity="center"/>
     <LinearLayout
 		android:layout_width="match_parent"
-		android:layout_height="150dp"
+		android:layout_height="match_parent"
         android:layout_marginTop="8dp">
-	
-	    <ListView
-		    android:minWidth="25px"
-		    android:minHeight="25px"
-            android:fastScrollEnabled="true"
-            android:fastScrollAlwaysVisible="true"
-		    android:layout_width="match_parent"
-		    android:layout_height="match_parent"
-		    android:id="@+id/listOfSheeps"
-            android:textSize="18dp"
-            android:gravity="center"
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp"
-            android:layout_marginTop="8dp"
-            android:background="@android:color/holo_green_light"
-            android:textColor="@android:color/black"/>
+
+		<ListView
+			android:minWidth="25px"
+			android:minHeight="25px"
+			android:fastScrollEnabled="true"
+			android:fastScrollAlwaysVisible="true"
+			android:layout_width="match_parent"
+			android:layout_height="400.5dp"
+			android:id="@+id/listOfSheeps"
+			android:textSize="18dp"
+			android:gravity="center"
+            android:freezesText="true"
+			android:layout_marginLeft="3dp"
+			android:layout_marginRight="3dp"
+			android:layout_marginTop="8dp"
+			android:background="@android:color/holo_green_light"
+			android:textColor="@android:color/black"/>
     </LinearLayout>
 
 </LinearLayout>

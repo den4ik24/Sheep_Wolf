@@ -2,6 +2,7 @@
 using Android.Content;
 using Android.Views;
 using Android.Widget;
+using Square.Picasso;
 
 namespace Sheep_Wolf.Droid
 {
@@ -54,11 +55,16 @@ namespace Sheep_Wolf.Droid
                 view = LayoutInflater.From(context).Inflate(Resource.Layout.SheepCheckList, parent, false);
 
                 var textview = view.FindViewById<TextView>(Resource.Id.textViewSheepsName);
-                //image
 
                 view.Tag = new ViewHolder() { TextView = textview };
 
             }
+
+            var fotoSheep = view.FindViewById<ImageView>(Resource.Id.fotoSheep);
+            Picasso.With(context)
+                .Load(sheepClassArray[position].URL)
+                .Into(fotoSheep);
+
             var holder = (ViewHolder)view.Tag;
 
             holder.TextView.Text = sheepClassArray[position].Name;

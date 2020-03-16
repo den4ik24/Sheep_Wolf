@@ -99,9 +99,6 @@ namespace Sheep_Wolf.Droid
 			// aapt resource value: 0x7F02000C
 			public const int textViewSheepsName = 2130837516;
 			
-			// aapt resource value: 0x7F02000D
-			public const int view1 = 2130837517;
-			
 			static Id()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();

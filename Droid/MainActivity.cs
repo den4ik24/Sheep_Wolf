@@ -18,18 +18,20 @@ namespace Sheep_Wolf.Droid
 
         SheepAdapter adapter;
 
+        SheepClass sheep;
+
         Random random = new Random();
         string[] sheepsStringURL =
         {
             "https://www.studentofthegun.com/wp-content/uploads/2017/10/SOTG_679_-_A_Nation_of_Sheep.jpg",
-            "https://avatars.mds.yandex.net/get-pdb/2073435/ec723bf1-4895-4823-b2f2-e696f224d2d0/s1200?webp=false",
+            "http://risovach.ru/upload/2014/04/generator/naivnaya-ovechka2_48043820_orig_.jpeg",
             "https://www.parcs-zoologiques-lumigny.fr/wp-content/uploads/2019/03/mouton-1240.jpg",
-            "https://pbs.twimg.com/media/Dx9wFWSWoAAVEbr.jpg",
+            "https://yesofcorsa.com/wp-content/uploads/2017/04/4K-Sheep-Wallpaper-Gallery.jpg",
             "https://steemitimages.com/DQmY5jSVRybkLgwyoD8apfXDUsm3Baj2ryahwUCwuVrcS7j/lamb-2146961_1920.jpg",
             "https://www.tokkoro.com/picsup/3313963-sheep-lamb-wool-mother.jpg",
             "https://www.kidsbooksandpuppets.com/assets/images/folkmanislongwoolsheeppuppets2982slg.jpg",
             "https://www.focus.pl/uploads/media/default/0001/24/dolly.jpeg",
-            "https://wall.cookdiary.net/sites/default/files/wallpaper/animal/66269/sheep-wallpapers-hd-66269-4788701.png",
+            "https://pix.avax.news/avaxnews/69/5c/00015c69.jpeg",
             "http://milifamily.pl/wp-content/uploads/2016/07/Untitled-design-18.jpg"
         };
 
@@ -55,10 +57,11 @@ namespace Sheep_Wolf.Droid
 
         private void ListOfSheeps_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-
+            
             var intent = new Intent(this, typeof(SheepID));
-            intent.PutExtra("NAMEofSHEEP", listOfSheeps.GetItemAtPosition(e.Position).ToString());
-            //intent.PutExtra("SheepsURL",sheepsURL);
+            //intent.PutExtra("NAMEofSHEEP", listOfSheeps.GetItemAtPosition(e.Position).ToString());
+            intent.PutExtra("NAMEofSHEEP", sheep.Name.ToString());
+            intent.PutExtra("FOTOofSHEEP", sheep.URL.ToString());
             StartActivity(intent);
 
         }
@@ -73,7 +76,7 @@ namespace Sheep_Wolf.Droid
 
             else
             {
-                var sheep = new SheepClass();
+                sheep = new SheepClass();
 
                 sheep.Name = textNameOfSheep.Text;
                 sheep.URL = sheepsStringURL[random.Next(0, 10)];

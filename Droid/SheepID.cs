@@ -3,6 +3,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Widget;
+using Square.Picasso;
 
 namespace Sheep_Wolf.Droid
 {
@@ -10,7 +11,7 @@ namespace Sheep_Wolf.Droid
     public class SheepID : Activity
     {
         TextView textViewSheepsName;
-
+        ImageView sheepFoto;
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -18,11 +19,16 @@ namespace Sheep_Wolf.Droid
             SetContentView(Resource.Layout.SheepIDLayout);
 
             textViewSheepsName = FindViewById<TextView>(Resource.Id.textViewSheepsName);
+            sheepFoto = FindViewById<ImageView>(Resource.Id.sheepFoto);
 
-            var name = Intent.Extras.GetString("NAMEofSHEEP");
-            textViewSheepsName.Text = name.ToString();
+            var sheepName = Intent.Extras.GetString("NAMEofSHEEP");
+            textViewSheepsName.Text = sheepName;
 
-            var sheepURL = Intent.GetStringExtra("SheepsURL");
+            var fotoSheep = Intent.Extras.GetString("FOTOofSHEEP");
+
+            Picasso.With(this)
+                .Load(fotoSheep.ToString())
+                .Into(sheepFoto);
 
         }
     }
