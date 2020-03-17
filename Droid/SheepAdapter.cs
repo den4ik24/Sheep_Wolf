@@ -15,12 +15,10 @@ namespace Sheep_Wolf.Droid
         public void Add(SheepClass S)
         {
             sheepClassArray.Add(S);
-            
         }
 
         public SheepAdapter(Context contextC)
         {
-            
             context = contextC;
         }
 
@@ -45,6 +43,10 @@ namespace Sheep_Wolf.Droid
             return position;
         }
 
+        public SheepClass ElementPosition(int position)
+        {
+            return sheepClassArray[position];
+        }
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
@@ -53,11 +55,8 @@ namespace Sheep_Wolf.Droid
             if(view == null)
             {
                 view = LayoutInflater.From(context).Inflate(Resource.Layout.SheepCheckList, parent, false);
-
                 var textview = view.FindViewById<TextView>(Resource.Id.textViewSheepsName);
-
                 view.Tag = new ViewHolder() { TextView = textview };
-
             }
 
             var fotoSheep = view.FindViewById<ImageView>(Resource.Id.fotoSheep);
@@ -66,7 +65,6 @@ namespace Sheep_Wolf.Droid
                 .Into(fotoSheep);
 
             var holder = (ViewHolder)view.Tag;
-
             holder.TextView.Text = sheepClassArray[position].Name;
 
             return view;
@@ -76,6 +74,5 @@ namespace Sheep_Wolf.Droid
     public class ViewHolder : Java.Lang.Object
     {
         public TextView TextView;
-
     }
 }

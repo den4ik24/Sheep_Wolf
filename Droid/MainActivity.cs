@@ -57,11 +57,14 @@ namespace Sheep_Wolf.Droid
 
         private void ListOfSheeps_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-            
             var intent = new Intent(this, typeof(SheepID));
+
+            //var a = listOfSheeps.GetItemAtPosition(e.Position);
             //intent.PutExtra("NAMEofSHEEP", listOfSheeps.GetItemAtPosition(e.Position).ToString());
-            intent.PutExtra("NAMEofSHEEP", sheep.Name.ToString());
-            intent.PutExtra("FOTOofSHEEP", sheep.URL.ToString());
+            var N = adapter.ElementPosition(e.Position);
+            
+            intent.PutExtra("NAMEofSHEEP", N.Name);
+            intent.PutExtra("FOTOofSHEEP", N.URL);
             StartActivity(intent);
 
         }
@@ -79,7 +82,7 @@ namespace Sheep_Wolf.Droid
                 sheep = new SheepClass();
 
                 sheep.Name = textNameOfSheep.Text;
-                sheep.URL = sheepsStringURL[random.Next(0, 10)];
+                sheep.URL = Rand();
 
 
                 adapter.Add(sheep);
@@ -88,10 +91,12 @@ namespace Sheep_Wolf.Droid
                 count++;
                 textViewNumbSheep.Text = count.ToString();
             }
-
         }
 
-
+        public string Rand()
+        {
+            return sheepsStringURL[random.Next(0, 10)];
+        }
     }
 }
 

@@ -25,9 +25,8 @@ namespace Sheep_Wolf.Droid
             textViewSheepsName.Text = sheepName;
 
             var fotoSheep = Intent.Extras.GetString("FOTOofSHEEP");
-
             Picasso.With(this)
-                .Load(fotoSheep.ToString())
+                .Load(fotoSheep)
                 .Into(sheepFoto);
 
         }
