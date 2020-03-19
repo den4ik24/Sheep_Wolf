@@ -16,6 +16,10 @@ namespace Sheep_Wolf.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIImageView fotoSheep { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel textTableViewSheep { get; set; }
 
         [Outlet]
@@ -24,6 +28,11 @@ namespace Sheep_Wolf.iOS
 
         void ReleaseDesignerOutlets ()
         {
+            if (fotoSheep != null) {
+                fotoSheep.Dispose ();
+                fotoSheep = null;
+            }
+
             if (textTableViewSheep != null) {
                 textTableViewSheep.Dispose ();
                 textTableViewSheep = null;

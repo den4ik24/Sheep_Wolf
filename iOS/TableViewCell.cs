@@ -6,10 +6,8 @@ namespace Sheep_Wolf.iOS
     public partial class TableViewCell : UITableViewCell
     {
         public TableViewCell (IntPtr handle) : base (handle)
-        {
-            
+        {    
         }
-
 
         public void UpdateCell(string name)
         {

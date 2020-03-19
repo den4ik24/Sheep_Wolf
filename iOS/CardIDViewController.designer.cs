@@ -22,6 +22,10 @@ namespace Sheep_Wolf.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel labelSheepName { get; set; }
 
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIImageView sheepFoto { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
             if (ImageSheep != null) {
@@ -32,6 +36,11 @@ namespace Sheep_Wolf.iOS
             if (labelSheepName != null) {
                 labelSheepName.Dispose ();
                 labelSheepName = null;
+            }
+
+            if (sheepFoto != null) {
+                sheepFoto.Dispose ();
+                sheepFoto = null;
             }
         }
     }
