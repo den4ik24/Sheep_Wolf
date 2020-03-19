@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="19290">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
@@ -66,35 +66,35 @@
                                             <rect key="frame" x="0.0" y="0.0" width="1024" height="66"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sheep's Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ILD-Wv-Ove">
-                                                    <rect key="frame" x="0.0" y="20" width="116" height="26"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="116" height="26"/>
                                                     <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
                                                     <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sheep" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxC-k1-67Z">
-                                                    <rect key="frame" x="174" y="20" width="116" height="26"/>
+                                                    <rect key="frame" x="174" y="0.0" width="116" height="26"/>
                                                     <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
                                                     <color key="textColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BLh-NJ-cdO">
-                                                    <rect key="frame" x="124" y="20" width="50" height="26"/>
+                                                    <rect key="frame" x="124" y="0.0" width="50" height="26"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="ILD-Wv-Ove" firstAttribute="width" secondItem="17502" secondAttribute="width" multiplier="0.4" id="15J-DH-elL"/>
-                                                <constraint firstItem="bxC-k1-67Z" firstAttribute="top" secondItem="17502" secondAttribute="top" constant="20" symbolic="YES" id="634-m6-kXU"/>
+                                                <constraint firstItem="bxC-k1-67Z" firstAttribute="top" secondItem="17502" secondAttribute="top" id="634-m6-kXU"/>
                                                 <constraint firstAttribute="trailing" secondItem="bxC-k1-67Z" secondAttribute="trailing" id="7gs-vc-eAQ"/>
-                                                <constraint firstAttribute="bottom" secondItem="bxC-k1-67Z" secondAttribute="bottom" constant="20" symbolic="YES" id="AeZ-vD-X29"/>
-                                                <constraint firstAttribute="bottom" secondItem="ILD-Wv-Ove" secondAttribute="bottom" constant="20" symbolic="YES" id="GOa-oU-mlS"/>
+                                                <constraint firstAttribute="bottom" secondItem="bxC-k1-67Z" secondAttribute="bottom" id="AeZ-vD-X29"/>
+                                                <constraint firstAttribute="bottom" secondItem="ILD-Wv-Ove" secondAttribute="bottom" id="GOa-oU-mlS"/>
                                                 <constraint firstItem="BLh-NJ-cdO" firstAttribute="leading" secondItem="ILD-Wv-Ove" secondAttribute="trailing" constant="8" symbolic="YES" id="GdL-GO-1D1"/>
-                                                <constraint firstAttribute="bottom" secondItem="BLh-NJ-cdO" secondAttribute="bottom" constant="20" symbolic="YES" id="ISn-fD-8pb"/>
+                                                <constraint firstAttribute="bottom" secondItem="BLh-NJ-cdO" secondAttribute="bottom" id="ISn-fD-8pb"/>
                                                 <constraint firstItem="bxC-k1-67Z" firstAttribute="leading" secondItem="BLh-NJ-cdO" secondAttribute="trailing" id="LaL-X2-waS"/>
-                                                <constraint firstItem="ILD-Wv-Ove" firstAttribute="top" secondItem="17502" secondAttribute="top" constant="20" symbolic="YES" id="Rga-NS-Cww"/>
+                                                <constraint firstItem="ILD-Wv-Ove" firstAttribute="top" secondItem="17502" secondAttribute="top" id="Rga-NS-Cww"/>
                                                 <constraint firstItem="bxC-k1-67Z" firstAttribute="width" secondItem="17502" secondAttribute="width" multiplier="0.4" id="U0P-4d-8Am"/>
-                                                <constraint firstItem="BLh-NJ-cdO" firstAttribute="top" secondItem="17502" secondAttribute="top" constant="20" symbolic="YES" id="f0Y-Ah-YQS"/>
+                                                <constraint firstItem="BLh-NJ-cdO" firstAttribute="top" secondItem="17502" secondAttribute="top" id="f0Y-Ah-YQS"/>
                                                 <constraint firstItem="ILD-Wv-Ove" firstAttribute="leading" secondItem="17502" secondAttribute="leading" id="nCQ-EF-R88"/>
                                             </constraints>
                                         </tableViewCellContentView>

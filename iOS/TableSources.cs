@@ -18,7 +18,6 @@ namespace Sheep_Wolf.iOS
         
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
-            Console.WriteLine("GetCell");
             var cell = (TableViewCell)tableView.DequeueReusableCell("cell");
             cell.UpdateCell(sheepNamesArray[indexPath.Row]);
             return cell;
@@ -26,9 +25,7 @@ namespace Sheep_Wolf.iOS
 
         public override nint RowsInSection(UITableView tableview, nint section)
         {
-            Console.WriteLine(sheepNamesArray.Count);
             return sheepNamesArray.Count;
-          
         }
 
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
@@ -37,16 +34,14 @@ namespace Sheep_Wolf.iOS
             SNA = sheepNamesArray[indexPath.Row];
             tableView.DeselectRow(indexPath, true);
 
+            NabvigateTo();
+        }
+
+        public void NabvigateTo()
+        {
             CardIDViewController cardIDViewController = controller.Storyboard.InstantiateViewController("CardIDViewController") as CardIDViewController;
             controller.NavigationController.PushViewController(cardIDViewController, true);
             cardIDViewController.SheepText = SNA;
-            
         }
-
-        //public override void WillDisplay(UITableView tableView, UITableViewCell cell, NSIndexPath indexPath)
-        //{
-        //    cell.SeparatorInset = UIEdgeInsets.Zero;
-        //    cell.LayoutMargins = UIEdgeInsets.Zero;
-        //}
     }
 }

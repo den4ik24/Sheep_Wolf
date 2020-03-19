@@ -116,7 +116,7 @@
     <Compile Include="TableViewCell.designer.cs">
       <DependentUpon>TableViewCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="SheepTableSources.cs" />
+    <Compile Include="TableSources.cs" />
     <Compile Include="CardIDViewController.cs" />
     <Compile Include="CardIDViewController.designer.cs">
       <DependentUpon>CardIDViewController.cs</DependentUpon>
