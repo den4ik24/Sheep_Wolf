@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="19290">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
@@ -55,15 +55,15 @@
                                 <nil key="highlightedColor"/>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="17500">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="17500">
                                 <rect key="frame" x="0.0" y="190" width="1024" height="1176"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" restorationIdentifier="TableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" translatesAutoresizingMaskIntoConstraints="NO" id="17501" customClass="TableViewCell">
-                                        <rect key="frame" x="0.0" y="28" width="1024" height="66"/>
+                                        <rect key="frame" x="0.0" y="28" width="1024" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="17501" translatesAutoresizingMaskIntoConstraints="NO" id="17502">
-                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="66"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="60"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sheep's Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ILD-Wv-Ove">
                                                     <rect key="frame" x="0.0" y="0.0" width="116" height="26"/>
@@ -79,8 +79,8 @@
                                                     <color key="textColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BLh-NJ-cdO">
-                                                    <rect key="frame" x="124" y="0.0" width="50" height="26"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="book" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="BLh-NJ-cdO">
+                                                    <rect key="frame" x="124" y="0.0" width="60" height="60"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -89,7 +89,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="bxC-k1-67Z" secondAttribute="trailing" id="7gs-vc-eAQ"/>
                                                 <constraint firstAttribute="bottom" secondItem="bxC-k1-67Z" secondAttribute="bottom" id="AeZ-vD-X29"/>
                                                 <constraint firstAttribute="bottom" secondItem="ILD-Wv-Ove" secondAttribute="bottom" id="GOa-oU-mlS"/>
-                                                <constraint firstItem="BLh-NJ-cdO" firstAttribute="leading" secondItem="ILD-Wv-Ove" secondAttribute="trailing" constant="8" symbolic="YES" id="GdL-GO-1D1"/>
+                                                <constraint firstItem="BLh-NJ-cdO" firstAttribute="leading" secondItem="ILD-Wv-Ove" secondAttribute="trailing" id="GdL-GO-1D1"/>
                                                 <constraint firstAttribute="bottom" secondItem="BLh-NJ-cdO" secondAttribute="bottom" id="ISn-fD-8pb"/>
                                                 <constraint firstItem="bxC-k1-67Z" firstAttribute="leading" secondItem="BLh-NJ-cdO" secondAttribute="trailing" id="LaL-X2-waS"/>
                                                 <constraint firstItem="ILD-Wv-Ove" firstAttribute="top" secondItem="17502" secondAttribute="top" id="Rga-NS-Cww"/>
@@ -135,7 +135,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="338.671875" y="-61.932650073206439"/>
+            <point key="canvasLocation" x="338.67189999999999" y="-61.932650000000002"/>
         </scene>
         <!--CardID View Controller-->
         <scene sceneID="4zV-j3-RGc">
@@ -271,6 +271,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="book" catalog="system" width="64" height="50"/>
         <image name="sheep.png" width="1920" height="1905"/>
     </resources>
 </document>

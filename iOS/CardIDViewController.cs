@@ -1,11 +1,12 @@
 using System;
+using FFImageLoading;
 using UIKit;
 
 namespace Sheep_Wolf.iOS
 {
     public partial class CardIDViewController : UIViewController
     {
-        public string SheepText;
+        public SheepClassIOS model;
 
         public CardIDViewController (IntPtr handle) : base (handle)
         {
@@ -16,7 +17,9 @@ namespace Sheep_Wolf.iOS
         {
             base.ViewDidLoad();
 
-           labelSheepName.Text = SheepText;
+            labelSheepName.Text = model.Name;
+
+            ImageService.Instance.LoadUrl(model.URL).Into(sheepFoto);
         }
     }
 }

@@ -59,7 +59,6 @@ namespace Sheep_Wolf.Droid
         {
             var intent = new Intent(this, typeof(SheepID));
 
-            //var a = listOfSheeps.GetItemAtPosition(e.Position);
             //intent.PutExtra("NAMEofSHEEP", listOfSheeps.GetItemAtPosition(e.Position).ToString());
             var N = adapter.ElementPosition(e.Position);
             

@@ -1,4 +1,6 @@
 using System;
+using FFImageLoading;
+using Foundation;
 using UIKit;
 
 namespace Sheep_Wolf.iOS
@@ -9,11 +11,11 @@ namespace Sheep_Wolf.iOS
         {    
         }
 
-        public void UpdateCell(string name)
+        public void UpdateCell(SheepClassIOS sheep)
         {
-            textTableViewSheepsName.Text = name;
+            textTableViewSheepsName.Text = sheep.Name;
             textTableViewSheep.Text = "Sheep";
+            ImageService.Instance.LoadUrl(sheep.URL).Into(fotoSheep);
         }
-        
     }
 }

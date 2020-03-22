@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using FFImageLoading;
 using Foundation;
 using UIKit;
 
@@ -7,10 +8,13 @@ namespace Sheep_Wolf.iOS
 {
     public class TableSource : UITableViewSource
     {
-        List<string> sheepNamesArray = new List<string>();
+        //SheepClassIOS sheep;
+        List<SheepClassIOS> sheepNamesArray = new List<SheepClassIOS>();
         UIViewController controller;
-        string SNA;
-        public TableSource(List<string> items, UIViewController uIView)
+        //string SNA;
+        //string SF;
+
+        public TableSource(List<SheepClassIOS> items, UIViewController uIView)
         {
             sheepNamesArray = items;
             controller = uIView;
@@ -30,18 +34,19 @@ namespace Sheep_Wolf.iOS
 
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
-           
-            SNA = sheepNamesArray[indexPath.Row];
-            tableView.DeselectRow(indexPath, true);
 
-            NabvigateTo();
+            tableView.DeselectRow(indexPath, true);
+            var SHP = sheepNamesArray[indexPath.Row];
+
+            NabvigateTo(SHP);
         }
 
-        public void NabvigateTo()
+        public void NabvigateTo(SheepClassIOS SHP)
         {
             CardIDViewController cardIDViewController = controller.Storyboard.InstantiateViewController("CardIDViewController") as CardIDViewController;
             controller.NavigationController.PushViewController(cardIDViewController, true);
-            cardIDViewController.SheepText = SNA;
+            cardIDViewController.model = SHP;
         }
+
     }
 }
