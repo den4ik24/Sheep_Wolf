@@ -55,8 +55,14 @@
                                 <attributedString key="attributedText"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lKx-1h-y2K">
+                                <rect key="frame" x="0.0" y="208" width="828" height="216"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fyC-8C-a4f">
-                                <rect key="frame" x="20" y="208" width="0.0" height="216"/>
+                                <rect key="frame" x="207" y="208" width="0.0" height="216"/>
                             </pickerView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="17500">
                                 <rect key="frame" x="0.0" y="444" width="414" height="418"/>
@@ -115,15 +121,19 @@
                             <constraint firstAttribute="trailingMargin" secondItem="oLw-ym-bm1" secondAttribute="trailing" id="14634"/>
                             <constraint firstItem="oLw-ym-bm1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="14638"/>
                             <constraint firstItem="oLw-ym-bm1" firstAttribute="top" secondItem="oBE-Ac-vcx" secondAttribute="bottom" constant="20" id="14683"/>
-                            <constraint firstItem="fyC-8C-a4f" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" symbolic="YES" id="1zQ-Mg-USb"/>
                             <constraint firstAttribute="trailing" secondItem="17500" secondAttribute="trailing" id="4qD-WX-8uX"/>
-                            <constraint firstAttribute="trailing" secondItem="fyC-8C-a4f" secondAttribute="trailing" constant="20" symbolic="YES" id="71d-Ka-Kc4"/>
+                            <constraint firstAttribute="trailing" secondItem="fyC-8C-a4f" secondAttribute="trailing" id="71d-Ka-Kc4"/>
                             <constraint firstItem="17500" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="G1B-3z-d8P"/>
+                            <constraint firstItem="17500" firstAttribute="top" secondItem="lKx-1h-y2K" secondAttribute="bottom" constant="20" id="HAm-cT-e75"/>
                             <constraint firstItem="ZUM-ry-mAe" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="KCd-1I-gse"/>
                             <constraint firstItem="17500" firstAttribute="top" secondItem="fyC-8C-a4f" secondAttribute="bottom" constant="20" id="KxL-se-TGo"/>
+                            <constraint firstItem="fyC-8C-a4f" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="M2T-WI-2I1"/>
+                            <constraint firstItem="lKx-1h-y2K" firstAttribute="top" secondItem="oLw-ym-bm1" secondAttribute="bottom" constant="20" id="Qws-g8-yu4"/>
                             <constraint firstItem="oBE-Ac-vcx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="XIf-gj-3Lq"/>
                             <constraint firstItem="oBE-Ac-vcx" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="Zra-km-e7N"/>
                             <constraint firstItem="ZUM-ry-mAe" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="cKO-MD-ZfF"/>
+                            <constraint firstAttribute="width" secondItem="lKx-1h-y2K" secondAttribute="width" multiplier="0.5" id="dki-Wy-ipU"/>
+                            <constraint firstItem="lKx-1h-y2K" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="fBy-J0-I3a"/>
                             <constraint firstItem="oBE-Ac-vcx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="fb4-2N-ULr"/>
                             <constraint firstItem="ZUM-ry-mAe" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="jwL-lp-35L"/>
                             <constraint firstItem="fyC-8C-a4f" firstAttribute="top" secondItem="oLw-ym-bm1" secondAttribute="bottom" constant="20" id="kP9-oO-oHC"/>
@@ -141,7 +151,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="338.671875" y="-61.932650073206439"/>
+            <point key="canvasLocation" x="337.68115942028987" y="-62.276785714285708"/>
         </scene>
         <!--CardID View Controller-->
         <scene sceneID="4zV-j3-RGc">
