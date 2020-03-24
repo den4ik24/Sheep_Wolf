@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UIKit;
 
 namespace Sheep_Wolf.iOS
@@ -42,8 +43,9 @@ namespace Sheep_Wolf.iOS
 
         private void ButtonAddSheep_TouchUpInside(object sender, EventArgs e)
         {
+            string temp = textNameOfSheep.Text;
 
-            if (textNameOfSheep.Text == "")
+            if (temp == "")
             {
 
                 var alertController = UIAlertController.Create
@@ -55,9 +57,15 @@ namespace Sheep_Wolf.iOS
             }
             else
             {
+                
+                if (sheepNamesArray.Contains(temp))
+                {
+
+                }
+
                 var sheep = new SheepClassIOS();
 
-                sheep.Name = textNameOfSheep.Text;
+                sheep.Name = temp;
                 sheep.URL = Rand();
 
                 sheepNamesArray.Add(sheep);

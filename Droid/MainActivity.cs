@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -21,6 +22,7 @@ namespace Sheep_Wolf.Droid
         SheepClass sheep;
 
         Random random = new Random();
+
         string[] sheepsStringURL =
         {
             "https://www.studentofthegun.com/wp-content/uploads/2017/10/SOTG_679_-_A_Nation_of_Sheep.jpg",
@@ -35,10 +37,12 @@ namespace Sheep_Wolf.Droid
             "http://milifamily.pl/wp-content/uploads/2016/07/Untitled-design-18.jpg"
         };
 
+        List<string> sheepsNameList = new List<string>();
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
+            
             SetContentView(Resource.Layout.Main);
 
             textViewNumbSheep = FindViewById<TextView>(Resource.Id.textViewNumbSheep);
@@ -70,32 +74,57 @@ namespace Sheep_Wolf.Droid
 
         private void AddSheepButton_Click(object sender, EventArgs e)
         {
+            string temp = textNameOfSheep.Text;
 
-            if (textNameOfSheep.Text == "")
+            if (temp == "")
             {
                 Toast.MakeText(this, "Укажите имя овцы", ToastLength.Short).Show();
             }
 
             else
             {
-                sheep = new SheepClass();
+                //string temp = textNameOfSheep.Text;//[random.Next(sheepsNameList.Count)].ToString();
+                //sheep.Name = textNameOfSheep.Text;
 
-                sheep.Name = textNameOfSheep.Text;
-                sheep.URL = Rand();
+                if (sheepsNameList.Contains(temp))
+                {
+                    Toast.MakeText(this, "Животное с таким именем уже существует. Измените имя", ToastLength.Short).Show();
+                }
+                else
+                {
+                    sheep = new SheepClass();
+
+                    sheepsNameList.Add(temp);
+                    sheep.Name = temp;
+                    sheep.URL = Rand();
 
 
-                adapter.Add(sheep);
-                adapter.NotifyDataSetChanged();
-                textNameOfSheep.Text = "";
-                count++;
-                textViewNumbSheep.Text = count.ToString();
+                    adapter.Add(sheep);
+                    adapter.NotifyDataSetChanged();
+                    textNameOfSheep.Text = "";
+                    count++;
+                    textViewNumbSheep.Text = count.ToString();
+                }
             }
         }
 
         public string Rand()
         {
-            return sheepsStringURL[random.Next(0, 10)];
+            return sheepsStringURL[random.Next(sheepsStringURL.Length)];
         }
+
+    //    public string NameAr()
+    //    {
+    //            string temp = textNameOfSheep.Text[random.Next(0, sheepsNameList.Count)].ToString();
+
+    //        if (sheepsNameList.Contains(temp))
+    //        {
+    //            Toast.MakeText(this, "Животное с таким именем уже существует. Измените имя", ToastLength.Short).Show();
+    //        }
+    //        else sheepsNameList.Add(temp);
+
+    //        return temp;
+    //    }
     }
 }
 
