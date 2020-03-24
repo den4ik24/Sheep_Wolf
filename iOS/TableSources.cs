@@ -8,11 +8,8 @@ namespace Sheep_Wolf.iOS
 {
     public class TableSource : UITableViewSource
     {
-        //SheepClassIOS sheep;
         List<SheepClassIOS> sheepNamesArray = new List<SheepClassIOS>();
         UIViewController controller;
-        //string SNA;
-        //string SF;
 
         public TableSource(List<SheepClassIOS> items, UIViewController uIView)
         {

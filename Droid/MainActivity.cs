@@ -17,12 +17,10 @@ namespace Sheep_Wolf.Droid
         ListView listOfSheeps;
         EditText textNameOfSheep;
 
+        Random random = new Random();
         SheepAdapter adapter;
 
-        SheepClass sheep;
-
-        Random random = new Random();
-
+        List<string> sheepsNameList = new List<string>();
         string[] sheepsStringURL =
         {
             "https://www.studentofthegun.com/wp-content/uploads/2017/10/SOTG_679_-_A_Nation_of_Sheep.jpg",
@@ -36,8 +34,6 @@ namespace Sheep_Wolf.Droid
             "https://pix.avax.news/avaxnews/69/5c/00015c69.jpeg",
             "http://milifamily.pl/wp-content/uploads/2016/07/Untitled-design-18.jpg"
         };
-
-        List<string> sheepsNameList = new List<string>();
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -92,7 +88,7 @@ namespace Sheep_Wolf.Droid
                 }
                 else
                 {
-                    sheep = new SheepClass();
+                    var sheep = new SheepClass();
 
                     sheepsNameList.Add(temp);
                     sheep.Name = temp;

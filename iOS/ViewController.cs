@@ -8,14 +8,11 @@ namespace Sheep_Wolf.iOS
     public partial class ViewController : UIViewController
     {
         int count = 0;
-        List<SheepClassIOS> sheepNamesArray = new List<SheepClassIOS>();
-        
-
         Random random = new Random();
-
+        List<SheepClassIOS> sheepNamesArray = new List<SheepClassIOS>();
+        List<string> sheepsNameList = new List<string>();
         string[] sheepsStringURL =
         {
-
             "https://www.studentofthegun.com/wp-content/uploads/2017/10/SOTG_679_-_A_Nation_of_Sheep.jpg",
             "http://risovach.ru/upload/2014/04/generator/naivnaya-ovechka2_48043820_orig_.jpeg",
             "https://www.parcs-zoologiques-lumigny.fr/wp-content/uploads/2019/03/mouton-1240.jpg",
@@ -27,6 +24,7 @@ namespace Sheep_Wolf.iOS
             "https://pix.avax.news/avaxnews/69/5c/00015c69.jpeg",
             "http://milifamily.pl/wp-content/uploads/2016/07/Untitled-design-18.jpg"
         };
+
 
         public ViewController(IntPtr handle) : base(handle)
         {
@@ -57,23 +55,29 @@ namespace Sheep_Wolf.iOS
             }
             else
             {
-                
-                if (sheepNamesArray.Contains(temp))
+                if (sheepsNameList.Contains(temp))
                 {
-
+                    var alertController = UIAlertController.Create
+                    ("WARNING", "Животное с таким именем уже существует.Измените имя", UIAlertControllerStyle.Alert);
+                    alertController.AddAction(UIAlertAction.Create
+                        ("OK", UIAlertActionStyle.Default, null));
+                    PresentViewController(alertController, true, null);
                 }
 
-                var sheep = new SheepClassIOS();
+                else
+                {
+                    var sheep = new SheepClassIOS();
+                    sheepsNameList.Add(temp);
+                    sheep.Name = temp;
+                    sheep.URL = Rand();
 
-                sheep.Name = temp;
-                sheep.URL = Rand();
-
-                sheepNamesArray.Add(sheep);
-                listOfSheeps.Source = new TableSource(sheepNamesArray, this);
-                listOfSheeps.ReloadData();
-                count++;
-                LabelNumberSheep.Text = count.ToString();
-                textNameOfSheep.Text = "";
+                    sheepNamesArray.Add(sheep);
+                    listOfSheeps.Source = new TableSource(sheepNamesArray, this);
+                    listOfSheeps.ReloadData();
+                    count++;
+                    LabelNumberSheep.Text = count.ToString();
+                    textNameOfSheep.Text = "";
+                }
             }
         }
 
