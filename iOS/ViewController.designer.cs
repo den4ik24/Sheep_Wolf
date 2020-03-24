@@ -15,6 +15,10 @@ namespace Sheep_Wolf.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIPickerView animalChoice { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIButton ButtonAddSheep { get; set; }
 
         [Outlet]
@@ -35,6 +39,11 @@ namespace Sheep_Wolf.iOS
 
         void ReleaseDesignerOutlets ()
         {
+            if (animalChoice != null) {
+                animalChoice.Dispose ();
+                animalChoice = null;
+            }
+
             if (ButtonAddSheep != null) {
                 ButtonAddSheep.Dispose ();
                 ButtonAddSheep = null;

@@ -12,7 +12,7 @@
 		android:layout_height="wrap_content"
 		android:background="@android:color/holo_green_dark"
 		android:gravity="center"
-		android:text="sheeps VS wolf"
+		android:text="sheeps VS wolves"
         android:freezesText="true"
 		android:textColor="@android:color/black"
         />
