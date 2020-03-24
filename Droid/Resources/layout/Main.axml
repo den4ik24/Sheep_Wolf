@@ -19,9 +19,8 @@
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-        android:id="@+id/sheeps_container"
-        android:layout_marginTop="8dp"
-        
+		android:id="@+id/sheeps_container"
+		android:layout_marginTop="8dp"
         >
 		<Button
 			android:id="@+id/addSheepButton"
@@ -29,9 +28,9 @@
 			android:layout_width="0dp"
 			android:layout_height="match_parent"
 			android:layout_weight="50"
-            android:layout_marginRight="3dp"
-            android:layout_marginLeft="3dp"
-			android:text="Adding Sheep"
+			android:layout_marginRight="3dp"
+			android:layout_marginLeft="3dp"
+			android:text="Adding Animal"
 			android:clickable="true"
 			android:textColor="#ff1a237e"
 			android:background="#ffffd600"
@@ -40,13 +39,13 @@
 			android:textAlignment="center"
 			android:textStyle="italic|bold" />
 		<TextView
-			android:text="Number of Sheep"
+			android:text="Number of Animal"
 			android:gravity="center"
 			android:layout_width="0dp"
 			android:layout_height="match_parent"
 			android:layout_weight="50"
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp"
+			android:layout_marginLeft="3dp"
+			android:layout_marginRight="3dp"
 			android:id="@+id/textViewNumbSheep"
 			android:textColor="#ffffd600"
 			android:background="#ff1a237e"
@@ -56,15 +55,37 @@
 			android:typeface="sans"
 			android:textStyle="normal|bold"
 			android:capitalize="words"
-            android:freezesText="true"
+			android:freezesText="true"
 			android:drawingCacheQuality="high"/>
+	</LinearLayout>
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="8dp"
+        >
+		<TextView
+			android:text="TYPE OF ANIMAL :"
+			android:layout_weight="50"
+            android:background="@android:color/holo_blue_dark"
+            android:textColor="@android:color/white"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:id="@+id/textView1"/>
+		<Spinner
+			android:layout_weight="50"
+            android:background="@android:color/white"
+            android:textColor="@android:color/holo_blue_dark"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+            android:entries="@array/type_animal"
+			android:id="@+id/animalChoice"/>
 	</LinearLayout>
     />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18dp"
-        android:hint="Enter the Name of the Sheep"
+        android:hint="Enter the Name of the Animal"
         android:background="@android:color/holo_green_dark"
         android:textColor="@android:color/black"
         android:layout_marginTop="8dp"
