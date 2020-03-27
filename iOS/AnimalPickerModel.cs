@@ -35,7 +35,7 @@ namespace Sheep_Wolf.iOS
             var animals = Animals[(int)row];
 
             SelectedValue = animals;
-            ValueChanged?.Invoke(null, null);
+            ValueChanged?.Invoke(null, null) ;
         }
 
     }

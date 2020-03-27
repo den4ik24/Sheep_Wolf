@@ -59,27 +59,23 @@ namespace Sheep_Wolf.iOS
 
             picker = new AnimalPickerModel(Animals);
             animalChoice.Model = picker;
+            animalChoice.Select(1, 0, true);
+            //textNameOfSheep.InputView = animalChoice;
+            picker.ValueChanged += Picker_ValueChanged;
 
-            //picker.ValueChanged += Picker_ValueChanged;
-            picker.ValueChanged += (sender, e) =>
-            {
-              
-                if (picker.SelectedValue == "SHEEP")
-                {
-                    Rand = RandSheep();
-                }
-
-                if (picker.SelectedValue == "WOLF")
-                {
-                    Rand = RandWolf();
-                }
-            };
         }
 
-        //private void Picker_ValueChanged(object sender, EventArgs e)
-        //{
-          
-        //}
+        private void Picker_ValueChanged(object sender, EventArgs e)
+        {
+            if (picker.SelectedValue == "SHEEP")
+            {
+                Rand = RandSheep().ToString();
+            }
+            if (picker.SelectedValue == "WOLF")
+            {
+                Rand = RandWolf().ToString();
+            }
+        }
 
         private void ButtonAddSheep_TouchUpInside(object sender, EventArgs e)
         {
@@ -89,7 +85,7 @@ namespace Sheep_Wolf.iOS
             {
 
                 var alertController = UIAlertController.Create
-                    ("WARNING", "Введите имя овцы", UIAlertControllerStyle.Alert);
+                    ("WARNING", "Введите имя животного", UIAlertControllerStyle.Alert);
                 alertController.AddAction(UIAlertAction.Create
                     ("OK", UIAlertActionStyle.Default, null));
                 PresentViewController(alertController, true, null);
