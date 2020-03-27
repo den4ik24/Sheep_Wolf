@@ -19,6 +19,7 @@
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+        android:orientation="horizontal"
 		android:id="@+id/sheeps_container"
 		android:layout_marginTop="8dp"
         >
@@ -61,6 +62,7 @@
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+        android:orientation="horizontal"
 		android:layout_marginTop="8dp"
         >
 		<TextView
@@ -68,6 +70,7 @@
 			android:layout_weight="50"
             android:background="@android:color/holo_blue_dark"
             android:textColor="@android:color/white"
+            android:gravity="right"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:id="@+id/textView1"/>

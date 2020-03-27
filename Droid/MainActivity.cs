@@ -16,6 +16,7 @@ namespace Sheep_Wolf.Droid
         TextView textViewNumbSheep;
         ListView listOfSheeps;
         EditText textNameOfSheep;
+        Spinner animalChoice;
 
         Random random = new Random();
         SheepAdapter adapter;
@@ -35,6 +36,19 @@ namespace Sheep_Wolf.Droid
             "http://milifamily.pl/wp-content/uploads/2016/07/Untitled-design-18.jpg"
         };
 
+        string[] wolfStringURL =
+        {
+            "https://www.proza.ru/pics/2014/03/17/1922.jpg",
+            "https://imgfon.ru/Images/Download/Crop/2560x1600/Animals/volk-hischnik-vzglyad-sherst-lejit.jpg",
+            "https://img2.goodfon.ru/original/1600x1200/e/27/les-volk-sneg.jpg",
+            "https://wallpaperbro.com/img/256362.jpg",
+            "https://i.artfile.me/wallpaper/07-09-2017/1920x1280/zhivotnye-volki--kojoty--shakaly-vzglyad-1224870.jpg",
+            "https://s00.yaplakal.com/pics/pics_original/4/0/0/13729004.jpg",
+            "https://i.ytimg.com/vi/GKK-nxCjSWc/maxresdefault.jpg",
+            "https://image.wallperz.com/wp-content/uploads/2017/09/26/wallperz.com-20170926100049.jpg",
+            "https://www.wallpaperup.com/uploads/wallpapers/2015/05/28/702184/fad311d0532eb1d00d28a093bd4abf8d-1400.jpg",
+            "https://www.3d-hdwallpaper.com/wp-content/uploads/2019/05/desktop-free-wolf-wallpaper-download.jpg"
+        };
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -50,10 +64,36 @@ namespace Sheep_Wolf.Droid
 
             textNameOfSheep = FindViewById<EditText>(Resource.Id.textNameOfSheep);
 
+            animalChoice = FindViewById<Spinner>(Resource.Id.animalChoice);
+
             adapter = new SheepAdapter(this);
-            
             listOfSheeps.Adapter = adapter;
+
+            //animalChoice.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(AnimalChoice_ItemSelected);
+            
         }
+
+        //private void AnimalChoice_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        //{
+        //    var adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.type_animal, Android.Resource.Layout.SimpleSpinnerItem);
+        //    adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+        //    animalChoice.Adapter = adapter;
+
+        //    Spinner spinner = (Spinner)sender;
+
+        //    string selectedAnimal = string.Format($"Выбрано животное - {spinner.GetItemAtPosition(e.Position)}");
+        //    Toast.MakeText(this, selectedAnimal, ToastLength.Short).Show();
+
+        //    if(spinner.SelectedItemPosition == 0)
+        //    {
+
+        //    }
+
+        //    if (spinner.SelectedItemPosition == 1)
+        //    {
+
+        //    }
+        //}
 
         private void ListOfSheeps_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {

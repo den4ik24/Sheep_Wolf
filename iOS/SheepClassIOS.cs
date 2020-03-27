@@ -5,5 +5,6 @@ namespace Sheep_Wolf.iOS
     {
         public string Name { get; set; }
         public string URL { get; set; }
+        public string Type { get; set; }
     }
 }

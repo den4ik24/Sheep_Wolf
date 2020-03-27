@@ -18,6 +18,7 @@ namespace Sheep_Wolf.iOS
             base.ViewDidLoad();
 
             labelSheepName.Text = model.Name;
+            NameAnimalID.Text = model.Type;
 
             ImageService.Instance.LoadUrl(model.URL).Into(sheepFoto);
         }

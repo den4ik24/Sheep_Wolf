@@ -132,6 +132,7 @@
       <DependentUpon>CardIDViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="SheepClassIOS.cs" />
+    <Compile Include="AnimalPickerModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\sheep.png" />

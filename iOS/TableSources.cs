@@ -43,6 +43,7 @@ namespace Sheep_Wolf.iOS
             CardIDViewController cardIDViewController = controller.Storyboard.InstantiateViewController("CardIDViewController") as CardIDViewController;
             controller.NavigationController.PushViewController(cardIDViewController, true);
             cardIDViewController.model = SHP;
+
         }
 
     }
