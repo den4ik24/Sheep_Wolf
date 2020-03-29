@@ -15,7 +15,7 @@ namespace Sheep_Wolf.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIPickerView animalChoice { get; set; }
+        UIKit.UITextField animalChoice { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]

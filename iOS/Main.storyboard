@@ -67,36 +67,43 @@
                                 <color key="textColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fyC-8C-a4f" misplaced="YES">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Choose your Animal" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GE8-B5-WFc" misplaced="YES">
                                 <rect key="frame" x="207" y="208" width="207" height="50"/>
                                 <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </pickerView>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="wjN-Gq-Wi1"/>
+                                </constraints>
+                                <color key="textColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="17500" misplaced="YES">
                                 <rect key="frame" x="0.0" y="278" width="414" height="584"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" translatesAutoresizingMaskIntoConstraints="NO" id="17501" customClass="TableViewCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="17501" customClass="TableViewCell">
                                         <rect key="frame" x="0.0" y="28" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="17501" translatesAutoresizingMaskIntoConstraints="NO" id="17502">
-                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="17501" id="17502">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sheep's Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ILD-Wv-Ove">
-                                                    <rect key="frame" x="0.0" y="0.0" width="116" height="26"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="165.5" height="60"/>
                                                     <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
                                                     <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sheep" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxC-k1-67Z">
-                                                    <rect key="frame" x="174" y="0.0" width="116" height="26"/>
+                                                    <rect key="frame" x="248.5" y="0.0" width="165.5" height="60"/>
                                                     <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
                                                     <color key="textColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="BLh-NJ-cdO">
-                                                    <rect key="frame" x="116" y="1.5" width="58" height="23"/>
+                                                    <rect key="frame" x="165.5" y="1.5" width="83" height="57"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -129,20 +136,20 @@
                             <constraint firstItem="oLw-ym-bm1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="14638"/>
                             <constraint firstItem="oLw-ym-bm1" firstAttribute="top" secondItem="oBE-Ac-vcx" secondAttribute="bottom" constant="20" id="14683"/>
                             <constraint firstAttribute="trailing" secondItem="17500" secondAttribute="trailing" id="4qD-WX-8uX"/>
-                            <constraint firstAttribute="trailing" secondItem="fyC-8C-a4f" secondAttribute="trailing" id="71d-Ka-Kc4"/>
+                            <constraint firstItem="GE8-B5-WFc" firstAttribute="top" secondItem="oLw-ym-bm1" secondAttribute="bottom" constant="20" id="EhN-zc-KWd"/>
+                            <constraint firstItem="GE8-B5-WFc" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="Ey9-zh-uej"/>
                             <constraint firstItem="17500" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="G1B-3z-d8P"/>
                             <constraint firstItem="17500" firstAttribute="top" secondItem="lKx-1h-y2K" secondAttribute="bottom" constant="20" id="HAm-cT-e75"/>
+                            <constraint firstAttribute="trailing" secondItem="GE8-B5-WFc" secondAttribute="trailing" id="HHx-gH-CL5"/>
                             <constraint firstItem="ZUM-ry-mAe" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="KCd-1I-gse"/>
-                            <constraint firstItem="17500" firstAttribute="top" secondItem="fyC-8C-a4f" secondAttribute="bottom" constant="20" id="KxL-se-TGo"/>
-                            <constraint firstItem="fyC-8C-a4f" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="M2T-WI-2I1"/>
                             <constraint firstItem="lKx-1h-y2K" firstAttribute="top" secondItem="oLw-ym-bm1" secondAttribute="bottom" constant="20" id="Qws-g8-yu4"/>
                             <constraint firstItem="oBE-Ac-vcx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="XIf-gj-3Lq"/>
                             <constraint firstItem="oBE-Ac-vcx" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="Zra-km-e7N"/>
                             <constraint firstItem="ZUM-ry-mAe" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="cKO-MD-ZfF"/>
+                            <constraint firstItem="17500" firstAttribute="top" secondItem="GE8-B5-WFc" secondAttribute="bottom" constant="20" id="efD-tJ-7ht"/>
                             <constraint firstItem="lKx-1h-y2K" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="fBy-J0-I3a"/>
                             <constraint firstItem="oBE-Ac-vcx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="fb4-2N-ULr"/>
                             <constraint firstItem="ZUM-ry-mAe" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="jwL-lp-35L"/>
-                            <constraint firstItem="fyC-8C-a4f" firstAttribute="top" secondItem="oLw-ym-bm1" secondAttribute="bottom" constant="20" id="kP9-oO-oHC"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="17500" secondAttribute="bottom" id="qYB-71-UYX"/>
                             <constraint firstItem="lKx-1h-y2K" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="yEE-zh-Tmz"/>
                         </constraints>
@@ -152,7 +159,7 @@
                     <connections>
                         <outlet property="ButtonAddSheep" destination="oBE-Ac-vcx" id="name-outlet-oBE-Ac-vcx"/>
                         <outlet property="LabelNumberSheep" destination="ZUM-ry-mAe" id="name-outlet-ZUM-ry-mAe"/>
-                        <outlet property="animalChoice" destination="fyC-8C-a4f" id="name-outlet-fyC-8C-a4f"/>
+                        <outlet property="animalChoice" destination="GE8-B5-WFc" id="name-outlet-GE8-B5-WFc"/>
                         <outlet property="listOfSheeps" destination="17500" id="name-outlet-17500"/>
                         <outlet property="textNameOfSheep" destination="oLw-ym-bm1" id="name-outlet-oLw-ym-bm1"/>
                     </connections>

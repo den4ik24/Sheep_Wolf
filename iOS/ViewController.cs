@@ -41,10 +41,7 @@ namespace Sheep_Wolf.iOS
 
         string Rand;
         AnimalPickerModel picker;
-        List<string> Animals = new List<string>
-        {
-            "SHEEP", "WOLF"
-        };
+        UIPickerView uiPicker;
 
         public ViewController(IntPtr handle) : base(handle)
         {
@@ -57,10 +54,13 @@ namespace Sheep_Wolf.iOS
            
             ButtonAddSheep.TouchUpInside += ButtonAddSheep_TouchUpInside;
 
-            picker = new AnimalPickerModel(Animals);
-            animalChoice.Model = picker;
-            animalChoice.Select(1, 0, true);
-            //textNameOfSheep.InputView = animalChoice;
+            picker = new AnimalPickerModel(animalChoice);
+            uiPicker = new UIPickerView();
+            uiPicker.Model = picker;
+
+            uiPicker.Model.Selected(uiPicker, 0, 0);
+            animalChoice.InputView = uiPicker;
+
             picker.ValueChanged += Picker_ValueChanged;
 
         }
