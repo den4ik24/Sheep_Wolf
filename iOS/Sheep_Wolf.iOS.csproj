@@ -133,9 +133,12 @@
     </Compile>
     <Compile Include="SheepClassIOS.cs" />
     <Compile Include="AnimalPickerModel.cs" />
+    <Compile Include="WolfClassIOS.cs" />
+    <Compile Include="AnimalClassIOS.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\sheep.png" />
+    <BundleResource Include="Resources\wolf.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

@@ -8,42 +8,39 @@ namespace Sheep_Wolf.iOS
 {
     public class TableSource : UITableViewSource
     {
-        List<SheepClassIOS> sheepNamesArray = new List<SheepClassIOS>();
+        List<AnimalClassIOS> animalClassArray = new List<AnimalClassIOS>();
         UIViewController controller;
 
-        public TableSource(List<SheepClassIOS> items, UIViewController uIView)
+        public TableSource(List<AnimalClassIOS> itemsSheep, UIViewController uIView)
         {
-            sheepNamesArray = items;
+            animalClassArray = itemsSheep;
             controller = uIView;
         }
         
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
             var cell = (TableViewCell)tableView.DequeueReusableCell("cell");
-            cell.UpdateCell(sheepNamesArray[indexPath.Row]);
+            cell.UpdateCell(animalClassArray[indexPath.Row]);
             return cell;
         }
 
         public override nint RowsInSection(UITableView tableview, nint section)
         {
-            return sheepNamesArray.Count;
+            return animalClassArray.Count;
         }
 
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
-
             tableView.DeselectRow(indexPath, true);
-            var SHP = sheepNamesArray[indexPath.Row];
-
-            NabvigateTo(SHP);
+            var NML = animalClassArray[indexPath.Row];
+            NabvigateTo(NML);
         }
 
-        public void NabvigateTo(SheepClassIOS SHP)
+        public void NabvigateTo(AnimalClassIOS AIA)
         {
             CardIDViewController cardIDViewController = controller.Storyboard.InstantiateViewController("CardIDViewController") as CardIDViewController;
             controller.NavigationController.PushViewController(cardIDViewController, true);
-            cardIDViewController.model = SHP;
-
+            cardIDViewController.model = AIA;
         }
 
     }

@@ -6,8 +6,7 @@ namespace Sheep_Wolf.iOS
 {
     public partial class CardIDViewController : UIViewController
     {
-        public SheepClassIOS model;
-
+        public AnimalClassIOS model;
         public CardIDViewController (IntPtr handle) : base (handle)
         {
 
@@ -16,11 +15,18 @@ namespace Sheep_Wolf.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-
             labelSheepName.Text = model.Name;
             NameAnimalID.Text = model.Type;
-
             ImageService.Instance.LoadUrl(model.URL).Into(sheepFoto);
+
+            if(model is SheepClassIOS)
+            {
+                ImageSheep.Image = UIImage.FromBundle("sheep.png");
+            }
+            else
+            {
+                ImageSheep.Image = UIImage.FromBundle("wolf.png");
+            }
         }
     }
 }
