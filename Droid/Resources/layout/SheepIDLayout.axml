@@ -17,6 +17,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:layout_weight="1"
+            android:id="@+id/imageAnimal"
     />
 
 		<LinearLayout
@@ -30,7 +31,7 @@
 				android:layout_height="match_parent"
 				android:layout_weight="1"
 				android:textSize="25dp"
-				android:text="Sheep's Name:"
+				android:text="Animal's Name:"
 				android:gravity="center_vertical"
 				android:textColor="#ff1a237e"
 				android:background="#ffffd600"
@@ -71,7 +72,7 @@
 				android:textColor="#ffffd600"
 				android:background="#ff1a237e"
 				android:layout_marginTop="1dp"
-				android:id="@+id/textView4"
+				android:id="@+id/animalType"
 				android:textStyle="bold|italic" />
 		</LinearLayout>
 	</LinearLayout>

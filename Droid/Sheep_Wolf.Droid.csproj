@@ -78,9 +78,11 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SheepAdapter.cs" />
+    <Compile Include="AnimalAdapter.cs" />
     <Compile Include="SheepID.cs" />
     <Compile Include="SheepClass.cs" />
+    <Compile Include="WolfClass.cs" />
+    <Compile Include="AnimalClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -105,6 +107,10 @@
       <Generator></Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\sheep.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\wolf.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>

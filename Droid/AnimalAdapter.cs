@@ -7,26 +7,26 @@ using Square.Picasso;
 namespace Sheep_Wolf.Droid
 {
 
-    public class SheepAdapter: BaseAdapter<SheepClass>
+    public class AnimalAdapter: BaseAdapter<AnimalClass>
     {
-        private readonly List<SheepClass> sheepClassArray = new List<SheepClass>();
+        private readonly List<AnimalClass> animalClassArray = new List<AnimalClass>();
         private readonly Context context;
 
-        public void Add(SheepClass S)
+        public void Add(AnimalClass S)
         {
-            sheepClassArray.Add(S);
+            animalClassArray.Add(S);
         }
 
-        public SheepAdapter(Context contextC)
+        public AnimalAdapter(Context context)
         {
-            context = contextC;
+            this.context = context;
         }
 
-        public override SheepClass this[int position]
+        public override AnimalClass this[int position]
         {
             get
             {
-                return sheepClassArray[position];
+                return animalClassArray[position];
             }
         }
 
@@ -34,7 +34,7 @@ namespace Sheep_Wolf.Droid
         {
             get
             {
-                return sheepClassArray.Count;
+                return animalClassArray.Count;
             }
         }
 
@@ -43,9 +43,9 @@ namespace Sheep_Wolf.Droid
             return position;
         }
 
-        public SheepClass ElementPosition(int position)
+        public AnimalClass ElementPosition(int position)
         {
-            return sheepClassArray[position];
+            return animalClassArray[position];
         }
 
         public override View GetView(int position, View convertView, ViewGroup parent)
@@ -55,17 +55,27 @@ namespace Sheep_Wolf.Droid
             if(view == null)
             {
                 view = LayoutInflater.From(context).Inflate(Resource.Layout.SheepCheckList, parent, false);
-                var textview = view.FindViewById<TextView>(Resource.Id.textViewSheepsName);
+                var textview = view.FindViewById<TextView>(Resource.Id.textViewSheepsNameAdapter);
                 view.Tag = new ViewHolder() { TextView = textview };
             }
 
             var fotoSheep = view.FindViewById<ImageView>(Resource.Id.fotoSheep);
             Picasso.With(context)
-                .Load(sheepClassArray[position].URL)
+                .Load(animalClassArray[position].URL)
                 .Into(fotoSheep);
 
+            var animalName = view.FindViewById<TextView>(Resource.Id.textViewSheepAdapter);
+            if (animalClassArray[position].Type is "SHEEEP")
+            {
+                animalName.Text = "SHEEP";
+            }
+            if (animalClassArray[position].Type is "WOLF")
+            {
+                animalName.Text = "WOLF";
+            }
+
             var holder = (ViewHolder)view.Tag;
-            holder.TextView.Text = sheepClassArray[position].Name;
+            holder.TextView.Text = animalClassArray[position].Name;
 
             return view;
         }

@@ -63,6 +63,9 @@ namespace Sheep_Wolf.Droid
 			// aapt resource value: 0x7F020000
 			public const int sheep = 2130837504;
 			
+			// aapt resource value: 0x7F020001
+			public const int wolf = 2130837505;
+			
 			static Drawable()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -83,40 +86,46 @@ namespace Sheep_Wolf.Droid
 			public const int animalChoice = 2130903041;
 			
 			// aapt resource value: 0x7F030002
-			public const int fotoSheep = 2130903042;
+			public const int animalType = 2130903042;
 			
 			// aapt resource value: 0x7F030003
-			public const int globalLayout = 2130903043;
+			public const int fotoSheep = 2130903043;
 			
 			// aapt resource value: 0x7F030004
-			public const int listOfSheeps = 2130903044;
+			public const int globalLayout = 2130903044;
 			
 			// aapt resource value: 0x7F030005
-			public const int sheepFoto = 2130903045;
+			public const int imageAnimal = 2130903045;
 			
 			// aapt resource value: 0x7F030006
-			public const int sheeps_container = 2130903046;
+			public const int listOfSheeps = 2130903046;
 			
 			// aapt resource value: 0x7F030007
-			public const int textNameOfSheep = 2130903047;
+			public const int sheepFoto = 2130903047;
 			
 			// aapt resource value: 0x7F030008
-			public const int textView1 = 2130903048;
+			public const int sheeps_container = 2130903048;
 			
 			// aapt resource value: 0x7F030009
-			public const int textView3 = 2130903049;
+			public const int textNameOfSheep = 2130903049;
 			
 			// aapt resource value: 0x7F03000A
-			public const int textView4 = 2130903050;
+			public const int textView1 = 2130903050;
 			
 			// aapt resource value: 0x7F03000B
-			public const int textViewNumbSheep = 2130903051;
+			public const int textView3 = 2130903051;
 			
 			// aapt resource value: 0x7F03000C
-			public const int textViewSheep = 2130903052;
+			public const int textViewNumbSheep = 2130903052;
 			
 			// aapt resource value: 0x7F03000D
-			public const int textViewSheepsName = 2130903053;
+			public const int textViewSheepAdapter = 2130903053;
+			
+			// aapt resource value: 0x7F03000E
+			public const int textViewSheepsName = 2130903054;
+			
+			// aapt resource value: 0x7F03000F
+			public const int textViewSheepsNameAdapter = 2130903055;
 			
 			static Id()
 			{

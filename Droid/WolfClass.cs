@@ -1,7 +1,7 @@
 ﻿using System;
-namespace Sheep_Wolf.iOS
+namespace Sheep_Wolf.Droid
 {
-    public class WolfClassIOS : AnimalClassIOS
+    public class WolfClass : AnimalClass
     {
         readonly Random random = new Random();
         public override string Name { get; set; }
@@ -37,7 +37,7 @@ namespace Sheep_Wolf.iOS
             return GetRandomWolfImage();
         }
 
-        public WolfClassIOS()
+        public WolfClass()
         {
             URL = GetRandomImage();
         }
