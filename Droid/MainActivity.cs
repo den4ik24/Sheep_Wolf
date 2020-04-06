@@ -17,7 +17,6 @@ namespace Sheep_Wolf.Droid
         ListView listOfSheeps;
         EditText textNameOfSheep;
         Spinner animalChoice;
-        TextView animalName;
         AnimalAdapter adapter;
 
         List<string> animalsNameList = new List<string>();
@@ -25,31 +24,25 @@ namespace Sheep_Wolf.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            
             SetContentView(Resource.Layout.Main);
 
+            addSheepButton = FindViewById<Button>(Resource.Id.addSheepButton);
             textViewNumbSheep = FindViewById<TextView>(Resource.Id.textViewNumbSheep);
             listOfSheeps = FindViewById<ListView>(Resource.Id.listOfSheeps);
-            listOfSheeps.ItemClick += ListOfSheeps_ItemClick;
-
-            addSheepButton = FindViewById<Button>(Resource.Id.addSheepButton);
-            addSheepButton.Click += AddSheepButton_Click;
-
             textNameOfSheep = FindViewById<EditText>(Resource.Id.textNameOfSheep);
-
             animalChoice = FindViewById<Spinner>(Resource.Id.animalChoice);
 
             adapter = new AnimalAdapter(this);
             listOfSheeps.Adapter = adapter;
 
+            addSheepButton.Click += AddSheepButton_Click;
+            listOfSheeps.ItemClick += ListOfSheeps_ItemClick;
             animalChoice.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(AnimalChoice_ItemSelected);
+
             var adapterSpinner = ArrayAdapter.CreateFromResource(this, Resource.Array.type_animal, Android.Resource.Layout.SimpleSpinnerItem);
             adapterSpinner.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             animalChoice.Adapter = adapterSpinner;
             animalChoice.SetSelection(0);
-
-            animalName = FindViewById<TextView>(Resource.Id.textViewSheepAdapter);
-     
         }
 
         private void AnimalChoice_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
@@ -66,12 +59,10 @@ namespace Sheep_Wolf.Droid
         private void ListOfSheeps_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             var intent = new Intent(this, typeof(SheepID));
-
-            //intent.PutExtra("NAMEofSHEEP", listOfSheeps.GetItemAtPosition(e.Position).ToString());
             var N = adapter.ElementPosition(e.Position);
 
-            var type = "";
-            if(N is SheepClass)
+            string type;
+            if (N is SheepClass)
             {
                 type = "SHEEP";
             }
@@ -79,35 +70,29 @@ namespace Sheep_Wolf.Droid
             {
                 type = "WOLF";
             }
+
             intent.PutExtra("NAMEofSHEEP", N.Name);
             intent.PutExtra("FOTOofSHEEP", N.URL);
             intent.PutExtra("TYPEofSHEEP", type);
             StartActivity(intent);
-
-
         }
 
         private void AddSheepButton_Click(object sender, EventArgs e)
         {
-
             if (textNameOfSheep.Text == "")
             {
                 Toast.MakeText(this, "Укажите имя овцы", ToastLength.Short).Show();
             }
-
             else
             {
-
                 if (animalsNameList.Contains(textNameOfSheep.Text))
                 {
                     Toast.MakeText(this, "Животное с таким именем уже существует. Измените имя", ToastLength.Short).Show();
                 }
                 else
                 {
-
                     animalsNameList.Add(textNameOfSheep.Text);
                     RandAnimal();
-
                     textNameOfSheep.Text = "";
                     count++;
                     textViewNumbSheep.Text = count.ToString();

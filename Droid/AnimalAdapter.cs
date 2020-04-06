@@ -69,7 +69,6 @@ namespace Sheep_Wolf.Droid
             {
                 animalName.Text = "SHEEP";
             }
-            //if (animalClassArray[position] is WolfClass)
             else
             {
                 animalName.Text = "WOLF";
