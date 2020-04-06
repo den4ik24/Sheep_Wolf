@@ -50,27 +50,33 @@ namespace Sheep_Wolf.Droid
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
             var view = convertView;
-
-            if(view == null)
-            {
-                view = LayoutInflater.From(context).Inflate(Resource.Layout.SheepCheckList, parent, false);
-                var textview = view.FindViewById<TextView>(Resource.Id.textViewSheepsNameAdapter);
-                view.Tag = new ViewHolder() { TextView = textview };
-            }
-
-            var fotoSheep = view.FindViewById<ImageView>(Resource.Id.fotoSheep);
-            Picasso.With(context)
-                .Load(animalClassArray[position].URL)
-                .Into(fotoSheep);
-
-            var animalName = view.FindViewById<TextView>(Resource.Id.textViewSheepAdapter);
             if (animalClassArray[position] is SheepClass)
             {
-                animalName.Text = "SHEEP";
+                if (view == null)
+                {
+                    view = LayoutInflater.From(context).Inflate(Resource.Layout.SheepCheckList, parent, false);
+                    var textview = view.FindViewById<TextView>(Resource.Id.textViewSheepsNameAdapter);
+                    view.Tag = new ViewHolder() { TextView = textview };
+                }
+
+                var fotoSheep = view.FindViewById<ImageView>(Resource.Id.fotoSheep);
+                Picasso.With(context)
+                    .Load(animalClassArray[position].URL)
+                    .Into(fotoSheep);
             }
-            else
+            if(animalClassArray[position] is WolfClass)
             {
-                animalName.Text = "WOLF";
+                if (view == null)
+                {
+                    view = LayoutInflater.From(context).Inflate(Resource.Layout.WolfCheckList, parent, false);
+                    var textview = view.FindViewById<TextView>(Resource.Id.textViewWolvesNameAdapter);
+                    view.Tag = new ViewHolder() { TextView = textview };
+                }
+
+                var fotoWolf = view.FindViewById<ImageView>(Resource.Id.fotoWolf);
+                Picasso.With(context)
+                    .Load(animalClassArray[position].URL)
+                    .Into(fotoWolf);
             }
 
             var holder = (ViewHolder)view.Tag;
