@@ -65,11 +65,12 @@ namespace Sheep_Wolf.Droid
                 .Into(fotoSheep);
 
             var animalName = view.FindViewById<TextView>(Resource.Id.textViewSheepAdapter);
-            if (animalClassArray[position].Type is "SHEEEP")
+            if (animalClassArray[position] is SheepClass)
             {
                 animalName.Text = "SHEEP";
             }
-            if (animalClassArray[position].Type is "WOLF")
+            //if (animalClassArray[position] is WolfClass)
+            else
             {
                 animalName.Text = "WOLF";
             }

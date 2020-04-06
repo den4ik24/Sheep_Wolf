@@ -69,10 +69,19 @@ namespace Sheep_Wolf.Droid
 
             //intent.PutExtra("NAMEofSHEEP", listOfSheeps.GetItemAtPosition(e.Position).ToString());
             var N = adapter.ElementPosition(e.Position);
-            
+
+            var type = "";
+            if(N is SheepClass)
+            {
+                type = "SHEEP";
+            }
+            else
+            {
+                type = "WOLF";
+            }
             intent.PutExtra("NAMEofSHEEP", N.Name);
             intent.PutExtra("FOTOofSHEEP", N.URL);
-            intent.PutExtra("TYPEofSHEEP", N.Type);
+            intent.PutExtra("TYPEofSHEEP", type);
             StartActivity(intent);
 
 

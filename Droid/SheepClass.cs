@@ -7,13 +7,6 @@ namespace Sheep_Wolf.Droid
         readonly Random random = new Random();
         public override string Name { get; set; }
         public override string URL { get; protected set; }
-        public override string Type
-        {
-            get
-            {
-                return "SHEEP";
-            }
-        }
 
         public string[] sheepsStringURL =
         {
