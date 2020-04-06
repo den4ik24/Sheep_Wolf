@@ -7,25 +7,23 @@
 
 	<LinearLayout
 		android:layout_width="match_parent"
-		android:layout_height="0dp"
+		android:layout_height="wrap_content"
         android:orientation="horizontal"
-		android:layout_weight="1"
-        >
+		android:layout_weight="1" >
 
 		<ImageView
 			android:src="@drawable/sheep"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:layout_weight="1"
-            android:id="@+id/imageAnimal"
-    />
+            android:contentDescription="@string/desc"
+            android:id="@+id/imageAnimal"/>
 
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:layout_weight="1"
-			android:orientation="vertical"
-        >
+			android:orientation="vertical">
 			<TextView
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
@@ -80,9 +78,9 @@
 	<ImageView
 		android:id="@+id/sheepFoto"
 		android:src="@android:drawable/ic_menu_gallery"
+        android:contentDescription="@string/desc"
 		android:layout_width="match_parent"
-		android:layout_height="0dp"
-		android:layout_weight="1"
-    />
+		android:layout_height="wrap_content"
+		android:layout_weight="1"/>
 
 </LinearLayout>

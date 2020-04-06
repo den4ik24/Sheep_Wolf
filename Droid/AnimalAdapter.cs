@@ -6,7 +6,6 @@ using Square.Picasso;
 
 namespace Sheep_Wolf.Droid
 {
-
     public class AnimalAdapter: BaseAdapter<AnimalClass>
     {
         private readonly List<AnimalClass> animalClassArray = new List<AnimalClass>();

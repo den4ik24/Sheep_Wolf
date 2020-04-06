@@ -92,40 +92,43 @@ namespace Sheep_Wolf.Droid
 			public const int fotoSheep = 2130903043;
 			
 			// aapt resource value: 0x7F030004
-			public const int globalLayout = 2130903044;
+			public const int fotoWolf = 2130903044;
 			
 			// aapt resource value: 0x7F030005
-			public const int imageAnimal = 2130903045;
+			public const int globalLayout = 2130903045;
 			
 			// aapt resource value: 0x7F030006
-			public const int listOfSheeps = 2130903046;
+			public const int imageAnimal = 2130903046;
 			
 			// aapt resource value: 0x7F030007
-			public const int sheepFoto = 2130903047;
+			public const int listOfAnimals = 2130903047;
 			
 			// aapt resource value: 0x7F030008
-			public const int sheeps_container = 2130903048;
+			public const int sheepFoto = 2130903048;
 			
 			// aapt resource value: 0x7F030009
-			public const int textNameOfSheep = 2130903049;
+			public const int sheeps_container = 2130903049;
 			
 			// aapt resource value: 0x7F03000A
-			public const int textView1 = 2130903050;
+			public const int textNameOfSheep = 2130903050;
 			
 			// aapt resource value: 0x7F03000B
-			public const int textView3 = 2130903051;
+			public const int textView1 = 2130903051;
 			
 			// aapt resource value: 0x7F03000C
-			public const int textViewNumbSheep = 2130903052;
+			public const int textView3 = 2130903052;
 			
 			// aapt resource value: 0x7F03000D
-			public const int textViewSheepAdapter = 2130903053;
+			public const int textViewNumbSheep = 2130903053;
 			
 			// aapt resource value: 0x7F03000E
 			public const int textViewSheepsName = 2130903054;
 			
 			// aapt resource value: 0x7F03000F
 			public const int textViewSheepsNameAdapter = 2130903055;
+			
+			// aapt resource value: 0x7F030010
+			public const int textViewWolvesNameAdapter = 2130903056;
 			
 			static Id()
 			{
@@ -148,6 +151,9 @@ namespace Sheep_Wolf.Droid
 			
 			// aapt resource value: 0x7F040002
 			public const int SheepIDLayout = 2130968578;
+			
+			// aapt resource value: 0x7F040003
+			public const int WolfCheckList = 2130968579;
 			
 			static Layout()
 			{
@@ -180,6 +186,15 @@ namespace Sheep_Wolf.Droid
 			
 			// aapt resource value: 0x7F060000
 			public const int app_name = 2131099648;
+			
+			// aapt resource value: 0x7F060001
+			public const int desc = 2131099649;
+			
+			// aapt resource value: 0x7F060002
+			public const int title = 2131099650;
+			
+			// aapt resource value: 0x7F060003
+			public const int type = 2131099651;
 			
 			static String()
 			{

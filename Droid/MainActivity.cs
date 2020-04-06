@@ -14,7 +14,7 @@ namespace Sheep_Wolf.Droid
 
         Button addSheepButton;
         TextView textViewNumbSheep;
-        ListView listOfSheeps;
+        ListView listOfAnimals;
         EditText textNameOfSheep;
         Spinner animalChoice;
         AnimalAdapter adapter;
@@ -28,15 +28,15 @@ namespace Sheep_Wolf.Droid
 
             addSheepButton = FindViewById<Button>(Resource.Id.addSheepButton);
             textViewNumbSheep = FindViewById<TextView>(Resource.Id.textViewNumbSheep);
-            listOfSheeps = FindViewById<ListView>(Resource.Id.listOfSheeps);
+            listOfAnimals = FindViewById<ListView>(Resource.Id.listOfAnimals);
             textNameOfSheep = FindViewById<EditText>(Resource.Id.textNameOfSheep);
             animalChoice = FindViewById<Spinner>(Resource.Id.animalChoice);
 
             adapter = new AnimalAdapter(this);
-            listOfSheeps.Adapter = adapter;
+            listOfAnimals.Adapter = adapter;
 
             addSheepButton.Click += AddSheepButton_Click;
-            listOfSheeps.ItemClick += ListOfSheeps_ItemClick;
+            listOfAnimals.ItemClick += ListOfSheeps_ItemClick;
             animalChoice.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(AnimalChoice_ItemSelected);
 
             var adapterSpinner = ArrayAdapter.CreateFromResource(this, Resource.Array.type_animal, Android.Resource.Layout.SimpleSpinnerItem);

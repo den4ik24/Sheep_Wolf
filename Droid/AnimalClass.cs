@@ -1,5 +1,4 @@
-﻿using System;
-namespace Sheep_Wolf.Droid
+﻿namespace Sheep_Wolf.Droid
 {
     public class AnimalClass
     {

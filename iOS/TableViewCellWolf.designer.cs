@@ -7,31 +7,30 @@
 using Foundation;
 using System;
 using System.CodeDom.Compiler;
-using UIKit;
 
 namespace Sheep_Wolf.iOS
 {
-    [Register ("TableViewCell")]
-    partial class TableViewCell
+    [Register ("TableViewCellWolf")]
+    partial class TableViewCellWolf
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIImageView fotoSheep { get; set; }
+        UIKit.UIImageView fotoWolf { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel textTableViewSheepsName { get; set; }
+        UIKit.UILabel textTableViewWolvesName { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
-            if (fotoSheep != null) {
-                fotoSheep.Dispose ();
-                fotoSheep = null;
+            if (fotoWolf != null) {
+                fotoWolf.Dispose ();
+                fotoWolf = null;
             }
 
-            if (textTableViewSheepsName != null) {
-                textTableViewSheepsName.Dispose ();
-                textTableViewSheepsName = null;
+            if (textTableViewWolvesName != null) {
+                textTableViewWolvesName.Dispose ();
+                textTableViewWolvesName = null;
             }
         }
     }

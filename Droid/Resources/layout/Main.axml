@@ -4,25 +4,23 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:orientation="vertical"
-    android:id="@+id/globalLayout"
-	>
+    android:id="@+id/globalLayout">
 
 	<TextView
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:background="@android:color/holo_green_dark"
 		android:gravity="center"
-		android:text="sheeps VS wolves"
+		android:text="@string/title"
         android:freezesText="true"
-		android:textColor="@android:color/black"
-        />
+		android:textColor="@android:color/black"/>
+
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
         android:orientation="horizontal"
 		android:id="@+id/sheeps_container"
-		android:layout_marginTop="8dp"
-        >
+		android:layout_marginTop="8dp">
 		<Button
 			android:id="@+id/addSheepButton"
 			android:gravity="center"
@@ -59,14 +57,14 @@
 			android:freezesText="true"
 			android:drawingCacheQuality="high"/>
 	</LinearLayout>
+
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
         android:orientation="horizontal"
-		android:layout_marginTop="8dp"
-        >
+		android:layout_marginTop="8dp">
 		<TextView
-			android:text="TYPE OF ANIMAL :"
+			android:text="@string/title"
 			android:layout_weight="50"
             android:background="@android:color/holo_blue_dark"
             android:textColor="@android:color/white"
@@ -84,7 +82,7 @@
             android:entries="@array/type_animal"
 			android:id="@+id/animalChoice"/>
 	</LinearLayout>
-    />
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -96,6 +94,7 @@
         android:id="@+id/textNameOfSheep"
         android:freezesText="true"
         android:gravity="center"/>
+
     <LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
@@ -108,7 +107,7 @@
 			android:fastScrollAlwaysVisible="true"
 			android:layout_width="match_parent"
 			android:layout_height="400.5dp"
-			android:id="@+id/listOfSheeps"
+			android:id="@+id/listOfAnimals"
 			android:textSize="18dp"
 			android:gravity="center"
             android:freezesText="true"

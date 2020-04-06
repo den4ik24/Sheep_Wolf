@@ -135,6 +135,14 @@
     <Compile Include="AnimalPickerModel.cs" />
     <Compile Include="WolfClassIOS.cs" />
     <Compile Include="AnimalClassIOS.cs" />
+    <Compile Include="TableViewCellWolf.cs" />
+    <Compile Include="TableViewCellWolf.designer.cs">
+      <DependentUpon>TableViewCellWolf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TableViewCellSheep.cs" />
+    <Compile Include="TableViewCellSheep.designer.cs">
+      <DependentUpon>TableViewCellSheep.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\sheep.png" />
