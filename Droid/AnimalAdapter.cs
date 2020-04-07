@@ -49,48 +49,68 @@ namespace Sheep_Wolf.Droid
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
-
-
-                var view = convertView;
-                if (view == null)
-
             if (animalClassArray[position] is SheepClass)
             {
-                
+                var view = convertView;
+                if (view == null)
+                {
                     view = LayoutInflater.From(context).Inflate(Resource.Layout.SheepCheckList, parent, false);
-                    var textview = view.FindViewById<TextView>(Resource.Id.textViewSheepsNameAdapter);
-                    view.Tag = new ViewHolder() { TextView = textview };
-                
-                var fotoSheep = view.FindViewById<ImageView>(Resource.Id.fotoSheep);
-                Picasso.With(context).Load(animalClassArray[position].URL).Into(fotoSheep);
-                //var holder = (ViewHolder)view.Tag;
-                //holder.TextView.Text = animalClassArray[position].Name;
- 
+                    //var textviewSheep = view.FindViewById<TextView>(Resource.Id.textViewSheepsNameAdapter);
+                    //var fotoSheep = view.FindViewById<ImageView>(Resource.Id.fotoSheep);
+                    view.Tag = new SheepViewHolder(view);
+                    //{
+                    //    textSheep = textviewSheep,
+                    //    imageSheep = fotoSheep
+                    //};
+                }
+                var holder = (SheepViewHolder)view.Tag;
+                holder.textSheep.Text = animalClassArray[position].Name;
+                Picasso.With(context).Load(animalClassArray[position].URL).Into(holder.imageSheep);
+                return view;
             }
+            //if (animalClassArray[position] is WolfClass)
             else
             {
-                //var view = convertView;
-                //if (view == null)
-                //{
+                var view = convertView;
+                if (view == null)
+                {
                     view = LayoutInflater.From(context).Inflate(Resource.Layout.WolfCheckList, parent, false);
-                    var textview = view.FindViewById<TextView>(Resource.Id.textViewWolvesNameAdapter);
-                    view.Tag = new ViewHolder() { TextView = textview };
-                //}
-
-                var fotoWolf = view.FindViewById<ImageView>(Resource.Id.fotoWolf);
-                Picasso.With(context).Load(animalClassArray[position].URL).Into(fotoWolf);
-
+                    //var textviewWolf = view.FindViewById<TextView>(Resource.Id.textViewWolvesNameAdapter);
+                    //var fotoWolf = view.FindViewById<ImageView>(Resource.Id.fotoWolf);
+                    view.Tag = new WolfViewHolder(view);
+                    //{
+                    //    textWolf = textviewWolf,
+                    //    imageWolf = fotoWolf
+                    //};
+                }
+                var holder = (WolfViewHolder)view.Tag;
+                holder.textWolf.Text = animalClassArray[position].Name;
+                Picasso.With(context).Load(animalClassArray[position].URL).Into(holder.imageWolf);
+                return view;
             }
-
-                var holder = (ViewHolder)view.Tag;
-                holder.TextView.Text = animalClassArray[position].Name;
-
-            return view;
+            //return convertView;
         }
     }
 
-    public class ViewHolder : Java.Lang.Object
+    public class SheepViewHolder : Java.Lang.Object
     {
-        public TextView TextView;
+        public TextView textSheep;
+        public ImageView imageSheep;
+        public SheepViewHolder(View view)
+        {
+            textSheep = view.FindViewById<TextView>(Resource.Id.textViewSheepsNameAdapter);
+            imageSheep = view.FindViewById<ImageView>(Resource.Id.fotoSheep);
+        }
+    }
+
+    public class WolfViewHolder : Java.Lang.Object
+    {
+        public TextView textWolf;
+        public ImageView imageWolf;
+        public WolfViewHolder(View view)
+        {
+            textWolf = view.FindViewById<TextView>(Resource.Id.textViewWolvesNameAdapter);
+            imageWolf = view.FindViewById<ImageView>(Resource.Id.fotoWolf);
+        }
     }
 }
