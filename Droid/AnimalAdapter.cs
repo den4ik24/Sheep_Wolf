@@ -49,38 +49,41 @@ namespace Sheep_Wolf.Droid
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
-            var view = convertView;
+
+
+                var view = convertView;
+                if (view == null)
+
             if (animalClassArray[position] is SheepClass)
             {
-                if (view == null)
-                {
+                
                     view = LayoutInflater.From(context).Inflate(Resource.Layout.SheepCheckList, parent, false);
                     var textview = view.FindViewById<TextView>(Resource.Id.textViewSheepsNameAdapter);
                     view.Tag = new ViewHolder() { TextView = textview };
-                }
-
+                
                 var fotoSheep = view.FindViewById<ImageView>(Resource.Id.fotoSheep);
-                Picasso.With(context)
-                    .Load(animalClassArray[position].URL)
-                    .Into(fotoSheep);
+                Picasso.With(context).Load(animalClassArray[position].URL).Into(fotoSheep);
+                //var holder = (ViewHolder)view.Tag;
+                //holder.TextView.Text = animalClassArray[position].Name;
+ 
             }
-            if(animalClassArray[position] is WolfClass)
+            else
             {
-                if (view == null)
-                {
+                //var view = convertView;
+                //if (view == null)
+                //{
                     view = LayoutInflater.From(context).Inflate(Resource.Layout.WolfCheckList, parent, false);
                     var textview = view.FindViewById<TextView>(Resource.Id.textViewWolvesNameAdapter);
                     view.Tag = new ViewHolder() { TextView = textview };
-                }
+                //}
 
                 var fotoWolf = view.FindViewById<ImageView>(Resource.Id.fotoWolf);
-                Picasso.With(context)
-                    .Load(animalClassArray[position].URL)
-                    .Into(fotoWolf);
+                Picasso.With(context).Load(animalClassArray[position].URL).Into(fotoWolf);
+
             }
 
-            var holder = (ViewHolder)view.Tag;
-            holder.TextView.Text = animalClassArray[position].Name;
+                var holder = (ViewHolder)view.Tag;
+                holder.TextView.Text = animalClassArray[position].Name;
 
             return view;
         }
