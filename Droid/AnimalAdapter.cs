@@ -51,44 +51,41 @@ namespace Sheep_Wolf.Droid
         {
             if (animalClassArray[position] is SheepClass)
             {
+                SheepViewHolder holderSheep;
                 var view = convertView;
                 if (view == null)
                 {
                     view = LayoutInflater.From(context).Inflate(Resource.Layout.SheepCheckList, parent, false);
-                    //var textviewSheep = view.FindViewById<TextView>(Resource.Id.textViewSheepsNameAdapter);
-                    //var fotoSheep = view.FindViewById<ImageView>(Resource.Id.fotoSheep);
-                    view.Tag = new SheepViewHolder(view);
-                    //{
-                    //    textSheep = textviewSheep,
-                    //    imageSheep = fotoSheep
-                    //};
+                    holderSheep = new SheepViewHolder(view);
+                    view.Tag = holderSheep;
                 }
-                var holder = (SheepViewHolder)view.Tag;
-                holder.textSheep.Text = animalClassArray[position].Name;
-                Picasso.With(context).Load(animalClassArray[position].URL).Into(holder.imageSheep);
+                else
+                {
+                    holderSheep = (SheepViewHolder)view.Tag;
+                }
+                holderSheep.textSheep.Text = animalClassArray[position].Name;
+                Picasso.With(context).Load(animalClassArray[position].URL).Into(holderSheep.imageSheep);
                 return view;
             }
-            //if (animalClassArray[position] is WolfClass)
             else
             {
+                WolfViewHolder holderWolf;
                 var view = convertView;
                 if (view == null)
                 {
                     view = LayoutInflater.From(context).Inflate(Resource.Layout.WolfCheckList, parent, false);
-                    //var textviewWolf = view.FindViewById<TextView>(Resource.Id.textViewWolvesNameAdapter);
-                    //var fotoWolf = view.FindViewById<ImageView>(Resource.Id.fotoWolf);
-                    view.Tag = new WolfViewHolder(view);
-                    //{
-                    //    textWolf = textviewWolf,
-                    //    imageWolf = fotoWolf
-                    //};
+                    holderWolf = new WolfViewHolder(view);
+                    view.Tag = holderWolf;
                 }
-                var holder = (WolfViewHolder)view.Tag;
-                holder.textWolf.Text = animalClassArray[position].Name;
-                Picasso.With(context).Load(animalClassArray[position].URL).Into(holder.imageWolf);
+                else
+                {
+                    holderWolf = (WolfViewHolder)view.Tag;
+                }
+                holderWolf.textWolf.Text = animalClassArray[position].Name;
+                Picasso.With(context).Load(animalClassArray[position].URL).Into(holderWolf.imageWolf);
                 return view;
             }
-            //return convertView;
+
         }
     }
 
