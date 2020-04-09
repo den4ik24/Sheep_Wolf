@@ -64,7 +64,7 @@
         android:orientation="horizontal"
 		android:layout_marginTop="8dp">
 		<TextView
-			android:text="@string/title"
+			android:text="@string/type"
 			android:layout_weight="50"
             android:background="@android:color/holo_blue_dark"
             android:textColor="@android:color/white"
