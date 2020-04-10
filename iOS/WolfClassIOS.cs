@@ -6,13 +6,6 @@ namespace Sheep_Wolf.iOS
         readonly Random random = new Random();
         public override string Name { get; set; }
         public override string URL { get; protected set; }
-        public override string Type
-        {
-            get
-            {
-                return "WOLF";
-            }
-        }
         public string[] wolfStringURL =
         {
             "https://www.proza.ru/pics/2014/03/17/1922.jpg",

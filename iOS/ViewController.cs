@@ -10,13 +10,11 @@ namespace Sheep_Wolf.iOS
         int count = 0;
         List<AnimalClassIOS> animalNamesArray = new List<AnimalClassIOS>();
         List<string> animalsNameList = new List<string>();
-
         AnimalPickerModel picker;
         UIPickerView uiPicker;
 
         public ViewController(IntPtr handle) : base(handle)
         {
-           
         }
 
         public override void ViewDidLoad()
@@ -56,7 +54,6 @@ namespace Sheep_Wolf.iOS
                         ("OK", UIAlertActionStyle.Default, null));
                     PresentViewController(alertController, true, null);
                 }
-
                 else
                 {
                     animalsNameList.Add(textNameOfSheep.Text);

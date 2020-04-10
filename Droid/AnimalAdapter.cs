@@ -77,11 +77,8 @@ namespace Sheep_Wolf.Droid
                     if (viewSheep == null)
                     {
                         viewSheep = LayoutInflater.From(context).Inflate(Resource.Layout.SheepCheckList, parent, false);
-                        holderSheep = new SheepViewHolder();
-                        holderSheep.textSheep = viewSheep.FindViewById<TextView>(Resource.Id.textViewSheepsNameAdapter);
-                        holderSheep.imageSheep = viewSheep.FindViewById<ImageView>(Resource.Id.fotoSheep);
+                        holderSheep = new SheepViewHolder(viewSheep);
                         viewSheep.Tag = holderSheep;
-
                     }
                     else
                     {
@@ -98,10 +95,7 @@ namespace Sheep_Wolf.Droid
                     if (viewWolf == null)
                     {
                         viewWolf = LayoutInflater.From(context).Inflate(Resource.Layout.WolfCheckList, parent, false);
-                        holderWolf = new WolfViewHolder();
-                        holderWolf.textWolf = viewWolf.FindViewById<TextView>(Resource.Id.textViewWolvesNameAdapter);
-                        holderWolf.imageWolf = viewWolf.FindViewById<ImageView>(Resource.Id.fotoWolf);
-
+                        holderWolf = new WolfViewHolder(viewWolf);
                         viewWolf.Tag = holderWolf;
                     }
                     else
@@ -111,54 +105,8 @@ namespace Sheep_Wolf.Droid
                     holderWolf.textWolf.Text = animalClassArray[position].Name;
                     Picasso.With(context).Load(animalClassArray[position].URL).Into(holderWolf.imageWolf);
                     return viewWolf;
-
             }
             return convertView;
-            //if (row is Sheep_Class)
-            //{
-            //    SheepViewHolder holderSheep;
-
-            //    var viewSheep = convertView;
-            //    if (viewSheep == null)
-            //    {
-            //        viewSheep = LayoutInflater.From(context).Inflate(Resource.Layout.SheepCheckList, parent, false);
-            //        holderSheep = new SheepViewHolder();
-            //        holderSheep.textSheep = viewSheep.FindViewById<TextView>(Resource.Id.textViewSheepsNameAdapter);
-            //        holderSheep.imageSheep = viewSheep.FindViewById<ImageView>(Resource.Id.fotoSheep);
-            //        viewSheep.Tag = holderSheep;
-
-            //    }
-            //    else
-            //    {
-            //        holderSheep = viewSheep.Tag as SheepViewHolder;
-            //    }
-            //    holderSheep.textSheep.Text = animalClassArray[position].Name;
-            //    Picasso.With(context).Load(animalClassArray[position].URL).Into(holderSheep.imageSheep);
-            //    return viewSheep;
-            //}
-            //else
-            //{
-            //    WolfViewHolder holderWolf;
-
-            //    var viewWolf= convertView;
-            //    if (viewWolf == null)
-            //    {
-            //        viewWolf = LayoutInflater.From(context).Inflate(Resource.Layout.WolfCheckList, parent, false);
-            //        holderWolf = new WolfViewHolder();
-            //        holderWolf.textWolf = viewWolf.FindViewById<TextView>(Resource.Id.textViewWolvesNameAdapter);
-            //        holderWolf.imageWolf = viewWolf.FindViewById<ImageView>(Resource.Id.fotoWolf);
-
-            //        viewWolf.Tag = holderWolf;
-            //    }
-            //    else
-            //    {
-            //        holderWolf = viewWolf.Tag as WolfViewHolder;
-            //    }
-            //    holderWolf.textWolf.Text = animalClassArray[position].Name;
-            //    Picasso.With(context).Load(animalClassArray[position].URL).Into(holderWolf.imageWolf);
-            //    return viewWolf;
-            //}
-
         }
     }
 
@@ -166,21 +114,21 @@ namespace Sheep_Wolf.Droid
     {
         public TextView textSheep;
         public ImageView imageSheep;
-        //public SheepViewHolder(View view)
-        //{
-        //    textSheep = view.FindViewById<TextView>(Resource.Id.textViewSheepsNameAdapter);
-        //    imageSheep = view.FindViewById<ImageView>(Resource.Id.fotoSheep);
-        //}
+        public SheepViewHolder(View view)
+        {
+            textSheep = view.FindViewById<TextView>(Resource.Id.textViewSheepsNameAdapter);
+            imageSheep = view.FindViewById<ImageView>(Resource.Id.fotoSheep);
+        }
     }
 
     public class WolfViewHolder : Java.Lang.Object
     {
         public TextView textWolf;
         public ImageView imageWolf;
-        //public WolfViewHolder(View view)
-        //{
-            //textWolf = view.FindViewById<TextView>(Resource.Id.textViewWolvesNameAdapter);
-            //imageWolf = view.FindViewById<ImageView>(Resource.Id.fotoWolf);
-        //}
+        public WolfViewHolder(View view)
+        {
+            textWolf = view.FindViewById<TextView>(Resource.Id.textViewWolvesNameAdapter);
+            imageWolf = view.FindViewById<ImageView>(Resource.Id.fotoWolf);
+        }
     }
 }

@@ -122,10 +122,6 @@
     <Compile Include="MyViewController.designer.cs">
       <DependentUpon>MyViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="TableViewCell.cs" />
-    <Compile Include="TableViewCell.designer.cs">
-      <DependentUpon>TableViewCell.cs</DependentUpon>
-    </Compile>
     <Compile Include="TableSources.cs" />
     <Compile Include="CardIDViewController.cs" />
     <Compile Include="CardIDViewController.designer.cs">

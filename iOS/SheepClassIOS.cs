@@ -26,13 +26,7 @@ namespace Sheep_Wolf.iOS
         //    }
         //}
         //protected set; }
-        public override string Type
-        {
-            get
-            {
-                return "SHEEP";
-            }
-        }
+
         public string[] sheepsStringURL =
         {
             "https://www.studentofthegun.com/wp-content/uploads/2017/10/SOTG_679_-_A_Nation_of_Sheep.jpg",

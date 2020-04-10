@@ -10,19 +10,29 @@ namespace Sheep_Wolf.iOS
         List<AnimalClassIOS> animalClassArray = new List<AnimalClassIOS>();
         UIViewController controller;
 
-        public TableSource(List<AnimalClassIOS> itemsSheep, UIViewController uIView)
+        public TableSource(List<AnimalClassIOS> itemsAnimal, UIViewController uIView)
         {
-            animalClassArray = itemsSheep;
+            animalClassArray = itemsAnimal;
             controller = uIView;
         }
-        
+
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
-            var cell = (TableViewCell)tableView.DequeueReusableCell("cell");
-            cell.UpdateCell(animalClassArray[indexPath.Row]);
-            return cell;
-        }
+            if (animalClassArray[indexPath.Row] is SheepClassIOS)
+            {
+                var cellSheep = tableView.DequeueReusableCell("cellOfSheep") as TableViewCellSheep;
+                cellSheep.UpdateCell(animalClassArray[indexPath.Row]);
+                return cellSheep;
+            }
+            else
+            {
+                var cellWolf = tableView.DequeueReusableCell("cellOfWolf") as TableViewCellWolf;
+                cellWolf.UpdateCell(animalClassArray[indexPath.Row]);
+                return cellWolf;
+            }
 
+        }
+        
         public override nint RowsInSection(UITableView tableview, nint section)
         {
             return animalClassArray.Count;
