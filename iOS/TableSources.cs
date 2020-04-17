@@ -32,7 +32,7 @@ namespace Sheep_Wolf.iOS
             }
 
         }
-        
+
         public override nint RowsInSection(UITableView tableview, nint section)
         {
             return animalClassArray.Count;

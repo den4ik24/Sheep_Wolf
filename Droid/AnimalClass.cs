@@ -2,8 +2,9 @@
 {
     public class AnimalClass
     {
-        public virtual string Name { get; set; }
-        public virtual string URL { get; protected set; }
+        public string Name { get; set; }
+        public string URL { get; protected set; }
+        public bool IsDead { get; set; }
 
         public virtual string GetRandomImage()
         {

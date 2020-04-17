@@ -58,9 +58,7 @@ namespace Sheep_Wolf.iOS
                 {
                     animalsNameList.Add(textNameOfSheep.Text);
                     RandAnimal();
-
                     listOfSheeps.Source = new TableSource(animalNamesArray, this);
-
                     listOfSheeps.ReloadData();
                     count++;
                     LabelNumberSheep.Text = count.ToString();

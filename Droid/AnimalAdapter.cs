@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Android.Content;
 using Android.Views;
 using Android.Widget;
@@ -10,13 +11,12 @@ namespace Sheep_Wolf.Droid
     {
         readonly List<AnimalClass> animalClassArray = new List<AnimalClass>();
         readonly Context context;
-
         private const int Sheep_Class = 0;
         private const int Wolf_Class = 1;
 
-        public void Add(AnimalClass S)
+        public void Add(AnimalClass animal)
         {
-            animalClassArray.Add(S);
+            animalClassArray.Add(animal);
         }
 
         public AnimalAdapter(Context context)
@@ -64,6 +64,8 @@ namespace Sheep_Wolf.Droid
             return animalClassArray[position];
         }
 
+                    SheepViewHolder holderSheep;
+                    WolfViewHolder holderWolf;
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
             int row = GetItemViewType(position);
@@ -71,8 +73,6 @@ namespace Sheep_Wolf.Droid
             switch (row)
             {
                 case Sheep_Class:
-                    SheepViewHolder holderSheep;
-
                     var viewSheep = convertView;
                     if (viewSheep == null)
                     {
@@ -89,8 +89,6 @@ namespace Sheep_Wolf.Droid
                     return viewSheep;
 
                 case Wolf_Class:
-                    WolfViewHolder holderWolf;
-
                     var viewWolf = convertView;
                     if (viewWolf == null)
                     {
@@ -104,6 +102,20 @@ namespace Sheep_Wolf.Droid
                     }
                     holderWolf.textWolf.Text = animalClassArray[position].Name;
                     Picasso.With(context).Load(animalClassArray[position].URL).Into(holderWolf.imageWolf);
+
+                    //if (animalClassArray[position] is WolfClass)
+                    //{
+                    //    var thing = animalClassArray.LastOrDefault(creature => creature is SheepClass);
+                    //    if (thing is SheepClass)
+                    //    {
+                    //        Toast.MakeText(context, ((SheepClass)thing).Name, ToastLength.Short).Show();
+                    //        System.Console.WriteLine(((SheepClass)thing).Name);
+                    //        Picasso
+                    //                    .With(context)
+                    //                    .Load(Resource.Drawable.rip)
+                    //                    .Into(holderSheep.imageSheep);
+                    //    }
+                    //}
                     return viewWolf;
             }
             return convertView;

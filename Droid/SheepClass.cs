@@ -5,8 +5,6 @@ namespace Sheep_Wolf.Droid
     public class SheepClass : AnimalClass
     {
         readonly Random random = new Random();
-        public override string Name { get; set; }
-        public override string URL { get; protected set; }
 
         public string[] sheepsStringURL =
         {

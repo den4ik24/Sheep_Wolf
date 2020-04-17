@@ -6,34 +6,34 @@ using Square.Picasso;
 
 namespace Sheep_Wolf.Droid
 {
-    [Activity(Label = "SheepID")]
-    public class SheepID : Activity
+    [Activity(Label = "AnimalID")]
+    public class AnimalID : Activity
     {
 
         TextView textViewSheepsName;
-        ImageView sheepFoto;
+        ImageView animalsFoto;
         TextView animalType;
         ImageView imageAnimal;
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
-            SetContentView(Resource.Layout.SheepIDLayout);
+            SetContentView(Resource.Layout.AnimalIDLayout);
 
             textViewSheepsName = FindViewById<TextView>(Resource.Id.textViewSheepsName);
-            sheepFoto = FindViewById<ImageView>(Resource.Id.sheepFoto);
+            animalsFoto = FindViewById<ImageView>(Resource.Id.animalsFoto);
             animalType = FindViewById<TextView>(Resource.Id.animalType);
             imageAnimal = FindViewById<ImageView>(Resource.Id.imageAnimal);
 
-            var animalName = Intent.Extras.GetString("NAMEofSHEEP");
+            var animalName = Intent.Extras.GetString("NAMEofANIMAL");
             textViewSheepsName.Text = animalName;
 
-            var animalFoto = Intent.Extras.GetString("FOTOofSHEEP");
+            var animalFoto = Intent.Extras.GetString("FOTOofANIMAL");
             Picasso.With(this)
                 .Load(animalFoto)
-                .Into(sheepFoto);
+                .Into(animalsFoto);
 
-            var typeOfAnimal = Intent.Extras.GetString("TYPEofSHEEP");
+            var typeOfAnimal = Intent.Extras.GetString("TYPEofANIMAL");
             animalType.Text = typeOfAnimal;
 
             if (typeOfAnimal == "WOLF")

@@ -15,9 +15,10 @@ namespace Sheep_Wolf.Droid
         Button addSheepButton;
         TextView textViewNumbSheep;
         ListView listOfAnimals;
-        EditText textNameOfSheep;
+        EditText textNameOfAnimal;
         Spinner animalChoice;
         AnimalAdapter adapter;
+
 
         List<string> animalsNameList = new List<string>();
 
@@ -29,20 +30,21 @@ namespace Sheep_Wolf.Droid
             addSheepButton = FindViewById<Button>(Resource.Id.addSheepButton);
             textViewNumbSheep = FindViewById<TextView>(Resource.Id.textViewNumbSheep);
             listOfAnimals = FindViewById<ListView>(Resource.Id.listOfAnimals);
-            textNameOfSheep = FindViewById<EditText>(Resource.Id.textNameOfSheep);
+            textNameOfAnimal = FindViewById<EditText>(Resource.Id.textNameOfAnimal);
             animalChoice = FindViewById<Spinner>(Resource.Id.animalChoice);
 
             adapter = new AnimalAdapter(this);
             listOfAnimals.Adapter = adapter;
 
             addSheepButton.Click += AddSheepButton_Click;
-            listOfAnimals.ItemClick += ListOfSheeps_ItemClick;
+            listOfAnimals.ItemClick += ListOfAnimals_ItemClick;
             animalChoice.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(AnimalChoice_ItemSelected);
 
             var adapterSpinner = ArrayAdapter.CreateFromResource(this, Resource.Array.type_animal, Android.Resource.Layout.SimpleSpinnerItem);
             adapterSpinner.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             animalChoice.Adapter = adapterSpinner;
             animalChoice.SetSelection(0);
+
         }
 
         private void AnimalChoice_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
@@ -56,9 +58,9 @@ namespace Sheep_Wolf.Droid
       
         }
 
-        private void ListOfSheeps_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        private void ListOfAnimals_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-            var intent = new Intent(this, typeof(SheepID));
+            var intent = new Intent(this, typeof(AnimalID));
             var N = adapter.ElementPosition(e.Position);
 
             string type;
@@ -71,36 +73,36 @@ namespace Sheep_Wolf.Droid
                 type = "WOLF";
             }
 
-            intent.PutExtra("NAMEofSHEEP", N.Name);
-            intent.PutExtra("FOTOofSHEEP", N.URL);
-            intent.PutExtra("TYPEofSHEEP", type);
+            intent.PutExtra("NAMEofANIMAL", N.Name);
+            intent.PutExtra("FOTOofANIMAL", N.URL);
+            intent.PutExtra("TYPEofANIMAL", type);
             StartActivity(intent);
         }
 
         private void AddSheepButton_Click(object sender, EventArgs e)
         {
-            if (textNameOfSheep.Text == "")
+            if (textNameOfAnimal.Text == "")
             {
                 Toast.MakeText(this, "Укажите имя овцы", ToastLength.Short).Show();
             }
             else
             {
-                if (animalsNameList.Contains(textNameOfSheep.Text))
+                if (animalsNameList.Contains(textNameOfAnimal.Text))
                 {
                     Toast.MakeText(this, "Животное с таким именем уже существует. Измените имя", ToastLength.Short).Show();
                 }
                 else
                 {
-                    animalsNameList.Add(textNameOfSheep.Text);
-                    RandAnimal();
-                    textNameOfSheep.Text = "";
+                    animalsNameList.Add(textNameOfAnimal.Text);
+                    AddRandomAnimal();
+                    textNameOfAnimal.Text = "";
                     count++;
                     textViewNumbSheep.Text = count.ToString();
                 }
             }
         }
 
-        public AnimalClass RandAnimal()
+        public AnimalClass AddRandomAnimal()
         {
             AnimalClass animal;
             if(animalChoice.SelectedItemPosition == 0)
@@ -111,11 +113,10 @@ namespace Sheep_Wolf.Droid
             {
                 animal = new WolfClass();
             }
-            animal.Name = textNameOfSheep.Text;
+            animal.Name = textNameOfAnimal.Text;
             adapter.Add(animal);
             adapter.NotifyDataSetChanged();
             return animal;
         }
     }
 }
-
