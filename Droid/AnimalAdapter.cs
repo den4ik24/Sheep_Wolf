@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Android.Content;
 using Android.Views;
@@ -17,6 +18,19 @@ namespace Sheep_Wolf.Droid
         public void Add(AnimalClass animal)
         {
             animalClassArray.Add(animal);
+
+            if(animal is WolfClass)
+            {
+                for (var i = animalClassArray.Count - 1; i >= 0; --i)
+                {
+                    var item = animalClassArray[i];
+                    if (item is SheepClass && !item.IsDead)
+                    {
+                        item.IsDead = true;
+                        break;
+                    }
+                }
+            }
         }
 
         public AnimalAdapter(Context context)
@@ -64,15 +78,15 @@ namespace Sheep_Wolf.Droid
             return animalClassArray[position];
         }
 
-                    SheepViewHolder holderSheep;
-                    WolfViewHolder holderWolf;
+                    
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
             int row = GetItemViewType(position);
-
+            
             switch (row)
             {
                 case Sheep_Class:
+                    SheepViewHolder holderSheep;
                     var viewSheep = convertView;
                     if (viewSheep == null)
                     {
@@ -85,10 +99,24 @@ namespace Sheep_Wolf.Droid
                         holderSheep = viewSheep.Tag as SheepViewHolder;
                     }
                     holderSheep.textSheep.Text = animalClassArray[position].Name;
-                    Picasso.With(context).Load(animalClassArray[position].URL).Into(holderSheep.imageSheep);
+
+                    if (animalClassArray[position].IsDead)
+                    {
+                        Picasso
+                            .With(context)
+                            .Load(Resource.Drawable.rip)
+                            .Into(holderSheep.imageSheep);
+                    }
+                    else
+                    {
+                        Picasso.With(context)
+                               .Load(animalClassArray[position].URL)
+                               .Into(holderSheep.imageSheep);
+                    }
                     return viewSheep;
 
                 case Wolf_Class:
+                    WolfViewHolder holderWolf;
                     var viewWolf = convertView;
                     if (viewWolf == null)
                     {
@@ -101,21 +129,9 @@ namespace Sheep_Wolf.Droid
                         holderWolf = viewWolf.Tag as WolfViewHolder;
                     }
                     holderWolf.textWolf.Text = animalClassArray[position].Name;
-                    Picasso.With(context).Load(animalClassArray[position].URL).Into(holderWolf.imageWolf);
-
-                    //if (animalClassArray[position] is WolfClass)
-                    //{
-                    //    var thing = animalClassArray.LastOrDefault(creature => creature is SheepClass);
-                    //    if (thing is SheepClass)
-                    //    {
-                    //        Toast.MakeText(context, ((SheepClass)thing).Name, ToastLength.Short).Show();
-                    //        System.Console.WriteLine(((SheepClass)thing).Name);
-                    //        Picasso
-                    //                    .With(context)
-                    //                    .Load(Resource.Drawable.rip)
-                    //                    .Into(holderSheep.imageSheep);
-                    //    }
-                    //}
+                    Picasso.With(context)
+                           .Load(animalClassArray[position].URL)
+                           .Into(holderWolf.imageWolf);
                     return viewWolf;
             }
             return convertView;
