@@ -83,6 +83,7 @@
     <Compile Include="SheepClass.cs" />
     <Compile Include="WolfClass.cs" />
     <Compile Include="AnimalClass.cs" />
+    <Compile Include="GrayscaleTransformation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

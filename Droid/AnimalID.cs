@@ -1,8 +1,10 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Views.Animations;
 using Android.Widget;
 using Square.Picasso;
+
 
 namespace Sheep_Wolf.Droid
 {
@@ -19,7 +21,6 @@ namespace Sheep_Wolf.Droid
             base.OnCreate(bundle);
 
             SetContentView(Resource.Layout.AnimalIDLayout);
-
             textViewSheepsName = FindViewById<TextView>(Resource.Id.textViewSheepsName);
             animalsFoto = FindViewById<ImageView>(Resource.Id.animalsFoto);
             animalType = FindViewById<TextView>(Resource.Id.animalType);
@@ -30,19 +31,34 @@ namespace Sheep_Wolf.Droid
 
             var animalFoto = Intent.Extras.GetString("FOTOofANIMAL");
             Picasso.With(this)
-                .Load(animalFoto)
-                .Into(animalsFoto);
+                   .Load(animalFoto)
+                   .Into(animalsFoto);
 
             var typeOfAnimal = Intent.Extras.GetString("TYPEofANIMAL");
             animalType.Text = typeOfAnimal;
 
-            if (typeOfAnimal == "WOLF")
+            var deadORalive = Intent.Extras.GetBoolean("DEADofANIMAL");
+
+            if (deadORalive)
             {
-                imageAnimal.SetImageResource(Resource.Drawable.wolf);
+                imageAnimal.SetImageResource(Resource.Drawable.rip);
+                animalType.Text = $"This {typeOfAnimal} eliminated by wolf";
+
+                Picasso.With(this)
+                       .Load(animalFoto)
+                       .Transform(new GrayscaleTransformation())
+                       .Into(animalsFoto);
             }
             else
             {
-                imageAnimal.SetImageResource(Resource.Drawable.sheep);
+                if (typeOfAnimal == "WOLF")
+                {
+                    imageAnimal.SetImageResource(Resource.Drawable.wolf);
+                }
+                if (typeOfAnimal == "SHEEP")
+                {
+                    imageAnimal.SetImageResource(Resource.Drawable.sheep);
+                }
             }
         }
     }

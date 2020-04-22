@@ -24,6 +24,7 @@ namespace Sheep_Wolf.Droid
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Main);
 
@@ -76,6 +77,10 @@ namespace Sheep_Wolf.Droid
             intent.PutExtra("NAMEofANIMAL", N.Name);
             intent.PutExtra("FOTOofANIMAL", N.URL);
             intent.PutExtra("TYPEofANIMAL", type);
+            if (N.IsDead)
+            {
+                intent.PutExtra("DEADofANIMAL", N.IsDead);
+            }
             StartActivity(intent);
         }
 
