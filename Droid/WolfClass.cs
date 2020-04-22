@@ -11,7 +11,7 @@ namespace Sheep_Wolf.Droid
             "https://www.proza.ru/pics/2014/03/17/1922.jpg",
             "https://imgfon.ru/Images/Download/Crop/2560x1600/Animals/volk-hischnik-vzglyad-sherst-lejit.jpg",
             "https://www.chainimage.com/images/animal-hd-wallpaper-1600x1200-18-hebus-org-high-definition.jpg",
-            "https://wallpaperbro.com/img/256362.jpg",
+            "https://img1.liveinternet.ru/images/attach/c/6/90/875/90875795_1262537644_wolf_03_.jpg",
             "https://i.artfile.me/wallpaper/07-09-2017/1920x1280/zhivotnye-volki--kojoty--shakaly-vzglyad-1224870.jpg",
             "https://s00.yaplakal.com/pics/pics_original/4/0/0/13729004.jpg",
             "https://i.ytimg.com/vi/GKK-nxCjSWc/maxresdefault.jpg",

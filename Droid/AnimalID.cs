@@ -1,7 +1,6 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Views.Animations;
 using Android.Widget;
 using Square.Picasso;
 
@@ -36,30 +35,36 @@ namespace Sheep_Wolf.Droid
 
             var typeOfAnimal = Intent.Extras.GetString("TYPEofANIMAL");
             animalType.Text = typeOfAnimal;
-
             var deadORalive = Intent.Extras.GetBoolean("DEADofANIMAL");
+            var killer = Intent.Extras.GetString("KILLERofANIMAL");
+            var eater = Intent.Extras.GetBoolean("EATERofANIMAL");
 
             if (deadORalive)
             {
                 imageAnimal.SetImageResource(Resource.Drawable.rip);
-                animalType.Text = $"This {typeOfAnimal} eliminated by wolf";
+                animalType.Text = $"This {typeOfAnimal} eliminated by {killer}";
 
                 Picasso.With(this)
                        .Load(animalFoto)
                        .Transform(new GrayscaleTransformation())
                        .Into(animalsFoto);
             }
-            else
+
+            if (eater)
             {
-                if (typeOfAnimal == "WOLF")
-                {
-                    imageAnimal.SetImageResource(Resource.Drawable.wolf);
-                }
-                if (typeOfAnimal == "SHEEP")
-                {
-                    imageAnimal.SetImageResource(Resource.Drawable.sheep);
-                }
+                animalType.Text = $"This {typeOfAnimal} eliminate {killer}";
             }
+
+            if (typeOfAnimal == "WOLF")
+            {
+                imageAnimal.SetImageResource(Resource.Drawable.wolf);
+            }
+
+            if (typeOfAnimal == "SHEEP")
+            {
+                imageAnimal.SetImageResource(Resource.Drawable.sheep);
+            }
+
         }
     }
 }

@@ -79,7 +79,13 @@ namespace Sheep_Wolf.Droid
             intent.PutExtra("TYPEofANIMAL", type);
             if (N.IsDead)
             {
+            intent.PutExtra("KILLERofANIMAL", N.Killer);
                 intent.PutExtra("DEADofANIMAL", N.IsDead);
+            }
+            if (N.Eater)
+            {
+                intent.PutExtra("KILLERofANIMAL", N.Killer);
+                intent.PutExtra("EATERofANIMAL", N.Eater);
             }
             StartActivity(intent);
         }

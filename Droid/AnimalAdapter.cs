@@ -25,6 +25,9 @@ namespace Sheep_Wolf.Droid
                     if (item is SheepClass && !item.IsDead)
                     {
                         item.IsDead = true;
+                        item.Killer = animal.Name;
+                        animal.Killer = item.Name;
+                        animal.Eater = true;
                         break;
                     }
                 }
