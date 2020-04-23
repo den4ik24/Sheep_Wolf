@@ -84,6 +84,7 @@
     <Compile Include="Models\WolfClass.cs" />
     <Compile Include="Adapters\AnimalAdapter.cs" />
     <Compile Include="Transformations\GrayscaleTransformation.cs" />
+    <Compile Include="Keys\Keys.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -130,6 +131,7 @@
     <Folder Include="Models\" />
     <Folder Include="Adapters\" />
     <Folder Include="Transformations\" />
+    <Folder Include="Keys\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Jetbrains.Annotations.13.0.0.1\build\monoandroid90\Xamarin.Jetbrains.Annotations.targets" Condition="Exists('..\packages\Xamarin.Jetbrains.Annotations.13.0.0.1\build\monoandroid90\Xamarin.Jetbrains.Annotations.targets')" />

@@ -19,12 +19,10 @@ namespace Sheep_Wolf.Droid
         Spinner animalChoice;
         AnimalAdapter adapter;
 
-
         List<string> animalsNameList = new List<string>();
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Main);
 
@@ -45,18 +43,13 @@ namespace Sheep_Wolf.Droid
             adapterSpinner.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             animalChoice.Adapter = adapterSpinner;
             animalChoice.SetSelection(0);
-
         }
 
         private void AnimalChoice_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
-
             animalChoice = sender as Spinner;
-
             string selectedAnimal = string.Format($"Выбрано животное - {animalChoice.GetItemAtPosition(e.Position)}");
             Toast.MakeText(this, selectedAnimal, ToastLength.Short).Show();
-
-      
         }
 
         private void ListOfAnimals_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
@@ -64,28 +57,26 @@ namespace Sheep_Wolf.Droid
             var intent = new Intent(this, typeof(AnimalIDActivity));
             var N = adapter.ElementPosition(e.Position);
 
-            string type;
+            AnimalType type;
             if (N is SheepClass)
             {
-                type = "SHEEP";
+                type = AnimalType.SHEEP;
             }
             else
             {
-                type = "WOLF";
+                type = AnimalType.WOLF;
             }
-
-            intent.PutExtra("NAMEofANIMAL", N.Name);
-            intent.PutExtra("FOTOofANIMAL", N.URL);
-            intent.PutExtra("TYPEofANIMAL", type);
+            var keys = new Keys();
+            intent.PutExtra(keys.NAMEofANIMAL, N.Name);
+            intent.PutExtra(keys.FOTOofANIMAL, N.URL);
+            intent.PutExtra(keys.TYPEofANIMAL, (int)type);
             if (N.IsDead)
             {
-                //intent.PutExtra("KILLERofANIMAL", N.Killer);
-                intent.PutExtra("DEADofANIMAL", N.IsDead);
+                intent.PutExtra(keys.DEADofANIMAL, N.IsDead);
             }
             if (!string.IsNullOrEmpty(N.Killer))
             {
-                intent.PutExtra("KILLERofANIMAL", N.Killer);
-                //intent.PutExtra("EATERofANIMAL", N.Eater);
+                intent.PutExtra(keys.KILLERofANIMAL, N.Killer);
             }
             StartActivity(intent);
         }

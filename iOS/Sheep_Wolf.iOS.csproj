@@ -101,6 +101,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="Models\" />
+    <Folder Include="ViewControllers\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -114,23 +116,12 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="ViewController.cs" />
-    <Compile Include="ViewController.designer.cs">
-      <DependentUpon>ViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="MyViewController.cs" />
     <Compile Include="MyViewController.designer.cs">
       <DependentUpon>MyViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="TableSources.cs" />
-    <Compile Include="CardIDViewController.cs" />
-    <Compile Include="CardIDViewController.designer.cs">
-      <DependentUpon>CardIDViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SheepClassIOS.cs" />
     <Compile Include="AnimalPickerModel.cs" />
-    <Compile Include="WolfClassIOS.cs" />
-    <Compile Include="AnimalClassIOS.cs" />
     <Compile Include="TableViewCellWolf.cs" />
     <Compile Include="TableViewCellWolf.designer.cs">
       <DependentUpon>TableViewCellWolf.cs</DependentUpon>
@@ -138,6 +129,17 @@
     <Compile Include="TableViewCellSheep.cs" />
     <Compile Include="TableViewCellSheep.designer.cs">
       <DependentUpon>TableViewCellSheep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AnimalClassIOS.cs" />
+    <Compile Include="Models\SheepClassIOS.cs" />
+    <Compile Include="Models\WolfClassIOS.cs" />
+    <Compile Include="ViewControllers\ViewController.cs" />
+    <Compile Include="ViewControllers\ViewController.designer.cs">
+      <DependentUpon>ViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\CardIDViewController.cs" />
+    <Compile Include="ViewControllers\CardIDViewController.designer.cs">
+      <DependentUpon>CardIDViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

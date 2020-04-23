@@ -1,4 +1,5 @@
-﻿using Android.App;
+﻿using System;
+using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Widget;
@@ -24,40 +25,40 @@ namespace Sheep_Wolf.Droid
             animalsFoto = FindViewById<ImageView>(Resource.Id.animalsFoto);
             animalType = FindViewById<TextView>(Resource.Id.animalType);
             imageAnimal = FindViewById<ImageView>(Resource.Id.imageAnimal);
+            var keys = new Keys();
+            var animalName = Intent.Extras.GetString(keys.NAMEofANIMAL);
+            var animalFoto = Intent.Extras.GetString(keys.FOTOofANIMAL);
+            var typeOfAnimal = Intent.Extras.GetInt(keys.TYPEofANIMAL);
+            var deadORalive = Intent.Extras.GetBoolean(keys.DEADofANIMAL);
+            var killer = Intent.Extras.GetString(keys.KILLERofANIMAL, null);
 
-            var animalName = Intent.Extras.GetString("NAMEofANIMAL");
             textViewSheepsName.Text = animalName;
-
-            var animalFoto = Intent.Extras.GetString("FOTOofANIMAL");
+            //animalType.Text = typeOfAnimal.ToString();
             Picasso.With(this)
                    .Load(animalFoto)
                    .Into(animalsFoto);
 
-            var typeOfAnimal = Intent.Extras.GetString("TYPEofANIMAL");
-            animalType.Text = typeOfAnimal;
-            var deadORalive = Intent.Extras.GetBoolean("DEADofANIMAL");
-            var killer = Intent.Extras.GetString("KILLERofANIMAL", null);
+            if (typeOfAnimal == 0)
+            {
+                imageAnimal.SetImageResource(Resource.Drawable.sheep);
+                animalType.Text = AnimalType.SHEEP.ToString();
+            }
+            if (typeOfAnimal == 1)
+            {
+                imageAnimal.SetImageResource(Resource.Drawable.wolf);
+                animalType.Text = AnimalType.WOLF.ToString();
+            }
 
             if (killer != null)
             {
-                if (typeOfAnimal == "SHEEP")
+                if (typeOfAnimal == 0)
                 {
-                    animalType.Text = $"This {typeOfAnimal} eliminated by {killer}";
+                    animalType.Text = $"This {AnimalType.SHEEP} eliminated by {killer}";
                 }
-                else
+                if (typeOfAnimal == 1)
                 {
-                    animalType.Text = $"This {typeOfAnimal} eliminate {killer}";
+                    animalType.Text = $"This {AnimalType.WOLF} tear to pieces {killer}";
                 }
-            }
-
-            if (typeOfAnimal == "WOLF")
-            {
-                imageAnimal.SetImageResource(Resource.Drawable.wolf);
-            }
-
-            if (typeOfAnimal == "SHEEP")
-            {
-                imageAnimal.SetImageResource(Resource.Drawable.sheep);
             }
 
             if (deadORalive)
@@ -70,5 +71,10 @@ namespace Sheep_Wolf.Droid
                        .Into(animalsFoto);
             }
         }
+    }
+    enum AnimalType
+    {
+        SHEEP,
+        WOLF
     }
 }

@@ -27,7 +27,6 @@ namespace Sheep_Wolf.Droid
                         item.IsDead = true;
                         item.Killer = animal.Name;
                         animal.Killer = item.Name;
-                        //animal.Eater = true;
                         break;
                     }
                 }
@@ -133,6 +132,7 @@ namespace Sheep_Wolf.Droid
                     Picasso.With(context)
                            .Load(animalClassArray[position].URL)
                            .Into(holderWolf.imageWolf);
+                    System.Console.WriteLine(animalClassArray[position].URL);
                     return viewWolf;
             }
             return convertView;
