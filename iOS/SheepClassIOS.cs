@@ -6,9 +6,6 @@ namespace Sheep_Wolf.iOS
     public class SheepClassIOS : AnimalClassIOS
     {
         readonly Random random = new Random();
-        public override string Name { get; set; }
-        public override string URL { get; protected set; }
-
         //string image;
         //public string URL
         //{

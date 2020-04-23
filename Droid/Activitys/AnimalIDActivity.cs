@@ -8,7 +8,7 @@ using Square.Picasso;
 namespace Sheep_Wolf.Droid
 {
     [Activity(Label = "AnimalID")]
-    public class AnimalID : Activity
+    public class AnimalIDActivity : Activity
     {
 
         TextView textViewSheepsName;
@@ -36,23 +36,18 @@ namespace Sheep_Wolf.Droid
             var typeOfAnimal = Intent.Extras.GetString("TYPEofANIMAL");
             animalType.Text = typeOfAnimal;
             var deadORalive = Intent.Extras.GetBoolean("DEADofANIMAL");
-            var killer = Intent.Extras.GetString("KILLERofANIMAL");
-            var eater = Intent.Extras.GetBoolean("EATERofANIMAL");
+            var killer = Intent.Extras.GetString("KILLERofANIMAL", null);
 
-            if (deadORalive)
+            if (killer != null)
             {
-                imageAnimal.SetImageResource(Resource.Drawable.rip);
-                animalType.Text = $"This {typeOfAnimal} eliminated by {killer}";
-
-                Picasso.With(this)
-                       .Load(animalFoto)
-                       .Transform(new GrayscaleTransformation())
-                       .Into(animalsFoto);
-            }
-
-            if (eater)
-            {
-                animalType.Text = $"This {typeOfAnimal} eliminate {killer}";
+                if (typeOfAnimal == "SHEEP")
+                {
+                    animalType.Text = $"This {typeOfAnimal} eliminated by {killer}";
+                }
+                else
+                {
+                    animalType.Text = $"This {typeOfAnimal} eliminate {killer}";
+                }
             }
 
             if (typeOfAnimal == "WOLF")
@@ -65,6 +60,15 @@ namespace Sheep_Wolf.Droid
                 imageAnimal.SetImageResource(Resource.Drawable.sheep);
             }
 
+            if (deadORalive)
+            {
+                imageAnimal.SetImageResource(Resource.Drawable.rip);
+
+                Picasso.With(this)
+                       .Load(animalFoto)
+                       .Transform(new GrayscaleTransformation())
+                       .Into(animalsFoto);
+            }
         }
     }
 }

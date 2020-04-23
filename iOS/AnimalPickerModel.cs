@@ -6,7 +6,6 @@ namespace Sheep_Wolf.iOS
 {
     public class AnimalPickerModel : UIPickerViewModel
     {
-        //List<string> Animals;
         public string[] Animals = new string[]
         {
             "SHEEP", "WOLF"

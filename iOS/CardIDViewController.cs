@@ -9,7 +9,6 @@ namespace Sheep_Wolf.iOS
         public AnimalClassIOS model;
         public CardIDViewController (IntPtr handle) : base (handle)
         {
-
         }
 
         public override void ViewDidLoad()

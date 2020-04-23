@@ -27,7 +27,7 @@ namespace Sheep_Wolf.Droid
                         item.IsDead = true;
                         item.Killer = animal.Name;
                         animal.Killer = item.Name;
-                        animal.Eater = true;
+                        //animal.Eater = true;
                         break;
                     }
                 }

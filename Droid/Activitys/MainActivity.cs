@@ -61,7 +61,7 @@ namespace Sheep_Wolf.Droid
 
         private void ListOfAnimals_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-            var intent = new Intent(this, typeof(AnimalID));
+            var intent = new Intent(this, typeof(AnimalIDActivity));
             var N = adapter.ElementPosition(e.Position);
 
             string type;
@@ -79,13 +79,13 @@ namespace Sheep_Wolf.Droid
             intent.PutExtra("TYPEofANIMAL", type);
             if (N.IsDead)
             {
-            intent.PutExtra("KILLERofANIMAL", N.Killer);
+                //intent.PutExtra("KILLERofANIMAL", N.Killer);
                 intent.PutExtra("DEADofANIMAL", N.IsDead);
             }
-            if (N.Eater)
+            if (!string.IsNullOrEmpty(N.Killer))
             {
                 intent.PutExtra("KILLERofANIMAL", N.Killer);
-                intent.PutExtra("EATERofANIMAL", N.Eater);
+                //intent.PutExtra("EATERofANIMAL", N.Eater);
             }
             StartActivity(intent);
         }
