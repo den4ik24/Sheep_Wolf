@@ -79,9 +79,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Activitys\AnimalIDActivity.cs" />
     <Compile Include="Activitys\MainActivity.cs" />
-    <Compile Include="Models\AnimalClass.cs" />
-    <Compile Include="Models\SheepClass.cs" />
-    <Compile Include="Models\WolfClass.cs" />
+    <Compile Include="Models\AnimalModel.cs" />
+    <Compile Include="Models\SheepModel.cs" />
+    <Compile Include="Models\WolfModel.cs" />
     <Compile Include="Adapters\AnimalAdapter.cs" />
     <Compile Include="Transformations\GrayscaleTransformation.cs" />
     <Compile Include="Keys\Keys.cs" />
@@ -121,6 +121,10 @@
       <Generator></Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\rip.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\killer.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>

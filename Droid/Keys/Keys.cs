@@ -1,12 +1,12 @@
 ﻿using System;
 namespace Sheep_Wolf.Droid
 {
-    public class Keys
+    public static class Keys
     {
-        public string NAMEofANIMAL = "NAMEofANIMAL";
-        public string FOTOofANIMAL = "FOTOofANIMAL";
-        public string TYPEofANIMAL = "TYPEofANIMAL";
-        public string DEADofANIMAL = "DEADofANIMAL";
-        public string KILLERofANIMAL = "KILLERofANIMAL";
+        public static string NAMEofANIMAL = "NAMEofANIMAL";
+        public static string FOTOofANIMAL = "FOTOofANIMAL";
+        public static string TYPEofANIMAL = "TYPEofANIMAL";
+        public static string DEADofANIMAL = "DEADofANIMAL";
+        public static string KILLERofANIMAL = "KILLERofANIMAL";
     }
 }

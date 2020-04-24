@@ -21,12 +21,12 @@ namespace Sheep_Wolf.iOS
             if(model is SheepClassIOS)
             {
                 ImageSheep.Image = UIImage.FromBundle("sheep.png");
-                NameAnimalID.Text = "SHEEP";
+                NameAnimalID.Text = Keys.SHEEP;
             }
             else
             {
                 ImageSheep.Image = UIImage.FromBundle("wolf.png");
-                NameAnimalID.Text = "WOLF";
+                NameAnimalID.Text = Keys.WOLF;
             }
         }
     }

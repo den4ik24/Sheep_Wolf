@@ -1,6 +1,6 @@
 ﻿namespace Sheep_Wolf.Droid
 {
-    public class AnimalClass
+    public class AnimalModel
     {
         public string Name { get; set; }
         public string URL { get; protected set; }

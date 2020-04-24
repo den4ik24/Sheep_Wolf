@@ -61,13 +61,16 @@ namespace Sheep_Wolf.Droid
 		{
 			
 			// aapt resource value: 0x7F020000
-			public const int rip = 2130837504;
+			public const int killer = 2130837504;
 			
 			// aapt resource value: 0x7F020001
-			public const int sheep = 2130837505;
+			public const int rip = 2130837505;
 			
 			// aapt resource value: 0x7F020002
-			public const int wolf = 2130837506;
+			public const int sheep = 2130837506;
+			
+			// aapt resource value: 0x7F020003
+			public const int wolf = 2130837507;
 			
 			static Drawable()
 			{

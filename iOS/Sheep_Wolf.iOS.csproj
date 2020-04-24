@@ -103,10 +103,13 @@
     <Folder Include="Resources\" />
     <Folder Include="Models\" />
     <Folder Include="ViewControllers\" />
+    <Folder Include="Table\" />
+    <Folder Include="Storyboard\" />
+    <Folder Include="Keys\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
-    <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="Storyboard\Main.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -116,20 +119,6 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="MyViewController.cs" />
-    <Compile Include="MyViewController.designer.cs">
-      <DependentUpon>MyViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TableSources.cs" />
-    <Compile Include="AnimalPickerModel.cs" />
-    <Compile Include="TableViewCellWolf.cs" />
-    <Compile Include="TableViewCellWolf.designer.cs">
-      <DependentUpon>TableViewCellWolf.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TableViewCellSheep.cs" />
-    <Compile Include="TableViewCellSheep.designer.cs">
-      <DependentUpon>TableViewCellSheep.cs</DependentUpon>
-    </Compile>
     <Compile Include="Models\AnimalClassIOS.cs" />
     <Compile Include="Models\SheepClassIOS.cs" />
     <Compile Include="Models\WolfClassIOS.cs" />
@@ -141,10 +130,22 @@
     <Compile Include="ViewControllers\CardIDViewController.designer.cs">
       <DependentUpon>CardIDViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Table\TableSources.cs" />
+    <Compile Include="Table\TableViewCellSheep.cs" />
+    <Compile Include="Table\TableViewCellSheep.designer.cs">
+      <DependentUpon>TableViewCellSheep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\TableViewCellWolf.cs" />
+    <Compile Include="Table\TableViewCellWolf.designer.cs">
+      <DependentUpon>TableViewCellWolf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AnimalPickerModel.cs" />
+    <Compile Include="Keys\Keys.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\sheep.png" />
     <BundleResource Include="Resources\wolf.png" />
+    <BundleResource Include="Resources\killer.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\rip.png">

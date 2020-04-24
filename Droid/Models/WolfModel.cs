@@ -2,7 +2,7 @@
 
 namespace Sheep_Wolf.Droid
 {
-    public class WolfClass : AnimalClass
+    public class WolfModel : AnimalModel
     {
         readonly Random random = new Random();
 
@@ -30,7 +30,7 @@ namespace Sheep_Wolf.Droid
             return GetRandomWolfImage();
         }
 
-        public WolfClass()
+        public WolfModel()
         {
             URL = GetRandomImage();
         }

@@ -30,7 +30,6 @@ namespace Sheep_Wolf.iOS
                 cellWolf.UpdateCell(animalClassArray[indexPath.Row]);
                 return cellWolf;
             }
-
         }
 
         public override nint RowsInSection(UITableView tableview, nint section)
@@ -51,6 +50,5 @@ namespace Sheep_Wolf.iOS
             controller.NavigationController.PushViewController(cardIDViewController, true);
             cardIDViewController.model = AIA;
         }
-
     }
 }

@@ -25,15 +25,15 @@ namespace Sheep_Wolf.Droid
             animalsFoto = FindViewById<ImageView>(Resource.Id.animalsFoto);
             animalType = FindViewById<TextView>(Resource.Id.animalType);
             imageAnimal = FindViewById<ImageView>(Resource.Id.imageAnimal);
-            var keys = new Keys();
-            var animalName = Intent.Extras.GetString(keys.NAMEofANIMAL);
-            var animalFoto = Intent.Extras.GetString(keys.FOTOofANIMAL);
-            var typeOfAnimal = Intent.Extras.GetInt(keys.TYPEofANIMAL);
-            var deadORalive = Intent.Extras.GetBoolean(keys.DEADofANIMAL);
-            var killer = Intent.Extras.GetString(keys.KILLERofANIMAL, null);
+            
+            var animalName = Intent.Extras.GetString(Keys.NAMEofANIMAL);
+            var animalFoto = Intent.Extras.GetString(Keys.FOTOofANIMAL);
+            var typeOfAnimal = Intent.Extras.GetInt(Keys.TYPEofANIMAL);
+            var deadORalive = Intent.Extras.GetBoolean(Keys.DEADofANIMAL);
+            var killer = Intent.Extras.GetString(Keys.KILLERofANIMAL, null);
 
             textViewSheepsName.Text = animalName;
-            //animalType.Text = typeOfAnimal.ToString();
+
             Picasso.With(this)
                    .Load(animalFoto)
                    .Into(animalsFoto);
@@ -58,6 +58,7 @@ namespace Sheep_Wolf.Droid
                 if (typeOfAnimal == 1)
                 {
                     animalType.Text = $"This {AnimalType.WOLF} tear to pieces {killer}";
+                    imageAnimal.SetImageResource(Resource.Drawable.killer);
                 }
             }
 

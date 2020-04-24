@@ -58,7 +58,7 @@ namespace Sheep_Wolf.Droid
             var N = adapter.ElementPosition(e.Position);
 
             AnimalType type;
-            if (N is SheepClass)
+            if (N is SheepModel)
             {
                 type = AnimalType.SHEEP;
             }
@@ -66,17 +66,17 @@ namespace Sheep_Wolf.Droid
             {
                 type = AnimalType.WOLF;
             }
-            var keys = new Keys();
-            intent.PutExtra(keys.NAMEofANIMAL, N.Name);
-            intent.PutExtra(keys.FOTOofANIMAL, N.URL);
-            intent.PutExtra(keys.TYPEofANIMAL, (int)type);
+            
+            intent.PutExtra(Keys.NAMEofANIMAL, N.Name);
+            intent.PutExtra(Keys.FOTOofANIMAL, N.URL);
+            intent.PutExtra(Keys.TYPEofANIMAL, (int)type);
             if (N.IsDead)
             {
-                intent.PutExtra(keys.DEADofANIMAL, N.IsDead);
+                intent.PutExtra(Keys.DEADofANIMAL, N.IsDead);
             }
             if (!string.IsNullOrEmpty(N.Killer))
             {
-                intent.PutExtra(keys.KILLERofANIMAL, N.Killer);
+                intent.PutExtra(Keys.KILLERofANIMAL, N.Killer);
             }
             StartActivity(intent);
         }
@@ -104,16 +104,16 @@ namespace Sheep_Wolf.Droid
             }
         }
 
-        public AnimalClass AddRandomAnimal()
+        public AnimalModel AddRandomAnimal()
         {
-            AnimalClass animal;
+            AnimalModel animal;
             if(animalChoice.SelectedItemPosition == 0)
             {
-                animal = new SheepClass();
+                animal = new SheepModel();
             }
             else
             {
-                animal = new WolfClass();
+                animal = new WolfModel();
             }
             animal.Name = textNameOfAnimal.Text;
             adapter.Add(animal);

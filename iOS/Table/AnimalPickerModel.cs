@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using UIKit;
-
+//спиннер IOS
 namespace Sheep_Wolf.iOS
 {
     public class AnimalPickerModel : UIPickerViewModel
     {
         public string[] Animals = new string[]
         {
-            "SHEEP", "WOLF"
+            Keys.SHEEP, Keys.WOLF
         };
         public EventHandler ValueChanged;
         public string SelectedValue;
@@ -42,6 +42,5 @@ namespace Sheep_Wolf.iOS
             SelectedValue = animals;
             ValueChanged?.Invoke(null, null);
         }
-
     }
 }

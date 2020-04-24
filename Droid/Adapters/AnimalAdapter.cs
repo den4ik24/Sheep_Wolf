@@ -6,23 +6,23 @@ using Square.Picasso;
 
 namespace Sheep_Wolf.Droid
 {
-    public class AnimalAdapter : BaseAdapter<AnimalClass>
+    public class AnimalAdapter : BaseAdapter<AnimalModel>
     {
-        readonly List<AnimalClass> animalClassArray = new List<AnimalClass>();
+        readonly List<AnimalModel> animalClassArray = new List<AnimalModel>();
         readonly Context context;
         private const int Sheep_Class = 0;
         private const int Wolf_Class = 1;
 
-        public void Add(AnimalClass animal)
+        public void Add(AnimalModel animal)
         {
             animalClassArray.Add(animal);
 
-            if(animal is WolfClass)
+            if(animal is WolfModel)
             {
                 for (var i = animalClassArray.Count - 1; i >= 0; --i)
                 {
                     var item = animalClassArray[i];
-                    if (item is SheepClass && !item.IsDead)
+                    if (item is SheepModel && !item.IsDead)
                     {
                         item.IsDead = true;
                         item.Killer = animal.Name;
@@ -42,7 +42,7 @@ namespace Sheep_Wolf.Droid
 
         public override int GetItemViewType(int position)
         {
-            if(animalClassArray[position] is SheepClass)
+            if(animalClassArray[position] is SheepModel)
             {
                 return Sheep_Class;
             }
@@ -52,7 +52,7 @@ namespace Sheep_Wolf.Droid
             }
         }
 
-        public override AnimalClass this[int position]
+        public override AnimalModel this[int position]
         {
             get
             {
@@ -73,7 +73,7 @@ namespace Sheep_Wolf.Droid
             return position;
         }
 
-        public AnimalClass ElementPosition(int position)
+        public AnimalModel ElementPosition(int position)
         {
             return animalClassArray[position];
         }
@@ -129,10 +129,10 @@ namespace Sheep_Wolf.Droid
                         holderWolf = viewWolf.Tag as WolfViewHolder;
                     }
                     holderWolf.textWolf.Text = animalClassArray[position].Name;
-                    Picasso.With(context)
-                           .Load(animalClassArray[position].URL)
-                           .Into(holderWolf.imageWolf);
-                    System.Console.WriteLine(animalClassArray[position].URL);
+                        Picasso.With(context)
+                               .Load(animalClassArray[position].URL)
+                               .Into(holderWolf.imageWolf);
+                    
                     return viewWolf;
             }
             return convertView;

@@ -27,22 +27,18 @@ namespace Sheep_Wolf.iOS
             uiPicker = new UIPickerView();
             uiPicker.Model = picker;
             uiPicker.Model.Selected(uiPicker, 0, 0);
-
             animalChoice.InputView = uiPicker;
         }
 
         private void ButtonAddSheep_TouchUpInside(object sender, EventArgs e)
         {
-
             if (textNameOfSheep.Text == "")
             {
-
                 var alertController = UIAlertController.Create
                     ("WARNING", "Введите имя животного", UIAlertControllerStyle.Alert);
                 alertController.AddAction(UIAlertAction.Create
                     ("OK", UIAlertActionStyle.Default, null));
                 PresentViewController(alertController, true, null);
-
             }
             else
             {
@@ -71,7 +67,7 @@ namespace Sheep_Wolf.iOS
         {
             AnimalClassIOS animal;
 
-            if(picker.SelectedValue == "SHEEP")
+            if(picker.SelectedValue == Keys.SHEEP)
             {
                 animal = new SheepClassIOS();
             }
