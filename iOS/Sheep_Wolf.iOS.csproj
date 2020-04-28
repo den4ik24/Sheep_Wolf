@@ -146,12 +146,7 @@
     <BundleResource Include="Resources\sheep.png" />
     <BundleResource Include="Resources\wolf.png" />
     <BundleResource Include="Resources\killer.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\rip.png">
-      <SubType></SubType>
-      <Generator></Generator>
-    </AndroidResource>
+    <BundleResource Include="Resources\rip.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

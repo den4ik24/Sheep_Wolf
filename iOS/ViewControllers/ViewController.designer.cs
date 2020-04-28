@@ -19,11 +19,11 @@ namespace Sheep_Wolf.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIButton ButtonAddSheep { get; set; }
+        UIKit.UIButton ButtonAddAnimal { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel LabelNumberSheep { get; set; }
+        UIKit.UILabel LabelNumberAnimal { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -31,11 +31,11 @@ namespace Sheep_Wolf.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITextField textNameOfSheep { get; set; }
+        UIKit.UITextField textNameOfAnimals { get; set; }
 
 
-        [Action ("ButtonAddSheep_TouchUpInside:")]
-        partial void ButtonAddSheep_TouchUpInside (UIKit.UIButton sender);
+        [Action ("ButtonAddAnimal_TouchUpInside:")]
+        partial void ButtonAddAnimal_TouchUpInside (UIKit.UIButton sender);
 
         void ReleaseDesignerOutlets ()
         {
@@ -44,14 +44,14 @@ namespace Sheep_Wolf.iOS
                 animalChoice = null;
             }
 
-            if (ButtonAddSheep != null) {
-                ButtonAddSheep.Dispose ();
-                ButtonAddSheep = null;
+            if (ButtonAddAnimal != null) {
+                ButtonAddAnimal.Dispose ();
+                ButtonAddAnimal = null;
             }
 
-            if (LabelNumberSheep != null) {
-                LabelNumberSheep.Dispose ();
-                LabelNumberSheep = null;
+            if (LabelNumberAnimal != null) {
+                LabelNumberAnimal.Dispose ();
+                LabelNumberAnimal = null;
             }
 
             if (listOfSheeps != null) {
@@ -59,9 +59,9 @@ namespace Sheep_Wolf.iOS
                 listOfSheeps = null;
             }
 
-            if (textNameOfSheep != null) {
-                textNameOfSheep.Dispose ();
-                textNameOfSheep = null;
+            if (textNameOfAnimals != null) {
+                textNameOfAnimals.Dispose ();
+                textNameOfAnimals = null;
             }
         }
     }

@@ -16,40 +16,40 @@ namespace Sheep_Wolf.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIImageView ImageSheep { get; set; }
+        UIKit.UIImageView animalFoto { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel labelSheepName { get; set; }
+        UIKit.UIImageView ImageAnimal { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel labelAnimalName { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel NameAnimalID { get; set; }
 
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIImageView sheepFoto { get; set; }
-
         void ReleaseDesignerOutlets ()
         {
-            if (ImageSheep != null) {
-                ImageSheep.Dispose ();
-                ImageSheep = null;
+            if (animalFoto != null) {
+                animalFoto.Dispose ();
+                animalFoto = null;
             }
 
-            if (labelSheepName != null) {
-                labelSheepName.Dispose ();
-                labelSheepName = null;
+            if (ImageAnimal != null) {
+                ImageAnimal.Dispose ();
+                ImageAnimal = null;
+            }
+
+            if (labelAnimalName != null) {
+                labelAnimalName.Dispose ();
+                labelAnimalName = null;
             }
 
             if (NameAnimalID != null) {
                 NameAnimalID.Dispose ();
                 NameAnimalID = null;
-            }
-
-            if (sheepFoto != null) {
-                sheepFoto.Dispose ();
-                sheepFoto = null;
             }
         }
     }

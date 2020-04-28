@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using UIKit;
 
 namespace Sheep_Wolf.iOS
@@ -8,7 +7,7 @@ namespace Sheep_Wolf.iOS
     public partial class ViewController : UIViewController
     {
         int count = 0;
-        List<AnimalClassIOS> animalNamesArray = new List<AnimalClassIOS>();
+        List<AnimalClassIOS> animalModelsArray = new List<AnimalClassIOS>();
         List<string> animalsNameList = new List<string>();
         AnimalPickerModel picker;
         UIPickerView uiPicker;
@@ -21,7 +20,7 @@ namespace Sheep_Wolf.iOS
         {
             base.ViewDidLoad();
            
-            ButtonAddSheep.TouchUpInside += ButtonAddSheep_TouchUpInside;
+            ButtonAddAnimal.TouchUpInside += ButtonAddAnimal_TouchUpInside;
 
             picker = new AnimalPickerModel(animalChoice);
             uiPicker = new UIPickerView();
@@ -30,9 +29,9 @@ namespace Sheep_Wolf.iOS
             animalChoice.InputView = uiPicker;
         }
 
-        private void ButtonAddSheep_TouchUpInside(object sender, EventArgs e)
+        private void ButtonAddAnimal_TouchUpInside(object sender, EventArgs e)
         {
-            if (textNameOfSheep.Text == "")
+            if (textNameOfAnimals.Text == "")
             {
                 var alertController = UIAlertController.Create
                     ("WARNING", "Введите имя животного", UIAlertControllerStyle.Alert);
@@ -42,7 +41,7 @@ namespace Sheep_Wolf.iOS
             }
             else
             {
-                if (animalsNameList.Contains(textNameOfSheep.Text))
+                if (animalsNameList.Contains(textNameOfAnimals.Text))
                 {
                     var alertController = UIAlertController.Create
                     ("WARNING", "Животное с таким именем уже существует.Измените имя", UIAlertControllerStyle.Alert);
@@ -52,13 +51,13 @@ namespace Sheep_Wolf.iOS
                 }
                 else
                 {
-                    animalsNameList.Add(textNameOfSheep.Text);
+                    animalsNameList.Add(textNameOfAnimals.Text);
                     RandAnimal();
-                    listOfSheeps.Source = new TableSource(animalNamesArray, this);
+                    listOfSheeps.Source = new TableSource(animalModelsArray, this);
                     listOfSheeps.ReloadData();
                     count++;
-                    LabelNumberSheep.Text = count.ToString();
-                    textNameOfSheep.Text = "";
+                    LabelNumberAnimal.Text = count.ToString();
+                    textNameOfAnimals.Text = "";
                 }
             }
         }
@@ -76,8 +75,23 @@ namespace Sheep_Wolf.iOS
                 animal = new WolfClassIOS();
             }
 
-            animal.Name = textNameOfSheep.Text;
-            animalNamesArray.Add(animal);
+            animal.Name = textNameOfAnimals.Text;
+            animalModelsArray.Add(animal);
+
+            if(animal is WolfClassIOS)
+            {
+                for(var i = animalModelsArray.Count - 1; i >= 0; --i)
+                {
+                    var item = animalModelsArray[i];
+                    if(item is SheepClassIOS && !item.IsDead)
+                    {
+                        item.IsDead = true;
+                        item.Killer = animal.Name;
+                        break;
+                    }
+                }
+            }
+
             return animal;
         }
     }

@@ -3,7 +3,7 @@
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -88,7 +88,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="BLh-NJ-cdO">
+                                                <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="BLh-NJ-cdO">
                                                     <rect key="frame" x="0.0" y="1.5" width="103.5" height="57"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sheep's Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ILD-Wv-Ove">
@@ -179,11 +179,11 @@
                     <navigationItem key="navigationItem" title="sheeps VS wolves" id="19445"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="ButtonAddSheep" destination="oBE-Ac-vcx" id="name-outlet-oBE-Ac-vcx"/>
-                        <outlet property="LabelNumberSheep" destination="ZUM-ry-mAe" id="name-outlet-ZUM-ry-mAe"/>
+                        <outlet property="ButtonAddAnimal" destination="oBE-Ac-vcx" id="name-outlet-oBE-Ac-vcx"/>
+                        <outlet property="LabelNumberAnimal" destination="ZUM-ry-mAe" id="name-outlet-ZUM-ry-mAe"/>
                         <outlet property="animalChoice" destination="GE8-B5-WFc" id="name-outlet-GE8-B5-WFc"/>
                         <outlet property="listOfSheeps" destination="17500" id="name-outlet-17500"/>
-                        <outlet property="textNameOfSheep" destination="oLw-ym-bm1" id="name-outlet-oLw-ym-bm1"/>
+                        <outlet property="textNameOfAnimals" destination="oLw-ym-bm1" id="name-outlet-oLw-ym-bm1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -297,10 +297,10 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="ImageSheep" destination="OQZ-gJ-oW5" id="name-outlet-OQZ-gJ-oW5"/>
+                        <outlet property="ImageAnimal" destination="OQZ-gJ-oW5" id="name-outlet-OQZ-gJ-oW5"/>
                         <outlet property="NameAnimalID" destination="KvY-HG-eEM" id="name-outlet-KvY-HG-eEM"/>
-                        <outlet property="labelSheepName" destination="vT7-2E-efL" id="name-outlet-vT7-2E-efL"/>
-                        <outlet property="sheepFoto" destination="NPY-v4-nOi" id="name-outlet-NPY-v4-nOi"/>
+                        <outlet property="animalFoto" destination="NPY-v4-nOi" id="name-outlet-NPY-v4-nOi"/>
+                        <outlet property="labelAnimalName" destination="vT7-2E-efL" id="name-outlet-vT7-2E-efL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FNV-yv-YKF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

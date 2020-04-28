@@ -25,3 +25,7 @@ namespace Sheep_Wolf.Droid
         public string Key => "GrayscaleTransformation";
     }
 }
+//ColorMatrix matrix = new ColorMatrix();
+//matrix.SetSaturation(0);
+//ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
+//animalsFoto.SetColorFilter(filter);

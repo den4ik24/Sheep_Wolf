@@ -13,8 +13,20 @@ namespace Sheep_Wolf.iOS
 
         public void UpdateCell(AnimalClassIOS animal)
         {
-            textTableViewSheepsName.Text = animal.Name;
-            ImageService.Instance.LoadUrl(animal.URL).Into(fotoSheep);
+            if (!animal.IsDead)
+            {
+                textTableViewSheepsName.Text = animal.Name;
+                ImageService.Instance.LoadUrl(animal.URL).Into(fotoSheep);
+            }
+            else
+            {
+                fotoSheep.Image = UIImage.FromBundle("rip.png");
+            }
         }
+
+        //public void RIPcell()
+        //{
+        //    fotoSheep.Image = UIImage.FromBundle("rip.png");
+        //}
     }
 }

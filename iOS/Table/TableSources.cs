@@ -8,7 +8,7 @@ namespace Sheep_Wolf.iOS
     public class TableSource : UITableViewSource
     {
         List<AnimalClassIOS> animalClassArray = new List<AnimalClassIOS>();
-        UIViewController controller;
+        UIViewController controller;  
 
         public TableSource(List<AnimalClassIOS> itemsAnimal, UIViewController uIView)
         {
@@ -22,6 +22,11 @@ namespace Sheep_Wolf.iOS
             {
                 var cellSheep = tableView.DequeueReusableCell("cellOfSheep") as TableViewCellSheep;
                 cellSheep.UpdateCell(animalClassArray[indexPath.Row]);
+
+                //if (animalClassArray[indexPath.Row].IsDead)
+                //{
+                //    cellSheep.RIPcell();
+                //}
                 return cellSheep;
             }
             else
@@ -34,7 +39,7 @@ namespace Sheep_Wolf.iOS
 
         public override nint RowsInSection(UITableView tableview, nint section)
         {
-            return animalClassArray.Count;
+            return animalClassArray.Count; //listOfSheeps.ReloadData()
         }
 
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)

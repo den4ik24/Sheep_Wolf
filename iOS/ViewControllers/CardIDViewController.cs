@@ -14,18 +14,18 @@ namespace Sheep_Wolf.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            labelSheepName.Text = model.Name;
+            labelAnimalName.Text = model.Name;
 
-            ImageService.Instance.LoadUrl(model.URL).Into(sheepFoto);
+            ImageService.Instance.LoadUrl(model.URL).Into(animalFoto);
 
             if(model is SheepClassIOS)
             {
-                ImageSheep.Image = UIImage.FromBundle("sheep.png");
+                ImageAnimal.Image = UIImage.FromBundle("sheep.png");
                 NameAnimalID.Text = Keys.SHEEP;
             }
             else
             {
-                ImageSheep.Image = UIImage.FromBundle("wolf.png");
+                ImageAnimal.Image = UIImage.FromBundle("wolf.png");
                 NameAnimalID.Text = Keys.WOLF;
             }
         }
