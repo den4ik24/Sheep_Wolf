@@ -28,6 +28,26 @@ namespace Sheep_Wolf.iOS
                 ImageAnimal.Image = UIImage.FromBundle("wolf.png");
                 NameAnimalID.Text = Keys.WOLF;
             }
+
+            if (model.Killer != null)
+            {
+                if(model is SheepClassIOS)
+                {
+                    NameAnimalID.Text = $"This {Keys.SHEEP} eliminated by {model.Killer}";
+                }
+                if(model is WolfClassIOS)
+                {
+                    NameAnimalID.Text = $"This {Keys.WOLF} tear to pieces {model.Killer}";
+                    ImageAnimal.Image = UIImage.FromBundle("killer.png");
+                }
+            }
+
+            if (model.IsDead)
+            {
+                ImageAnimal.Image = UIImage.FromBundle("rip.png");
+                ///чб
+                ///растянуть textview
+            }
         }
     }
 }

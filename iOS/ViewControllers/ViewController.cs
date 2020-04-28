@@ -87,11 +87,11 @@ namespace Sheep_Wolf.iOS
                     {
                         item.IsDead = true;
                         item.Killer = animal.Name;
+                        animal.Killer = item.Name;
                         break;
                     }
                 }
             }
-
             return animal;
         }
     }

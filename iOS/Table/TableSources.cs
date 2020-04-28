@@ -22,11 +22,6 @@ namespace Sheep_Wolf.iOS
             {
                 var cellSheep = tableView.DequeueReusableCell("cellOfSheep") as TableViewCellSheep;
                 cellSheep.UpdateCell(animalClassArray[indexPath.Row]);
-
-                //if (animalClassArray[indexPath.Row].IsDead)
-                //{
-                //    cellSheep.RIPcell();
-                //}
                 return cellSheep;
             }
             else

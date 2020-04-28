@@ -23,10 +23,5 @@ namespace Sheep_Wolf.iOS
                 fotoSheep.Image = UIImage.FromBundle("rip.png");
             }
         }
-
-        //public void RIPcell()
-        //{
-        //    fotoSheep.Image = UIImage.FromBundle("rip.png");
-        //}
     }
 }
