@@ -106,6 +106,7 @@
     <Folder Include="Table\" />
     <Folder Include="Storyboard\" />
     <Folder Include="Keys\" />
+    <Folder Include="Transformations\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -141,6 +142,8 @@
     </Compile>
     <Compile Include="Table\AnimalPickerModel.cs" />
     <Compile Include="Keys\Keys.cs" />
+    <Compile Include="Transformations\TransformationBase.cs" />
+    <Compile Include="Transformations\GrayscaleTransformation.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\sheep.png" />

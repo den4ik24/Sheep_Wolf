@@ -46,7 +46,7 @@ namespace Sheep_Wolf.iOS
             {
                 ImageAnimal.Image = UIImage.FromBundle("rip.png");
                 ///чб
-                ///растянуть textview
+                ImageService.Instance.LoadUrl(model.URL).Transform(new GrayscaleTransformation()).Into(animalFoto);
             }
         }
     }
