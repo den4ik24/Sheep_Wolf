@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using UIKit;
 //спиннер IOS
 namespace Sheep_Wolf.iOS

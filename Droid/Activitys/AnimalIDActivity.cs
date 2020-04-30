@@ -1,8 +1,5 @@
-﻿using System;
-using System.Drawing;
-using Android.App;
+﻿using Android.App;
 using Android.Content;
-using Android.Graphics;
 using Android.OS;
 using Android.Widget;
 using Square.Picasso;

@@ -94,6 +94,10 @@
       <Name>Sheep_Wolf</Name>
       <ReferenceSourceTarget>ProjectReference</ReferenceSourceTarget>
     </ProjectReference>
+    <ProjectReference Include="..\Sheep_Wolf_NetStandardLibrary\Sheep_Wolf_NetStandardLibrary.csproj">
+      <Project>{79C68313-6601-4DE6-885B-AD5799A9A192}</Project>
+      <Name>Sheep_Wolf_NetStandardLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />

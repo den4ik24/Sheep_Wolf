@@ -1,11 +1,10 @@
 using System;
 using FFImageLoading;
-using Foundation;
 using UIKit;
 
 namespace Sheep_Wolf.iOS
 {
-	public partial class TableViewCellSheep : UITableViewCell
+    public partial class TableViewCellSheep : UITableViewCell
 	{
 		public TableViewCellSheep (IntPtr handle) : base (handle)
 		{
