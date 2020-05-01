@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using Foundation;
 using UIKit;
+using Sheep_Wolf_NetStandardLibrary;
 
 namespace Sheep_Wolf.iOS
 {
     public class TableSource : UITableViewSource
     {
-        List<AnimalClassIOS> animalClassArray = new List<AnimalClassIOS>();
+        List<AnimalModel> animalClassArray = new List<AnimalModel>();
         UIViewController controller;  
 
-        public TableSource(List<AnimalClassIOS> itemsAnimal, UIViewController uIView)
+        public TableSource(List<AnimalModel> itemsAnimal, UIViewController uIView)
         {
             animalClassArray = itemsAnimal;
             controller = uIView;
@@ -18,7 +19,7 @@ namespace Sheep_Wolf.iOS
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
-            if (animalClassArray[indexPath.Row] is SheepClassIOS)
+            if (animalClassArray[indexPath.Row] is SheepModel)
             {
                 var cellSheep = tableView.DequeueReusableCell("cellOfSheep") as TableViewCellSheep;
                 cellSheep.UpdateCell(animalClassArray[indexPath.Row]);
@@ -44,7 +45,7 @@ namespace Sheep_Wolf.iOS
             NabvigateTo(NML);
         }
 
-        public void NabvigateTo(AnimalClassIOS AIA)
+        public void NabvigateTo(AnimalModel AIA)
         {
             CardIDViewController cardIDViewController = controller.Storyboard.InstantiateViewController("CardIDViewController") as CardIDViewController;
             controller.NavigationController.PushViewController(cardIDViewController, true);

@@ -1,8 +1,5 @@
-﻿using System;
-using UIKit;
+﻿using FFImageLoading.Work;
 using PImage = UIKit.UIImage;
-using FFImageLoading;
-using FFImageLoading.Work;
 
 namespace Sheep_Wolf.iOS
 {

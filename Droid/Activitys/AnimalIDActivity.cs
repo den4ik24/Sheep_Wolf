@@ -3,7 +3,7 @@ using Android.Content;
 using Android.OS;
 using Android.Widget;
 using Square.Picasso;
-
+using Sheep_Wolf_NetStandardLibrary;
 
 namespace Sheep_Wolf.Droid
 {
@@ -71,10 +71,5 @@ namespace Sheep_Wolf.Droid
                        .Into(animalsFoto);
             }
         }
-    }
-    enum AnimalType
-    {
-        SHEEP,
-        WOLF
     }
 }

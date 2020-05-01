@@ -4,6 +4,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Widget;
+using Sheep_Wolf_NetStandardLibrary;
 
 namespace Sheep_Wolf.Droid
 {

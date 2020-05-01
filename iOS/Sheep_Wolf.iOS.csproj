@@ -89,11 +89,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Sheep_Wolf\Sheep_Wolf.csproj">
-      <Project>{99165D06-D30C-46C6-8DA1-F681E64368D3}</Project>
-      <Name>Sheep_Wolf</Name>
-      <ReferenceSourceTarget>ProjectReference</ReferenceSourceTarget>
-    </ProjectReference>
     <ProjectReference Include="..\Sheep_Wolf_NetStandardLibrary\Sheep_Wolf_NetStandardLibrary.csproj">
       <Project>{79C68313-6601-4DE6-885B-AD5799A9A192}</Project>
       <Name>Sheep_Wolf_NetStandardLibrary</Name>
@@ -105,11 +100,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
-    <Folder Include="Models\" />
     <Folder Include="ViewControllers\" />
     <Folder Include="Table\" />
     <Folder Include="Storyboard\" />
-    <Folder Include="Keys\" />
     <Folder Include="Transformations\" />
   </ItemGroup>
   <ItemGroup>
@@ -124,9 +117,6 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Models\AnimalClassIOS.cs" />
-    <Compile Include="Models\SheepClassIOS.cs" />
-    <Compile Include="Models\WolfClassIOS.cs" />
     <Compile Include="ViewControllers\ViewController.cs" />
     <Compile Include="ViewControllers\ViewController.designer.cs">
       <DependentUpon>ViewController.cs</DependentUpon>
@@ -145,7 +135,6 @@
       <DependentUpon>TableViewCellWolf.cs</DependentUpon>
     </Compile>
     <Compile Include="Table\AnimalPickerModel.cs" />
-    <Compile Include="Keys\Keys.cs" />
     <Compile Include="Transformations\TransformationBase.cs" />
     <Compile Include="Transformations\GrayscaleTransformation.cs" />
   </ItemGroup>

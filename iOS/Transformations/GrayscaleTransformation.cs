@@ -1,8 +1,5 @@
-﻿using System;
-using CoreGraphics;
-using CoreImage;
+﻿using CoreImage;
 using FFImageLoading.Work;
-using Foundation;
 using UIKit;
 
 namespace Sheep_Wolf.iOS

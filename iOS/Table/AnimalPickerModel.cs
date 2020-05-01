@@ -1,5 +1,6 @@
 ﻿using System;
 using UIKit;
+using Sheep_Wolf_NetStandardLibrary;
 //спиннер IOS
 namespace Sheep_Wolf.iOS
 {
@@ -7,7 +8,7 @@ namespace Sheep_Wolf.iOS
     {
         public string[] Animals = new string[]
         {
-            Keys.SHEEP, Keys.WOLF
+            AnimalType.SHEEP.ToString(), AnimalType.WOLF.ToString() 
         };
         public EventHandler ValueChanged;
         public string SelectedValue;

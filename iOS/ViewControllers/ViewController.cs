@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using UIKit;
+using Sheep_Wolf_NetStandardLibrary;
 
 namespace Sheep_Wolf.iOS
 {
     public partial class ViewController : UIViewController
     {
         int count = 0;
-        List<AnimalClassIOS> animalModelsArray = new List<AnimalClassIOS>();
+        List<AnimalModel> animalModelsArray = new List<AnimalModel>();
         List<string> animalsNameList = new List<string>();
         AnimalPickerModel picker;
         UIPickerView uiPicker;
@@ -62,36 +63,23 @@ namespace Sheep_Wolf.iOS
             }
         }
 
-        public AnimalClassIOS RandAnimal()
+        public AnimalModel RandAnimal()
         {
-            AnimalClassIOS animal;
+            AnimalModel animal;
 
-            if(picker.SelectedValue == Keys.SHEEP)
+            if(picker.SelectedValue == AnimalType.SHEEP.ToString())
             {
-                animal = new SheepClassIOS();
+                animal = new SheepModel();
             }
             else
             {
-                animal = new WolfClassIOS();
+                animal = new WolfModel();
             }
 
             animal.Name = textNameOfAnimals.Text;
             animalModelsArray.Add(animal);
 
-            if(animal is WolfClassIOS)
-            {
-                for(var i = animalModelsArray.Count - 1; i >= 0; --i)
-                {
-                    var item = animalModelsArray[i];
-                    if(item is SheepClassIOS && !item.IsDead)
-                    {
-                        item.IsDead = true;
-                        item.Killer = animal.Name;
-                        animal.Killer = item.Name;
-                        break;
-                    }
-                }
-            }
+            SheepAssignment.SheepIsDead(animal, animalModelsArray);
             return animal;
         }
     }

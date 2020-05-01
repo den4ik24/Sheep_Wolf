@@ -1,12 +1,13 @@
 using System;
 using FFImageLoading;
 using UIKit;
+using Sheep_Wolf_NetStandardLibrary;
 
 namespace Sheep_Wolf.iOS
 {
     public partial class CardIDViewController : UIViewController
     {
-        public AnimalClassIOS model;
+        public AnimalModel model;
         public CardIDViewController (IntPtr handle) : base (handle)
         {
         }
@@ -18,26 +19,26 @@ namespace Sheep_Wolf.iOS
 
             ImageService.Instance.LoadUrl(model.URL).Into(animalFoto);
 
-            if(model is SheepClassIOS)
+            if(model is SheepModel)
             {
                 ImageAnimal.Image = UIImage.FromBundle("sheep.png");
-                NameAnimalID.Text = Keys.SHEEP;
+                NameAnimalID.Text = AnimalType.SHEEP.ToString();
             }
             else
             {
                 ImageAnimal.Image = UIImage.FromBundle("wolf.png");
-                NameAnimalID.Text = Keys.WOLF;
+                NameAnimalID.Text = AnimalType.WOLF.ToString();
             }
 
             if (model.Killer != null)
             {
-                if(model is SheepClassIOS)
+                if(model is SheepModel)
                 {
-                    NameAnimalID.Text = $"This {Keys.SHEEP} eliminated by {model.Killer}";
+                    NameAnimalID.Text = $"This {AnimalType.SHEEP} eliminated by {model.Killer}";
                 }
-                if(model is WolfClassIOS)
+                if(model is WolfModel)
                 {
-                    NameAnimalID.Text = $"This {Keys.WOLF} tear to pieces {model.Killer}";
+                    NameAnimalID.Text = $"This {AnimalType.WOLF} tear to pieces {model.Killer}";
                     ImageAnimal.Image = UIImage.FromBundle("killer.png");
                 }
             }
@@ -45,7 +46,6 @@ namespace Sheep_Wolf.iOS
             if (model.IsDead)
             {
                 ImageAnimal.Image = UIImage.FromBundle("rip.png");
-                ///чб
                 ImageService.Instance.LoadUrl(model.URL).Transform(new GrayscaleTransformation()).Into(animalFoto);
             }
         }

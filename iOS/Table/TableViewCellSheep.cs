@@ -1,6 +1,7 @@
 using System;
 using FFImageLoading;
 using UIKit;
+using Sheep_Wolf_NetStandardLibrary;
 
 namespace Sheep_Wolf.iOS
 {
@@ -10,7 +11,7 @@ namespace Sheep_Wolf.iOS
 		{
 		}
 
-        public void UpdateCell(AnimalClassIOS animal)
+        public void UpdateCell(AnimalModel animal)
         {
 
             if (!animal.IsDead)
@@ -21,7 +22,6 @@ namespace Sheep_Wolf.iOS
             }
             else
             {
-                
                 fotoSheep.Image = UIImage.FromBundle("rip.png");
                 fotoSheep.ContentMode = UIViewContentMode.ScaleAspectFit;
             }

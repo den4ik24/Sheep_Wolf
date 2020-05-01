@@ -68,11 +68,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Sheep_Wolf\Sheep_Wolf.csproj">
-      <Project>{99165D06-D30C-46C6-8DA1-F681E64368D3}</Project>
-      <Name>Sheep_Wolf</Name>
-      <ReferenceSourceTarget>ProjectReference</ReferenceSourceTarget>
-    </ProjectReference>
     <ProjectReference Include="..\Sheep_Wolf_NetStandardLibrary\Sheep_Wolf_NetStandardLibrary.csproj">
       <Project>{79C68313-6601-4DE6-885B-AD5799A9A192}</Project>
       <Name>Sheep_Wolf_NetStandardLibrary</Name>
@@ -83,9 +78,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Activitys\AnimalIDActivity.cs" />
     <Compile Include="Activitys\MainActivity.cs" />
-    <Compile Include="Models\AnimalModel.cs" />
-    <Compile Include="Models\SheepModel.cs" />
-    <Compile Include="Models\WolfModel.cs" />
     <Compile Include="Adapters\AnimalAdapter.cs" />
     <Compile Include="Transformations\GrayscaleTransformation.cs" />
     <Compile Include="Keys\Keys.cs" />
@@ -136,7 +128,6 @@
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
     <Folder Include="Activitys\" />
-    <Folder Include="Models\" />
     <Folder Include="Adapters\" />
     <Folder Include="Transformations\" />
     <Folder Include="Keys\" />

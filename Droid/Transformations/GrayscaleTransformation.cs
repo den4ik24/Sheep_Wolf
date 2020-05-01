@@ -1,5 +1,4 @@
-﻿using System;
-using Android.Graphics;
+﻿using Android.Graphics;
 using Square.Picasso;
 
 namespace Sheep_Wolf.Droid

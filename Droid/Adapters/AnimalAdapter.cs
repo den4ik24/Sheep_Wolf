@@ -3,34 +3,21 @@ using Android.Content;
 using Android.Views;
 using Android.Widget;
 using Square.Picasso;
+using Sheep_Wolf_NetStandardLibrary;
 
 namespace Sheep_Wolf.Droid
 {
     public class AnimalAdapter : BaseAdapter<AnimalModel>
     {
-        readonly List<AnimalModel> animalClassArray = new List<AnimalModel>();
+        List<AnimalModel> animalModelsArray = new List<AnimalModel>();
         readonly Context context;
         private const int Sheep_Class = 0;
         private const int Wolf_Class = 1;
 
         public void Add(AnimalModel animal)
         {
-            animalClassArray.Add(animal);
-
-            if(animal is WolfModel)
-            {
-                for (var i = animalClassArray.Count - 1; i >= 0; --i)
-                {
-                    var item = animalClassArray[i];
-                    if (item is SheepModel && !item.IsDead)
-                    {
-                        item.IsDead = true;
-                        item.Killer = animal.Name;
-                        animal.Killer = item.Name;
-                        break;
-                    }
-                }
-            }
+            animalModelsArray.Add(animal);
+            SheepAssignment.SheepIsDead(animal, animalModelsArray);
         }
 
         public AnimalAdapter(Context context)
@@ -42,7 +29,7 @@ namespace Sheep_Wolf.Droid
 
         public override int GetItemViewType(int position)
         {
-            if(animalClassArray[position] is SheepModel)
+            if(animalModelsArray[position] is SheepModel)
             {
                 return Sheep_Class;
             }
@@ -56,7 +43,7 @@ namespace Sheep_Wolf.Droid
         {
             get
             {
-                return animalClassArray[position];
+                return animalModelsArray[position];
             }
         }
 
@@ -64,7 +51,7 @@ namespace Sheep_Wolf.Droid
         {
             get
             {
-                return animalClassArray.Count;
+                return animalModelsArray.Count;
             }
         }
 
@@ -75,7 +62,7 @@ namespace Sheep_Wolf.Droid
 
         public AnimalModel ElementPosition(int position)
         {
-            return animalClassArray[position];
+            return animalModelsArray[position];
         }
 
                     
@@ -98,9 +85,9 @@ namespace Sheep_Wolf.Droid
                     {
                         holderSheep = viewSheep.Tag as SheepViewHolder;
                     }
-                    holderSheep.textSheep.Text = animalClassArray[position].Name;
+                    holderSheep.textSheep.Text = animalModelsArray[position].Name;
 
-                    if (animalClassArray[position].IsDead)
+                    if (animalModelsArray[position].IsDead)
                     {
                         Picasso
                             .With(context)
@@ -110,7 +97,7 @@ namespace Sheep_Wolf.Droid
                     else
                     {
                         Picasso.With(context)
-                               .Load(animalClassArray[position].URL)
+                               .Load(animalModelsArray[position].URL)
                                .Into(holderSheep.imageSheep);
                     }
                     return viewSheep;
@@ -128,9 +115,9 @@ namespace Sheep_Wolf.Droid
                     {
                         holderWolf = viewWolf.Tag as WolfViewHolder;
                     }
-                    holderWolf.textWolf.Text = animalClassArray[position].Name;
+                    holderWolf.textWolf.Text = animalModelsArray[position].Name;
                         Picasso.With(context)
-                               .Load(animalClassArray[position].URL)
+                               .Load(animalModelsArray[position].URL)
                                .Into(holderWolf.imageWolf);
                     
                     return viewWolf;
