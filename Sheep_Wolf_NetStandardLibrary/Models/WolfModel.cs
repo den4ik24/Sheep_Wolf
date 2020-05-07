@@ -1,7 +1,9 @@
 ﻿using System;
-namespace Sheep_Wolf.iOS
+
+
+namespace Sheep_Wolf_NetStandardLibrary
 {
-    public class WolfClassIOS : AnimalClassIOS
+    public class WolfModel : AnimalModel
     {
         readonly Random random = new Random();
         public string[] wolfStringURL =
@@ -28,7 +30,7 @@ namespace Sheep_Wolf.iOS
             return GetRandomWolfImage();
         }
 
-        public WolfClassIOS()
+        public WolfModel()
         {
             URL = GetRandomImage();
         }

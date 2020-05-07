@@ -1,6 +1,7 @@
-﻿namespace Sheep_Wolf.iOS
+﻿namespace Sheep_Wolf_NetStandardLibrary
+
 {
-    public class AnimalClassIOS
+    public class AnimalModel
     {
         public string Name { get; set; }
         public string URL { get; protected set; }

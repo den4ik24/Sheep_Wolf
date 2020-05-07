@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using Android.App;
-using Android.Content;
 using Android.OS;
+using Android.App;
 using Android.Widget;
+using Android.Content;
 using Sheep_Wolf_NetStandardLibrary;
 
 namespace Sheep_Wolf.Droid
@@ -19,8 +18,7 @@ namespace Sheep_Wolf.Droid
         EditText textNameOfAnimal;
         Spinner animalChoice;
         AnimalAdapter adapter;
-
-        List<string> animalsNameList = new List<string>();
+        BusinessLogic businessLogic = new BusinessLogic();
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -34,6 +32,7 @@ namespace Sheep_Wolf.Droid
             animalChoice = FindViewById<Spinner>(Resource.Id.animalChoice);
 
             adapter = new AnimalAdapter(this);
+            adapter.animalModelsArray = businessLogic.animalModelsArray;
             listOfAnimals.Adapter = adapter;
 
             addSheepButton.Click += AddSheepButton_Click;
@@ -57,28 +56,7 @@ namespace Sheep_Wolf.Droid
         {
             var intent = new Intent(this, typeof(AnimalIDActivity));
             var N = adapter.ElementPosition(e.Position);
-
-            AnimalType type;
-            if (N is SheepModel)
-            {
-                type = AnimalType.SHEEP;
-            }
-            else
-            {
-                type = AnimalType.WOLF;
-            }
-            
-            intent.PutExtra(Keys.NAMEofANIMAL, N.Name);
-            intent.PutExtra(Keys.FOTOofANIMAL, N.URL);
-            intent.PutExtra(Keys.TYPEofANIMAL, (int)type);
-            if (N.IsDead)
-            {
-                intent.PutExtra(Keys.DEADofANIMAL, N.IsDead);
-            }
-            if (!string.IsNullOrEmpty(N.Killer))
-            {
-                intent.PutExtra(Keys.KILLERofANIMAL, N.Killer);
-            }
+            businessLogic.DataTransmission(N, intent);
             StartActivity(intent);
         }
 
@@ -90,25 +68,17 @@ namespace Sheep_Wolf.Droid
             }
             else
             {
-                if (animalsNameList.Contains(textNameOfAnimal.Text))
-                {
-                    Toast.MakeText(this, "Животное с таким именем уже существует. Измените имя", ToastLength.Short).Show();
-                }
-                else
-                {
-                    animalsNameList.Add(textNameOfAnimal.Text);
                     AddRandomAnimal();
                     textNameOfAnimal.Text = "";
                     count++;
                     textViewNumbSheep.Text = count.ToString();
-                }
             }
         }
 
         public AnimalModel AddRandomAnimal()
         {
             AnimalModel animal;
-            if(animalChoice.SelectedItemPosition == 0)
+            if (animalChoice.SelectedItemPosition == 0)
             {
                 animal = new SheepModel();
             }
@@ -117,8 +87,16 @@ namespace Sheep_Wolf.Droid
                 animal = new WolfModel();
             }
             animal.Name = textNameOfAnimal.Text;
-            adapter.Add(animal);
-            adapter.NotifyDataSetChanged();
+
+            if (businessLogic.AnimalListContain(animal))
+            {
+                Toast.MakeText(this, "Животное с таким именем уже существует. Измените имя", ToastLength.Short).Show();
+            }
+            else
+            {
+                businessLogic.animalList(animal);
+                adapter.NotifyDataSetChanged();
+            }
             return animal;
         }
     }

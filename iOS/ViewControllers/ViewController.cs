@@ -1,18 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using UIKit;
 using Sheep_Wolf_NetStandardLibrary;
+using UIKit;
 
 namespace Sheep_Wolf.iOS
 {
     public partial class ViewController : UIViewController
     {
         int count = 0;
-        List<AnimalModel> animalModelsArray = new List<AnimalModel>();
-        List<string> animalsNameList = new List<string>();
         AnimalPickerModel picker;
         UIPickerView uiPicker;
-
+        BusinessLogic businessLogic = new BusinessLogic();
+         
         public ViewController(IntPtr handle) : base(handle)
         {
         }
@@ -42,24 +40,13 @@ namespace Sheep_Wolf.iOS
             }
             else
             {
-                if (animalsNameList.Contains(textNameOfAnimals.Text))
-                {
-                    var alertController = UIAlertController.Create
-                    ("WARNING", "Животное с таким именем уже существует.Измените имя", UIAlertControllerStyle.Alert);
-                    alertController.AddAction(UIAlertAction.Create
-                        ("OK", UIAlertActionStyle.Default, null));
-                    PresentViewController(alertController, true, null);
-                }
-                else
-                {
-                    animalsNameList.Add(textNameOfAnimals.Text);
-                    RandAnimal();
-                    listOfSheeps.Source = new TableSource(animalModelsArray, this);
-                    listOfSheeps.ReloadData();
-                    count++;
-                    LabelNumberAnimal.Text = count.ToString();
-                    textNameOfAnimals.Text = "";
-                }
+                RandAnimal();
+                listOfSheeps.Source = new TableSource(businessLogic.animalModelsArray, this);
+                listOfSheeps.ReloadData();
+                count++;
+                LabelNumberAnimal.Text = count.ToString();
+                textNameOfAnimals.Text = "";
+
             }
         }
 
@@ -77,9 +64,18 @@ namespace Sheep_Wolf.iOS
             }
 
             animal.Name = textNameOfAnimals.Text;
-            animalModelsArray.Add(animal);
-
-            SheepAssignment.SheepIsDead(animal, animalModelsArray);
+            if (businessLogic.AnimalListContain(animal))
+            {
+                var alertController = UIAlertController.Create
+                ("WARNING", "Животное с таким именем уже существует.Измените имя", UIAlertControllerStyle.Alert);
+                alertController.AddAction(UIAlertAction.Create
+                    ("OK", UIAlertActionStyle.Default, null));
+                PresentViewController(alertController, true, null);
+            }
+            else
+            {
+                businessLogic.animalList(animal);
+            }
             return animal;
         }
     }

@@ -4,21 +4,16 @@ using Android.Views;
 using Android.Widget;
 using Square.Picasso;
 using Sheep_Wolf_NetStandardLibrary;
+using System;
 
 namespace Sheep_Wolf.Droid
 {
     public class AnimalAdapter : BaseAdapter<AnimalModel>
     {
-        List<AnimalModel> animalModelsArray = new List<AnimalModel>();
         readonly Context context;
         private const int Sheep_Class = 0;
         private const int Wolf_Class = 1;
-
-        public void Add(AnimalModel animal)
-        {
-            animalModelsArray.Add(animal);
-            SheepAssignment.SheepIsDead(animal, animalModelsArray);
-        }
+        public List<AnimalModel> animalModelsArray;
 
         public AnimalAdapter(Context context)
         {

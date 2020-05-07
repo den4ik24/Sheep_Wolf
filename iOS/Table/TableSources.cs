@@ -8,7 +8,7 @@ namespace Sheep_Wolf.iOS
 {
     public class TableSource : UITableViewSource
     {
-        List<AnimalModel> animalClassArray = new List<AnimalModel>();
+        List<AnimalModel> animalClassArray;
         UIViewController controller;  
 
         public TableSource(List<AnimalModel> itemsAnimal, UIViewController uIView)

@@ -50,7 +50,6 @@
     <Reference Include="Square.Picasso">
       <HintPath>..\packages\Square.Picasso.2.5.2.2\lib\monoandroid44\Square.Picasso.dll</HintPath>
     </Reference>
-    <Reference Include="Java.Interop" />
     <Reference Include="Xamarin.Jetbrains.Annotations">
       <HintPath>..\packages\Xamarin.Jetbrains.Annotations.13.0.0.1\lib\monoandroid90\Xamarin.Jetbrains.Annotations.dll</HintPath>
     </Reference>
@@ -80,7 +79,6 @@
     <Compile Include="Activitys\MainActivity.cs" />
     <Compile Include="Adapters\AnimalAdapter.cs" />
     <Compile Include="Transformations\GrayscaleTransformation.cs" />
-    <Compile Include="Keys\Keys.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -130,7 +128,6 @@
     <Folder Include="Activitys\" />
     <Folder Include="Adapters\" />
     <Folder Include="Transformations\" />
-    <Folder Include="Keys\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Jetbrains.Annotations.13.0.0.1\build\monoandroid90\Xamarin.Jetbrains.Annotations.targets" Condition="Exists('..\packages\Xamarin.Jetbrains.Annotations.13.0.0.1\build\monoandroid90\Xamarin.Jetbrains.Annotations.targets')" />

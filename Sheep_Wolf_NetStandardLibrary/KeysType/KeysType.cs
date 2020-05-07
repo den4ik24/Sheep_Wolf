@@ -1,6 +1,11 @@
-﻿using System;
-namespace Sheep_Wolf.Droid
+﻿namespace Sheep_Wolf_NetStandardLibrary
 {
+    public enum AnimalType
+    {
+        SHEEP,
+        WOLF
+    }
+
     public static class Keys
     {
         public static string NAMEofANIMAL = "NAMEofANIMAL";
