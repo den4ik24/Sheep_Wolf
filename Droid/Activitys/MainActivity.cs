@@ -56,7 +56,7 @@ namespace Sheep_Wolf.Droid
         {
             var intent = new Intent(this, typeof(AnimalIDActivity));
             var N = adapter.ElementPosition(e.Position);
-            businessLogic.DataTransmission(N, intent);
+            DataTransmission(N, intent);
             StartActivity(intent);
         }
 
@@ -64,7 +64,7 @@ namespace Sheep_Wolf.Droid
         {
             if (textNameOfAnimal.Text == "")
             {
-                Toast.MakeText(this, "Укажите имя овцы", ToastLength.Short).Show();
+                Toast.MakeText(this, "Укажите имя существа", ToastLength.Short).Show();
             }
             else
             {
@@ -72,6 +72,31 @@ namespace Sheep_Wolf.Droid
                     textNameOfAnimal.Text = "";
                     count++;
                     textViewNumbSheep.Text = count.ToString();
+            }
+        }
+
+        public void DataTransmission(AnimalModel N, Intent intent)
+        {
+            AnimalType type;
+            if (N is SheepModel)
+            {
+                type = AnimalType.SHEEP;
+            }
+            else
+            {
+                type = AnimalType.WOLF;
+            }
+
+            intent.PutExtra(Keys.NAMEofANIMAL, N.Name);
+            intent.PutExtra(Keys.FOTOofANIMAL, N.URL);
+            intent.PutExtra(Keys.TYPEofANIMAL, (int)type);
+            if (N.IsDead)
+            {
+                intent.PutExtra(Keys.DEADofANIMAL, N.IsDead);
+            }
+            if (!string.IsNullOrEmpty(N.Killer))
+            {
+                intent.PutExtra(Keys.KILLERofANIMAL, N.Killer);
             }
         }
 

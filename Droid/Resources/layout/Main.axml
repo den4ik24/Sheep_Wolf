@@ -106,7 +106,7 @@
 			android:fastScrollEnabled="true"
 			android:fastScrollAlwaysVisible="true"
 			android:layout_width="match_parent"
-			android:layout_height="400.5dp"
+			android:layout_height="match_parent"
 			android:id="@+id/listOfAnimals"
 			android:textSize="18dp"
 			android:gravity="center"
