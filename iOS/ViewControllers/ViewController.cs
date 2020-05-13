@@ -40,7 +40,7 @@ namespace Sheep_Wolf.iOS
             }
             else
             {
-                RandAnimal();
+                AddRandomAnimal();
                 listOfSheeps.Source = new TableSource(businessLogic.animalModelsArray, this);
                 listOfSheeps.ReloadData();
                 count++;
@@ -50,20 +50,12 @@ namespace Sheep_Wolf.iOS
             }
         }
 
-        public AnimalModel RandAnimal()
+        public AnimalModel AddRandomAnimal()
         {
             AnimalModel animal;
+            var isSheep = picker.SelectedValue == AnimalType.SHEEP.ToString();
+            animal = businessLogic.AddAnimal(isSheep, textNameOfAnimals.Text);
 
-            if(picker.SelectedValue == AnimalType.SHEEP.ToString())
-            {
-                animal = new SheepModel();
-            }
-            else
-            {
-                animal = new WolfModel();
-            }
-
-            animal.Name = textNameOfAnimals.Text;
             if (businessLogic.AnimalListContain(animal))
             {
                 var alertController = UIAlertController.Create

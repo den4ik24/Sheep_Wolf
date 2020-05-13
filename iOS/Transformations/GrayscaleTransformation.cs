@@ -14,13 +14,11 @@ namespace Sheep_Wolf.iOS
 
         protected override UIImage Transform(UIImage sourceBitmap, string path, ImageSource source, bool isPlaceholder, string key)
         {
-            using(var effect = new CIPhotoEffectMono() { Image = sourceBitmap.CGImage })
-            using(var output = effect.OutputImage)
-            using (var context = CIContext.FromOptions(null))
-            using (var cgimage = context.CreateCGImage(output, output.Extent))
-            {
-                return UIImage.FromImage(cgimage);
-            }
+            var effect = new CIPhotoEffectMono() { Image = sourceBitmap.CGImage };
+            var output = effect.OutputImage;
+            var context = CIContext.FromOptions(null);
+            CoreGraphics.CGImage cgimage = context.CreateCGImage(output, output.Extent);
+            return UIImage.FromImage(cgimage);
         }
     }
 }

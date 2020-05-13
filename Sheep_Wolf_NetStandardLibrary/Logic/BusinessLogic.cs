@@ -5,31 +5,71 @@ namespace Sheep_Wolf_NetStandardLibrary
 {
     public class BusinessLogic
     {
-       public List<AnimalModel> animalModelsArray = new List<AnimalModel>();
 
-        public void animalList(AnimalModel animal)
+        //public void animalList(AnimalModel animal)
+        //{
+        //    animalModelsArray.Add(animal);
+        //    if (animal is WolfModel)
+        //    {
+        //        for (var i = animalModelsArray.Count - 1; i >= 0; --i)
+        //        {
+        //            var item = animalModelsArray[i];
+        //            if (item is SheepModel && !item.IsDead)
+        //            {
+        //                item.IsDead = true;
+        //                item.Killer = animal.Name;
+        //                animal.Killer = item.Name;
+        //                break;
+        //            }
+        //        }
+        //    }
+        //}
+
+        //public bool AnimalListContain(AnimalModel animal)
+        //{
+        //    var repeatAnimal = animalModelsArray.Where(a => a.Name == animal.Name);
+        //    return repeatAnimal.Any();
+        //}
+
+        public List<AnimalModel> animalModelsArray = new List<AnimalModel>();
+        public bool AddAnimal(bool isSheep, string animalName)
         {
-            animalModelsArray.Add(animal);
-            if (animal is WolfModel)
+            AnimalModel animal;
+
+            if (isSheep)
             {
-                for (var i = animalModelsArray.Count - 1; i >= 0; --i)
+                animal = new SheepModel();
+            }
+            else
+            {
+                animal = new WolfModel();
+            }
+
+            var repeatAnimal = animalModelsArray.Where(a => a.Name == animalName);
+            if (repeatAnimal.Any())
+            {
+                return true;
+            }
+            else
+            {
+                animal.Name = animalName;
+                animalModelsArray.Add(animal);
+                if (animal is WolfModel)
                 {
-                    var item = animalModelsArray[i];
-                    if (item is SheepModel && !item.IsDead)
+                    for (var i = animalModelsArray.Count - 1; i >= 0; --i)
                     {
-                        item.IsDead = true;
-                        item.Killer = animal.Name;
-                        animal.Killer = item.Name;
-                        break;
+                        var item = animalModelsArray[i];
+                        if (item is SheepModel && !item.IsDead)
+                        {
+                            item.IsDead = true;
+                            item.Killer = animal.Name;
+                            animal.Killer = item.Name;
+                            break;
+                        }
                     }
                 }
+                return false;
             }
-        }
-
-        public bool AnimalListContain(AnimalModel animal)
-        {
-            var repeatAnimal = animalModelsArray.Where(a => a.Name == animal.Name);
-            return repeatAnimal.Any();
         }
     }
 }

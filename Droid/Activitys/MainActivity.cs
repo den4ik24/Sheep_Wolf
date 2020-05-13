@@ -100,29 +100,20 @@ namespace Sheep_Wolf.Droid
             }
         }
 
-        public AnimalModel AddRandomAnimal()
+        public void AddRandomAnimal()
         {
-            AnimalModel animal;
-            if (animalChoice.SelectedItemPosition == 0)
-            {
-                animal = new SheepModel();
-            }
-            else
-            {
-                animal = new WolfModel();
-            }
-            animal.Name = textNameOfAnimal.Text;
+            var isSheep = animalChoice.SelectedItemPosition == 0;
 
-            if (businessLogic.AnimalListContain(animal))
+            if(businessLogic.AddAnimal(isSheep, textNameOfAnimal.Text))
+            //if (businessLogic.AnimalListContain(animal))
             {
                 Toast.MakeText(this, "Животное с таким именем уже существует. Измените имя", ToastLength.Short).Show();
             }
             else
             {
-                businessLogic.animalList(animal);
+               // businessLogic.animalList(animal);
                 adapter.NotifyDataSetChanged();
             }
-            return animal;
         }
     }
 }
