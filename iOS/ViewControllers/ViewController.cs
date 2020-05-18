@@ -50,13 +50,10 @@ namespace Sheep_Wolf.iOS
             }
         }
 
-        public AnimalModel AddRandomAnimal()
+        public void AddRandomAnimal()
         {
-            AnimalModel animal;
             var isSheep = picker.SelectedValue == AnimalType.SHEEP.ToString();
-            animal = businessLogic.AddAnimal(isSheep, textNameOfAnimals.Text);
-
-            if (businessLogic.AnimalListContain(animal))
+            if(businessLogic.AddAnimal(isSheep, textNameOfAnimals.Text))
             {
                 var alertController = UIAlertController.Create
                 ("WARNING", "Животное с таким именем уже существует.Измените имя", UIAlertControllerStyle.Alert);
@@ -64,11 +61,7 @@ namespace Sheep_Wolf.iOS
                     ("OK", UIAlertActionStyle.Default, null));
                 PresentViewController(alertController, true, null);
             }
-            else
-            {
-                businessLogic.animalList(animal);
-            }
-            return animal;
+            
         }
     }
 }

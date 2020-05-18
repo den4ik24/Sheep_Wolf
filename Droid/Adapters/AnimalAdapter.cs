@@ -84,14 +84,13 @@ namespace Sheep_Wolf.Droid
 
                     if (animalModelsArray[position].IsDead)
                     {
-                        Picasso
-                            .With(context)
+                        Picasso.Get()
                             .Load(Resource.Drawable.rip)
                             .Into(holderSheep.imageSheep);
                     }
                     else
                     {
-                        Picasso.With(context)
+                        Picasso.Get()
                                .Load(animalModelsArray[position].URL)
                                .Into(holderSheep.imageSheep);
                     }
@@ -111,7 +110,7 @@ namespace Sheep_Wolf.Droid
                         holderWolf = viewWolf.Tag as WolfViewHolder;
                     }
                     holderWolf.textWolf.Text = animalModelsArray[position].Name;
-                        Picasso.With(context)
+                        Picasso.Get()
                                .Load(animalModelsArray[position].URL)
                                .Into(holderWolf.imageWolf);
                     

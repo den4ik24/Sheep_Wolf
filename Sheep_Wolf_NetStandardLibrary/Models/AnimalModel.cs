@@ -12,5 +12,10 @@
         {
             return "RandomImage";
         }
+
+        public AnimalModel()
+        {
+
+        }
     }
 }

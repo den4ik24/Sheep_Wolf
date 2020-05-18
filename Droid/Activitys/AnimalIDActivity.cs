@@ -33,7 +33,7 @@ namespace Sheep_Wolf.Droid
 
             textViewSheepsName.Text = animalName;
 
-            Picasso.With(this)
+            Picasso.Get()
                    .Load(animalFoto)
                    .Into(animalsFoto);
 
@@ -65,7 +65,7 @@ namespace Sheep_Wolf.Droid
             {
                 imageAnimal.SetImageResource(Resource.Drawable.rip);
 
-                Picasso.With(this)
+                Picasso.Get()
                        .Load(animalFoto)
                        .Transform(new GrayscaleTransformation())
                        .Into(animalsFoto);

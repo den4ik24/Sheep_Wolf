@@ -1,8 +1,8 @@
 ﻿using System;
-using Android.OS;
 using Android.App;
-using Android.Widget;
 using Android.Content;
+using Android.OS;
+using Android.Widget;
 using Sheep_Wolf_NetStandardLibrary;
 
 namespace Sheep_Wolf.Droid
@@ -105,13 +105,11 @@ namespace Sheep_Wolf.Droid
             var isSheep = animalChoice.SelectedItemPosition == 0;
 
             if(businessLogic.AddAnimal(isSheep, textNameOfAnimal.Text))
-            //if (businessLogic.AnimalListContain(animal))
             {
                 Toast.MakeText(this, "Животное с таким именем уже существует. Измените имя", ToastLength.Short).Show();
             }
             else
             {
-               // businessLogic.animalList(animal);
                 adapter.NotifyDataSetChanged();
             }
         }

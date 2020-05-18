@@ -6,7 +6,6 @@ namespace Sheep_Wolf_NetStandardLibrary
     public class SheepModel : AnimalModel
     {
         readonly Random random = new Random();
-
         public string[] sheepsStringURL =
         {
             "https://www.studentofthegun.com/wp-content/uploads/2017/10/SOTG_679_-_A_Nation_of_Sheep.jpg",
