@@ -32,16 +32,16 @@ namespace Sheep_Wolf.Droid
             animalChoice = FindViewById<Spinner>(Resource.Id.animalChoice);
 
 
+            businessLogic.SelectTable();
             adapter = new AnimalAdapter(this);
             adapter.animalModelsArray = businessLogic.animalModelsArray;
             listOfAnimals.Adapter = adapter;
-            businessLogic.SelectTable();
 
             addSheepButton.Click += AddSheepButton_Click;
             listOfAnimals.ItemClick += ListOfAnimals_ItemClick;
             animalChoice.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(AnimalChoice_ItemSelected);
 
-            var adapterSpinner = ArrayAdapter.CreateFromResource(this, Resource.Array.type_animal, Android.Resource.Layout.SimpleSpinnerItem);
+            var adapterSpinner = ArrayAdapter<string>.CreateFromResource(this, Resource.Array.type_animal, Android.Resource.Layout.SimpleSpinnerItem);
             adapterSpinner.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             animalChoice.Adapter = adapterSpinner;
             animalChoice.SetSelection(0);

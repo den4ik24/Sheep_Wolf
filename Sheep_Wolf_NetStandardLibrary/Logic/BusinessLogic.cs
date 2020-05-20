@@ -14,7 +14,6 @@ namespace Sheep_Wolf_NetStandardLibrary
         SQLiteConnection connection;
         public bool AddAnimal(bool isSheep, string animalName)
         {
-
             if (isSheep)
             {
                 animal = new SheepModel();
@@ -70,21 +69,19 @@ namespace Sheep_Wolf_NetStandardLibrary
         }
         public bool SelectTable()
         {
+
             connection = new SQLiteConnection(dbPath);
 
             var tableSheep = connection.Table<SheepModel>().ToList();
-            //animalModelsArray.Union(tableSheep).ToArray();
-            foreach (var animal in tableSheep)
-            {
-                animalModelsArray.Add(animal);
-            }
-
             var tableWolf = connection.Table<WolfModel>().ToList();
-            //animalModelsArray.Union(tableWolf).ToArray();
-            foreach (var animal in tableWolf)
-            {
-                animalModelsArray.Add(animal);
-            }
+
+            var animalArray = tableSheep.Union<AnimalModel>(tableWolf).ToList();
+            animalModelsArray.AddRange(animalArray);
+
+            //foreach (var animal in animalArray)
+            //{
+            //    animalModelsArray.Add(animal);
+            //}
             return true;
         }
     }
