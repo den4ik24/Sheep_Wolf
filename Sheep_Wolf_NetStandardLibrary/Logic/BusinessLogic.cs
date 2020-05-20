@@ -8,12 +8,12 @@ namespace Sheep_Wolf_NetStandardLibrary
     public class BusinessLogic
     {
         public List<AnimalModel> animalModelsArray = new List<AnimalModel>();
-        readonly string dbPath = Path.Combine(System.Environment.GetFolderPath
+        string dbPath = Path.Combine(System.Environment.GetFolderPath
             (System.Environment.SpecialFolder.Personal), "dataBase.db3");
-
+            AnimalModel animal;
+        SQLiteConnection connection;
         public bool AddAnimal(bool isSheep, string animalName)
         {
-            AnimalModel animal;
 
             if (isSheep)
             {
@@ -49,26 +49,16 @@ namespace Sheep_Wolf_NetStandardLibrary
                 }
                 try
                 {
-                    var connection = new SQLiteConnection(dbPath);
+                    connection = new SQLiteConnection(dbPath);
                     if (animal is SheepModel)
                     {
                         connection.CreateTable<SheepModel>();
                         connection.Insert(animal);
-                        var table = connection.Table<SheepModel>();
-                        foreach (var animalmodel in table)
-                        {
-                            System.Console.WriteLine($"\nзапись в базу Баранов: Имя - {animalmodel.Name}, Ссылка на фотку - {animalmodel.URL}");
-                        }
                     }
                     if (animal is WolfModel)
                     {
                         connection.CreateTable<WolfModel>();
                         connection.Insert(animal);
-                        var table = connection.Table<WolfModel>();
-                        foreach (var animalmodel in table)
-                        {
-                            System.Console.WriteLine($"\nзапись в базу Волков: Имя - {animalmodel.Name}, Ссылка - {animalmodel.URL}");
-                        }
                     }
                 }
                 catch(SQLiteException ex)
@@ -77,6 +67,25 @@ namespace Sheep_Wolf_NetStandardLibrary
                 }
                 return false;
             }
+        }
+        public bool SelectTable()
+        {
+            connection = new SQLiteConnection(dbPath);
+
+            var tableSheep = connection.Table<SheepModel>().ToList();
+            //animalModelsArray.Union(tableSheep).ToArray();
+            foreach (var animal in tableSheep)
+            {
+                animalModelsArray.Add(animal);
+            }
+
+            var tableWolf = connection.Table<WolfModel>().ToList();
+            //animalModelsArray.Union(tableWolf).ToArray();
+            foreach (var animal in tableWolf)
+            {
+                animalModelsArray.Add(animal);
+            }
+            return true;
         }
     }
 }
