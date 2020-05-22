@@ -20,9 +20,9 @@ namespace Sheep_Wolf_NetStandardLibrary
             "https://www.3d-hdwallpaper.com/wp-content/uploads/2019/05/desktop-free-wolf-wallpaper-download.jpg"
         };
 
-        public string GetRandomWolfImage()
+        public WolfModel()
         {
-            return wolfStringURL[random.Next(0, 10)];
+            URL = GetRandomImage();
         }
 
         public override string GetRandomImage()
@@ -30,9 +30,9 @@ namespace Sheep_Wolf_NetStandardLibrary
             return GetRandomWolfImage();
         }
 
-        public WolfModel()
+        public string GetRandomWolfImage()
         {
-            URL = GetRandomImage();
+            return wolfStringURL[random.Next(0, 10)];
         }
     }
 }

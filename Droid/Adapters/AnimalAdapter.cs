@@ -2,10 +2,8 @@
 using Android.Content;
 using Android.Views;
 using Android.Widget;
-using Square.Picasso;
 using Sheep_Wolf_NetStandardLibrary;
-using System;
-using System.IO;
+using Square.Picasso;
 
 namespace Sheep_Wolf.Droid
 {
