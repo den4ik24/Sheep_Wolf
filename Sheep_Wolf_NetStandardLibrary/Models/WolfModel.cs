@@ -1,8 +1,9 @@
 ﻿using System;
-
+using SQLite;
 
 namespace Sheep_Wolf_NetStandardLibrary
 {
+    [Table("Wolves")]
     public class WolfModel : AnimalModel
     {
         readonly Random random = new Random();
@@ -20,19 +21,19 @@ namespace Sheep_Wolf_NetStandardLibrary
             "https://www.3d-hdwallpaper.com/wp-content/uploads/2019/05/desktop-free-wolf-wallpaper-download.jpg"
         };
 
-        public WolfModel()
-        {
-            URL = GetRandomImage();
-        }
-
         public override string GetRandomImage()
-        {
-            return GetRandomWolfImage();
-        }
-
-        public string GetRandomWolfImage()
         {
             return wolfStringURL[random.Next(0, 10)];
         }
+
+        //public WolfModel()
+        //{
+        //    //URL = GetRandomWolfImage();
+        //}
+
+        //public override string GetRandomImage()
+        //{
+        //    return GetRandomWolfImage();
+        //}
     }
 }

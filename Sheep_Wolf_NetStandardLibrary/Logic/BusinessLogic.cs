@@ -8,21 +8,22 @@ namespace Sheep_Wolf_NetStandardLibrary
 {
     public class BusinessLogic
     {
-        DataBase dataBase = new DataBase();
+        readonly DataBase dataBase = new DataBase();
         public List<AnimalModel> animalModelsArray = new List<AnimalModel>();
-        //private readonly string dbPath = Path.Combine(Environment.GetFolderPath
-        //    (Environment.SpecialFolder.Personal), "dataBase.db3");
+        AnimalModel animal;
+        int animalsCount;
 
         public bool AddAnimal(bool isSheep, string animalName)
         {
-            AnimalModel animal;
             if (isSheep)
             {
                 animal = new SheepModel();
+                animal.URL = animal.GetRandomImage();
             }
             else
             {
                 animal = new WolfModel();
+                animal.URL = animal.GetRandomImage();
             }
 
             var repeatAnimal = animalModelsArray.Where(a => a.Name == animalName);
@@ -32,6 +33,14 @@ namespace Sheep_Wolf_NetStandardLibrary
             }
             else
             {
+                var animalOrder = animalModelsArray.Where(a => a.Order != 0);
+                foreach (AnimalModel animal in animalOrder)
+                {
+                    animalsCount = animal.Order;
+                }
+                animalsCount++;
+                animal.Order = animalsCount;
+                
                 animal.Name = animalName;
                 animalModelsArray.Add(animal);
                 if (animal is WolfModel)
@@ -48,30 +57,15 @@ namespace Sheep_Wolf_NetStandardLibrary
                         }
                     }
                 }
-                dataBase.Connection(animal);
-                //try
-                //{
-                    //var connection = new SQLiteConnection(dbPath);
-                    //if (animal is SheepModel)
-                    //{
-                        //connection.Insert(animal);
-                    //}
-                    //if (animal is WolfModel)
-                    //{
-                    //    connection.Insert(animal);
-                    //}
-                //}
-                //catch(SQLiteException ex)
-                //{
-                //    Console.WriteLine(ex.Message);
-                //}
+                dataBase.Insert(animal);
                 return false;
             }
         }
 
-        public void SelectTableBL()
+        public void SelectTable_BL()
         {
-            dataBase.SelectTable(animalModelsArray);
+            animalModelsArray.AddRange(dataBase.SelectTable());
+            animalModelsArray.OrderBy(a => a.Order).ToList();
         }
     }
 }

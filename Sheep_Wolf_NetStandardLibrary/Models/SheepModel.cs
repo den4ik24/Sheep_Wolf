@@ -1,8 +1,9 @@
 ﻿using System;
-
+using SQLite;
 
 namespace Sheep_Wolf_NetStandardLibrary
 {
+    [Table("Sheeps")]
     public class SheepModel : AnimalModel
     {
         readonly Random random = new Random();
@@ -20,20 +21,21 @@ namespace Sheep_Wolf_NetStandardLibrary
             "http://milifamily.pl/wp-content/uploads/2016/07/Untitled-design-18.jpg"
         };
 
-        public string GetRandomSheepImage()
+        public override string GetRandomImage()
         {
             return sheepsStringURL[random.Next(0, 10)];
         }
 
-        public override string GetRandomImage()
-        {
-            return GetRandomSheepImage();
-        }
+        //public SheepModel()
+        //{
+        //    //URL = GetRandomSheepImage();
+        //}
 
-        public SheepModel()
-        {
-            URL = GetRandomImage();
-        }
+        //public override string GetRandomImage()
+        //{
+        //    return GetRandomSheepImage();
+        //}
+
         //string image;
         //public string URL
         //{

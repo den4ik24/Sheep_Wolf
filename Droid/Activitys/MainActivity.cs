@@ -31,7 +31,7 @@ namespace Sheep_Wolf.Droid
             textNameOfAnimal = FindViewById<EditText>(Resource.Id.textNameOfAnimal);
             animalChoice = FindViewById<Spinner>(Resource.Id.animalChoice);
 
-            businessLogic.SelectTableBL();
+            businessLogic.SelectTable_BL();
             adapter = new AnimalAdapter(this);
             adapter.animalModelsArray = businessLogic.animalModelsArray;
             listOfAnimals.Adapter = adapter;
@@ -71,8 +71,6 @@ namespace Sheep_Wolf.Droid
             {
                     AddRandomAnimal();
                     textNameOfAnimal.Text = "";
-                    count++;
-                    textViewNumbSheep.Text = count.ToString();
             }
         }
 
@@ -111,6 +109,8 @@ namespace Sheep_Wolf.Droid
             }
             else
             {
+                count++;
+                textViewNumbSheep.Text = count.ToString();
                 adapter.NotifyDataSetChanged();
             }
         }

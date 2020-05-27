@@ -11,7 +11,7 @@ namespace Sheep_Wolf_NetStandardLibrary
         private readonly string dbPath = Path.Combine(Environment.GetFolderPath
                                          (Environment.SpecialFolder.Personal), "dataBase.db3");
 
-        public void SelectTable(List<AnimalModel> animalModelsArray)
+        public IEnumerable<AnimalModel> SelectTable()
         {
             var connection = new SQLiteConnection(dbPath);
             connection.CreateTable<SheepModel>();
@@ -19,11 +19,10 @@ namespace Sheep_Wolf_NetStandardLibrary
             var tableSheep = connection.Table<SheepModel>();
             var tableWolf = connection.Table<WolfModel>();
             var animalArray = tableSheep.Union<AnimalModel>(tableWolf);
-            animalModelsArray.AddRange(animalArray);
-            //return true;
+            return animalArray;
         }
 
-        public void Connection(AnimalModel animal)
+        public void Insert(AnimalModel animal)
         {
             var connection = new SQLiteConnection(dbPath);
             connection.Insert(animal);
