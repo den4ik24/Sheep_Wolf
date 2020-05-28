@@ -18,41 +18,49 @@ namespace Sheep_Wolf_NetStandardLibrary
             }
             else
             {
-                //1
-                if (isSheep)
-                {
-                    animal = new SheepModel();
-                }
-                else
-                {
-                    animal = new WolfModel();
-                }
-
-                //2
-                animal.Order = animalModelsArray.Count;
-                animal.URL = animal.GetRandomImage();
-                animal.Name = animalName;
-                animalModelsArray.Add(animal);
-
-                //3
-                if (animal is WolfModel)
-                {
-                    for (var i = animalModelsArray.Count - 1; i >= 0; --i)
-                    {
-                        var item = animalModelsArray[i];
-                        if (item is SheepModel && !item.IsDead)
-                        {
-                            item.IsDead = true;
-                            item.Killer = animal.Name;
-                            animal.Killer = item.Name;
-                            break;
-                        }
-                    }
-                }
-
-
+                ChoiceAnimal(isSheep);
+                AssignAnimal(animalName);
+                AnimalKiller();
                 dataBase.Insert(animal);
                 return false;
+            }
+        }
+
+        public void ChoiceAnimal(bool isSheep)
+        {
+            if (isSheep)
+            {
+                animal = new SheepModel();
+            }
+            else
+            {
+                animal = new WolfModel();
+            }
+        }
+
+        public void AssignAnimal(string animalName)
+        {
+            animal.Order = animalModelsArray.Count;
+            animal.AnimalURL();
+            animal.Name = animalName;
+            animalModelsArray.Add(animal);
+        }
+
+        public void AnimalKiller()
+        {
+            if (animal is WolfModel)
+            {
+                for (var i = animalModelsArray.Count - 1; i >= 0; --i)
+                {
+                    var item = animalModelsArray[i];
+                    if (item is SheepModel && !item.IsDead)
+                    {
+                        item.IsDead = true;
+                        item.Killer = animal.Name;
+                        animal.Killer = item.Name;
+                        break;
+                    }
+                }
             }
         }
 

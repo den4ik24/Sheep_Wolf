@@ -21,37 +21,14 @@ namespace Sheep_Wolf_NetStandardLibrary
             "http://milifamily.pl/wp-content/uploads/2016/07/Untitled-design-18.jpg"
         };
 
-        public override string GetRandomImage()
+        public string GetRandomImage()
         {
             return sheepsStringURL[random.Next(0, 10)];
         }
 
-        //public SheepModel()
-        //{
-        //    //URL = GetRandomSheepImage();
-        //}
-
-        //public override string GetRandomImage()
-        //{
-        //    return GetRandomSheepImage();
-        //}
-
-        //string image;
-        //public string URL
-        //{
-        //    get
-        //    {
-        //        if (image != null)
-        //        {
-        //            return image;
-        //        }
-        //        else
-        //        {
-        //            image = sheepsStringURL[random.Next(0, 10)];
-        //            return image;
-        //        }
-        //    }
-        //}
-        //protected set; }
+        public override string AnimalURL()
+        {
+            return URL = GetRandomImage();
+        }
     }
 }

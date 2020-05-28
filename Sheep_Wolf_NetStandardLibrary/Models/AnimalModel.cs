@@ -9,14 +9,9 @@ namespace Sheep_Wolf_NetStandardLibrary
         public bool IsDead { get; set; }
         public int Order { get; set; }
 
-        public virtual string GetRandomImage()
+        public virtual string AnimalURL()
         {
-            return "RandomImage";
+            return URL;
         }
-
-        //public AnimalModel()
-        //{
-
-        //}
     }
 }

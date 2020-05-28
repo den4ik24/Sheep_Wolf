@@ -21,19 +21,14 @@ namespace Sheep_Wolf_NetStandardLibrary
             "https://www.3d-hdwallpaper.com/wp-content/uploads/2019/05/desktop-free-wolf-wallpaper-download.jpg"
         };
 
-        public override string GetRandomImage()
+        public string GetRandomImage()
         {
             return wolfStringURL[random.Next(0, 10)];
         }
 
-        //public WolfModel()
-        //{
-        //    //URL = GetRandomWolfImage();
-        //}
-
-        //public override string GetRandomImage()
-        //{
-        //    return GetRandomWolfImage();
-        //}
+        public override string AnimalURL()
+        {
+            return URL = GetRandomImage();
+        }
     }
 }
