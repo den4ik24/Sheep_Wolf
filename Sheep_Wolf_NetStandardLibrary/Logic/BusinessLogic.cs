@@ -1,8 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using SQLite;
-using System;
 
 namespace Sheep_Wolf_NetStandardLibrary
 {
@@ -11,21 +8,9 @@ namespace Sheep_Wolf_NetStandardLibrary
         readonly DataBase dataBase = new DataBase();
         public List<AnimalModel> animalModelsArray = new List<AnimalModel>();
         AnimalModel animal;
-        int animalsCount;
 
         public bool AddAnimal(bool isSheep, string animalName)
         {
-            if (isSheep)
-            {
-                animal = new SheepModel();
-                animal.URL = animal.GetRandomImage();
-            }
-            else
-            {
-                animal = new WolfModel();
-                animal.URL = animal.GetRandomImage();
-            }
-
             var repeatAnimal = animalModelsArray.Where(a => a.Name == animalName);
             if (repeatAnimal.Any())
             {
@@ -33,16 +18,23 @@ namespace Sheep_Wolf_NetStandardLibrary
             }
             else
             {
-                var animalOrder = animalModelsArray.Where(a => a.Order != 0);
-                foreach (AnimalModel animal in animalOrder)
+                //1
+                if (isSheep)
                 {
-                    animalsCount = animal.Order;
+                    animal = new SheepModel();
                 }
-                animalsCount++;
-                animal.Order = animalsCount;
-                
+                else
+                {
+                    animal = new WolfModel();
+                }
+
+                //2
+                animal.Order = animalModelsArray.Count;
+                animal.URL = animal.GetRandomImage();
                 animal.Name = animalName;
                 animalModelsArray.Add(animal);
+
+                //3
                 if (animal is WolfModel)
                 {
                     for (var i = animalModelsArray.Count - 1; i >= 0; --i)
@@ -57,15 +49,17 @@ namespace Sheep_Wolf_NetStandardLibrary
                         }
                     }
                 }
+
+
                 dataBase.Insert(animal);
                 return false;
             }
         }
 
-        public void SelectTable_BL()
+        public void GetAnimals()
         {
             animalModelsArray.AddRange(dataBase.SelectTable());
-            animalModelsArray.OrderBy(a => a.Order).ToList();
+            animalModelsArray = animalModelsArray.OrderBy(a => a.Order).ToList();
         }
     }
 }

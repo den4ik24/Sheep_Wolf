@@ -19,6 +19,7 @@ namespace Sheep_Wolf_NetStandardLibrary
             var tableSheep = connection.Table<SheepModel>();
             var tableWolf = connection.Table<WolfModel>();
             var animalArray = tableSheep.Union<AnimalModel>(tableWolf);
+            //var animalArray = tableSheep.Concat<AnimalModel>(tableWolf);
             return animalArray;
         }
 

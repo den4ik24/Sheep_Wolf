@@ -31,7 +31,7 @@ namespace Sheep_Wolf.Droid
             textNameOfAnimal = FindViewById<EditText>(Resource.Id.textNameOfAnimal);
             animalChoice = FindViewById<Spinner>(Resource.Id.animalChoice);
 
-            businessLogic.SelectTable_BL();
+            businessLogic.GetAnimals();
             adapter = new AnimalAdapter(this);
             adapter.animalModelsArray = businessLogic.animalModelsArray;
             listOfAnimals.Adapter = adapter;
