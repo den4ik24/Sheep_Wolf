@@ -30,18 +30,18 @@ namespace Sheep_Wolf_NetStandardLibrary
         {
             if (isSheep)
             {
-                animal = new SheepModel();
+                animal = SheepModel.GetSheep();
+
             }
             else
             {
-                animal = new WolfModel();
+                animal = WolfModel.GetWolf();
             }
         }
 
         public void AssignAnimal(string animalName)
         {
             animal.Order = animalModelsArray.Count;
-            animal.AnimalURL();
             animal.Name = animalName;
             animalModelsArray.Add(animal);
         }
