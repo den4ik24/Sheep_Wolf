@@ -6,10 +6,9 @@ namespace Sheep_Wolf.iOS
 {
     public partial class ViewController : UIViewController
     {
-        int count = 0;
         AnimalPickerModel picker;
         UIPickerView uiPicker;
-        BusinessLogic businessLogic = new BusinessLogic();
+        IBusinessLogic businessLogic = new BusinessLogic();
          
         public ViewController(IntPtr handle) : base(handle)
         {
@@ -21,6 +20,8 @@ namespace Sheep_Wolf.iOS
            
             ButtonAddAnimal.TouchUpInside += ButtonAddAnimal_TouchUpInside;
             businessLogic.GetAnimals();
+            CountAnimal();
+            listOfSheeps.Source = new TableSource(businessLogic.AnimalModel(), this);
             picker = new AnimalPickerModel(animalChoice);
             uiPicker = new UIPickerView();
             uiPicker.Model = picker;
@@ -41,12 +42,7 @@ namespace Sheep_Wolf.iOS
             else
             {
                 AddRandomAnimal();
-                listOfSheeps.Source = new TableSource(businessLogic.animalModelsArray, this);
-                listOfSheeps.ReloadData();
-                count++;
-                LabelNumberAnimal.Text = count.ToString();
                 textNameOfAnimals.Text = "";
-
             }
         }
 
@@ -61,7 +57,16 @@ namespace Sheep_Wolf.iOS
                     ("OK", UIAlertActionStyle.Default, null));
                 PresentViewController(alertController, true, null);
             }
-            
+            else
+            {
+                CountAnimal();
+                listOfSheeps.ReloadData();
+            }
+        }
+
+        public void CountAnimal()
+        {
+            LabelNumberAnimal.Text = businessLogic.AnimalModel().Count.ToString();
         }
     }
 }

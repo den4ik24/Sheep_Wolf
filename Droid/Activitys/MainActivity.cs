@@ -113,6 +113,7 @@ namespace Sheep_Wolf.Droid
             {
                 CountAnimal();
                 adapter.NotifyDataSetChanged();
+                //удаление клавиатуры
                 InputMethodManager imm = (InputMethodManager)GetSystemService(InputMethodService);
                 imm.HideSoftInputFromWindow(textNameOfAnimal.WindowToken, 0);
             }
