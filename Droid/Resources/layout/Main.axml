@@ -31,6 +31,7 @@
 			android:layout_marginLeft="3dp"
 			android:text="Adding Animal"
 			android:clickable="true"
+			android:imeOptions="actionDone"
 			android:textColor="#ff1a237e"
 			android:background="#ffffd600"
 			android:textSize="20dp"

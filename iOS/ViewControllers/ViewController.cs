@@ -20,7 +20,7 @@ namespace Sheep_Wolf.iOS
             base.ViewDidLoad();
            
             ButtonAddAnimal.TouchUpInside += ButtonAddAnimal_TouchUpInside;
-            _ = businessLogic.SelectTable();
+            businessLogic.GetAnimals();
             picker = new AnimalPickerModel(animalChoice);
             uiPicker = new UIPickerView();
             uiPicker.Model = picker;

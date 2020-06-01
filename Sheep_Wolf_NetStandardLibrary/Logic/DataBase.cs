@@ -6,8 +6,15 @@ using SQLite;
 
 namespace Sheep_Wolf_NetStandardLibrary
 {
-    public class DataBase
+    public interface IDataBase
     {
+        IEnumerable<AnimalModel> SelectTable();
+        void Insert(AnimalModel animal);
+    }
+
+    public class DataBase : IDataBase
+    {
+
         private readonly string dbPath = Path.Combine(Environment.GetFolderPath
                                          (Environment.SpecialFolder.Personal), "dataBase.db3");
 

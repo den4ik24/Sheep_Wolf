@@ -2,6 +2,7 @@
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Views.InputMethods;
 using Android.Widget;
 using Sheep_Wolf_NetStandardLibrary;
 
@@ -10,15 +11,14 @@ namespace Sheep_Wolf.Droid
     [Activity(Label = "Овцы/Волки", Icon = "@mipmap/icon", MainLauncher = true)]
     public class MainActivity : Activity
     {
-        int count = 0;
-
         Button addSheepButton;
         TextView textViewNumbSheep;
         ListView listOfAnimals;
         EditText textNameOfAnimal;
         Spinner animalChoice;
         AnimalAdapter adapter;
-        BusinessLogic businessLogic = new BusinessLogic();
+        IBusinessLogic businessLogic = new BusinessLogic();
+
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -32,8 +32,9 @@ namespace Sheep_Wolf.Droid
             animalChoice = FindViewById<Spinner>(Resource.Id.animalChoice);
 
             businessLogic.GetAnimals();
+            CountAnimal();
             adapter = new AnimalAdapter(this);
-            adapter.animalModelsArray = businessLogic.animalModelsArray;
+            adapter.animalModelsArray = businessLogic.AnimalModel();
             listOfAnimals.Adapter = adapter;
 
             addSheepButton.Click += AddSheepButton_Click;
@@ -69,8 +70,9 @@ namespace Sheep_Wolf.Droid
             }
             else
             {
-                    AddRandomAnimal();
-                    textNameOfAnimal.Text = "";
+                AddRandomAnimal();
+                textNameOfAnimal.Text = "";
+
             }
         }
 
@@ -109,10 +111,16 @@ namespace Sheep_Wolf.Droid
             }
             else
             {
-                count++;
-                textViewNumbSheep.Text = count.ToString();
+                CountAnimal();
                 adapter.NotifyDataSetChanged();
+                InputMethodManager imm = (InputMethodManager)GetSystemService(InputMethodService);
+                imm.HideSoftInputFromWindow(textNameOfAnimal.WindowToken, 0);
             }
+        }
+
+        public void CountAnimal()
+        {
+            textViewNumbSheep.Text = businessLogic.AnimalModel().Count.ToString();
         }
     }
 }

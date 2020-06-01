@@ -3,11 +3,23 @@ using System.Linq;
 
 namespace Sheep_Wolf_NetStandardLibrary
 {
-    public class BusinessLogic
+    public interface IBusinessLogic
     {
-        readonly DataBase dataBase = new DataBase();
-        public List<AnimalModel> animalModelsArray = new List<AnimalModel>();
+        List<AnimalModel> AnimalModel();
+        bool AddAnimal(bool isSheep, string animalName);
+        void GetAnimals();
+    }
+
+    public class BusinessLogic : IBusinessLogic
+    {
+        IDataBase dataBase = new DataBase();
         AnimalModel animal;
+        public List<AnimalModel> animalModelsArray = new List<AnimalModel>();
+
+        public List<AnimalModel> AnimalModel()
+        {
+            return animalModelsArray;
+        }
 
         public bool AddAnimal(bool isSheep, string animalName)
         {
@@ -68,6 +80,7 @@ namespace Sheep_Wolf_NetStandardLibrary
         {
             animalModelsArray.AddRange(dataBase.SelectTable());
             animalModelsArray = animalModelsArray.OrderBy(a => a.Order).ToList();
+
         }
     }
 }
