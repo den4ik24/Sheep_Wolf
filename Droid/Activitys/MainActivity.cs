@@ -2,6 +2,7 @@
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Support.V7.Widget;
 using Android.Views.InputMethods;
 using Android.Widget;
 using Sheep_Wolf_NetStandardLibrary;
@@ -13,12 +14,11 @@ namespace Sheep_Wolf.Droid
     {
         Button addSheepButton;
         TextView textViewNumbSheep;
-        ListView listOfAnimals;
+        RecyclerView listOfAnimals;
         EditText textNameOfAnimal;
         Spinner animalChoice;
         AnimalAdapter adapter;
         IBusinessLogic businessLogic = new BusinessLogic();
-
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -27,18 +27,20 @@ namespace Sheep_Wolf.Droid
 
             addSheepButton = FindViewById<Button>(Resource.Id.addSheepButton);
             textViewNumbSheep = FindViewById<TextView>(Resource.Id.textViewNumbSheep);
-            listOfAnimals = FindViewById<ListView>(Resource.Id.listOfAnimals);
+            listOfAnimals = FindViewById<RecyclerView>(Resource.Id.listOfAnimals);
             textNameOfAnimal = FindViewById<EditText>(Resource.Id.textNameOfAnimal);
             animalChoice = FindViewById<Spinner>(Resource.Id.animalChoice);
 
+            var layoutManager = new LinearLayoutManager(this);
+            listOfAnimals.SetLayoutManager(layoutManager);
             businessLogic.GetAnimals();
             CountAnimal();
             adapter = new AnimalAdapter(this);
             adapter.animalModelsArray = businessLogic.AnimalModel();
-            listOfAnimals.Adapter = adapter;
-
+            adapter.ItemClick += ListOfAnimals_ItemClick;
+            listOfAnimals.SetAdapter(adapter);
             addSheepButton.Click += AddSheepButton_Click;
-            listOfAnimals.ItemClick += ListOfAnimals_ItemClick;
+
             animalChoice.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(AnimalChoice_ItemSelected);
 
             var adapterSpinner = ArrayAdapter<string>.CreateFromResource(this, Resource.Array.type_animal, Android.Resource.Layout.SimpleSpinnerItem);
@@ -54,10 +56,10 @@ namespace Sheep_Wolf.Droid
             Toast.MakeText(this, selectedAnimal, ToastLength.Short).Show();
         }
 
-        private void ListOfAnimals_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        private void ListOfAnimals_ItemClick(object sender, int e)
         {
             var intent = new Intent(this, typeof(AnimalIDActivity));
-            var N = adapter.ElementPosition(e.Position);
+            var N = adapter.ElementPosition(e);
             DataTransmission(N, intent);
             StartActivity(intent);
         }

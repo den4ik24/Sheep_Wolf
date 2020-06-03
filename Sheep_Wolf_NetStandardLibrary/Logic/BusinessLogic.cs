@@ -70,7 +70,7 @@ namespace Sheep_Wolf_NetStandardLibrary
                         item.IsDead = true;
                         item.Killer = animal.Name;
                         animal.Killer = item.Name;
-                        System.Console.WriteLine($"item.IsDead = {item.IsDead}, item.Killer = {item.Killer}, animal.Killer = {animal.Killer}");
+                        System.Console.WriteLine($"item.IsDead = {item.IsDead}, item.Killer = {item.Killer}, animal.Kill = {animal.Killer}");
                         break;
                     }
                 }
