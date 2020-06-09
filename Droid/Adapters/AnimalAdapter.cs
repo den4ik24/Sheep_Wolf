@@ -12,15 +12,15 @@ namespace Sheep_Wolf.Droid
     public class AnimalAdapter : RecyclerView.Adapter
     {
         public event EventHandler<int> ItemClick;
-        readonly Context context;
+        //readonly Context context;
         private const int Sheep_Class = 0;
         private const int Wolf_Class = 1;
         public List<AnimalModel> animalModelsArray;
 
-        public AnimalAdapter(Context context)
-        {
-            this.context = context;
-        }
+        //public AnimalAdapter(Context context)
+        //{
+        //    this.context = context;
+        //}
 
         public override int GetItemViewType(int position)
         {
@@ -52,7 +52,7 @@ namespace Sheep_Wolf.Droid
             if (viewType == Sheep_Class)
             {
                 SheepViewHolder holderSheep;
-                var viewSheep = LayoutInflater.From(context).Inflate(Resource.Layout.SheepCheckList, parent, false);
+                var viewSheep = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.SheepCheckList, parent, false);
                 holderSheep = new SheepViewHolder(viewSheep, OnClick);
 
                 viewSheep.Tag = holderSheep;
@@ -61,7 +61,7 @@ namespace Sheep_Wolf.Droid
             else
             {
                 WolfViewHolder holderWolf;
-                var viewWolf = LayoutInflater.From(context).Inflate(Resource.Layout.WolfCheckList, parent, false);
+                var viewWolf = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.WolfCheckList, parent, false);
                 holderWolf = new WolfViewHolder(viewWolf, OnClick);
                 viewWolf.Tag = holderWolf;
                 return holderWolf;

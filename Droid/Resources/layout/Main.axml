@@ -1,62 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:orientation="vertical"
-    android:id="@+id/globalLayout">
-
-	<TextView
+    android:id="@+id/globalLayout"
+	tools:visibility="visible">
+	
+	<android.support.v7.widget.Toolbar
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
+		android:layout_height="?android:attr/actionBarSize"
 		android:background="@android:color/holo_green_dark"
-		android:gravity="center"
-		android:text="@string/title"
-        android:freezesText="true"
-		android:textColor="@android:color/black"/>
-
+		android:theme="@style/Theme.AppCompat.Light"
+		android:id="@+id/my_toolbar"/>
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
         android:orientation="horizontal"
 		android:id="@+id/sheeps_container"
 		android:layout_marginTop="8dp">
-		<Button
-			android:id="@+id/addSheepButton"
-			android:gravity="center"
-			android:layout_width="0dp"
-			android:layout_height="match_parent"
-			android:layout_weight="50"
-			android:layout_marginRight="3dp"
-			android:layout_marginLeft="3dp"
-			android:text="Adding Animal"
-			android:clickable="true"
-			android:imeOptions="actionDone"
-			android:textColor="#ff1a237e"
-			android:background="#ffffd600"
-			android:textSize="20dp"
-			android:textAllCaps="false"
-			android:textAlignment="center"
-			android:textStyle="italic|bold" />
 		<TextView
 			android:text="Number of Animal"
 			android:gravity="center"
 			android:layout_width="0dp"
 			android:layout_height="match_parent"
-			android:layout_weight="50"
+			android:layout_weight="1"
 			android:layout_marginLeft="3dp"
 			android:layout_marginRight="3dp"
 			android:id="@+id/textViewNumbSheep"
 			android:textColor="#ffffd600"
 			android:background="#ff1a237e"
 			android:textAlignment="center"
-			android:textAllCaps="false"
 			android:textSize="20dp"
-			android:typeface="sans"
 			android:textStyle="normal|bold"
-			android:capitalize="words"
-			android:freezesText="true"
-			android:drawingCacheQuality="high"/>
+			android:capitalize="words"/>
 	</LinearLayout>
 
 	<LinearLayout
@@ -100,22 +79,6 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
         android:layout_marginTop="8dp">
-		<!--<ListView
-			android:minWidth="25px"
-			android:minHeight="25px"
-			android:fastScrollEnabled="true"
-			android:fastScrollAlwaysVisible="true"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:id="@+id/listOfAnimals"
-			android:textSize="18dp"
-			android:gravity="center"
-            android:freezesText="true"
-			android:layout_marginLeft="3dp"
-			android:layout_marginRight="3dp"
-			android:layout_marginTop="8dp"
-			android:background="@android:color/holo_green_light"
-			android:textColor="@android:color/black"/>-->
 		<android.support.v7.widget.RecyclerView
 			android:id="@+id/listOfAnimals"
 			android:scrollbars="vertical"

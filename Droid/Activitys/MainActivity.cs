@@ -3,47 +3,52 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Support.V7.Widget;
+using Android.Support.V7.App;
 using Android.Views.InputMethods;
 using Android.Widget;
 using Sheep_Wolf_NetStandardLibrary;
+using V7Toolbar = Android.Support.V7.Widget.Toolbar;
+using Android.Views;
 
 namespace Sheep_Wolf.Droid
 {
-    [Activity(Label = "Овцы/Волки", Icon = "@mipmap/icon", MainLauncher = true)]
-    public class MainActivity : Activity
+    [Activity(Label = "Circle of Life", Icon = "@mipmap/icon", MainLauncher = true)]
+    public class MainActivity : AppCompatActivity
     {
-        Button addSheepButton;
+        //Button addSheepButton;
         TextView textViewNumbSheep;
         RecyclerView listOfAnimals;
         EditText textNameOfAnimal;
         Spinner animalChoice;
         AnimalAdapter adapter;
         IBusinessLogic businessLogic = new BusinessLogic();
+        V7Toolbar myToolbar;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Main);
 
-            addSheepButton = FindViewById<Button>(Resource.Id.addSheepButton);
+            myToolbar = FindViewById<V7Toolbar>(Resource.Id.my_toolbar);
+            //addSheepButton = FindViewById<Button>(Resource.Id.addSheepButton);
             textViewNumbSheep = FindViewById<TextView>(Resource.Id.textViewNumbSheep);
             listOfAnimals = FindViewById<RecyclerView>(Resource.Id.listOfAnimals);
             textNameOfAnimal = FindViewById<EditText>(Resource.Id.textNameOfAnimal);
             animalChoice = FindViewById<Spinner>(Resource.Id.animalChoice);
-
+            
+            SetSupportActionBar(myToolbar);
             var layoutManager = new LinearLayoutManager(this);
+            var adapterSpinner = ArrayAdapter<string>.CreateFromResource(this, Resource.Array.type_animal, Android.Resource.Layout.SimpleSpinnerItem);
+            adapter = new AnimalAdapter();
+            
             listOfAnimals.SetLayoutManager(layoutManager);
             businessLogic.GetAnimals();
             CountAnimal();
-            adapter = new AnimalAdapter(this);
             adapter.animalModelsArray = businessLogic.AnimalModel();
             adapter.ItemClick += ListOfAnimals_ItemClick;
             listOfAnimals.SetAdapter(adapter);
-            addSheepButton.Click += AddSheepButton_Click;
-
+            //addSheepButton.Click += AddSheepButton_Click;
             animalChoice.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(AnimalChoice_ItemSelected);
-
-            var adapterSpinner = ArrayAdapter<string>.CreateFromResource(this, Resource.Array.type_animal, Android.Resource.Layout.SimpleSpinnerItem);
             adapterSpinner.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             animalChoice.Adapter = adapterSpinner;
             animalChoice.SetSelection(0);
@@ -64,19 +69,19 @@ namespace Sheep_Wolf.Droid
             StartActivity(intent);
         }
 
-        private void AddSheepButton_Click(object sender, EventArgs e)
-        {
-            if (textNameOfAnimal.Text == "")
-            {
-                Toast.MakeText(this, "Укажите имя существа", ToastLength.Short).Show();
-            }
-            else
-            {
-                AddRandomAnimal();
-                textNameOfAnimal.Text = "";
+        //private void AddSheepButton_Click(object sender, EventArgs e)
+        //{
+        //    if (textNameOfAnimal.Text == "")
+        //    {
+        //        Toast.MakeText(this, "Укажите имя существа", ToastLength.Short).Show();
+        //    }
+        //    else
+        //    {
+        //        AddRandomAnimal();
+        //        textNameOfAnimal.Text = "";
 
-            }
-        }
+        //    }
+        //}
 
         public void DataTransmission(AnimalModel N, Intent intent)
         {
@@ -124,6 +129,39 @@ namespace Sheep_Wolf.Droid
         public void CountAnimal()
         {
             textViewNumbSheep.Text = businessLogic.AnimalModel().Count.ToString();
+        }
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.menu, menu);
+            return true;
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Resource.Id.addAnimals:
+                    if (textNameOfAnimal.Text == "")
+                    {
+                        Toast.MakeText(this, "Укажите имя существа", ToastLength.Short).Show();
+                    }
+                    else
+                    {
+                        AddRandomAnimal();
+                        textNameOfAnimal.Text = "";
+
+                    }
+                    return true;
+
+                case Resource.Id.addDucks:
+
+
+                    return true;
+
+                default:
+                    return base.OnOptionsItemSelected(item);
+            }
         }
     }
 }

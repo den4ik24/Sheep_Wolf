@@ -4,6 +4,7 @@
     <string name="desc">Image</string>
     <string name="title">sheeps VS wolves</string>
     <string name="type">TYPE OF ANIMAL :</string>
+
   <string-array name ="type_animal">
     <item>SHEEP</item>
     <item>WOLF</item>
