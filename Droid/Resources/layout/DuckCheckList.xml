@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+		<ImageView
+			android:src="@android:drawable/ic_menu_gallery"
+			android:layout_width="0dp"
+			android:layout_height="60dp"
+            android:layout_weight="1"
+			android:id="@+id/fotoDuck"
+            android:contentDescription="@string/desc"/>
+		<TextView
+			android:text="@string/duckName"
+			android:layout_width="0dp"
+			android:layout_height="60dp"
+            android:layout_weight="4"
+			android:minWidth="25px"
+			android:minHeight="25px"
+			android:textColor="@color/blue"
+			android:background="@color/light_green"
+			android:textSize="25dp"
+			android:textAllCaps="false"
+			android:textAlignment="center"
+			android:textStyle="italic|bold"
+			android:id="@+id/textViewDucksNameAdapter"/>
+</LinearLayout>
