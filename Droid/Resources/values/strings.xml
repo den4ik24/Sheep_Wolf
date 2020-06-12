@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Sheep_Wolf.Droid</string>
+    <string name="desc">Image</string>
+    <string name="title">sheeps VS wolves</string>
+    <string name="type">TYPE OF ANIMAL :</string>
+    <string name="number">Number of Animal</string>
+    <string name="nameOfAnimal">Enter the Name of the Animal</string>
+    <string name="animalName">Animal\'s Name</string>
+    <string name="text">Text</string>
+    <string name="titles">Title:</string>
+    <string name="sheep">Sheep</string>
+    <string name="sheepName">Sheep\'s Name</string>
+    <string name="wolfName">Wolves Name</string>
+    <string name="duckName">Duck\'s Name</string>
+
+  <string-array name ="type_animal">
+    <item>SHEEP</item>
+    <item>WOLF</item>
+  </string-array> 
+</resources>

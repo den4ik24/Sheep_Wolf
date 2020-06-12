@@ -35,7 +35,7 @@ namespace Sheep_Wolf.iOS
 
         public override nint RowsInSection(UITableView tableview, nint section)
         {
-            return animalClassArray.Count; //listOfSheeps.ReloadData()
+            return animalClassArray.Count;
         }
 
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
@@ -45,11 +45,11 @@ namespace Sheep_Wolf.iOS
             NabvigateTo(NML);
         }
 
-        public void NabvigateTo(AnimalModel AIA)
+        public void NabvigateTo(AnimalModel animal)
         {
             CardIDViewController cardIDViewController = controller.Storyboard.InstantiateViewController("CardIDViewController") as CardIDViewController;
             controller.NavigationController.PushViewController(cardIDViewController, true);
-            cardIDViewController.model = AIA;
+            cardIDViewController.model = animal;
         }
     }
 }

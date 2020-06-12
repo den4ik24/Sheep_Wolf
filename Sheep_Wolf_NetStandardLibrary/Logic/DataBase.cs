@@ -23,9 +23,12 @@ namespace Sheep_Wolf_NetStandardLibrary
             var connection = new SQLiteConnection(dbPath);
             connection.CreateTable<SheepModel>();
             connection.CreateTable<WolfModel>();
+            connection.CreateTable<DuckModel>();
             var tableSheep = connection.Table<SheepModel>();
             var tableWolf = connection.Table<WolfModel>();
-            var animalArray = tableSheep.Union<AnimalModel>(tableWolf);
+            var tableDuck = connection.Table<DuckModel>();
+            //var animalArray = tableSheep.Union<AnimalModel>(tableWolf);
+            var animalArray = tableSheep.Union(tableWolf.Union<AnimalModel>(tableDuck));
             return animalArray;
         }
 

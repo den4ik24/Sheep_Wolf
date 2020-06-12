@@ -1,7 +1,7 @@
 ﻿using System;
 using SQLite;
 
-namespace Sheep_Wolf_NetStandardLibrary.Models
+namespace Sheep_Wolf_NetStandardLibrary
 {
     [Table("Ducks")]
     public class DuckModel : AnimalModel
@@ -23,9 +23,9 @@ namespace Sheep_Wolf_NetStandardLibrary.Models
 
         public static AnimalModel GetDuck()
         {
-            var sheep = new SheepModel();
-            sheep.URL = GetRandomImage();
-            return sheep;
+            var duck = new DuckModel();
+            duck.URL = GetRandomImage();
+            return duck;
         }
 
         public static string GetRandomImage()

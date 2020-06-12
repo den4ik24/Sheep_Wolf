@@ -1,13 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Android.Content;
 
 namespace Sheep_Wolf_NetStandardLibrary
 {
     public interface IBusinessLogic
     {
         List<AnimalModel> AnimalModel();
-        bool AddAnimal(bool isSheep, string animalName);
+        bool AddAnimal(bool iS, string aN);
+        void AddDucks();
         void GetAnimals();
+        void Transfer(AnimalModel N, Intent intent);
     }
 
     public class BusinessLogic : IBusinessLogic
@@ -15,7 +18,7 @@ namespace Sheep_Wolf_NetStandardLibrary
         IDataBase dataBase = new DataBase();
         AnimalModel animal;
         public List<AnimalModel> animalModelsArray = new List<AnimalModel>();
-
+        int duckCount=1;
         public List<AnimalModel> AnimalModel()
         {
             return animalModelsArray;
@@ -36,6 +39,15 @@ namespace Sheep_Wolf_NetStandardLibrary
                 dataBase.Insert(animal);
                 return false;
             }
+        }
+
+        public void AddDucks()
+        {
+            animal = DuckModel.GetDuck();
+            animal.Order = animalModelsArray.Count;
+            animal.Name = $"Duck_{duckCount++}";
+            animalModelsArray.Add(animal);
+            dataBase.Insert(animal);
         }
 
         public void ChoiceAnimal(bool isSheep)
@@ -72,6 +84,13 @@ namespace Sheep_Wolf_NetStandardLibrary
                         animal.Killer = item.Name;
                         break;
                     }
+
+                    if(item is DuckModel)
+                    {
+                        animalModelsArray.Remove(item);
+                        duckCount = 1;
+                        break;
+                    }
                 }
             }
         }
@@ -80,6 +99,11 @@ namespace Sheep_Wolf_NetStandardLibrary
         {
             animalModelsArray.AddRange(dataBase.SelectTable());
             animalModelsArray = animalModelsArray.OrderBy(a => a.Order).ToList();
+
+        }
+
+        public void Transfer(AnimalModel N, Intent intent)
+        {
 
         }
     }

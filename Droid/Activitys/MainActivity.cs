@@ -10,6 +10,7 @@ using Sheep_Wolf_NetStandardLibrary;
 using V7Toolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Views;
 
+
 namespace Sheep_Wolf.Droid
 {
     [Activity(Label = "Circle of Life", Icon = "@mipmap/icon", MainLauncher = true)]
@@ -90,10 +91,17 @@ namespace Sheep_Wolf.Droid
             {
                 type = AnimalType.SHEEP;
             }
+            else if (N is DuckModel)
+            {
+                type = AnimalType.DUCK;
+            }
             else
             {
                 type = AnimalType.WOLF;
             }
+
+            businessLogic.Transfer(N, intent);
+            //intent.PutExtra("animal", );
 
             intent.PutExtra(Keys.NAMEofANIMAL, N.Name);
             intent.PutExtra(Keys.FOTOofANIMAL, N.URL);
@@ -155,8 +163,9 @@ namespace Sheep_Wolf.Droid
                     return true;
 
                 case Resource.Id.addDucks:
-
-
+                    businessLogic.AddDucks();
+                    CountAnimal();
+                    adapter.NotifyDataSetChanged();
                     return true;
 
                 default:

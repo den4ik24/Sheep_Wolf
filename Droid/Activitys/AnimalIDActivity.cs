@@ -44,6 +44,11 @@ namespace Sheep_Wolf.Droid
             }
             if (typeOfAnimal == 1)
             {
+                imageAnimal.SetImageResource(Resource.Drawable.duck);
+                animalType.Text = AnimalType.DUCK.ToString();
+            }
+            if (typeOfAnimal == 2)
+            {
                 imageAnimal.SetImageResource(Resource.Drawable.wolf);
                 animalType.Text = AnimalType.WOLF.ToString();
             }
