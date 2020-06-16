@@ -10,6 +10,7 @@ namespace Sheep_Wolf_NetStandardLibrary
     {
         IEnumerable<AnimalModel> SelectTable();
         void Insert(AnimalModel animal);
+        AnimalModel Transfer(int N, int typeOfAnimal);
     }
 
     public class DataBase : IDataBase
@@ -17,7 +18,6 @@ namespace Sheep_Wolf_NetStandardLibrary
 
         private readonly string dbPath = Path.Combine(Environment.GetFolderPath
                                          (Environment.SpecialFolder.Personal), "dataBase.db3");
-
         public IEnumerable<AnimalModel> SelectTable()
         {
             var connection = new SQLiteConnection(dbPath);
@@ -27,7 +27,6 @@ namespace Sheep_Wolf_NetStandardLibrary
             var tableSheep = connection.Table<SheepModel>();
             var tableWolf = connection.Table<WolfModel>();
             var tableDuck = connection.Table<DuckModel>();
-            //var animalArray = tableSheep.Union<AnimalModel>(tableWolf);
             var animalArray = tableSheep.Union(tableWolf.Union<AnimalModel>(tableDuck));
             return animalArray;
         }
@@ -36,6 +35,25 @@ namespace Sheep_Wolf_NetStandardLibrary
         {
             var connection = new SQLiteConnection(dbPath);
             connection.Insert(animal);
+        }
+
+        public AnimalModel Transfer(int N, int typeOfAnimal)
+        {
+            var connection = new SQLiteConnection(dbPath);
+
+            
+            if (typeOfAnimal == 0)
+            {
+                return connection.Table<SheepModel>().FirstOrDefault(a => a.Id == N);
+            }
+            else if (typeOfAnimal == 1)
+            {
+                return connection.Table<DuckModel>().FirstOrDefault(a => a.Id == N);
+            }
+            else
+            {
+                return connection.Table<WolfModel>().FirstOrDefault(a => a.Id == N);
+            }
         }
     }
 }

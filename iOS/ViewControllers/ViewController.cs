@@ -19,7 +19,7 @@ namespace Sheep_Wolf.iOS
             base.ViewDidLoad();
            
             ButtonAddAnimal.TouchUpInside += ButtonAddAnimal_TouchUpInside;
-            businessLogic.GetAnimals();
+            businessLogic.GetListAnimals();
             CountAnimal();
             listOfSheeps.Source = new TableSource(businessLogic.AnimalModel(), this);
             picker = new AnimalPickerModel(animalChoice);

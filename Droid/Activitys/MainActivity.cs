@@ -16,22 +16,20 @@ namespace Sheep_Wolf.Droid
     [Activity(Label = "Circle of Life", Icon = "@mipmap/icon", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
-        //Button addSheepButton;
         TextView textViewNumbSheep;
         RecyclerView listOfAnimals;
         EditText textNameOfAnimal;
         Spinner animalChoice;
         AnimalAdapter adapter;
-        IBusinessLogic businessLogic = new BusinessLogic();
         V7Toolbar myToolbar;
 
+        IBusinessLogic businessLogic = new BusinessLogic();
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Main);
 
             myToolbar = FindViewById<V7Toolbar>(Resource.Id.my_toolbar);
-            //addSheepButton = FindViewById<Button>(Resource.Id.addSheepButton);
             textViewNumbSheep = FindViewById<TextView>(Resource.Id.textViewNumbSheep);
             listOfAnimals = FindViewById<RecyclerView>(Resource.Id.listOfAnimals);
             textNameOfAnimal = FindViewById<EditText>(Resource.Id.textNameOfAnimal);
@@ -43,12 +41,11 @@ namespace Sheep_Wolf.Droid
             adapter = new AnimalAdapter();
             
             listOfAnimals.SetLayoutManager(layoutManager);
-            businessLogic.GetAnimals();
+            businessLogic.GetListAnimals();
             CountAnimal();
             adapter.animalModelsArray = businessLogic.AnimalModel();
             adapter.ItemClick += ListOfAnimals_ItemClick;
             listOfAnimals.SetAdapter(adapter);
-            //addSheepButton.Click += AddSheepButton_Click;
             animalChoice.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(AnimalChoice_ItemSelected);
             adapterSpinner.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             animalChoice.Adapter = adapterSpinner;
@@ -70,28 +67,14 @@ namespace Sheep_Wolf.Droid
             StartActivity(intent);
         }
 
-        //private void AddSheepButton_Click(object sender, EventArgs e)
-        //{
-        //    if (textNameOfAnimal.Text == "")
-        //    {
-        //        Toast.MakeText(this, "Укажите имя существа", ToastLength.Short).Show();
-        //    }
-        //    else
-        //    {
-        //        AddRandomAnimal();
-        //        textNameOfAnimal.Text = "";
-
-        //    }
-        //}
-
-        public void DataTransmission(AnimalModel N, Intent intent)
+        public void DataTransmission(AnimalModel animalModel, Intent intent)
         {
             AnimalType type;
-            if (N is SheepModel)
+            if (animalModel is SheepModel)
             {
                 type = AnimalType.SHEEP;
             }
-            else if (N is DuckModel)
+            else if (animalModel is DuckModel)
             {
                 type = AnimalType.DUCK;
             }
@@ -99,21 +82,20 @@ namespace Sheep_Wolf.Droid
             {
                 type = AnimalType.WOLF;
             }
-
-            businessLogic.Transfer(N, intent);
-            //intent.PutExtra("animal", );
-
-            intent.PutExtra(Keys.NAMEofANIMAL, N.Name);
-            intent.PutExtra(Keys.FOTOofANIMAL, N.URL);
             intent.PutExtra(Keys.TYPEofANIMAL, (int)type);
-            if (N.IsDead)
-            {
-                intent.PutExtra(Keys.DEADofANIMAL, N.IsDead);
-            }
-            if (!string.IsNullOrEmpty(N.Killer))
-            {
-                intent.PutExtra(Keys.KILLERofANIMAL, N.Killer);
-            }
+            intent.PutExtra(Keys.ANIMAL_ID, animalModel.Id);
+
+            //    intent.PutExtra(Keys.NAMEofANIMAL, N.Name);
+            //    intent.PutExtra(Keys.FOTOofANIMAL, N.URL);
+            //    if (N.IsDead)
+            //    {
+            //        intent.PutExtra(Keys.DEADofANIMAL, N.IsDead);
+            //    }
+            //    if (!string.IsNullOrEmpty(N.Killer))
+            //    {
+            //        intent.PutExtra(Keys.KILLERofANIMAL, N.Killer);
+            //    }
+            //    intent.PutExtra(Keys.ANIMAL, animalModel.Id);
         }
 
         public void AddRandomAnimal()

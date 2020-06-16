@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Android.Content;
 
 namespace Sheep_Wolf_NetStandardLibrary
 {
@@ -9,8 +8,8 @@ namespace Sheep_Wolf_NetStandardLibrary
         List<AnimalModel> AnimalModel();
         bool AddAnimal(bool iS, string aN);
         void AddDucks();
-        void GetAnimals();
-        void Transfer(AnimalModel N, Intent intent);
+        void GetListAnimals();
+        AnimalModel GetAnimal(int animalID, int typeOfAnimal);
     }
 
     public class BusinessLogic : IBusinessLogic
@@ -95,16 +94,18 @@ namespace Sheep_Wolf_NetStandardLibrary
             }
         }
 
-        public void GetAnimals()
+        public void GetListAnimals()
         {
             animalModelsArray.AddRange(dataBase.SelectTable());
             animalModelsArray = animalModelsArray.OrderBy(a => a.Order).ToList();
 
         }
 
-        public void Transfer(AnimalModel N, Intent intent)
+        public AnimalModel GetAnimal(int animalID, int typeOfAnimal)
         {
 
+            var model = dataBase.Transfer(animalID, typeOfAnimal);
+            return model;
         }
     }
 }

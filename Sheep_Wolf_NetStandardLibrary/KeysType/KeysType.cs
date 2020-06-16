@@ -14,5 +14,6 @@
         public static string TYPEofANIMAL = "TYPEofANIMAL";
         public static string DEADofANIMAL = "DEADofANIMAL";
         public static string KILLERofANIMAL = "KILLERofANIMAL";
+        public static string ANIMAL_ID = "ANIMAL_ID";
     }
 }
