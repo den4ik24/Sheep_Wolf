@@ -10,7 +10,7 @@ namespace Sheep_Wolf_NetStandardLibrary
     {
         IEnumerable<AnimalModel> SelectTable();
         void Insert(AnimalModel animal);
-        AnimalModel Transfer(int N, int typeOfAnimal);
+        AnimalModel Transfer<T>(int N) where T: AnimalModel, new();
     }
 
     public class DataBase : IDataBase
@@ -32,28 +32,15 @@ namespace Sheep_Wolf_NetStandardLibrary
         }
 
         public void Insert(AnimalModel animal)
-        {
+        { 
             var connection = new SQLiteConnection(dbPath);
             connection.Insert(animal);
         }
 
-        public AnimalModel Transfer(int N, int typeOfAnimal)
+        public AnimalModel Transfer<T>(int N) where T: AnimalModel, new()
         {
-            var connection = new SQLiteConnection(dbPath);
-
-            
-            if (typeOfAnimal == 0)
-            {
-                return connection.Table<SheepModel>().FirstOrDefault(a => a.Id == N);
-            }
-            else if (typeOfAnimal == 1)
-            {
-                return connection.Table<DuckModel>().FirstOrDefault(a => a.Id == N);
-            }
-            else
-            {
-                return connection.Table<WolfModel>().FirstOrDefault(a => a.Id == N);
-            }
+            SQLiteConnection connection = new SQLiteConnection(dbPath);
+            return connection.Table<T>().FirstOrDefault(a => a.Id == N);
         }
     }
 }

@@ -103,9 +103,19 @@ namespace Sheep_Wolf_NetStandardLibrary
 
         public AnimalModel GetAnimal(int animalID, int typeOfAnimal)
         {
-
-            var model = dataBase.Transfer(animalID, typeOfAnimal);
-            return model;
+            var type = (AnimalType)typeOfAnimal;
+            switch (type)
+            {
+                case AnimalType.SHEEP:
+                    return dataBase.Transfer<SheepModel>(animalID);
+                case AnimalType.DUCK:
+                    return dataBase.Transfer<DuckModel>(animalID);
+                case AnimalType.WOLF:
+                    return dataBase.Transfer<WolfModel>(animalID);
+                default:
+                    break;
+            }
+            return null;
         }
     }
 }

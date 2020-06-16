@@ -11,5 +11,10 @@ namespace Sheep_Wolf_NetStandardLibrary
         public string Killer { get; set; }
         public bool IsDead { get; set; }
         public int Order { get; set; }
+
+        public AnimalModel()
+        {
+
+        }
     }
 }
