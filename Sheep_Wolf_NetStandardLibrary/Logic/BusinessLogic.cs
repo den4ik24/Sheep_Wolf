@@ -17,7 +17,7 @@ namespace Sheep_Wolf_NetStandardLibrary
         IDataBase dataBase = new DataBase();
         AnimalModel animal;
         public List<AnimalModel> animalModelsArray = new List<AnimalModel>();
-        int duckCount=1;
+        int duckCount;
         public List<AnimalModel> AnimalModel()
         {
             return animalModelsArray;
@@ -44,7 +44,7 @@ namespace Sheep_Wolf_NetStandardLibrary
         {
             animal = DuckModel.GetDuck();
             animal.Order = animalModelsArray.Count;
-            animal.Name = $"Duck_{duckCount++}";
+            animal.Name = $"Duck_{++duckCount}";
             animalModelsArray.Add(animal);
             dataBase.Insert(animal);
         }
@@ -73,6 +73,10 @@ namespace Sheep_Wolf_NetStandardLibrary
         {
             if (animal is WolfModel)
             {
+                animalModelsArray.RemoveAll(a => a is DuckModel);
+                dataBase.Delete<DuckModel>();
+                duckCount = 0;
+
                 for (var i = animalModelsArray.Count - 1; i >= 0; --i)
                 {
                     var item = animalModelsArray[i];
@@ -81,13 +85,7 @@ namespace Sheep_Wolf_NetStandardLibrary
                         item.IsDead = true;
                         item.Killer = animal.Name;
                         animal.Killer = item.Name;
-                        break;
-                    }
-
-                    if(item is DuckModel)
-                    {
-                        animalModelsArray.Remove(item);
-                        duckCount = 1;
+                        dataBase.Update(item);
                         break;
                     }
                 }
@@ -107,11 +105,11 @@ namespace Sheep_Wolf_NetStandardLibrary
             switch (type)
             {
                 case AnimalType.SHEEP:
-                    return dataBase.Transfer<SheepModel>(animalID);
+                    return dataBase.GetItem<SheepModel>(animalID);
                 case AnimalType.DUCK:
-                    return dataBase.Transfer<DuckModel>(animalID);
+                    return dataBase.GetItem<DuckModel>(animalID);
                 case AnimalType.WOLF:
-                    return dataBase.Transfer<WolfModel>(animalID);
+                    return dataBase.GetItem<WolfModel>(animalID);
                 default:
                     break;
             }

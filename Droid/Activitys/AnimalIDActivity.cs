@@ -26,11 +26,6 @@ namespace Sheep_Wolf.Droid
             animalType = FindViewById<TextView>(Resource.Id.animalType);
             imageAnimal = FindViewById<ImageView>(Resource.Id.imageAnimal);
 
-            //var animalName = Intent.Extras.GetString(Keys.NAMEofANIMAL);
-            //var animalFoto = Intent.Extras.GetString(Keys.FOTOofANIMAL);
-            //var deadORalive = Intent.Extras.GetBoolean(Keys.DEADofANIMAL);
-            //var killer = Intent.Extras.GetString(Keys.KILLERofANIMAL, null);
-
             var typeOfAnimal = Intent.Extras.GetInt(Keys.TYPEofANIMAL);
             var animalID = Intent.Extras.GetInt(Keys.ANIMAL_ID);
             var animal = businessLogic.GetAnimal(animalID, typeOfAnimal);
