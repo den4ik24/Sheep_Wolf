@@ -9,7 +9,10 @@ using Android.Widget;
 using Sheep_Wolf_NetStandardLibrary;
 using V7Toolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Views;
-
+using Android.Text;
+using Android.Graphics.Drawables;
+using Android.Graphics;
+using Android.Support.V4.Content;
 
 namespace Sheep_Wolf.Droid
 {
@@ -22,7 +25,7 @@ namespace Sheep_Wolf.Droid
         Spinner animalChoice;
         AnimalAdapter adapter;
         V7Toolbar myToolbar;
-
+        IMenu menu;
         IBusinessLogic businessLogic = new BusinessLogic();
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -50,6 +53,9 @@ namespace Sheep_Wolf.Droid
             adapterSpinner.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             animalChoice.Adapter = adapterSpinner;
             animalChoice.SetSelection(0);
+
+            textNameOfAnimal.TextChanged += TextNameOfAnimal_TextChanged;
+            
         }
 
         private void AnimalChoice_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
@@ -62,19 +68,19 @@ namespace Sheep_Wolf.Droid
         private void ListOfAnimals_ItemClick(object sender, int e)
         {
             var intent = new Intent(this, typeof(AnimalIDActivity));
-            var N = adapter.ElementPosition(e);
-            DataTransmission(N, intent);
+            var animal = adapter.ElementPosition(e);
+            DataTransmission(animal, intent);
             StartActivity(intent);
         }
 
-        public void DataTransmission(AnimalModel animalModel, Intent intent)
+        public void DataTransmission(AnimalModel animal, Intent intent)
         {
             AnimalType type;
-            if (animalModel is SheepModel)
+            if (animal is SheepModel)
             {
                 type = AnimalType.SHEEP;
             }
-            else if (animalModel is DuckModel)
+            else if (animal is DuckModel)
             {
                 type = AnimalType.DUCK;
             }
@@ -83,19 +89,74 @@ namespace Sheep_Wolf.Droid
                 type = AnimalType.WOLF;
             }
             intent.PutExtra(Keys.TYPEofANIMAL, (int)type);
-            intent.PutExtra(Keys.ANIMAL_ID, animalModel.Id);
+            intent.PutExtra(Keys.ANIMAL_ID, animal.Id);
+        }
 
-            //    intent.PutExtra(Keys.NAMEofANIMAL, N.Name);
-            //    intent.PutExtra(Keys.FOTOofANIMAL, N.URL);
-            //    if (N.IsDead)
-            //    {
-            //        intent.PutExtra(Keys.DEADofANIMAL, N.IsDead);
-            //    }
-            //    if (!string.IsNullOrEmpty(N.Killer))
-            //    {
-            //        intent.PutExtra(Keys.KILLERofANIMAL, N.Killer);
-            //    }
-            //    intent.PutExtra(Keys.ANIMAL, animalModel.Id);
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.menu, menu);
+            var item = menu.FindItem(Resource.Id.addAnimals);
+            Drawable resIcon = ContextCompat.GetDrawable(this, Resource.Drawable.animal_logo);
+ 
+            resIcon.Mutate().SetColorFilter(Color.DarkGray, PorterDuff.Mode.SrcIn);
+            item.SetIcon(resIcon);
+            item.SetEnabled(false);
+            this.menu = menu;
+            return true;
+        }
+
+        //public override bool OnPrepareOptionsMenu(IMenu menu)
+        //{
+        //}
+        private void TextNameOfAnimal_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Drawable resIcon = ContextCompat.GetDrawable(this, Resource.Drawable.animal_logo);
+
+            var item = menu.FindItem(Resource.Id.addAnimals);
+
+            if (textNameOfAnimal.Text == "")
+            {
+                resIcon.Mutate().SetColorFilter(Color.DarkGray, PorterDuff.Mode.SrcIn);
+                item.SetIcon(resIcon);
+                item.SetEnabled(false);
+            }
+            else
+            {
+                item.SetEnabled(true);
+                item.SetIcon(resIcon);
+            }
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        { 
+            switch (item.ItemId)
+            {
+                case Resource.Id.addAnimals:
+                    if (textNameOfAnimal.Text == "")
+                    {
+                        //item.SetEnabled(false);
+                        //item.Icon.SetAlpha(130);
+
+                        Toast.MakeText(this, "Укажите имя существа", ToastLength.Short).Show();
+                    }
+                    else
+                    {
+                        //item.SetEnabled(true);
+                        //item.Icon.SetAlpha(255);
+                        AddRandomAnimal();
+                        textNameOfAnimal.Text = "";
+                    }
+                    return true;
+
+                case Resource.Id.addDucks:
+                    businessLogic.AddDucks();
+                    CountAnimal();
+                    adapter.NotifyDataSetChanged();
+                    return true;
+
+                default:
+                    return base.OnOptionsItemSelected(item);
+            }
         }
 
         public void AddRandomAnimal()
@@ -119,40 +180,6 @@ namespace Sheep_Wolf.Droid
         public void CountAnimal()
         {
             textViewNumbSheep.Text = businessLogic.AnimalModel().Count.ToString();
-        }
-
-        public override bool OnCreateOptionsMenu(IMenu menu)
-        {
-            MenuInflater.Inflate(Resource.Menu.menu, menu);
-            return true;
-        }
-
-        public override bool OnOptionsItemSelected(IMenuItem item)
-        {
-            switch (item.ItemId)
-            {
-                case Resource.Id.addAnimals:
-                    if (textNameOfAnimal.Text == "")
-                    {
-                        Toast.MakeText(this, "Укажите имя существа", ToastLength.Short).Show();
-                    }
-                    else
-                    {
-                        AddRandomAnimal();
-                        textNameOfAnimal.Text = "";
-
-                    }
-                    return true;
-
-                case Resource.Id.addDucks:
-                    businessLogic.AddDucks();
-                    CountAnimal();
-                    adapter.NotifyDataSetChanged();
-                    return true;
-
-                default:
-                    return base.OnOptionsItemSelected(item);
-            }
         }
     }
 }

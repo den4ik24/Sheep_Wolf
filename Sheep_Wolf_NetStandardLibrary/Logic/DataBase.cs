@@ -18,8 +18,9 @@ namespace Sheep_Wolf_NetStandardLibrary
     public class DataBase : IDataBase
     {
 
-        private readonly string dbPath = Path.Combine(Environment.GetFolderPath
-                                         (Environment.SpecialFolder.Personal), "dataBase.db3");
+        private readonly string dbPath = Path.Combine
+            (Environment.GetFolderPath(Environment.SpecialFolder.Personal), "dataBase.db3");
+
         public IEnumerable<AnimalModel> SelectTable()
         {
             var connection = new SQLiteConnection(dbPath);

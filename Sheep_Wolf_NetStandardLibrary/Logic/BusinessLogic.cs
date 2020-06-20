@@ -15,9 +15,9 @@ namespace Sheep_Wolf_NetStandardLibrary
     public class BusinessLogic : IBusinessLogic
     {
         IDataBase dataBase = new DataBase();
-        AnimalModel animal;
         public List<AnimalModel> animalModelsArray = new List<AnimalModel>();
         int duckCount;
+
         public List<AnimalModel> AnimalModel()
         {
             return animalModelsArray;
@@ -32,9 +32,9 @@ namespace Sheep_Wolf_NetStandardLibrary
             }
             else
             {
-                ChoiceAnimal(isSheep);
-                AssignAnimal(animalName);
-                AnimalKiller();
+                var animal = ChoiceAnimal(isSheep);
+                AssignAnimal(animalName, animal);
+                AnimalKiller(animal);
                 dataBase.Insert(animal);
                 return false;
             }
@@ -42,34 +42,36 @@ namespace Sheep_Wolf_NetStandardLibrary
 
         public void AddDucks()
         {
-            animal = DuckModel.GetDuck();
+            var animal = DuckModel.GetDuck();
             animal.Order = animalModelsArray.Count;
             animal.Name = $"Duck_{++duckCount}";
             animalModelsArray.Add(animal);
             dataBase.Insert(animal);
         }
 
-        public void ChoiceAnimal(bool isSheep)
+        public AnimalModel ChoiceAnimal(bool isSheep)
         {
+            AnimalModel animal;
             if (isSheep)
             {
                 animal = SheepModel.GetSheep();
-
+                return animal;
             }
             else
             {
                 animal = WolfModel.GetWolf();
+                return animal;
             }
         }
 
-        public void AssignAnimal(string animalName)
+        public void AssignAnimal(string animalName, AnimalModel animal)
         {
             animal.Order = animalModelsArray.Count;
             animal.Name = animalName;
             animalModelsArray.Add(animal);
         }
 
-        public void AnimalKiller()
+        public void AnimalKiller(AnimalModel animal)
         {
             if (animal is WolfModel)
             {
