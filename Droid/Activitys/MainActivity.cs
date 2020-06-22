@@ -1,18 +1,18 @@
 ﻿using System;
 using Android.App;
 using Android.Content;
+using Android.Graphics;
+using Android.Graphics.Drawables;
 using Android.OS;
-using Android.Support.V7.Widget;
+using Android.Support.V4.Content;
 using Android.Support.V7.App;
+using Android.Support.V7.Widget;
+using Android.Text;
+using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
 using Sheep_Wolf_NetStandardLibrary;
 using V7Toolbar = Android.Support.V7.Widget.Toolbar;
-using Android.Views;
-using Android.Text;
-using Android.Graphics.Drawables;
-using Android.Graphics;
-using Android.Support.V4.Content;
 
 namespace Sheep_Wolf.Droid
 {
@@ -55,7 +55,6 @@ namespace Sheep_Wolf.Droid
             animalChoice.SetSelection(0);
 
             textNameOfAnimal.TextChanged += TextNameOfAnimal_TextChanged;
-            
         }
 
         private void AnimalChoice_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
@@ -95,36 +94,37 @@ namespace Sheep_Wolf.Droid
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
             MenuInflater.Inflate(Resource.Menu.menu, menu);
+            var resIcon = ContextCompat.GetDrawable(this, Resource.Drawable.animal_logo);
             var item = menu.FindItem(Resource.Id.addAnimals);
-            Drawable resIcon = ContextCompat.GetDrawable(this, Resource.Drawable.animal_logo);
- 
-            resIcon.Mutate().SetColorFilter(Color.DarkGray, PorterDuff.Mode.SrcIn);
-            item.SetIcon(resIcon);
-            item.SetEnabled(false);
+            SetIconColorDisabled(item, resIcon);
             this.menu = menu;
             return true;
         }
 
-        //public override bool OnPrepareOptionsMenu(IMenu menu)
-        //{
-        //}
         private void TextNameOfAnimal_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Drawable resIcon = ContextCompat.GetDrawable(this, Resource.Drawable.animal_logo);
-
+            var resIcon = ContextCompat.GetDrawable(this, Resource.Drawable.animal_logo);
             var item = menu.FindItem(Resource.Id.addAnimals);
-
             if (textNameOfAnimal.Text == "")
             {
-                resIcon.Mutate().SetColorFilter(Color.DarkGray, PorterDuff.Mode.SrcIn);
-                item.SetIcon(resIcon);
-                item.SetEnabled(false);
+                SetIconColorDisabled(item, resIcon);
             }
             else
             {
-                item.SetEnabled(true);
-                item.SetIcon(resIcon);
+                SetEnablesIconState(item, resIcon, true);
             }
+        }
+
+        public void SetEnablesIconState(IMenuItem item, Drawable resIcon, bool enabled)
+        {
+            item.SetIcon(resIcon);
+            item.SetEnabled(enabled);
+        }
+        
+        public void SetIconColorDisabled(IMenuItem item, Drawable resIcon)
+        {
+            resIcon.Mutate().SetColorFilter(Color.DarkGray, PorterDuff.Mode.SrcIn);
+            SetEnablesIconState(item, resIcon, false);
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
@@ -134,15 +134,10 @@ namespace Sheep_Wolf.Droid
                 case Resource.Id.addAnimals:
                     if (textNameOfAnimal.Text == "")
                     {
-                        //item.SetEnabled(false);
-                        //item.Icon.SetAlpha(130);
-
                         Toast.MakeText(this, "Укажите имя существа", ToastLength.Short).Show();
                     }
                     else
                     {
-                        //item.SetEnabled(true);
-                        //item.Icon.SetAlpha(255);
                         AddRandomAnimal();
                         textNameOfAnimal.Text = "";
                     }
