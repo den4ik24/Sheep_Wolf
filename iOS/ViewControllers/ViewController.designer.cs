@@ -19,7 +19,11 @@ namespace Sheep_Wolf.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIButton ButtonAddAnimal { get; set; }
+        UIKit.UIBarButtonItem ButtonAddAnimal { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIBarButtonItem ButtonAddDucks { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -32,8 +36,6 @@ namespace Sheep_Wolf.iOS
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITextField textNameOfAnimals { get; set; }
-
-
         [Action ("ButtonAddAnimal_TouchUpInside:")]
         partial void ButtonAddAnimal_TouchUpInside (UIKit.UIButton sender);
 
@@ -47,6 +49,11 @@ namespace Sheep_Wolf.iOS
             if (ButtonAddAnimal != null) {
                 ButtonAddAnimal.Dispose ();
                 ButtonAddAnimal = null;
+            }
+
+            if (ButtonAddDucks != null) {
+                ButtonAddDucks.Dispose ();
+                ButtonAddDucks = null;
             }
 
             if (LabelNumberAnimal != null) {

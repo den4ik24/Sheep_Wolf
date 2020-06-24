@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="19290">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="19290">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -8,7 +8,7 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--sheeps VS wolves-->
+        <!--Circle Of Life-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="ViewController" id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
@@ -20,22 +20,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oBE-Ac-vcx" misplaced="YES">
-                                <rect key="frame" x="0.0" y="96" width="207" height="38"/>
-                                <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="Adding Animal">
-                                            <attributes>
-                                                <font key="NSFont" size="20" name="MarkerFelt-Wide"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </state>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZUM-ry-mAe" misplaced="YES">
-                                <rect key="frame" x="207" y="96" width="207" height="38"/>
+                                <rect key="frame" x="0.0" y="96" width="414" height="38"/>
                                 <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="qP2-Wg-Oqz"/>
@@ -156,34 +142,35 @@
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="oLw-ym-bm1" secondAttribute="trailing" id="14634"/>
                             <constraint firstItem="oLw-ym-bm1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="14638"/>
-                            <constraint firstItem="oLw-ym-bm1" firstAttribute="top" secondItem="oBE-Ac-vcx" secondAttribute="bottom" constant="20" id="14683"/>
                             <constraint firstAttribute="trailing" secondItem="17500" secondAttribute="trailing" id="4qD-WX-8uX"/>
                             <constraint firstItem="GE8-B5-WFc" firstAttribute="top" secondItem="oLw-ym-bm1" secondAttribute="bottom" constant="20" id="EhN-zc-KWd"/>
                             <constraint firstItem="GE8-B5-WFc" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="Ey9-zh-uej"/>
                             <constraint firstItem="17500" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="G1B-3z-d8P"/>
                             <constraint firstItem="17500" firstAttribute="top" secondItem="lKx-1h-y2K" secondAttribute="bottom" constant="20" id="HAm-cT-e75"/>
                             <constraint firstAttribute="trailing" secondItem="GE8-B5-WFc" secondAttribute="trailing" id="HHx-gH-CL5"/>
-                            <constraint firstItem="ZUM-ry-mAe" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="KCd-1I-gse"/>
+                            <constraint firstItem="ZUM-ry-mAe" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="KCd-1I-gse"/>
                             <constraint firstItem="lKx-1h-y2K" firstAttribute="top" secondItem="oLw-ym-bm1" secondAttribute="bottom" constant="20" id="Qws-g8-yu4"/>
-                            <constraint firstItem="oBE-Ac-vcx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="XIf-gj-3Lq"/>
-                            <constraint firstItem="oBE-Ac-vcx" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="Zra-km-e7N"/>
                             <constraint firstItem="ZUM-ry-mAe" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="cKO-MD-ZfF"/>
                             <constraint firstItem="17500" firstAttribute="top" secondItem="GE8-B5-WFc" secondAttribute="bottom" constant="20" id="efD-tJ-7ht"/>
                             <constraint firstItem="lKx-1h-y2K" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="fBy-J0-I3a"/>
-                            <constraint firstItem="oBE-Ac-vcx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="fb4-2N-ULr"/>
                             <constraint firstItem="ZUM-ry-mAe" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="jwL-lp-35L"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="17500" secondAttribute="bottom" id="qYB-71-UYX"/>
+                            <constraint firstItem="oLw-ym-bm1" firstAttribute="top" secondItem="ZUM-ry-mAe" secondAttribute="bottom" constant="20" id="wAa-ac-05Z"/>
                             <constraint firstItem="lKx-1h-y2K" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="yEE-zh-Tmz"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="sheeps VS wolves" id="19445"/>
+                    <navigationItem key="navigationItem" title="Circle Of Life" id="Th5-iG-inF">
+                        <barButtonItem key="leftBarButtonItem" title="Adding Animal" width="44" style="plain" id="4gZ-eY-rwZ" enabled="NO"/>
+                        <barButtonItem key="rightBarButtonItem" title="Adding Ducks" style="plain" id="5C4-hs-nOL"/>
+                    </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="ButtonAddAnimal" destination="oBE-Ac-vcx" id="name-outlet-oBE-Ac-vcx"/>
                         <outlet property="LabelNumberAnimal" destination="ZUM-ry-mAe" id="name-outlet-ZUM-ry-mAe"/>
                         <outlet property="animalChoice" destination="GE8-B5-WFc" id="name-outlet-GE8-B5-WFc"/>
                         <outlet property="listOfSheeps" destination="17500" id="name-outlet-17500"/>
                         <outlet property="textNameOfAnimals" destination="oLw-ym-bm1" id="name-outlet-oLw-ym-bm1"/>
+                        <outlet property="ButtonAddAnimal" destination="4gZ-eY-rwZ" id="name-outlet-4gZ-eY-rwZ"/>
+                        <outlet property="ButtonAddDucks" destination="5C4-hs-nOL" id="name-outlet-5C4-hs-nOL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

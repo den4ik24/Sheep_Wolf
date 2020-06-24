@@ -17,8 +17,8 @@ namespace Sheep_Wolf.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-           
-            ButtonAddAnimal.TouchUpInside += ButtonAddAnimal_TouchUpInside;
+          
+            ButtonAddAnimal.Clicked += ButtonAddAnimal_TouchUpInside;
             businessLogic.GetListAnimals();
             CountAnimal();
             listOfSheeps.Source = new TableSource(businessLogic.AnimalModel(), this);
@@ -27,6 +27,19 @@ namespace Sheep_Wolf.iOS
             uiPicker.Model = picker;
             uiPicker.Model.Selected(uiPicker, 0, 0);
             animalChoice.InputView = uiPicker;
+            textNameOfAnimals.EditingChanged += TextNameOfAnimals_EditingChanged;
+        }
+
+        private void TextNameOfAnimals_EditingChanged(object sender, EventArgs e)
+        {
+            if(textNameOfAnimals.Text != "")
+            {
+                ButtonAddAnimal.Enabled = true;
+            }
+            else
+            {
+                ButtonAddAnimal.Enabled = false;
+            }
         }
 
         private void ButtonAddAnimal_TouchUpInside(object sender, EventArgs e)
@@ -43,6 +56,7 @@ namespace Sheep_Wolf.iOS
             {
                 AddRandomAnimal();
                 textNameOfAnimals.Text = "";
+                ButtonAddAnimal.Enabled = false;
             }
         }
 

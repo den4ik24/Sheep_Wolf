@@ -111,11 +111,11 @@ namespace Sheep_Wolf.Droid
             }
             else
             {
-                SetEnablesIconState(item, resIcon, true);
+                SetEnabledIconState(item, resIcon, true);
             }
         }
 
-        public void SetEnablesIconState(IMenuItem item, Drawable resIcon, bool enabled)
+        public void SetEnabledIconState(IMenuItem item, Drawable resIcon, bool enabled)
         {
             item.SetIcon(resIcon);
             item.SetEnabled(enabled);
@@ -124,7 +124,7 @@ namespace Sheep_Wolf.Droid
         public void SetIconColorDisabled(IMenuItem item, Drawable resIcon)
         {
             resIcon.Mutate().SetColorFilter(Color.DarkGray, PorterDuff.Mode.SrcIn);
-            SetEnablesIconState(item, resIcon, false);
+            SetEnabledIconState(item, resIcon, false);
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
