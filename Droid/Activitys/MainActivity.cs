@@ -26,7 +26,7 @@ namespace Sheep_Wolf.Droid
         AnimalAdapter adapter;
         V7Toolbar myToolbar;
         IMenu menu;
-        IBusinessLogic businessLogic = new BusinessLogic();
+        readonly IBusinessLogic businessLogic = new BusinessLogic();
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);

@@ -15,7 +15,6 @@ namespace Sheep_Wolf.iOS
         {
             textTableViewWolvesName.Text = animal.Name;
             ImageService.Instance.LoadUrl(animal.URL).Into(fotoWolf);
-            Console.WriteLine(animal.URL);
         }
     }
 }

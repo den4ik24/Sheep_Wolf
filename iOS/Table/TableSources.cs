@@ -25,6 +25,12 @@ namespace Sheep_Wolf.iOS
                 cellSheep.UpdateCell(animalClassArray[indexPath.Row]);
                 return cellSheep;
             }
+            else if(animalClassArray[indexPath.Row] is DuckModel)
+            {
+                var cellDuck = tableView.DequeueReusableCell("cellOfDuck") as TableViewCellDuck;
+                cellDuck.UpdateCell(animalClassArray[indexPath.Row]);
+                return cellDuck;
+            }
             else
             {
                 var cellWolf = tableView.DequeueReusableCell("cellOfWolf") as TableViewCellWolf;

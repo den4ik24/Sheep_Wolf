@@ -24,10 +24,16 @@ namespace Sheep_Wolf.iOS
                 ImageAnimal.Image = UIImage.FromBundle("sheep.png");
                 NameAnimalID.Text = AnimalType.SHEEP.ToString();
             }
-            else
+            else if(model is WolfModel)
             {
                 ImageAnimal.Image = UIImage.FromBundle("wolf.png");
                 NameAnimalID.Text = AnimalType.WOLF.ToString();
+            }
+
+            else
+            {
+                ImageAnimal.Image = UIImage.FromBundle("duck.png");
+                NameAnimalID.Text = AnimalType.DUCK.ToString();
             }
 
             if (model.Killer != null)

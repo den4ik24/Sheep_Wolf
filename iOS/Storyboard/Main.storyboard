@@ -135,6 +135,40 @@
                                             <outlet property="textTableViewWolvesName" destination="9go-ry-0Cs" id="name-outlet-9go-ry-0Cs"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TableViewCellDuck" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellOfDuck" id="91T-0O-sFa" customClass="TableViewCellDuck">
+                                        <rect key="frame" x="0.0" y="148" width="414" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="91T-0O-sFa" id="8eu-Ib-06D">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1Lr-Gf-QvT">
+                                                    <rect key="frame" x="0.0" y="1.5" width="103.5" height="57"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duck's Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gmi-11-44c">
+                                                    <rect key="frame" x="103.5" y="0.0" width="310.5" height="60"/>
+                                                    <color key="backgroundColor" systemColor="systemGreenColor" colorSpace="custom" customColorSpace="sRGB" red="0.203921568627451" green="0.780392156862745" blue="0.349019607843137" alpha="1"/>
+                                                    <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
+                                                    <color key="textColor" systemColor="systemBlueColor" colorSpace="calibratedRGB" red="0" green="0.47843137254902" blue="1" alpha="1"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="gmi-11-44c" secondAttribute="trailing" id="Fyt-2j-kPf"/>
+                                                <constraint firstItem="gmi-11-44c" firstAttribute="top" secondItem="8eu-Ib-06D" secondAttribute="top" id="KiN-IQ-3Gq"/>
+                                                <constraint firstItem="gmi-11-44c" firstAttribute="width" secondItem="8eu-Ib-06D" secondAttribute="width" multiplier="0.75" id="MS0-Qm-2Zj"/>
+                                                <constraint firstAttribute="bottom" secondItem="1Lr-Gf-QvT" secondAttribute="bottom" id="PSa-fm-1Vd"/>
+                                                <constraint firstItem="1Lr-Gf-QvT" firstAttribute="leading" secondItem="8eu-Ib-06D" secondAttribute="leading" id="sV6-VN-0up"/>
+                                                <constraint firstItem="1Lr-Gf-QvT" firstAttribute="top" secondItem="8eu-Ib-06D" secondAttribute="top" id="tO9-fk-2qm"/>
+                                                <constraint firstAttribute="bottom" secondItem="gmi-11-44c" secondAttribute="bottom" id="vWW-UE-ueh"/>
+                                                <constraint firstItem="1Lr-Gf-QvT" firstAttribute="width" secondItem="8eu-Ib-06D" secondAttribute="width" multiplier="0.25" id="xHm-5x-o4s"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="fotoDuck" destination="1Lr-Gf-QvT" id="name-outlet-1Lr-Gf-QvT"/>
+                                            <outlet property="textTableViewDucksName" destination="gmi-11-44c" id="name-outlet-gmi-11-44c"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
@@ -160,17 +194,17 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Circle Of Life" id="Th5-iG-inF">
-                        <barButtonItem key="leftBarButtonItem" title="Adding Animal" width="44" style="plain" id="4gZ-eY-rwZ" enabled="NO"/>
+                        <barButtonItem key="leftBarButtonItem" enabled="NO" title="Adding Animal" width="44" style="plain" id="4gZ-eY-rwZ"/>
                         <barButtonItem key="rightBarButtonItem" title="Adding Ducks" style="plain" id="5C4-hs-nOL"/>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="ButtonAddAnimal" destination="4gZ-eY-rwZ" id="name-outlet-4gZ-eY-rwZ"/>
+                        <outlet property="ButtonAddDucks" destination="5C4-hs-nOL" id="name-outlet-5C4-hs-nOL"/>
                         <outlet property="LabelNumberAnimal" destination="ZUM-ry-mAe" id="name-outlet-ZUM-ry-mAe"/>
                         <outlet property="animalChoice" destination="GE8-B5-WFc" id="name-outlet-GE8-B5-WFc"/>
                         <outlet property="listOfSheeps" destination="17500" id="name-outlet-17500"/>
                         <outlet property="textNameOfAnimals" destination="oLw-ym-bm1" id="name-outlet-oLw-ym-bm1"/>
-                        <outlet property="ButtonAddAnimal" destination="4gZ-eY-rwZ" id="name-outlet-4gZ-eY-rwZ"/>
-                        <outlet property="ButtonAddDucks" destination="5C4-hs-nOL" id="name-outlet-5C4-hs-nOL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -189,15 +223,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W0M-5L-Jxb" misplaced="YES">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W0M-5L-Jxb" misplaced="YES" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" usesAttributedText="YES">
                                 <rect key="frame" x="227" y="52" width="187" height="40"/>
                                 <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Ka0-Cs-XTP"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
                                 <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <attributedString key="attributedText">
+                                    <fragment content=" Name:">
+                                        <attributes>
+                                            <color key="NSColor" colorSpace="custom" customColorSpace="sRGB" red="0" green="0.478431" blue="1" alpha="1"/>
+                                            <font key="NSFont" name="MarkerFelt-Wide" family="Marker Felt" size="20"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="labelSheepName" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vT7-2E-efL" misplaced="YES">
                                 <rect key="frame" x="227" y="112" width="187" height="40"/>
@@ -223,11 +265,11 @@
                                     <constraint firstAttribute="height" constant="40" id="VtU-Zu-4jo"/>
                                 </constraints>
                                 <attributedString key="attributedText">
-                                    <fragment content="Title:">
+                                    <fragment content=" Title:">
                                         <attributes>
-                                            <color key="NSColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <font key="NSFont" size="20" name="MarkerFelt-Wide"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            <color key="NSColor" colorSpace="calibratedRGB" red="1" green="0.8" blue="0" alpha="1"/>
+                                            <font key="NSFont" name="MarkerFelt-Wide" family="Marker Felt" size="20"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
@@ -239,7 +281,7 @@
                                     <constraint firstAttribute="height" constant="250" id="Tnv-CW-mho"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KvY-HG-eEM" misplaced="YES">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KvY-HG-eEM" misplaced="YES" numberOfLines="2">
                                 <rect key="frame" x="227" y="232" width="187" height="70"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>

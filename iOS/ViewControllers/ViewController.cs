@@ -8,7 +8,7 @@ namespace Sheep_Wolf.iOS
     {
         AnimalPickerModel picker;
         UIPickerView uiPicker;
-        IBusinessLogic businessLogic = new BusinessLogic();
+        readonly IBusinessLogic businessLogic = new BusinessLogic();
          
         public ViewController(IntPtr handle) : base(handle)
         {
@@ -18,7 +18,9 @@ namespace Sheep_Wolf.iOS
         {
             base.ViewDidLoad();
           
+            ButtonAddDucks.Clicked += ButtonAddDucks_Clicked;
             ButtonAddAnimal.Clicked += ButtonAddAnimal_TouchUpInside;
+            textNameOfAnimals.EditingChanged += TextNameOfAnimals_EditingChanged;
             businessLogic.GetListAnimals();
             CountAnimal();
             listOfSheeps.Source = new TableSource(businessLogic.AnimalModel(), this);
@@ -27,7 +29,6 @@ namespace Sheep_Wolf.iOS
             uiPicker.Model = picker;
             uiPicker.Model.Selected(uiPicker, 0, 0);
             animalChoice.InputView = uiPicker;
-            textNameOfAnimals.EditingChanged += TextNameOfAnimals_EditingChanged;
         }
 
         private void TextNameOfAnimals_EditingChanged(object sender, EventArgs e)
@@ -40,6 +41,13 @@ namespace Sheep_Wolf.iOS
             {
                 ButtonAddAnimal.Enabled = false;
             }
+        }
+
+        private void ButtonAddDucks_Clicked(object sender, EventArgs e)
+        {
+            businessLogic.AddDucks();
+            CountAnimal();
+            listOfSheeps.ReloadData();
         }
 
         private void ButtonAddAnimal_TouchUpInside(object sender, EventArgs e)

@@ -161,6 +161,10 @@
     <Compile Include="Table\AnimalPickerModel.cs" />
     <Compile Include="Transformations\TransformationBase.cs" />
     <Compile Include="Transformations\GrayscaleTransformation.cs" />
+    <Compile Include="Table\TableViewCellDuck.cs" />
+    <Compile Include="Table\TableViewCellDuck.designer.cs">
+      <DependentUpon>TableViewCellDuck.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\sheep.png" />
