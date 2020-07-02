@@ -19,11 +19,11 @@ namespace Sheep_Wolf.iOS
             base.ViewDidLoad();
           
             ButtonAddDucks.Clicked += ButtonAddDucks_Clicked;
-            ButtonAddAnimal.Clicked += ButtonAddAnimal_TouchUpInside;
+            ButtonAddAnimal.Clicked += ButtonAddAnimal_Clicked;
             textNameOfAnimals.EditingChanged += TextNameOfAnimals_EditingChanged;
             businessLogic.GetListAnimals();
-            CountAnimal();
             listOfSheeps.Source = new TableSource(businessLogic.AnimalModel(), this);
+            CountAnimal();
             picker = new AnimalPickerModel(animalChoice);
             uiPicker = new UIPickerView();
             uiPicker.Model = picker;
@@ -50,7 +50,7 @@ namespace Sheep_Wolf.iOS
             listOfSheeps.ReloadData();
         }
 
-        private void ButtonAddAnimal_TouchUpInside(object sender, EventArgs e)
+        private void ButtonAddAnimal_Clicked(object sender, EventArgs e)
         {
             if (textNameOfAnimals.Text == "")
             {

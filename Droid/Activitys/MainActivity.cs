@@ -74,19 +74,7 @@ namespace Sheep_Wolf.Droid
 
         public void DataTransmission(AnimalModel animal, Intent intent)
         {
-            AnimalType type;
-            if (animal is SheepModel)
-            {
-                type = AnimalType.SHEEP;
-            }
-            else if (animal is DuckModel)
-            {
-                type = AnimalType.DUCK;
-            }
-            else
-            {
-                type = AnimalType.WOLF;
-            }
+            var type = businessLogic.TypeOfAnimal(animal);
             intent.PutExtra(Keys.TYPEofANIMAL, (int)type);
             intent.PutExtra(Keys.ANIMAL_ID, animal.Id);
         }

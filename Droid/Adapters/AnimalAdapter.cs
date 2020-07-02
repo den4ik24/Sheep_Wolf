@@ -14,6 +14,7 @@ namespace Sheep_Wolf.Droid
         private const int Sheep_Class = 0;
         private const int Wolf_Class = 1;
         private const int Duck_Class = 2;
+        private const int Hunter_Class = 3;
         public List<AnimalModel> animalModelsArray;
 
         public override int GetItemViewType(int position)
@@ -22,13 +23,17 @@ namespace Sheep_Wolf.Droid
             {
                 return Sheep_Class;
             }
-            if (animalModelsArray[position] is WolfModel)
+            else if (animalModelsArray[position] is WolfModel)
             {
                 return Wolf_Class;
             }
-            else
+            else if (animalModelsArray[position] is DuckModel)
             {
                 return Duck_Class;
+            }
+            else
+            {
+                return Hunter_Class;
             }
         }
 
@@ -47,30 +52,34 @@ namespace Sheep_Wolf.Droid
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
-            if (viewType == Sheep_Class)
+            switch (viewType)
             {
-                SheepViewHolder holderSheep;
-                var viewSheep = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.SheepCheckList, parent, false);
-                holderSheep = new SheepViewHolder(viewSheep, OnClick);
-                viewSheep.Tag = holderSheep;
-                return holderSheep;
+                case Sheep_Class:
+                    SheepViewHolder holderSheep;
+                    var viewSheep = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.SheepCheckList, parent, false);
+                    holderSheep = new SheepViewHolder(viewSheep, OnClick);
+                    viewSheep.Tag = holderSheep;
+                    return holderSheep;
+                case Wolf_Class:
+                    WolfViewHolder holderWolf;
+                    var viewWolf = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.WolfCheckList, parent, false);
+                    holderWolf = new WolfViewHolder(viewWolf, OnClick);
+                    viewWolf.Tag = holderWolf;
+                    return holderWolf;
+                case Duck_Class:
+                    DuckViewHolder holderDuck;
+                    var viewDuck = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.DuckCheckList, parent, false);
+                    holderDuck = new DuckViewHolder(viewDuck, OnClick);
+                    viewDuck.Tag = holderDuck;
+                    return holderDuck;
+                case Hunter_Class:
+                    HunterViewHolder holderHunter;
+                    var viewHunter = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.HunterCheckList, parent, false);
+                    holderHunter = new HunterViewHolder(viewHunter, OnClick);
+                    viewHunter.Tag = holderHunter;
+                    return holderHunter;
             }
-            if (viewType == Wolf_Class)
-            {
-                WolfViewHolder holderWolf;
-                var viewWolf = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.WolfCheckList, parent, false);
-                holderWolf = new WolfViewHolder(viewWolf, OnClick);
-                viewWolf.Tag = holderWolf;
-                return holderWolf;
-            }
-            else
-            {
-                DuckViewHolder holderDuck;
-                var viewDuck = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.DuckCheckList, parent, false);
-                holderDuck = new DuckViewHolder(viewDuck, OnClick);
-                viewDuck.Tag = holderDuck;
-                return holderDuck;
-            }
+            return (RecyclerView.ViewHolder)viewType;
         }
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
@@ -109,6 +118,14 @@ namespace Sheep_Wolf.Droid
                     Picasso.Get()
                                .Load(animalModelsArray[position].URL)
                                .Into(holderWolf.imageWolf);
+                    break;
+
+                case Hunter_Class:
+                    var holderHunter = holder as HunterViewHolder;
+                    holderHunter.textHunter.Text = animalModelsArray[position].Name;
+                    Picasso.Get()
+                               .Load(animalModelsArray[position].URL)
+                               .Into(holderHunter.imageHunter);
                     break;
             }
         }
@@ -151,6 +168,18 @@ namespace Sheep_Wolf.Droid
         {
             textDuck = view.FindViewById<TextView>(Resource.Id.textViewDucksNameAdapter);
             imageDuck = view.FindViewById<ImageView>(Resource.Id.fotoDuck);
+            view.Click += (sender, e) => listener(LayoutPosition);
+        }
+    }
+
+    public class HunterViewHolder : RecyclerView.ViewHolder
+    {
+        public TextView textHunter;
+        public ImageView imageHunter;
+        public HunterViewHolder(View view, Action<int> listener) : base(view)
+        {
+            textHunter = view.FindViewById<TextView>(Resource.Id.textViewHunterNameAdapter);
+            imageHunter = view.FindViewById<ImageView>(Resource.Id.fotoHunter);
             view.Click += (sender, e) => listener(LayoutPosition);
         }
     }

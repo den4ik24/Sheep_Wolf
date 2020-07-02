@@ -9,11 +9,11 @@ namespace Sheep_Wolf.iOS
     public class TableSource : UITableViewSource
     {
         List<AnimalModel> animalClassArray;
-        UIViewController controller;  
-
-        public TableSource(List<AnimalModel> itemsAnimal, UIViewController uIView)
+        UIViewController controller;
+        readonly IBusinessLogic businessLogic = new BusinessLogic();
+        public TableSource(List<AnimalModel> animalModelsArray, UIViewController uIView)
         {
-            animalClassArray = itemsAnimal;
+            animalClassArray = animalModelsArray;
             controller = uIView;
         }
 
@@ -47,15 +47,18 @@ namespace Sheep_Wolf.iOS
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
             tableView.DeselectRow(indexPath, true);
-            var NML = animalClassArray[indexPath.Row];
-            NabvigateTo(NML);
+            var animal = animalClassArray[indexPath.Row];
+            var animalId = animal.Id;
+            var type = businessLogic.TypeOfAnimal(animal);
+            NabvigateTo(animalId, (int)type);
         }
 
-        public void NabvigateTo(AnimalModel animal)
+        public void NabvigateTo(int animalId, int type)
         {
             CardIDViewController cardIDViewController = controller.Storyboard.InstantiateViewController("CardIDViewController") as CardIDViewController;
             controller.NavigationController.PushViewController(cardIDViewController, true);
-            cardIDViewController.model = animal;
+            cardIDViewController.animalId = animalId;
+            cardIDViewController.type = type;
         }
     }
 }

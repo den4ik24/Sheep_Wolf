@@ -9,6 +9,7 @@ namespace Sheep_Wolf_NetStandardLibrary
         bool AddAnimal(bool iS, string aN);
         void AddDucks();
         void GetListAnimals();
+        AnimalType TypeOfAnimal(AnimalModel animal);
         AnimalModel GetAnimal(int animalID, int typeOfAnimal);
     }
 
@@ -98,7 +99,24 @@ namespace Sheep_Wolf_NetStandardLibrary
         {
             animalModelsArray.AddRange(dataBase.SelectTable());
             animalModelsArray = animalModelsArray.OrderBy(a => a.Order).ToList();
+        }
 
+        public AnimalType TypeOfAnimal(AnimalModel animal)
+        {
+            AnimalType type;
+            if (animal is SheepModel)
+            {
+                type = AnimalType.SHEEP;
+            }
+            else if (animal is DuckModel)
+            {
+                type = AnimalType.DUCK;
+            }
+            else
+            {
+                type = AnimalType.WOLF;
+            }
+            return type;
         }
 
         public AnimalModel GetAnimal(int animalID, int typeOfAnimal)

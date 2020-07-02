@@ -13,9 +13,12 @@
     <string name="sheepName">Sheep\'s Name</string>
     <string name="wolfName">Wolves Name</string>
     <string name="duckName">Duck\'s Name</string>
+    <string name="hunterName">Hunter\'s Name</string>
 
-  <string-array name ="type_animal">
-    <item>SHEEP</item>
-    <item>WOLF</item>
-  </string-array> 
+    <string-array name ="type_animal">
+        <item>SHEEP</item>
+        <item>WOLF</item>
+        <item>DUCK</item>
+        <item>HUNTER</item>
+    </string-array> 
 </resources>

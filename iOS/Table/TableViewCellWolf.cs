@@ -14,6 +14,7 @@ namespace Sheep_Wolf.iOS
         public void UpdateCell(AnimalModel animal)
         {
             textTableViewWolvesName.Text = animal.Name;
+
             ImageService.Instance.LoadUrl(animal.URL).Into(fotoWolf);
         }
     }

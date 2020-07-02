@@ -91,7 +91,7 @@
       <HintPath>..\packages\System.Buffers.4.5.1\lib\netstandard2.0\System.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0-preview.5.20278.1\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0-preview.6.20305.6\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Memory">
       <HintPath>..\packages\System.Memory.4.5.4\lib\netstandard2.0\System.Memory.dll</HintPath>
@@ -165,6 +165,10 @@
     <Compile Include="Table\TableViewCellDuck.designer.cs">
       <DependentUpon>TableViewCellDuck.cs</DependentUpon>
     </Compile>
+    <Compile Include="Table\TableViewCellHunters.cs" />
+    <Compile Include="Table\TableViewCellHunters.designer.cs">
+      <DependentUpon>TableViewCellHunters.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\sheep.png" />
@@ -174,6 +178,9 @@
     <BundleResource Include="Resources\animal_logo.png" />
     <BundleResource Include="Resources\duck_logo.png" />
     <BundleResource Include="Resources\duck.png" />
+    <BundleResource Include="Resources\hunter.png" />
+    <BundleResource Include="Resources\hunter-rip.png" />
+    <BundleResource Include="Resources\wolf-rip.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

@@ -27,10 +27,12 @@ namespace Sheep_Wolf_NetStandardLibrary
             connection.CreateTable<SheepModel>();
             connection.CreateTable<WolfModel>();
             connection.CreateTable<DuckModel>();
+            connection.CreateTable<HunterModel>();
             var tableSheep = connection.Table<SheepModel>();
             var tableWolf = connection.Table<WolfModel>();
             var tableDuck = connection.Table<DuckModel>();
-            var animalArray = tableSheep.Union(tableWolf.Union<AnimalModel>(tableDuck));
+            var tableHunter = connection.Table<HunterModel>();
+            var animalArray = tableSheep.Union(tableWolf.Union(tableDuck.Union<AnimalModel>(tableHunter)));
             return animalArray;
         }
 

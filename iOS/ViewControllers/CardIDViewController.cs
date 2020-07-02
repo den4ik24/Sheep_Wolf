@@ -7,7 +7,9 @@ namespace Sheep_Wolf.iOS
 {
     public partial class CardIDViewController : UIViewController
     {
-        public AnimalModel model;
+        IBusinessLogic businessLogic = new BusinessLogic();
+        public int animalId;
+        public int type;
         public CardIDViewController (IntPtr handle) : base (handle)
         {
         }
@@ -15,16 +17,19 @@ namespace Sheep_Wolf.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            labelAnimalName.Text = model.Name;
 
-            ImageService.Instance.LoadUrl(model.URL).Into(animalFoto);
+            var animal = businessLogic.GetAnimal(animalId, type);
 
-            if(model is SheepModel)
+            labelAnimalName.Text = animal.Name;
+
+            ImageService.Instance.LoadUrl(animal.URL).Into(animalFoto);
+
+            if(animal is SheepModel)
             {
                 ImageAnimal.Image = UIImage.FromBundle("sheep.png");
                 NameAnimalID.Text = AnimalType.SHEEP.ToString();
             }
-            else if(model is WolfModel)
+            else if(animal is WolfModel)
             {
                 ImageAnimal.Image = UIImage.FromBundle("wolf.png");
                 NameAnimalID.Text = AnimalType.WOLF.ToString();
@@ -36,23 +41,23 @@ namespace Sheep_Wolf.iOS
                 NameAnimalID.Text = AnimalType.DUCK.ToString();
             }
 
-            if (model.Killer != null)
+            if (animal.Killer != null)
             {
-                if(model is SheepModel)
+                if(animal is SheepModel)
                 {
-                    NameAnimalID.Text = $"This {AnimalType.SHEEP} eliminated by {model.Killer}";
+                    NameAnimalID.Text = $"This {AnimalType.SHEEP} eliminated by {animal.Killer}";
                 }
-                if(model is WolfModel)
+                else if(animal is WolfModel)
                 {
-                    NameAnimalID.Text = $"This {AnimalType.WOLF} tear to pieces {model.Killer}";
+                    NameAnimalID.Text = $"This {AnimalType.WOLF} tear to pieces {animal.Killer}";
                     ImageAnimal.Image = UIImage.FromBundle("killer.png");
                 }
             }
 
-            if (model.IsDead)
+            if (animal.IsDead)
             {
                 ImageAnimal.Image = UIImage.FromBundle("rip.png");
-                ImageService.Instance.LoadUrl(model.URL).Transform(new GrayscaleTransformation()).Into(animalFoto);
+                ImageService.Instance.LoadUrl(animal.URL).Transform(new GrayscaleTransformation()).Into(animalFoto);
             }
         }
     }

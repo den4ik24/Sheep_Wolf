@@ -4,7 +4,8 @@
     {
         SHEEP,
         DUCK,
-        WOLF
+        WOLF,
+        HUNTER
     }
 
     public static class Keys
