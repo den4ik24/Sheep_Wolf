@@ -6,8 +6,8 @@ namespace Sheep_Wolf_NetStandardLibrary
     public interface IBusinessLogic
     {
         List<AnimalModel> AnimalModel();
-        bool AddAnimal(bool iS, string aN);
-        void AddDucks();
+        bool AddAnimal(int iS, string aN);
+        //void AddDucks();
         void GetListAnimals();
         AnimalType TypeOfAnimal(AnimalModel animal);
         AnimalModel GetAnimal(int animalID, int typeOfAnimal);
@@ -24,7 +24,7 @@ namespace Sheep_Wolf_NetStandardLibrary
             return animalModelsArray;
         }
 
-        public bool AddAnimal(bool isSheep, string animalName)
+        public bool AddAnimal(int isSheep, string animalName)
         {
             var repeatAnimal = animalModelsArray.Where(a => a.Name == animalName);
             if (repeatAnimal.Any())
@@ -35,34 +35,46 @@ namespace Sheep_Wolf_NetStandardLibrary
             {
                 var animal = ChoiceAnimal(isSheep);
                 AssignAnimal(animalName, animal);
+                if (animal is DuckModel)
+                {
+                    animal.Name = $"Duck_{++duckCount}";
+                }
                 AnimalKiller(animal);
                 dataBase.Insert(animal);
                 return false;
             }
         }
 
-        public void AddDucks()
-        {
-            var animal = DuckModel.GetDuck();
-            animal.Order = animalModelsArray.Count;
-            animal.Name = $"Duck_{++duckCount}";
-            animalModelsArray.Add(animal);
-            dataBase.Insert(animal);
-        }
+        //public void AddDucks()
+        //{
+        //    var animal = DuckModel.GetDuck();
+        //    animal.Order = animalModelsArray.Count;
+        //    animal.Name = $"Duck_{++duckCount}";
+        //    animalModelsArray.Add(animal);
+        //    dataBase.Insert(animal);
+        //}
 
-        public AnimalModel ChoiceAnimal(bool isSheep)
+        public AnimalModel ChoiceAnimal(int isSheep)
         {
+            var type = (AnimalType)isSheep;
             AnimalModel animal;
-            if (isSheep)
+            switch (type)
             {
-                animal = SheepModel.GetSheep();
-                return animal;
+                case AnimalType.SHEEP:
+                    animal = SheepModel.GetSheep();
+                    return animal;
+                case AnimalType.WOLF:
+                    animal = WolfModel.GetWolf();
+                    return animal;
+                case AnimalType.DUCK:
+                    animal = DuckModel.GetDuck();
+                    return animal;
+                case AnimalType.HUNTER:
+                    animal = HunterModel.GetHunter();
+                    return animal;
+                default:break;
             }
-            else
-            {
-                animal = WolfModel.GetWolf();
-                return animal;
-            }
+            return null;
         }
 
         public void AssignAnimal(string animalName, AnimalModel animal)
@@ -71,7 +83,7 @@ namespace Sheep_Wolf_NetStandardLibrary
             animal.Name = animalName;
             animalModelsArray.Add(animal);
         }
-
+        /////////
         public void AnimalKiller(AnimalModel animal)
         {
             if (animal is WolfModel)
@@ -86,7 +98,7 @@ namespace Sheep_Wolf_NetStandardLibrary
                     if (item is SheepModel && !item.IsDead)
                     {
                         item.IsDead = true;
-                        item.Killer = animal.Name;
+                        item.WhoKilledMe = animal.Name;
                         animal.Killer = item.Name;
                         dataBase.Update(item);
                         break;
@@ -108,13 +120,17 @@ namespace Sheep_Wolf_NetStandardLibrary
             {
                 type = AnimalType.SHEEP;
             }
+            else if(animal is WolfModel)
+            {
+                type = AnimalType.WOLF;
+            }
             else if (animal is DuckModel)
             {
                 type = AnimalType.DUCK;
             }
             else
             {
-                type = AnimalType.WOLF;
+                type = AnimalType.HUNTER;
             }
             return type;
         }
@@ -130,6 +146,8 @@ namespace Sheep_Wolf_NetStandardLibrary
                     return dataBase.GetItem<DuckModel>(animalID);
                 case AnimalType.WOLF:
                     return dataBase.GetItem<WolfModel>(animalID);
+                case AnimalType.HUNTER:
+                    return dataBase.GetItem<HunterModel>(animalID);
                 default:
                     break;
             }

@@ -3,8 +3,8 @@
     public enum AnimalType
     {
         SHEEP,
-        DUCK,
         WOLF,
+        DUCK,
         HUNTER
     }
 

@@ -50,17 +50,25 @@ namespace Sheep_Wolf.Droid
                 imageAnimal.SetImageResource(Resource.Drawable.wolf);
                 animalType.Text = AnimalType.WOLF.ToString();
             }
+            if(animal is HunterModel)
+            {
+                imageAnimal.SetImageResource(Resource.Drawable.hunter);
+                animalType.Text = AnimalType.HUNTER.ToString();
+            }
 
             if (animal.Killer != null)
             {
-                if (animal is SheepModel)
-                {
-                    animalType.Text = $"This {AnimalType.SHEEP} eliminated by {animal.Killer}";
-                }
                 if (animal is WolfModel)
                 {
                     animalType.Text = $"This {AnimalType.WOLF} tear to pieces {animal.Killer}";
                     imageAnimal.SetImageResource(Resource.Drawable.killer);
+                }
+            }
+            if (animal.WhoKilledMe != null)
+            {
+                if (animal is SheepModel)
+                {
+                    animalType.Text = $"This {AnimalType.SHEEP} eliminated by {animal.WhoKilledMe}";
                 }
             }
 

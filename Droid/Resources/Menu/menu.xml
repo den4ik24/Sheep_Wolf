@@ -7,12 +7,6 @@
         android:title="ADDiNG ANiMALS"
         android:icon="@drawable/animal_logo"
         app:showAsAction="always"/>
-    <item
-        android:id="@+id/addDucks"
-        android:title ="ADDiNG DUCkS"
-        android:icon="@drawable/duck_logo"
-        app:showAsAction="always"/>
-
 </menu>
 
 <!-- Code to implement into Activity:

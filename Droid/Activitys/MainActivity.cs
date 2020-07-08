@@ -131,11 +131,11 @@ namespace Sheep_Wolf.Droid
                     }
                     return true;
 
-                case Resource.Id.addDucks:
-                    businessLogic.AddDucks();
-                    CountAnimal();
-                    adapter.NotifyDataSetChanged();
-                    return true;
+                //case Resource.Id.addDucks:
+                //    businessLogic.AddDucks();
+                //    CountAnimal();
+                //    adapter.NotifyDataSetChanged();
+                //    return true;
 
                 default:
                     return base.OnOptionsItemSelected(item);
@@ -144,7 +144,7 @@ namespace Sheep_Wolf.Droid
 
         public void AddRandomAnimal()
         {
-            var isSheep = animalChoice.SelectedItemPosition == 0;
+            var isSheep = animalChoice.SelectedItemPosition;
 
             if(businessLogic.AddAnimal(isSheep, textNameOfAnimal.Text))
             {

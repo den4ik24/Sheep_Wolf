@@ -18,8 +18,8 @@ namespace Sheep_Wolf.Droid
         public List<AnimalModel> animalModelsArray;
 
         public override int GetItemViewType(int position)
-        {
-            if(animalModelsArray[position] is SheepModel)
+        {  
+            if (animalModelsArray[position] is SheepModel)
             {
                 return Sheep_Class;
             }
@@ -104,28 +104,48 @@ namespace Sheep_Wolf.Droid
                     }
                     break;
 
+                case Wolf_Class:
+                    var holderWolf = holder as WolfViewHolder;
+                    holderWolf.textWolf.Text = animalModelsArray[position].Name;
+                    if (animalModelsArray[position].IsDead)
+                    {
+                        Picasso.Get()
+                            .Load(Resource.Drawable.wolf_rip)
+                            .Into(holderWolf.imageWolf);
+                    }
+                    else
+                    {
+
+                        Picasso.Get()
+                               .Load(animalModelsArray[position].URL)
+                               .Into(holderWolf.imageWolf);
+                    }
+                    break;
+
                 case Duck_Class:
                     var holderDuck = holder as DuckViewHolder;
                     holderDuck.textDuck.Text = animalModelsArray[position].Name;
                     Picasso.Get()
-                               .Load(animalModelsArray[position].URL)
-                               .Into(holderDuck.imageDuck);
-                    break;
-
-                case Wolf_Class:
-                    var holderWolf = holder as WolfViewHolder;
-                    holderWolf.textWolf.Text = animalModelsArray[position].Name;
-                    Picasso.Get()
-                               .Load(animalModelsArray[position].URL)
-                               .Into(holderWolf.imageWolf);
+                           .Load(animalModelsArray[position].URL)
+                           .Into(holderDuck.imageDuck);
                     break;
 
                 case Hunter_Class:
                     var holderHunter = holder as HunterViewHolder;
                     holderHunter.textHunter.Text = animalModelsArray[position].Name;
-                    Picasso.Get()
+                    if (animalModelsArray[position].IsDead)
+                    {
+                        Picasso.Get()
+                            .Load(Resource.Drawable.hunter_rip)
+                            .Into(holderHunter.imageHunter);
+                    }
+                    else
+                    {
+
+                        Picasso.Get()
                                .Load(animalModelsArray[position].URL)
                                .Into(holderHunter.imageHunter);
+                    }
                     break;
             }
         }
