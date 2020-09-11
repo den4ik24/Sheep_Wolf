@@ -25,6 +25,7 @@ namespace Sheep_Wolf_NetStandardLibrary
 
         public bool AddAnimal(int isSheep, string animalName)
         {
+            var animal = ChoiceAnimal(isSheep);
             if (isSheep is (int)AnimalType.DUCK ||
                 isSheep is (int)AnimalType.SHEEP ||
                 isSheep is (int)AnimalType.WOLF)
@@ -34,24 +35,22 @@ namespace Sheep_Wolf_NetStandardLibrary
                 {
                     return true;
                 }
-                return true;
+                else
+                {
+                    if (animal is DuckModel)
+                    {
+                        animal.Name = $"Duck_{++duckCount}";
+                        animalName = animal.Name;
+                    }
+                    ActionWithCreatures(animalName, animal);
+                    return false;
+                }
             }
 
             else
             {
-                var animal = ChoiceAnimal(isSheep);
-                if (animal is DuckModel)
-                {
-                    animal.Name = $"Duck_{++duckCount}";
-                    animalName = animal.Name;
-                }
-                if (animal is HunterModel)
-                {
-                    animalName = animal.Name;
-                }
-                AssignAnimal(animalName, animal);
-                AnimalKiller(animal);
-                dataBase.Insert(animal);
+                animalName = animal.Name;
+                ActionWithCreatures(animalName, animal);
                 return false;
             }
         }
@@ -187,6 +186,13 @@ namespace Sheep_Wolf_NetStandardLibrary
             animal.Killer = item.Name;
             dataBase.Update(item);
             dataBase.Update(animal);
+        }
+
+        public void ActionWithCreatures(string animalName, AnimalModel animal)
+        {
+            AssignAnimal(animalName, animal);
+            AnimalKiller(animal);
+            dataBase.Insert(animal);
         }
     }
 }

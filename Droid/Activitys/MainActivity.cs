@@ -170,6 +170,7 @@ namespace Sheep_Wolf.Droid
             {
                 Toast.MakeText(this, "Охотники рядом. Охотники здесь", ToastLength.Short).Show();
             }
+
             if (businessLogic.AddAnimal(isSheep, textNameOfAnimal.Text))
             {
                 //исключить HUNTER
