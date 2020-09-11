@@ -61,7 +61,14 @@ namespace Sheep_Wolf.Droid
                 if (animal is WolfModel)
                 {
                     animalType.Text = $"This {AnimalType.WOLF} tear to pieces {animal.Killer}";
+                    Toast.MakeText(this, $"Этот волк растерзал на клочки {animal.WhoKilledMe}", ToastLength.Short).Show();
                     imageAnimal.SetImageResource(Resource.Drawable.killer);
+                }
+                if(animal is HunterModel)
+                {
+                    animalType.Text = $"This {AnimalType.HUNTER} just kill a {animal.Killer}";
+                    Toast.MakeText(this, $"Этот киллер только что завалил волка {animal.WhoKilledMe}", ToastLength.Short).Show();
+                    imageAnimal.SetImageResource(Resource.Drawable.hunter_killer);
                 }
             }
             if (animal.WhoKilledMe != null)
@@ -69,12 +76,34 @@ namespace Sheep_Wolf.Droid
                 if (animal is SheepModel)
                 {
                     animalType.Text = $"This {AnimalType.SHEEP} eliminated by {animal.WhoKilledMe}";
+                    Toast.MakeText(this, $"Эта овечка была растерзана на клочки волком {animal.WhoKilledMe}", ToastLength.Short).Show();
+                }
+                if (animal is WolfModel)
+                {
+                    animalType.Text = $"This {AnimalType.WOLF} is killed by a hunter {animal.WhoKilledMe}";
+                    Toast.MakeText(this, $"Этот волк завален доблестным охотником {animal.WhoKilledMe}", ToastLength.Short).Show();
+                }
+                if (animal is HunterModel)
+                {
+                    animalType.Text = $"This {AnimalType.HUNTER} is tear to pieces by a wolf {animal.WhoKilledMe}";
+                    Toast.MakeText(this, $"Этот охотник растерзан на клочки волком {animal.WhoKilledMe}", ToastLength.Short).Show();
                 }
             }
 
             if (animal.IsDead)
             {
-                imageAnimal.SetImageResource(Resource.Drawable.rip);
+                if (animal is SheepModel)
+                {
+                    imageAnimal.SetImageResource(Resource.Drawable.rip);
+                }
+                else if (animal is WolfModel)
+                {
+                    imageAnimal.SetImageResource(Resource.Drawable.wolf_rip);
+                }
+                else if (animal is HunterModel)
+                {
+                    imageAnimal.SetImageResource(Resource.Drawable.hunter_rip);
+                }
 
                 Picasso.Get()
                        .Load(animal.URL)

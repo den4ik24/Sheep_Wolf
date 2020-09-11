@@ -62,6 +62,21 @@ namespace Sheep_Wolf.Droid
             animalChoice = sender as Spinner;
             string selectedAnimal = string.Format($"Выбрано животное - {animalChoice.GetItemAtPosition(e.Position)}");
             Toast.MakeText(this, selectedAnimal, ToastLength.Short).Show();
+            var resIcon = ContextCompat.GetDrawable(this, Resource.Drawable.animal_logo);
+            var item = menu.FindItem(Resource.Id.addAnimals);
+            if (animalChoice.SelectedItemPosition is (int)AnimalType.DUCK ||
+                animalChoice.SelectedItemPosition is (int) AnimalType.HUNTER)
+            {
+                SetEnabledIconState(item, resIcon, true);
+                textNameOfAnimal.Enabled = false;
+                textNameOfAnimal.Text = "Жми ЛАПКУ и добавляй без ввода имени";
+            }
+            else
+            {
+                SetIconColorDisabled(item, resIcon);
+                textNameOfAnimal.Enabled = true;
+                textNameOfAnimal.Text = "";
+            }
         }
 
         private void ListOfAnimals_ItemClick(object sender, int e)
@@ -88,12 +103,12 @@ namespace Sheep_Wolf.Droid
             this.menu = menu;
             return true;
         }
-
+        
         private void TextNameOfAnimal_TextChanged(object sender, TextChangedEventArgs e)
         {
             var resIcon = ContextCompat.GetDrawable(this, Resource.Drawable.animal_logo);
             var item = menu.FindItem(Resource.Id.addAnimals);
-            if (textNameOfAnimal.Text == "")
+            if (SheepAndWolfSelected())
             {
                 SetIconColorDisabled(item, resIcon);
             }
@@ -120,7 +135,7 @@ namespace Sheep_Wolf.Droid
             switch (item.ItemId)
             {
                 case Resource.Id.addAnimals:
-                    if (textNameOfAnimal.Text == "")
+                    if (SheepAndWolfSelected())
                     {
                         Toast.MakeText(this, "Укажите имя существа", ToastLength.Short).Show();
                     }
@@ -131,24 +146,34 @@ namespace Sheep_Wolf.Droid
                     }
                     return true;
 
-                //case Resource.Id.addDucks:
-                //    businessLogic.AddDucks();
-                //    CountAnimal();
-                //    adapter.NotifyDataSetChanged();
-                //    return true;
-
                 default:
                     return base.OnOptionsItemSelected(item);
             }
         }
 
+        public bool SheepAndWolfSelected()
+        {
+            var sw = string.IsNullOrEmpty(textNameOfAnimal.Text) &&
+               (animalChoice.SelectedItemPosition is (int)AnimalType.SHEEP ||
+                animalChoice.SelectedItemPosition is (int)AnimalType.WOLF);
+            return sw;
+        }
+
         public void AddRandomAnimal()
         {
             var isSheep = animalChoice.SelectedItemPosition;
-
-            if(businessLogic.AddAnimal(isSheep, textNameOfAnimal.Text))
+            if (isSheep is (int)AnimalType.WOLF)
             {
-                Toast.MakeText(this, "Животное с таким именем уже существует. Измените имя", ToastLength.Short).Show();
+                Toast.MakeText(this, "Волк выходит на тропу жратвы.", ToastLength.Short).Show();
+            }
+            if (isSheep is (int)AnimalType.HUNTER)
+            {
+                Toast.MakeText(this, "Охотники рядом. Охотники здесь", ToastLength.Short).Show();
+            }
+            if (businessLogic.AddAnimal(isSheep, textNameOfAnimal.Text))
+            {
+                //исключить HUNTER
+                Toast.MakeText(this, "Существо с таким именем уже существует. Измените имя", ToastLength.Short).Show();
             }
             else
             {
@@ -165,5 +190,4 @@ namespace Sheep_Wolf.Droid
             textViewNumbSheep.Text = businessLogic.AnimalModel().Count.ToString();
         }
     }
-    ///
 }
