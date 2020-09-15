@@ -11,15 +11,15 @@ namespace Sheep_Wolf_NetStandardLibrary
         void GetListAnimals();
         AnimalType TypeOfAnimal(AnimalModel animal);
         AnimalModel GetAnimal(int animalID, int typeOfAnimal);
-        event EventHandler<string> Notify;
+        event EventHandler<DataTransfer> Notify;
     }
 
-    public class BusinessLogic : EventArgs, IBusinessLogic
+    public class BusinessLogic : IBusinessLogic
     {
         IDataBase dataBase = new DataBase();
         public List<AnimalModel> animalModelsArray = new List<AnimalModel>();
         int duckCount;
-        public event EventHandler<string> Notify;
+        public event EventHandler<DataTransfer> Notify;
 
         public List<AnimalModel> AnimalModel()
         {
@@ -76,7 +76,7 @@ namespace Sheep_Wolf_NetStandardLibrary
                 case AnimalType.HUNTER:
                     animal = HunterModel.GetHunter();
                     return animal;
-                default:break;
+                default: break;
             }
             return null;
         }
@@ -101,14 +101,24 @@ namespace Sheep_Wolf_NetStandardLibrary
                     if (item is SheepModel && !item.IsDead)
                     {
                         WhoKilledWho(item, animal);
-                        Notify?.Invoke(this, $"Волк {animal.Name} сожрал овцу {item.Name}");
+                        DataTransfer dataTransfer = new DataTransfer
+                        {
+                            Message = $"Волк {animal.Name} сожрал овцу {item.Name}",
+                            TypeKiller = KillerAnnotation.WOLF_EAT_SHEEP
+                        };
+                        Notify?.Invoke(this, dataTransfer);
                         break;
                     }
                     //волки жрут охотника
                     if (item is HunterModel && !item.IsDead)
                     {
                         WhoKilledWho(item, animal);
-                        Notify?.Invoke(this, $"Волк {animal.Name} разодрал охотника {item.Name}");
+                        DataTransfer dataTransfer = new DataTransfer
+                        {
+                            Message = $"Волк {animal.Name} разодрал охотника {item.Name}",
+                            TypeKiller = KillerAnnotation.WOLF_EAT_HUNTER
+                        };
+                        Notify?.Invoke(this, dataTransfer);
                         break;
                     }
                 }
@@ -125,7 +135,12 @@ namespace Sheep_Wolf_NetStandardLibrary
                     if (item is WolfModel && !item.IsDead)
                     {
                         WhoKilledWho(item, animal);
-                        Notify?.Invoke(this, $"Охотник {animal.Name} завалил волка {item.Name}");
+                        DataTransfer dataTransfer = new DataTransfer
+                        {
+                            Message = $"Охотник {animal.Name} завалил волка {item.Name}",
+                            TypeKiller = KillerAnnotation.HUNTER_KILL_WOLF
+                        };
+                        Notify?.Invoke(this, dataTransfer);
                         break;
                     }
                 }
@@ -145,7 +160,7 @@ namespace Sheep_Wolf_NetStandardLibrary
             {
                 type = AnimalType.SHEEP;
             }
-            else if(animal is WolfModel)
+            else if (animal is WolfModel)
             {
                 type = AnimalType.WOLF;
             }
@@ -201,5 +216,16 @@ namespace Sheep_Wolf_NetStandardLibrary
             AnimalKiller(animal);
             dataBase.Insert(animal);
         }
+    }
+    public class DataTransfer : EventArgs
+    {
+        public string Message { get; set; }
+        public KillerAnnotation TypeKiller { get; set; }
+    }
+    public enum KillerAnnotation
+    {
+        WOLF_EAT_SHEEP,
+        WOLF_EAT_HUNTER,
+        HUNTER_KILL_WOLF
     }
 }

@@ -203,33 +203,32 @@ namespace Sheep_Wolf.Droid
             textViewNumbSheep.Text = businessLogic.AnimalModel().Count.ToString();
         }
 
-        public void DisplayKillMessage(object sender, string message)
+        public void DisplayKillMessage(object sender, DataTransfer transferData)
         {
-            if (message.Contains("завалил"))
+
+            if (transferData.TypeKiller is KillerAnnotation.HUNTER_KILL_WOLF)
             {
-                var picture = Resource.Drawable.hunter_kill_wolf;
-                ImageToast(message, picture);
+                ImageToast(transferData.Message, Resource.Drawable.hunter_kill_wolf);
             }
-            else if (message.Contains("разодрал"))
+            else if (transferData.TypeKiller is KillerAnnotation.WOLF_EAT_HUNTER)
             {
-                var picture = Resource.Drawable.wolf_kill_hunter;
-                ImageToast(message, picture);
+                ImageToast(transferData.Message, Resource.Drawable.wolf_kill_hunter);
             }
-            else if (message.Contains("сожрал"))
+            else if (transferData.TypeKiller is KillerAnnotation.WOLF_EAT_SHEEP)
             {
-                var picture = Resource.Drawable.wolf_kill;
-                ImageToast(message, picture);
+                ImageToast(transferData.Message, Resource.Drawable.wolf_kill);
             }
         }
 
         public void ImageToast(string message, int picture)
         {
-            var toast = Toast.MakeText(this, message, ToastLength.Short);
+            var toast = Toast.MakeText(this, message, ToastLength.Long);
             toast.SetGravity(GravityFlags.Center, 0, 0);
             LinearLayout toastContainer = (LinearLayout)toast.View;
             var imageToast = new ImageView(this);
             toastContainer.AddView(imageToast, 0);
             imageToast.SetImageResource(picture);
+            toastContainer.SetBackgroundColor(Color.Transparent);
             toast.Show();
         }
 
