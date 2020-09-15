@@ -27,6 +27,7 @@ namespace Sheep_Wolf.Droid
         V7Toolbar myToolbar;
         IMenu menu;
         readonly IBusinessLogic businessLogic = new BusinessLogic();
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -53,7 +54,8 @@ namespace Sheep_Wolf.Droid
             adapterSpinner.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             animalChoice.Adapter = adapterSpinner;
             animalChoice.SetSelection(0);
-
+            businessLogic.Notify += DisplayKillMessage;
+           
             textNameOfAnimal.TextChanged += TextNameOfAnimal_TextChanged;
         }
 
@@ -137,10 +139,15 @@ namespace Sheep_Wolf.Droid
                 case Resource.Id.addAnimals:
                     if (SheepAndWolfSelected())
                     {
-                        Toast.MakeText(this, "Укажите имя существа", ToastLength.Short).Show();
+                        var toast = Toast.MakeText(this, "Укажите имя существа", ToastLength.Short);
+                        toast.SetGravity(GravityFlags.Center, 0, 0);
+                        LinearLayout toastContainer = (LinearLayout)toast.View;
+                        toastContainer.SetBackgroundColor(Color.Transparent);
+                        toast.Show();
                     }
                     else
                     {
+                        DeleteKeyboard();
                         AddRandomAnimal();
                         textNameOfAnimal.Text = "";
                     }
@@ -173,22 +180,63 @@ namespace Sheep_Wolf.Droid
 
             if (businessLogic.AddAnimal(isSheep, textNameOfAnimal.Text))
             {
-                //исключить HUNTER
-                Toast.MakeText(this, "Существо с таким именем уже существует. Измените имя", ToastLength.Short).Show();
+                var toast = Toast.MakeText(this, "Существо с таким именем уже существует.\n Измените имя", ToastLength.Short);
+                toast.SetGravity(GravityFlags.Center, 0, 0);
+                LinearLayout toastContainer = (LinearLayout)toast.View;
+                var imageToast = new ImageView(this);
+                imageToast.SetImageResource(Resource.Drawable.INFORMATION);
+                toastContainer.AddView(imageToast, 0);
+                toastContainer.SetBackgroundColor(Color.Transparent);
+                toast.Show();
             }
             else
             {
                 CountAnimal();
                 adapter.NotifyDataSetChanged();
                 //удаление клавиатуры
-                InputMethodManager imm = (InputMethodManager)GetSystemService(InputMethodService);
-                imm.HideSoftInputFromWindow(textNameOfAnimal.WindowToken, 0);
+                DeleteKeyboard();
             }
         }
 
         public void CountAnimal()
         {
             textViewNumbSheep.Text = businessLogic.AnimalModel().Count.ToString();
+        }
+
+        public void DisplayKillMessage(object sender, string message)
+        {
+            if (message.Contains("завалил"))
+            {
+                var picture = Resource.Drawable.hunter_kill_wolf;
+                ImageToast(message, picture);
+            }
+            else if (message.Contains("разодрал"))
+            {
+                var picture = Resource.Drawable.wolf_kill_hunter;
+                ImageToast(message, picture);
+            }
+            else if (message.Contains("сожрал"))
+            {
+                var picture = Resource.Drawable.wolf_kill;
+                ImageToast(message, picture);
+            }
+        }
+
+        public void ImageToast(string message, int picture)
+        {
+            var toast = Toast.MakeText(this, message, ToastLength.Short);
+            toast.SetGravity(GravityFlags.Center, 0, 0);
+            LinearLayout toastContainer = (LinearLayout)toast.View;
+            var imageToast = new ImageView(this);
+            toastContainer.AddView(imageToast, 0);
+            imageToast.SetImageResource(picture);
+            toast.Show();
+        }
+
+        public void DeleteKeyboard()
+        {
+            InputMethodManager imm = (InputMethodManager)GetSystemService(InputMethodService);
+            imm.HideSoftInputFromWindow(textNameOfAnimal.WindowToken, 0);
         }
     }
 }

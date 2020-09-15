@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Sheep_Wolf_NetStandardLibrary
@@ -10,13 +11,15 @@ namespace Sheep_Wolf_NetStandardLibrary
         void GetListAnimals();
         AnimalType TypeOfAnimal(AnimalModel animal);
         AnimalModel GetAnimal(int animalID, int typeOfAnimal);
+        event EventHandler<string> Notify;
     }
 
-    public class BusinessLogic : IBusinessLogic
+    public class BusinessLogic : EventArgs, IBusinessLogic
     {
         IDataBase dataBase = new DataBase();
         public List<AnimalModel> animalModelsArray = new List<AnimalModel>();
         int duckCount;
+        public event EventHandler<string> Notify;
 
         public List<AnimalModel> AnimalModel()
         {
@@ -98,12 +101,14 @@ namespace Sheep_Wolf_NetStandardLibrary
                     if (item is SheepModel && !item.IsDead)
                     {
                         WhoKilledWho(item, animal);
+                        Notify?.Invoke(this, $"Волк {animal.Name} сожрал овцу {item.Name}");
                         break;
                     }
-                    //жрем охотника
+                    //волки жрут охотника
                     if (item is HunterModel && !item.IsDead)
                     {
                         WhoKilledWho(item, animal);
+                        Notify?.Invoke(this, $"Волк {animal.Name} разодрал охотника {item.Name}");
                         break;
                     }
                 }
@@ -116,9 +121,11 @@ namespace Sheep_Wolf_NetStandardLibrary
                 for (var i = animalModelsArray.Count - 1; i >= 0; --i)
                 {
                     var item = animalModelsArray[i];
+                    //охотник валит волка
                     if (item is WolfModel && !item.IsDead)
                     {
                         WhoKilledWho(item, animal);
+                        Notify?.Invoke(this, $"Охотник {animal.Name} завалил волка {item.Name}");
                         break;
                     }
                 }
