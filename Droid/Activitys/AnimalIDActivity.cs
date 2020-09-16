@@ -14,6 +14,7 @@ namespace Sheep_Wolf.Droid
         TextView textSheepsName;
         ImageView animalsFoto;
         TextView animalType;
+        TextView whoKillMe;
         ImageView imageAnimal;
         
         protected override void OnCreate(Bundle bundle)
@@ -24,6 +25,7 @@ namespace Sheep_Wolf.Droid
             textSheepsName = FindViewById<TextView>(Resource.Id.textViewSheepsName);
             animalsFoto = FindViewById<ImageView>(Resource.Id.animalsFoto);
             animalType = FindViewById<TextView>(Resource.Id.animalType);
+            whoKillMe = FindViewById<TextView>(Resource.Id.whoKillMe);
             imageAnimal = FindViewById<ImageView>(Resource.Id.imageAnimal);
 
             var typeOfAnimal = Intent.Extras.GetInt(Keys.TYPEofANIMAL);
@@ -75,17 +77,17 @@ namespace Sheep_Wolf.Droid
             {
                 if (animal is SheepModel)
                 {
-                    animalType.Text = $"This {AnimalType.SHEEP} eliminated by {animal.WhoKilledMe}";
+                    whoKillMe.Text = $"This {AnimalType.SHEEP} eliminated by {animal.WhoKilledMe}";
                     Toast.MakeText(this, $"Эта овечка была растерзана на клочки волком {animal.WhoKilledMe}", ToastLength.Short).Show();
                 }
                 if (animal is WolfModel)
                 {
-                    animalType.Text = $"This {AnimalType.WOLF} is killed by a hunter {animal.WhoKilledMe}";
+                    whoKillMe.Text = $"This {AnimalType.WOLF} is killed by a hunter {animal.WhoKilledMe}";
                     Toast.MakeText(this, $"Этот волк завален доблестным охотником {animal.WhoKilledMe}", ToastLength.Short).Show();
                 }
                 if (animal is HunterModel)
                 {
-                    animalType.Text = $"This {AnimalType.HUNTER} is tear to pieces by a wolf {animal.WhoKilledMe}";
+                    whoKillMe.Text = $"This {AnimalType.HUNTER} is tear to pieces by a wolf {animal.WhoKilledMe}";
                     Toast.MakeText(this, $"Этот охотник растерзан на клочки волком {animal.WhoKilledMe}", ToastLength.Short).Show();
                 }
             }

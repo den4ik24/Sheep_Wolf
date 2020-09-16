@@ -206,15 +206,15 @@ namespace Sheep_Wolf.Droid
         public void DisplayKillMessage(object sender, DataTransfer transferData)
         {
 
-            if (transferData.TypeKiller is KillerAnnotation.HUNTER_KILL_WOLF)
+            if (transferData.TypeKiller == KillerAnnotation.HUNTER_KILL_WOLF)
             {
                 ImageToast(transferData.Message, Resource.Drawable.hunter_kill_wolf);
             }
-            else if (transferData.TypeKiller is KillerAnnotation.WOLF_EAT_HUNTER)
+            else if (transferData.TypeKiller == KillerAnnotation.WOLF_EAT_HUNTER)
             {
                 ImageToast(transferData.Message, Resource.Drawable.wolf_kill_hunter);
             }
-            else if (transferData.TypeKiller is KillerAnnotation.WOLF_EAT_SHEEP)
+            else if (transferData.TypeKiller == KillerAnnotation.WOLF_EAT_SHEEP)
             {
                 ImageToast(transferData.Message, Resource.Drawable.wolf_kill);
             }
@@ -228,7 +228,6 @@ namespace Sheep_Wolf.Droid
             var imageToast = new ImageView(this);
             toastContainer.AddView(imageToast, 0);
             imageToast.SetImageResource(picture);
-            toastContainer.SetBackgroundColor(Color.Transparent);
             toast.Show();
         }
 
