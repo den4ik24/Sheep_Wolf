@@ -55,7 +55,8 @@ namespace Sheep_Wolf.Droid
             animalChoice.Adapter = adapterSpinner;
             animalChoice.SetSelection(0);
             businessLogic.Notify += DisplayKillMessage;
-           
+            businessLogic.DataChanged += DataSetChanged;
+
             textNameOfAnimal.TextChanged += TextNameOfAnimal_TextChanged;
         }
 
@@ -192,10 +193,9 @@ namespace Sheep_Wolf.Droid
             else
             {
                 CountAnimal();
-                adapter.NotifyDataSetChanged();
-                //удаление клавиатуры
                 DeleteKeyboard();
             }
+            adapter.NotifyDataSetChanged();
         }
 
         public void CountAnimal()
@@ -205,7 +205,6 @@ namespace Sheep_Wolf.Droid
 
         public void DisplayKillMessage(object sender, DataTransfer transferData)
         {
-
             if (transferData.TypeKiller == KillerAnnotation.HUNTER_KILL_WOLF)
             {
                 ImageToast(transferData.Message, Resource.Drawable.hunter_kill_wolf);
@@ -222,19 +221,33 @@ namespace Sheep_Wolf.Droid
 
         public void ImageToast(string message, int picture)
         {
-            var toast = Toast.MakeText(this, message, ToastLength.Long);
-            toast.SetGravity(GravityFlags.Center, 0, 0);
-            LinearLayout toastContainer = (LinearLayout)toast.View;
-            var imageToast = new ImageView(this);
-            toastContainer.AddView(imageToast, 0);
-            imageToast.SetImageResource(picture);
-            toast.Show();
+            RunOnUiThread(() =>
+            {
+                var toast = Toast.MakeText(this, message, ToastLength.Long);
+                toast.SetGravity(GravityFlags.Center, 0, 0);
+                LinearLayout toastContainer = (LinearLayout)toast.View;
+                var imageToast = new ImageView(this);
+                toastContainer.AddView(imageToast, 0);
+                imageToast.SetImageResource(picture);
+                toastContainer.SetBackgroundColor(Color.Transparent);
+                toast.Show();
+
+            });
         }
 
         public void DeleteKeyboard()
         {
             InputMethodManager imm = (InputMethodManager)GetSystemService(InputMethodService);
             imm.HideSoftInputFromWindow(textNameOfAnimal.WindowToken, 0);
+        }
+
+        public void DataSetChanged(object sender, EventArgs e)
+        {
+            RunOnUiThread(() =>
+            {
+                adapter.NotifyDataSetChanged();
+                Console.WriteLine("REFRESH");
+            });
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Timers;
 
 namespace Sheep_Wolf_NetStandardLibrary
 {
@@ -12,6 +13,7 @@ namespace Sheep_Wolf_NetStandardLibrary
         AnimalType TypeOfAnimal(AnimalModel animal);
         AnimalModel GetAnimal(int animalID, int typeOfAnimal);
         event EventHandler<DataTransfer> Notify;
+        event EventHandler DataChanged;
     }
 
     public class BusinessLogic : IBusinessLogic
@@ -20,6 +22,8 @@ namespace Sheep_Wolf_NetStandardLibrary
         public List<AnimalModel> animalModelsArray = new List<AnimalModel>();
         int duckCount;
         public event EventHandler<DataTransfer> Notify;
+        public event EventHandler DataChanged;
+        Timer aTimer = new Timer();
 
         public List<AnimalModel> AnimalModel()
         {
@@ -52,6 +56,11 @@ namespace Sheep_Wolf_NetStandardLibrary
 
             else
             {
+                if (animal.IsDead == false)
+                {
+                    StartTimer(animal);
+                }
+
                 animalName = animal.Name;
                 ActionWithCreatures(animalName, animal);
                 return false;
@@ -81,6 +90,13 @@ namespace Sheep_Wolf_NetStandardLibrary
             return null;
         }
 
+        public void ActionWithCreatures(string animalName, AnimalModel animal)
+        {
+            AssignAnimal(animalName, animal);
+            AnimalKiller(animal);
+            dataBase.Insert(animal);
+        }
+
         public void AssignAnimal(string animalName, AnimalModel animal)
         {
             animal.Order = animalModelsArray.Count;
@@ -92,8 +108,6 @@ namespace Sheep_Wolf_NetStandardLibrary
         {
             if (animal is WolfModel)
             {
-                DuckFlyAway();
-
                 for (var i = animalModelsArray.Count - 1; i >= 0; --i)
                 {
                     var item = animalModelsArray[i];
@@ -112,7 +126,9 @@ namespace Sheep_Wolf_NetStandardLibrary
                     //волки жрут охотника
                     if (item is HunterModel && !item.IsDead)
                     {
+                        StopTimer();
                         WhoKilledWho(item, animal);
+                        DuckFlyAway();
                         DataTransfer dataTransfer = new DataTransfer
                         {
                             Message = $"Волк {animal.Name} разодрал охотника {item.Name}",
@@ -126,8 +142,6 @@ namespace Sheep_Wolf_NetStandardLibrary
 
             if (animal is HunterModel)
             {
-                DuckFlyAway();
-
                 for (var i = animalModelsArray.Count - 1; i >= 0; --i)
                 {
                     var item = animalModelsArray[i];
@@ -135,12 +149,21 @@ namespace Sheep_Wolf_NetStandardLibrary
                     if (item is WolfModel && !item.IsDead)
                     {
                         WhoKilledWho(item, animal);
+                        DuckFlyAway();
+                        Console.WriteLine("охотник валит волка");
                         DataTransfer dataTransfer = new DataTransfer
                         {
                             Message = $"Охотник {animal.Name} завалил волка {item.Name}",
                             TypeKiller = KillerAnnotation.HUNTER_KILL_WOLF
                         };
                         Notify?.Invoke(this, dataTransfer);
+                        DataChanged?.Invoke(this, EventArgs.Empty);
+                        dataBase.Update(animal);
+
+                        if (item/2 > animal)
+                        {
+
+                        }
                         break;
                     }
                 }
@@ -201,21 +224,29 @@ namespace Sheep_Wolf_NetStandardLibrary
             duckCount = 0;
         }
 
-        public void WhoKilledWho(AnimalModel item, AnimalModel animal)
+        public void WhoKilledWho(AnimalModel sacrifice, AnimalModel killer)
         {
-            item.IsDead = true;
-            item.WhoKilledMe = animal.Name;
-            animal.Killer = item.Name;
-            dataBase.Update(item);
-            dataBase.Update(animal);
+            sacrifice.IsDead = true;
+            sacrifice.WhoKilledMe = killer.Name;
+            killer.Killer = sacrifice.Name;
+            dataBase.Update(sacrifice);
+            dataBase.Update(killer);
         }
 
-        public void ActionWithCreatures(string animalName, AnimalModel animal)
+        public void StartTimer(AnimalModel animal)
         {
-            AssignAnimal(animalName, animal);
-            AnimalKiller(animal);
-            dataBase.Insert(animal);
+            aTimer.Interval = 5000;
+            aTimer.Elapsed += (o, args) => { AnimalKiller(animal); };
+            aTimer.AutoReset = true;
+            aTimer.Enabled = true;
         }
+
+        public void StopTimer()
+        {
+            aTimer.Stop();
+            aTimer.Dispose();
+        }
+
     }
     public class DataTransfer : EventArgs
     {
