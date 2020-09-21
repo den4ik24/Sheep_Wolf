@@ -56,7 +56,7 @@ namespace Sheep_Wolf_NetStandardLibrary
 
             else
             {
-                if (animal.IsDead == false)
+                if (animal.IsDead == false && aTimer.Enabled == false)
                 {
                     StartTimer(animal);
                 }
@@ -106,6 +106,11 @@ namespace Sheep_Wolf_NetStandardLibrary
 
         public void AnimalKiller(AnimalModel animal)
         {
+            var wolfAnimal = animalModelsArray.Where(a => a is WolfModel);
+            var hunterAnimal = animalModelsArray.Where(a => a is HunterModel);
+            int wolfCount = wolfAnimal.Count();
+            int hunterCount = hunterAnimal.Count();
+
             if (animal is WolfModel)
             {
                 for (var i = animalModelsArray.Count - 1; i >= 0; --i)
@@ -126,7 +131,10 @@ namespace Sheep_Wolf_NetStandardLibrary
                     //волки жрут охотника
                     if (item is HunterModel && !item.IsDead)
                     {
-                        StopTimer();
+                        if(hunterCount < 1)
+                        {
+                            StopTimer();
+                        }
                         WhoKilledWho(item, animal);
                         DuckFlyAway();
                         DataTransfer dataTransfer = new DataTransfer
@@ -159,10 +167,18 @@ namespace Sheep_Wolf_NetStandardLibrary
                         Notify?.Invoke(this, dataTransfer);
                         DataChanged?.Invoke(this, EventArgs.Empty);
                         dataBase.Update(animal);
-
-                        if (item/2 > animal)
+        
+                        if (wolfCount/2 > hunterCount)
                         {
-
+                            animal.IsDead = true;
+                            animal.WhoKilledMe = item.Name;
+                            item.Killer = animal.Name;
+                            dataBase.Update(animal);
+                            dataBase.Update(item);
+                        }
+                        else
+                        {
+                            StopTimer();
                         }
                         break;
                     }
