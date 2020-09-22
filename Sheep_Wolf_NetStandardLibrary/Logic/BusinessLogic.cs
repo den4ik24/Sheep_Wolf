@@ -107,10 +107,15 @@ namespace Sheep_Wolf_NetStandardLibrary
         public void AnimalKiller(AnimalModel animal)
         {
             var wolfAnimal = animalModelsArray.Where(a => a is WolfModel);
-            var hunterAnimal = animalModelsArray.Where(a => a is HunterModel);
-            int wolfCount = wolfAnimal.Count();
-            int hunterCount = hunterAnimal.Count();
+            var wolfLive = wolfAnimal.Where(a => !a.IsDead);
+            double wolfCount = wolfAnimal.Count();
+            double wolfLiveCount = wolfLive.Count();
 
+            var hunterAnimal = animalModelsArray.Where(a => a is HunterModel);
+            var hunterLive = hunterAnimal.Where(a => !a.IsDead);
+            double hunterCount = hunterAnimal.Count();
+            double hunterLiveCount = hunterLive.Count();
+            
             if (animal is WolfModel)
             {
                 for (var i = animalModelsArray.Count - 1; i >= 0; --i)
@@ -120,7 +125,7 @@ namespace Sheep_Wolf_NetStandardLibrary
                     if (item is SheepModel && !item.IsDead)
                     {
                         WhoKilledWho(item, animal);
-                        DataTransfer dataTransfer = new DataTransfer
+                        var dataTransfer = new DataTransfer
                         {
                             Message = $"Волк {animal.Name} сожрал овцу {item.Name}",
                             TypeKiller = KillerAnnotation.WOLF_EAT_SHEEP
@@ -131,13 +136,13 @@ namespace Sheep_Wolf_NetStandardLibrary
                     //волки жрут охотника
                     if (item is HunterModel && !item.IsDead)
                     {
-                        if(hunterCount < 1)
+                        if(hunterLiveCount <= 1)
                         {
                             StopTimer();
                         }
                         WhoKilledWho(item, animal);
                         DuckFlyAway();
-                        DataTransfer dataTransfer = new DataTransfer
+                        var dataTransfer = new DataTransfer
                         {
                             Message = $"Волк {animal.Name} разодрал охотника {item.Name}",
                             TypeKiller = KillerAnnotation.WOLF_EAT_HUNTER
@@ -156,10 +161,14 @@ namespace Sheep_Wolf_NetStandardLibrary
                     //охотник валит волка
                     if (item is WolfModel && !item.IsDead)
                     {
+                        if (hunterLiveCount <= 1)
+                        {
+                            StopTimer();
+                        }
                         WhoKilledWho(item, animal);
                         DuckFlyAway();
                         Console.WriteLine("охотник валит волка");
-                        DataTransfer dataTransfer = new DataTransfer
+                        var dataTransfer = new DataTransfer
                         {
                             Message = $"Охотник {animal.Name} завалил волка {item.Name}",
                             TypeKiller = KillerAnnotation.HUNTER_KILL_WOLF
@@ -168,16 +177,13 @@ namespace Sheep_Wolf_NetStandardLibrary
                         DataChanged?.Invoke(this, EventArgs.Empty);
                         dataBase.Update(animal);
         
-                        if (wolfCount/2 > hunterCount)
+                        if (wolfLiveCount/2 > hunterLiveCount)
                         {
                             animal.IsDead = true;
                             animal.WhoKilledMe = item.Name;
                             item.Killer = animal.Name;
                             dataBase.Update(animal);
                             dataBase.Update(item);
-                        }
-                        else
-                        {
                             StopTimer();
                         }
                         break;
@@ -251,16 +257,24 @@ namespace Sheep_Wolf_NetStandardLibrary
 
         public void StartTimer(AnimalModel animal)
         {
-            aTimer.Interval = 5000;
-            aTimer.Elapsed += (o, args) => { AnimalKiller(animal); };
-            aTimer.AutoReset = true;
-            aTimer.Enabled = true;
+            if (aTimer.Enabled == false)
+            {
+                aTimer.Start();
+                aTimer.Interval = 5000;
+                aTimer.Elapsed += (o, args) => { AnimalKiller(animal); };
+                aTimer.AutoReset = true;
+                aTimer.Enabled = true;
+                Console.WriteLine("проверка потока");
+            }
         }
 
         public void StopTimer()
         {
-            aTimer.Stop();
-            aTimer.Dispose();
+            aTimer.AutoReset = false;
+            aTimer.Enabled = false;
+            //aTimer.Stop();
+            //aTimer.Dispose();
+            Console.WriteLine("отключение таймера");
         }
 
     }

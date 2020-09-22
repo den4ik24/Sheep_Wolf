@@ -142,7 +142,7 @@ namespace Sheep_Wolf.Droid
                     {
                         var toast = Toast.MakeText(this, "Укажите имя существа", ToastLength.Short);
                         toast.SetGravity(GravityFlags.Center, 0, 0);
-                        LinearLayout toastContainer = (LinearLayout)toast.View;
+                        var toastContainer = (LinearLayout)toast.View;
                         toastContainer.SetBackgroundColor(Color.Transparent);
                         toast.Show();
                     }
@@ -174,7 +174,7 @@ namespace Sheep_Wolf.Droid
             {
                 Toast.MakeText(this, "Волк выходит на тропу жратвы.", ToastLength.Short).Show();
             }
-            if (isSheep is (int)AnimalType.HUNTER)
+            else if (isSheep is (int)AnimalType.HUNTER)
             {
                 Toast.MakeText(this, "Охотники рядом. Охотники здесь", ToastLength.Short).Show();
             }
@@ -183,7 +183,7 @@ namespace Sheep_Wolf.Droid
             {
                 var toast = Toast.MakeText(this, "Существо с таким именем уже существует.\n Измените имя", ToastLength.Short);
                 toast.SetGravity(GravityFlags.Center, 0, 0);
-                LinearLayout toastContainer = (LinearLayout)toast.View;
+                var toastContainer = (LinearLayout)toast.View;
                 var imageToast = new ImageView(this);
                 imageToast.SetImageResource(Resource.Drawable.INFORMATION);
                 toastContainer.AddView(imageToast, 0);
@@ -225,7 +225,7 @@ namespace Sheep_Wolf.Droid
             {
                 var toast = Toast.MakeText(this, message, ToastLength.Long);
                 toast.SetGravity(GravityFlags.Center, 0, 0);
-                LinearLayout toastContainer = (LinearLayout)toast.View;
+                var toastContainer = (LinearLayout)toast.View;
                 var imageToast = new ImageView(this);
                 toastContainer.AddView(imageToast, 0);
                 imageToast.SetImageResource(picture);
