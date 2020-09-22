@@ -106,15 +106,8 @@ namespace Sheep_Wolf_NetStandardLibrary
 
         public void AnimalKiller(AnimalModel animal)
         {
-            var wolfAnimal = animalModelsArray.Where(a => a is WolfModel);
-            var wolfLive = wolfAnimal.Where(a => !a.IsDead);
-            double wolfCount = wolfAnimal.Count();
-            double wolfLiveCount = wolfLive.Count();
-
-            var hunterAnimal = animalModelsArray.Where(a => a is HunterModel);
-            var hunterLive = hunterAnimal.Where(a => !a.IsDead);
-            double hunterCount = hunterAnimal.Count();
-            double hunterLiveCount = hunterLive.Count();
+            double wolfLiveCount = animalModelsArray.Count(a => a is WolfModel && !a.IsDead);
+            double hunterLiveCount = animalModelsArray.Count(a => a is HunterModel && !a.IsDead);
             
             if (animal is WolfModel)
             {
@@ -131,12 +124,40 @@ namespace Sheep_Wolf_NetStandardLibrary
                             TypeKiller = KillerAnnotation.WOLF_EAT_SHEEP
                         };
                         Notify?.Invoke(this, dataTransfer);
+
+
+
+                        for (int k = animalModelsArray.Count - 1; k >= 0; --k)
+                        {
+                            var hunt = animalModelsArray[k];
+                            if (hunt is HunterModel && !hunt.IsDead)
+                            {
+                                DuckFlyAway();
+                                Timer _timer = new Timer(5000);
+                                _timer.Elapsed += (o, args) => { WhoKilledWho(animal, hunt); };
+                                _timer.AutoReset = true;
+                                _timer.Enabled = true;
+                                Console.WriteLine("завалили съевшего овцу");
+                                var dataTrans = new DataTransfer
+                                {
+                                    Message = $"Охотник {hunt.Name} завалил волка {animal.Name}",
+                                    TypeKiller = KillerAnnotation.HUNTER_KILL_WOLF
+                                };
+                                Notify?.Invoke(this, dataTrans);
+                                DataChanged?.Invoke(this, EventArgs.Empty);
+                                dataBase.Update(animal);
+                                _timer.Stop();
+                                _timer.Dispose();
+                                break;
+                            }
+                        }
+
                         break;
                     }
                     //волки жрут охотника
-                    if (item is HunterModel && !item.IsDead)
+                    else if (item is HunterModel && !item.IsDead)
                     {
-                        if(hunterLiveCount <= 1)
+                        if (hunterLiveCount <= 1)
                         {
                             StopTimer();
                         }
@@ -150,6 +171,40 @@ namespace Sheep_Wolf_NetStandardLibrary
                         Notify?.Invoke(this, dataTransfer);
                         break;
                     }
+
+                    //волки жрут охотника 2
+                    //else if (item is HunterModel && !item.IsDead)
+                    //{
+                    //    if (hunterLiveCount <= 1)
+                    //    {
+                    //        StopTimer();
+                    //    }
+                    //    else if (wolfLiveCount / 2 > hunterLiveCount)
+                    //    {
+                    //        WhoKilledWho(item, animal);
+                    //        DuckFlyAway();
+                    //        var dataTransfer = new DataTransfer
+                    //        {
+                    //            Message = $"Волк {animal.Name} разодрал охотника {item.Name}",
+                    //            TypeKiller = KillerAnnotation.WOLF_EAT_HUNTER
+                    //        };
+                    //        Notify?.Invoke(this, dataTransfer);
+                    //    }
+                    //    else
+                    //    {
+                    //        WhoKilledWho(animal, item);
+                    //        DuckFlyAway();
+                    //        Console.WriteLine("охотник валит волка");
+                    //        var dataTransfer = new DataTransfer
+                    //        {
+                    //            Message = $"Охотник {item.Name} завалил волка {animal.Name}",
+                    //            TypeKiller = KillerAnnotation.HUNTER_KILL_WOLF
+                    //        };
+                    //        Notify?.Invoke(this, dataTransfer);
+                    //        DataChanged?.Invoke(this, EventArgs.Empty);
+                    //        dataBase.Update(animal);
+                    //    }
+                    //    break;
                 }
             }
 
