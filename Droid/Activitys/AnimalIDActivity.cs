@@ -71,6 +71,7 @@ namespace Sheep_Wolf.Droid
                     animalType.Text = $"This {AnimalType.HUNTER} just kill a {animal.Killer}";
                     Toast.MakeText(this, $"Этот киллер только что завалил волка {animal.WhoKilledMe}", ToastLength.Short).Show();
                     imageAnimal.SetImageResource(Resource.Drawable.hunter_killer);
+
                 }
             }
             if (animal.WhoKilledMe != null)

@@ -9,6 +9,8 @@ namespace Sheep_Wolf_NetStandardLibrary
     public interface IDataBase
     {
         IEnumerable<AnimalModel> SelectTable();
+        IEnumerable<Prey> SelectTableID();
+        void InsertID(Prey prey);
         void Insert(AnimalModel animal);
         void Update(AnimalModel animal);
         void Delete<T>() where T : AnimalModel, new();
@@ -20,7 +22,7 @@ namespace Sheep_Wolf_NetStandardLibrary
 
         private readonly string dbPath = Path.Combine
             (Environment.GetFolderPath(Environment.SpecialFolder.Personal), "dataBase.db3");
-
+    
         public IEnumerable<AnimalModel> SelectTable()
         {
             var connection = new SQLiteConnection(dbPath);
@@ -28,12 +30,21 @@ namespace Sheep_Wolf_NetStandardLibrary
             connection.CreateTable<WolfModel>();
             connection.CreateTable<DuckModel>();
             connection.CreateTable<HunterModel>();
+
             var tableSheep = connection.Table<SheepModel>();
             var tableWolf = connection.Table<WolfModel>();
             var tableDuck = connection.Table<DuckModel>();
             var tableHunter = connection.Table<HunterModel>();
             var animalArray = tableSheep.Union(tableWolf.Union(tableDuck.Union<AnimalModel>(tableHunter)));
             return animalArray;
+        }
+
+        public IEnumerable<Prey> SelectTableID()
+        {
+            var connection = new SQLiteConnection(dbPath);
+            connection.CreateTable<Prey>();
+            var tablePrey = connection.Table<Prey>();
+            return tablePrey;
         }
 
         public void Insert(AnimalModel animal)
@@ -58,6 +69,12 @@ namespace Sheep_Wolf_NetStandardLibrary
         {
             var connection = new SQLiteConnection(dbPath);
             return connection.Table<T>().FirstOrDefault(a => a.Id == N);
+        }
+
+        public void InsertID(Prey prey)
+        {
+            var connection = new SQLiteConnection(dbPath);
+            connection.Insert(prey);
         }
     }
 }

@@ -231,6 +231,8 @@ namespace Sheep_Wolf_NetStandardLibrary
                         Notify?.Invoke(this, dataTransfer);
                         DataChanged?.Invoke(this, EventArgs.Empty);
                         dataBase.Update(animal);
+
+ //                       dataBase
         
                         if (wolfLiveCount/2 > hunterLiveCount)
                         {
