@@ -91,7 +91,7 @@
       <HintPath>..\packages\System.Buffers.4.5.1\lib\netstandard2.0\System.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0-preview.8.20407.11\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0-rc.1.20451.14\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Memory">
       <HintPath>..\packages\System.Memory.4.5.4\lib\netstandard2.0\System.Memory.dll</HintPath>
@@ -181,6 +181,12 @@
     <BundleResource Include="Resources\hunter.png" />
     <BundleResource Include="Resources\hunter-rip.png" />
     <BundleResource Include="Resources\wolf-rip.png" />
+    <BundleResource Include="Resources\hunter_kill_wolf.png" />
+    <BundleResource Include="Resources\INFORMATION.png" />
+    <BundleResource Include="Resources\hunter_killer.png" />
+    <BundleResource Include="Resources\wolf_kill.png" />
+    <BundleResource Include="Resources\star.png" />
+    <BundleResource Include="Resources\wolf_kill_hunter.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
