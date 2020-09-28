@@ -197,7 +197,6 @@
     <Reference Include="Xamarin.Android.Support.Design">
       <HintPath>..\packages\Xamarin.Android.Support.Design.28.0.0.3\lib\monoandroid90\Xamarin.Android.Support.Design.dll</HintPath>
     </Reference>
-    <Reference Include="Java.Interop" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sheep_Wolf_NetStandardLibrary\Sheep_Wolf_NetStandardLibrary.csproj">

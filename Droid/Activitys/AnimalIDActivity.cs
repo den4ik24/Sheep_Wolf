@@ -4,6 +4,9 @@ using Android.OS;
 using Android.Widget;
 using Square.Picasso;
 using Sheep_Wolf_NetStandardLibrary;
+using Android.Views;
+using Android.Graphics;
+using System;
 
 namespace Sheep_Wolf.Droid
 {
@@ -11,17 +14,21 @@ namespace Sheep_Wolf.Droid
     public class AnimalIDActivity : Activity
     {
         IBusinessLogic businessLogic = new BusinessLogic();
+        IDataBase dataBase = new DataBase();
         TextView textSheepsName;
         ImageView animalsFoto;
         TextView animalType;
         TextView whoKillMe;
         ImageView imageAnimal;
-        
+        LinearLayout starsLayout;
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-
             SetContentView(Resource.Layout.AnimalIDLayout);
+            
+
+            starsLayout = FindViewById<LinearLayout>(Resource.Id.starsLayout);
             textSheepsName = FindViewById<TextView>(Resource.Id.textViewSheepsName);
             animalsFoto = FindViewById<ImageView>(Resource.Id.animalsFoto);
             animalType = FindViewById<TextView>(Resource.Id.animalType);
@@ -31,6 +38,8 @@ namespace Sheep_Wolf.Droid
             var typeOfAnimal = Intent.Extras.GetInt(Keys.TYPEofANIMAL);
             var animalID = Intent.Extras.GetInt(Keys.ANIMAL_ID);
             var animal = businessLogic.GetAnimal(animalID, typeOfAnimal);
+
+            var star = dataBase.GetID<Prey>(animalID);
 
             textSheepsName.Text = animal.Name;
             Picasso.Get()
@@ -65,13 +74,14 @@ namespace Sheep_Wolf.Droid
                     animalType.Text = $"This {AnimalType.WOLF} tear to pieces {animal.Killer}";
                     Toast.MakeText(this, $"Этот волк растерзал на клочки {animal.WhoKilledMe}", ToastLength.Short).Show();
                     imageAnimal.SetImageResource(Resource.Drawable.killer);
+                    StarPicture(star);
                 }
                 if(animal is HunterModel)
                 {
                     animalType.Text = $"This {AnimalType.HUNTER} just kill a {animal.Killer}";
                     Toast.MakeText(this, $"Этот киллер только что завалил волка {animal.WhoKilledMe}", ToastLength.Short).Show();
                     imageAnimal.SetImageResource(Resource.Drawable.hunter_killer);
-
+                    StarPicture(star);
                 }
             }
             if (animal.WhoKilledMe != null)
@@ -112,6 +122,19 @@ namespace Sheep_Wolf.Droid
                        .Load(animal.URL)
                        .Transform(new GrayscaleTransformation())
                        .Into(animalsFoto);
+            }
+
+        }
+        public void StarPicture(int star)
+        {
+            for (int i = 0; i < star; i++)
+            {
+                var lPar = new TableLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent, 1);
+                ImageView imageStar = new ImageView(this);
+                imageStar.LayoutParameters = lPar;
+                starsLayout.AddView(imageStar);
+                imageStar.SetImageResource(Resource.Drawable.star);
+                Console.WriteLine($"звезда {i}");
             }
         }
     }

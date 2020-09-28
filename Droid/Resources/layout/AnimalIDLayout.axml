@@ -85,48 +85,6 @@
 		android:layout_weight="1"
 		android:id="@+id/starsLayout"
 		android:orientation="horizontal">
-		<ImageView
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:layout_weight="1"
-            android:contentDescription="@string/desc"
-            android:id="@+id/star_1"/>
-		<ImageView
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:layout_weight="1"
-            android:contentDescription="@string/desc"
-            android:id="@+id/star_2"/>
-		<ImageView
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:layout_weight="1"
-            android:contentDescription="@string/desc"
-            android:id="@+id/star_3"/>
-		<ImageView
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:layout_weight="1"
-            android:contentDescription="@string/desc"
-            android:id="@+id/star_4"/>
-		<ImageView
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:layout_weight="1"
-            android:contentDescription="@string/desc"
-            android:id="@+id/star_5"/>
-		<ImageView
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:layout_weight="1"
-            android:contentDescription="@string/desc"
-            android:id="@+id/star_6"/>
-		<ImageView
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:layout_weight="1"
-            android:contentDescription="@string/desc"
-            android:id="@+id/satr_7"/>
 	</LinearLayout>
 
 	<ImageView
