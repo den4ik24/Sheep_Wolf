@@ -17,8 +17,6 @@ namespace Sheep_Wolf.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-          
-            ButtonAddDucks.Clicked += ButtonAddDucks_Clicked;
             ButtonAddAnimal.Clicked += ButtonAddAnimal_Clicked;
             textNameOfAnimals.EditingChanged += TextNameOfAnimals_EditingChanged;
             businessLogic.GetListAnimals();
@@ -33,26 +31,27 @@ namespace Sheep_Wolf.iOS
 
         private void TextNameOfAnimals_EditingChanged(object sender, EventArgs e)
         {
-            if(textNameOfAnimals.Text != "")
-            {
-                ButtonAddAnimal.Enabled = true;
-            }
-            else
+            if(SheepAndWolfSelected())
             {
                 ButtonAddAnimal.Enabled = false;
             }
+            else
+            {
+                ButtonAddAnimal.Enabled = true;
+            }
         }
 
-        private void ButtonAddDucks_Clicked(object sender, EventArgs e)
+        public bool SheepAndWolfSelected()
         {
-            businessLogic.AddDucks();
-            CountAnimal();
-            listOfSheeps.ReloadData();
+            var sw = string.IsNullOrEmpty(textNameOfAnimals.Text) &&
+                (picker.SelectedValue == AnimalType.SHEEP.ToString() ||
+                picker.SelectedValue == AnimalType.WOLF.ToString());
+            return sw;
         }
 
         private void ButtonAddAnimal_Clicked(object sender, EventArgs e)
         {
-            if (textNameOfAnimals.Text == "")
+            if (SheepAndWolfSelected())
             {
                 var alertController = UIAlertController.Create
                     ("WARNING", "Введите имя животного", UIAlertControllerStyle.Alert);
@@ -62,6 +61,7 @@ namespace Sheep_Wolf.iOS
             }
             else
             {
+                DeleteKeyboard();
                 AddRandomAnimal();
                 textNameOfAnimals.Text = "";
                 ButtonAddAnimal.Enabled = false;
@@ -70,8 +70,10 @@ namespace Sheep_Wolf.iOS
 
         public void AddRandomAnimal()
         {
-            var isSheep = picker.SelectedValue == AnimalType.SHEEP.ToString();
-            if(businessLogic.AddAnimal(isSheep, textNameOfAnimals.Text))
+            var isSheep = picker.SelectedValue;
+
+            //var position = Array.IndexOf(picker.Animals, isSheep);
+            if(businessLogic.AddAnimal(picker.SelectedRow, textNameOfAnimals.Text))
             {
                 var alertController = UIAlertController.Create
                 ("WARNING", "Животное с таким именем уже существует.Измените имя", UIAlertControllerStyle.Alert);
@@ -84,6 +86,11 @@ namespace Sheep_Wolf.iOS
                 CountAnimal();
                 listOfSheeps.ReloadData();
             }
+        }
+
+        public void DeleteKeyboard()
+        {
+            View.EndEditing(true);
         }
 
         public void CountAnimal()

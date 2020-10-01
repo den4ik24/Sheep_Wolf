@@ -8,10 +8,11 @@ namespace Sheep_Wolf.iOS
     {
         public string[] Animals = new string[]
         {
-            AnimalType.SHEEP.ToString(), AnimalType.WOLF.ToString() 
+            AnimalType.SHEEP.ToString(), AnimalType.WOLF.ToString(), AnimalType.DUCK.ToString(),AnimalType.HUNTER.ToString() 
         };
         public EventHandler ValueChanged;
         public string SelectedValue;
+        public int SelectedRow;
         private UITextField animalChoice;
         
         public AnimalPickerModel(UITextField animalChoice)
@@ -36,9 +37,9 @@ namespace Sheep_Wolf.iOS
 
         public override void Selected(UIPickerView pickerView, nint row, nint component)
         {
-            var animals = Animals[(int)row];
+            SelectedRow = (int)row;
+            var animals = Animals[SelectedRow];
             animalChoice.Text = Animals[pickerView.SelectedRowInComponent(0)];
-            
             SelectedValue = animals;
             ValueChanged?.Invoke(null, null);
         }

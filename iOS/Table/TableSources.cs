@@ -31,11 +31,17 @@ namespace Sheep_Wolf.iOS
                 cellDuck.UpdateCell(animalClassArray[indexPath.Row]);
                 return cellDuck;
             }
-            else
+            else if(animalClassArray[indexPath.Row] is WolfModel)
             {
                 var cellWolf = tableView.DequeueReusableCell("cellOfWolf") as TableViewCellWolf;
                 cellWolf.UpdateCell(animalClassArray[indexPath.Row]);
                 return cellWolf;
+            }
+            else
+            {
+                var cellHunter = tableView.DequeueReusableCell("cellOfHunter") as TableViewCellHunters;
+                cellHunter.UpdateCell(animalClassArray[indexPath.Row]);
+                return cellHunter;
             }
         }
 

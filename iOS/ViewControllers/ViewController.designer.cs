@@ -23,10 +23,6 @@ namespace Sheep_Wolf.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIBarButtonItem ButtonAddDucks { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel LabelNumberAnimal { get; set; }
 
         [Outlet]
@@ -49,11 +45,6 @@ namespace Sheep_Wolf.iOS
             if (ButtonAddAnimal != null) {
                 ButtonAddAnimal.Dispose ();
                 ButtonAddAnimal = null;
-            }
-
-            if (ButtonAddDucks != null) {
-                ButtonAddDucks.Dispose ();
-                ButtonAddDucks = null;
             }
 
             if (LabelNumberAnimal != null) {

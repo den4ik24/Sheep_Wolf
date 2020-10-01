@@ -2,10 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleName</key>
-	<string>Sheep_Wolf</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.companyname.Sheep-Wolf</string>
+	<key>CFBundleName</key>
+	<string>Sheep_Wolf</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
@@ -13,7 +13,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
-	<string>8.0</string>
+	<string>14.0</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>

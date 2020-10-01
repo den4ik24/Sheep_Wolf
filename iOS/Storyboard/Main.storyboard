@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="19290">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -201,20 +200,20 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MF2-F2-eba" userLabel="Text Table View Wolves Name" usesAttributedText="YES">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MF2-F2-eba" userLabel="Text Table View Wolves Name">
                                                     <rect key="frame" x="0.0" y="0.0" width="310.5" height="60"/>
                                                     <color key="backgroundColor" systemColor="scrollViewTexturedBackgroundColor"/>
-                                                    <color key="textColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <size key="shadowOffset" width="0.0" height="0.0"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Hunter's Name">
                                                             <attributes>
-                                                                <color key="NSColor" colorSpace="calibratedRGB" red="1" green="0.8" blue="0" alpha="1"/>
-                                                                <font key="NSFont" name="MarkerFelt-Wide" family="Marker Felt" size="20"/>
+                                                                <color key="NSColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <font key="NSFont" size="20" name="MarkerFelt-Wide"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                    <size key="shadowOffset" width="0.0" height="0.0"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1Hq-cZ-QXb" userLabel="Foto Wolf">
                                                     <rect key="frame" x="310.5" y="1.5" width="103.5" height="57.5"/>
@@ -261,13 +260,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Circle Of Life" id="Th5-iG-inF">
-                        <barButtonItem key="leftBarButtonItem" enabled="NO" title="Adding Animal" width="44" style="plain" id="4gZ-eY-rwZ"/>
-                        <barButtonItem key="rightBarButtonItem" title="Adding Ducks" style="plain" id="5C4-hs-nOL"/>
+                        <barButtonItem key="leftBarButtonItem" title="Circle of Life" image="Circle.png" springLoaded="YES" id="RY1-GJ-ahu"/>
+                        <barButtonItem key="rightBarButtonItem" title="Adding Animals" image="animal_logo.png" id="5C4-hs-nOL">
+                            <color key="tintColor" systemColor="labelColor"/>
+                        </barButtonItem>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="ButtonAddAnimal" destination="4gZ-eY-rwZ" id="name-outlet-4gZ-eY-rwZ"/>
-                        <outlet property="ButtonAddDucks" destination="5C4-hs-nOL" id="name-outlet-5C4-hs-nOL"/>
+                        <outlet property="ButtonAddAnimal" destination="5C4-hs-nOL" id="name-outlet-5C4-hs-nOL"/>
                         <outlet property="LabelNumberAnimal" destination="ZUM-ry-mAe" id="name-outlet-ZUM-ry-mAe"/>
                         <outlet property="animalChoice" destination="GE8-B5-WFc" id="name-outlet-GE8-B5-WFc"/>
                         <outlet property="listOfSheeps" destination="17500" id="name-outlet-17500"/>
@@ -365,8 +365,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NPY-v4-nOi" misplaced="YES">
-                                <rect key="frame" x="0.0" y="302" width="414" height="564"/>
+                                <rect key="frame" x="0.0" y="397" width="414" height="469"/>
                             </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MgN-0c-XLZ">
+                                <rect key="frame" x="0.0" y="310" width="414" height="79"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -374,7 +378,7 @@
                             <constraint firstItem="vT7-2E-efL" firstAttribute="top" secondItem="W0M-5L-Jxb" secondAttribute="bottom" constant="20" id="2rV-4g-bYV"/>
                             <constraint firstItem="KvY-HG-eEM" firstAttribute="top" secondItem="zNy-ab-qMY" secondAttribute="bottom" constant="20" id="7jL-00-Y9j"/>
                             <constraint firstAttribute="bottom" secondItem="NPY-v4-nOi" secondAttribute="bottom" constant="30" id="826-wM-RzB"/>
-                            <constraint firstItem="NPY-v4-nOi" firstAttribute="top" secondItem="OQZ-gJ-oW5" secondAttribute="bottom" id="IOk-HX-fbY"/>
+                            <constraint firstItem="NPY-v4-nOi" firstAttribute="top" secondItem="OQZ-gJ-oW5" secondAttribute="bottom" constant="95" id="IOk-HX-fbY"/>
                             <constraint firstItem="OQZ-gJ-oW5" firstAttribute="width" secondItem="Neq-wj-Jfz" secondAttribute="width" multiplier="0.5" id="Je5-wx-pCJ"/>
                             <constraint firstItem="KvY-HG-eEM" firstAttribute="leading" secondItem="OQZ-gJ-oW5" secondAttribute="trailing" id="NFg-Bp-POG"/>
                             <constraint firstItem="W0M-5L-Jxb" firstAttribute="leading" secondItem="OQZ-gJ-oW5" secondAttribute="trailing" id="OQv-hA-ot1"/>
@@ -420,7 +424,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Circle.png" width="768" height="290"/>
+        <image name="animal_logo.png" width="400" height="400"/>
         <image name="sheep.png" width="1920" height="1905"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
