@@ -23,6 +23,10 @@ namespace Sheep_Wolf.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIBarButtonItem CircleOfLife { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel LabelNumberAnimal { get; set; }
 
         [Outlet]
@@ -45,6 +49,11 @@ namespace Sheep_Wolf.iOS
             if (ButtonAddAnimal != null) {
                 ButtonAddAnimal.Dispose ();
                 ButtonAddAnimal = null;
+            }
+
+            if (CircleOfLife != null) {
+                CircleOfLife.Dispose ();
+                CircleOfLife = null;
             }
 
             if (LabelNumberAnimal != null) {

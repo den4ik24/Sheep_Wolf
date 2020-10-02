@@ -30,6 +30,14 @@ namespace Sheep_Wolf.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel NameAnimalID { get; set; }
 
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIStackView starsLayout { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel whoKillMe { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
             if (animalFoto != null) {
@@ -50,6 +58,16 @@ namespace Sheep_Wolf.iOS
             if (NameAnimalID != null) {
                 NameAnimalID.Dispose ();
                 NameAnimalID = null;
+            }
+
+            if (starsLayout != null) {
+                starsLayout.Dispose ();
+                starsLayout = null;
+            }
+
+            if (whoKillMe != null) {
+                whoKillMe.Dispose ();
+                whoKillMe = null;
             }
         }
     }

@@ -2,24 +2,24 @@ using System;
 using FFImageLoading;
 using UIKit;
 using Sheep_Wolf_NetStandardLibrary;
+using CoreGraphics;
 
 namespace Sheep_Wolf.iOS
 {
     public partial class CardIDViewController : UIViewController
     {
         IBusinessLogic businessLogic = new BusinessLogic();
+        IDataBase dataBase = new DataBase();
         public int animalId;
         public int type;
-        public CardIDViewController (IntPtr handle) : base (handle)
-        {
-        }
+        public CardIDViewController(IntPtr handle) : base(handle) { }
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
             var animal = businessLogic.GetAnimal(animalId, type);
-
+            var star = dataBase.GetID<Prey>(animalId);
             labelAnimalName.Text = animal.Name;
 
             ImageService.Instance.LoadUrl(animal.URL).Into(animalFoto);
@@ -29,13 +29,19 @@ namespace Sheep_Wolf.iOS
                 ImageAnimal.Image = UIImage.FromBundle("sheep.png");
                 NameAnimalID.Text = AnimalType.SHEEP.ToString();
             }
-            else if(animal is WolfModel)
+            if(animal is WolfModel)
             {
                 ImageAnimal.Image = UIImage.FromBundle("wolf.png");
                 NameAnimalID.Text = AnimalType.WOLF.ToString();
             }
 
-            else
+            if(animal is HunterModel)
+            {
+                ImageAnimal.Image = UIImage.FromBundle("hunter.png");
+                NameAnimalID.Text = AnimalType.HUNTER.ToString();
+            }
+
+            if(animal is DuckModel)
             {
                 ImageAnimal.Image = UIImage.FromBundle("duck.png");
                 NameAnimalID.Text = AnimalType.DUCK.ToString();
@@ -43,21 +49,62 @@ namespace Sheep_Wolf.iOS
 
             if (animal.Killer != null)
             {
-                if(animal is SheepModel)
-                {
-                    NameAnimalID.Text = $"This {AnimalType.SHEEP} eliminated by {animal.Killer}";
-                }
-                else if(animal is WolfModel)
+                if(animal is WolfModel)
                 {
                     NameAnimalID.Text = $"This {AnimalType.WOLF} tear to pieces {animal.Killer}";
                     ImageAnimal.Image = UIImage.FromBundle("killer.png");
+                    StarPicture(star);
+                }
+                if(animal is HunterModel)
+                {
+                    NameAnimalID.Text = $"This {AnimalType.HUNTER} just kill a {animal.Killer}";
+                    ImageAnimal.Image = UIImage.FromBundle("hunter_killer.png");
+                    StarPicture(star);
+                }
+            }
+
+            if (animal.WhoKilledMe != null)
+            {
+                if (animal is SheepModel)
+                {
+                    whoKillMe.Text = $"This {AnimalType.SHEEP} eliminated by {animal.WhoKilledMe}";
+                }
+                if (animal is WolfModel)
+                {
+                    whoKillMe.Text = $"This {AnimalType.WOLF} is killed by a hunter {animal.WhoKilledMe}";
+                }
+                if (animal is HunterModel)
+                {
+                    whoKillMe.Text = $"This {AnimalType.HUNTER} is tear to pieces by a wolf {animal.WhoKilledMe}";
                 }
             }
 
             if (animal.IsDead)
             {
-                ImageAnimal.Image = UIImage.FromBundle("rip.png");
+                if(animal is SheepModel)
+                {
+                    ImageAnimal.Image = UIImage.FromBundle("rip.png");
+                }
+                if(animal is WolfModel)
+                {
+                    ImageAnimal.Image = UIImage.FromBundle("wolf-rip.png");
+                }
+                if(animal is HunterModel)
+                {
+                    ImageAnimal.Image = UIImage.FromBundle("hunter-rip.png");
+                }
                 ImageService.Instance.LoadUrl(animal.URL).Transform(new GrayscaleTransformation()).Into(animalFoto);
+            }
+        }
+
+        public void StarPicture(int star)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                UIImageView imageStar = new UIImageView();
+                starsLayout.AddArrangedSubview(imageStar);
+                imageStar.Image = UIImage.FromBundle("star.png");
+                starsLayout.BackgroundColor = UIColor.Green;
             }
         }
     }

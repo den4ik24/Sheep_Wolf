@@ -15,7 +15,16 @@ namespace Sheep_Wolf.iOS
         {
             textTableViewHuntersName.Text = animal.Name;
 
-            ImageService.Instance.LoadUrl(animal.URL).Into(fotoHunter);
+            if (!animal.IsDead)
+            {
+                ImageService.Instance.LoadUrl(animal.URL).Into(fotoHunter);
+                fotoHunter.ContentMode = UIViewContentMode.ScaleAspectFill;
+            }
+            else
+            {
+                fotoHunter.Image = UIImage.FromBundle("hunter-rip.png");
+                fotoHunter.ContentMode = UIViewContentMode.ScaleAspectFit;
+            }
         }
     }
 }

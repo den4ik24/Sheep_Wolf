@@ -27,6 +27,7 @@ namespace Sheep_Wolf.iOS
             uiPicker.Model = picker;
             uiPicker.Model.Selected(uiPicker, 0, 0);
             animalChoice.InputView = uiPicker;
+            CircleOfLife.Image = CircleOfLife.Image.ImageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
         }
 
         private void TextNameOfAnimals_EditingChanged(object sender, EventArgs e)
@@ -71,8 +72,6 @@ namespace Sheep_Wolf.iOS
         public void AddRandomAnimal()
         {
             var isSheep = picker.SelectedValue;
-
-            //var position = Array.IndexOf(picker.Animals, isSheep);
             if(businessLogic.AddAnimal(picker.SelectedRow, textNameOfAnimals.Text))
             {
                 var alertController = UIAlertController.Create

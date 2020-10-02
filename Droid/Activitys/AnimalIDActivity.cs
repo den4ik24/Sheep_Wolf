@@ -5,7 +5,6 @@ using Android.Widget;
 using Square.Picasso;
 using Sheep_Wolf_NetStandardLibrary;
 using Android.Views;
-using Android.Graphics;
 using System;
 
 namespace Sheep_Wolf.Droid
@@ -125,6 +124,7 @@ namespace Sheep_Wolf.Droid
             }
 
         }
+
         public void StarPicture(int star)
         {
             for (int i = 0; i < star; i++)
