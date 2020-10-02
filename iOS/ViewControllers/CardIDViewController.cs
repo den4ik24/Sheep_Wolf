@@ -99,12 +99,18 @@ namespace Sheep_Wolf.iOS
 
         public void StarPicture(int star)
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < star; i++)
             {
                 UIImageView imageStar = new UIImageView();
+                imageStar.HeightAnchor.ConstraintEqualTo(70).Active = true;
+                imageStar.WidthAnchor.ConstraintEqualTo(70).Active = true;
+                starsLayout.Distribution = UIStackViewDistribution.EqualSpacing;
+                starsLayout.Alignment = UIStackViewAlignment.Center;
                 starsLayout.AddArrangedSubview(imageStar);
                 imageStar.Image = UIImage.FromBundle("star.png");
-                starsLayout.BackgroundColor = UIColor.Green;
+                imageStar.ContentMode = UIViewContentMode.ScaleAspectFit;
+                //starsLayout.BackgroundColor = UIColor.Green;
+
             }
         }
     }
