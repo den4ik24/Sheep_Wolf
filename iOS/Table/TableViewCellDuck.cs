@@ -11,10 +11,10 @@ namespace Sheep_Wolf.iOS
         {
         }
 
-        public void UpdateCell(AnimalModel animal)
+        public void UpdateCell(AnimalModel duck)
         {
-            textTableViewDucksName.Text = animal.Name;
-            ImageService.Instance.LoadUrl(animal.URL).Into(fotoDuck);
+            textTableViewDucksName.Text = duck.Name;
+            ImageService.Instance.LoadUrl(duck.URL).Into(fotoDuck);
         }
     }
 }

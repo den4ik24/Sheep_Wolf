@@ -11,13 +11,13 @@ namespace Sheep_Wolf.iOS
 		{
 		}
 
-        public void UpdateCell(AnimalModel animal)
+        public void UpdateCell(AnimalModel wolf)
         {
-            textTableViewWolvesName.Text = animal.Name;
+            textTableViewWolvesName.Text = wolf.Name;
 
-            if (!animal.IsDead)
+            if (!wolf.IsDead)
             {
-                ImageService.Instance.LoadUrl(animal.URL).Into(fotoWolf);
+                ImageService.Instance.LoadUrl(wolf.URL).Into(fotoWolf);
                 fotoWolf.ContentMode = UIViewContentMode.ScaleAspectFill;
             }
             else

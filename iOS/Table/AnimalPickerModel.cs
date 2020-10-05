@@ -32,7 +32,7 @@ namespace Sheep_Wolf.iOS
 
         public override string GetTitle(UIPickerView pickerView, nint row, nint component)
         {
-            return Animals[row].ToString(); //чтобы отобразить информацию на самом PickerView
+            return Animals[(int)row].ToString(); //чтобы отобразить информацию на самом PickerView
         }
 
         public override void Selected(UIPickerView pickerView, nint row, nint component)

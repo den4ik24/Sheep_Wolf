@@ -28,6 +28,24 @@ namespace Sheep_Wolf.iOS
             uiPicker.Model.Selected(uiPicker, 0, 0);
             animalChoice.InputView = uiPicker;
             CircleOfLife.Image = CircleOfLife.Image.ImageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
+            picker.ValueChanged += AnimalChoice_ItemSelected;
+        }
+
+        private void AnimalChoice_ItemSelected(object sender, EventArgs e)
+        {
+            if (picker.SelectedValue == AnimalType.DUCK.ToString() ||
+               picker.SelectedValue == AnimalType.HUNTER.ToString())
+            {
+                ButtonAddAnimal.Enabled = true;
+                textNameOfAnimals.Enabled = false;
+                textNameOfAnimals.Text = "Жми ЛАПКУ и добавляй без ввода имени";
+            }
+            else
+            {
+                ButtonAddAnimal.Enabled = false;
+                textNameOfAnimals.Enabled = true;
+                textNameOfAnimals.Text = "";
+            }
         }
 
         private void TextNameOfAnimals_EditingChanged(object sender, EventArgs e)
@@ -46,7 +64,7 @@ namespace Sheep_Wolf.iOS
         {
             var sw = string.IsNullOrEmpty(textNameOfAnimals.Text) &&
                 (picker.SelectedValue == AnimalType.SHEEP.ToString() ||
-                picker.SelectedValue == AnimalType.WOLF.ToString());
+                 picker.SelectedValue == AnimalType.WOLF.ToString());
             return sw;
         }
 
@@ -65,7 +83,7 @@ namespace Sheep_Wolf.iOS
                 DeleteKeyboard();
                 AddRandomAnimal();
                 textNameOfAnimals.Text = "";
-                ButtonAddAnimal.Enabled = false;
+                ButtonAddAnimal.Enabled = true;
             }
         }
 

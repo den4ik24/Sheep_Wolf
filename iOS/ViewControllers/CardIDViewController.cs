@@ -109,7 +109,7 @@ namespace Sheep_Wolf.iOS
                 starsLayout.AddArrangedSubview(imageStar);
                 imageStar.Image = UIImage.FromBundle("star.png");
                 imageStar.ContentMode = UIViewContentMode.ScaleAspectFit;
-                starsLayout.BackgroundColor = UIColor.Green;
+                //starsLayout.BackgroundColor = UIColor.Green;
             }
         }
     }

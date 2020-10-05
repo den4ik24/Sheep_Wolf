@@ -20,8 +20,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZUM-ry-mAe" misplaced="YES">
-                                <rect key="frame" x="0.0" y="96" width="414" height="38"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZUM-ry-mAe">
+                                <rect key="frame" x="0.0" y="78" width="414" height="38"/>
                                 <color key="backgroundColor" systemColor="linkColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="qP2-Wg-Oqz"/>
@@ -38,13 +38,13 @@
                                 <nil key="highlightedColor"/>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="Enter the Name of the Animal" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oLw-ym-bm1" misplaced="YES">
-                                <rect key="frame" x="20" y="154" width="374" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="Enter the Name of the Animal" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oLw-ym-bm1">
+                                <rect key="frame" x="20" y="136" width="374" height="34"/>
                                 <attributedString key="attributedText"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TYPE OF ANIMAL :" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lKx-1h-y2K" misplaced="YES">
-                                <rect key="frame" x="0.0" y="208" width="207" height="50"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TYPE OF ANIMAL :" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lKx-1h-y2K">
+                                <rect key="frame" x="0.0" y="190" width="207" height="50"/>
                                 <color key="backgroundColor" systemColor="systemIndigoColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="JvR-X4-zgp"/>
@@ -53,8 +53,8 @@
                                 <color key="textColor" systemColor="systemBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Choose your Animal" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GE8-B5-WFc" misplaced="YES">
-                                <rect key="frame" x="207" y="208" width="207" height="50"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Choose your Animal" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GE8-B5-WFc">
+                                <rect key="frame" x="207" y="190" width="207" height="50"/>
                                 <color key="backgroundColor" systemColor="systemIndigoColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="wjN-Gq-Wi1"/>
@@ -63,8 +63,8 @@
                                 <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="17500" misplaced="YES">
-                                <rect key="frame" x="0.0" y="278" width="414" height="584"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="17500">
+                                <rect key="frame" x="0.0" y="260" width="414" height="636"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TableViewCellSheep" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellOfSheep" id="17501" customClass="TableViewCellSheep">
@@ -74,8 +74,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BLh-NJ-cdO">
-                                                    <rect key="frame" x="0.0" y="1.5" width="103.5" height="57.5"/>
+                                                <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BLh-NJ-cdO">
+                                                    <rect key="frame" x="0.0" y="0.0" width="103.5" height="60"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ILD-Wv-Ove">
                                                     <rect key="frame" x="103.5" y="0.0" width="310.5" height="60"/>
@@ -131,8 +131,8 @@
                                                     <nil key="highlightedColor"/>
                                                     <size key="shadowOffset" width="0.0" height="0.0"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CvE-6P-cHg" userLabel="Foto Wolf">
-                                                    <rect key="frame" x="310.5" y="1.5" width="103.5" height="57.5"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CvE-6P-cHg" userLabel="Foto Wolf">
+                                                    <rect key="frame" x="310.5" y="0.0" width="103.5" height="60"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -158,8 +158,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Lr-Gf-QvT">
-                                                    <rect key="frame" x="0.0" y="1.5" width="103.5" height="57.5"/>
+                                                <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Lr-Gf-QvT">
+                                                    <rect key="frame" x="0.0" y="0.0" width="103.5" height="60"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gmi-11-44c">
                                                     <rect key="frame" x="103.5" y="0.0" width="310.5" height="60"/>
@@ -215,8 +215,8 @@
                                                     <nil key="highlightedColor"/>
                                                     <size key="shadowOffset" width="0.0" height="0.0"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Hq-cZ-QXb" userLabel="Foto Wolf">
-                                                    <rect key="frame" x="310.5" y="1.5" width="103.5" height="57.5"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Hq-cZ-QXb" userLabel="Foto Wolf">
+                                                    <rect key="frame" x="310.5" y="0.0" width="103.5" height="60"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -291,8 +291,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W0M-5L-Jxb" misplaced="YES">
-                                <rect key="frame" x="227" y="52" width="187" height="40"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W0M-5L-Jxb">
+                                <rect key="frame" x="227" y="28" width="187" height="40"/>
                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Ka0-Cs-XTP"/>
@@ -308,8 +308,8 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="labelSheepName" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vT7-2E-efL" misplaced="YES">
-                                <rect key="frame" x="227" y="102" width="187" height="40"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="labelSheepName" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vT7-2E-efL">
+                                <rect key="frame" x="227" y="78" width="187" height="40"/>
                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="gBj-Jg-7RZ"/>
@@ -325,8 +325,8 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zNy-ab-qMY" misplaced="YES">
-                                <rect key="frame" x="227" y="152" width="187" height="70"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zNy-ab-qMY">
+                                <rect key="frame" x="227" y="128" width="187" height="70"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="VtU-Zu-4jo"/>
@@ -342,14 +342,14 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sheep.png" translatesAutoresizingMaskIntoConstraints="NO" id="OQZ-gJ-oW5" misplaced="YES">
-                                <rect key="frame" x="20" y="52" width="207" height="250"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sheep.png" translatesAutoresizingMaskIntoConstraints="NO" id="OQZ-gJ-oW5">
+                                <rect key="frame" x="20" y="28" width="207" height="250"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="Tnv-CW-mho"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KvY-HG-eEM" misplaced="YES">
-                                <rect key="frame" x="227" y="232" width="187" height="70"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KvY-HG-eEM">
+                                <rect key="frame" x="227" y="208" width="187" height="70"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="lLA-2F-Ck4"/>
@@ -366,10 +366,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NPY-v4-nOi">
-                                <rect key="frame" x="0.0" y="397" width="414" height="469"/>
+                                <rect key="frame" x="0.0" y="434" width="414" height="432"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="MgN-0c-XLZ" misplaced="YES">
-                                <rect key="frame" x="0.0" y="310" width="414" height="79"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="MgN-0c-XLZ">
+                                <rect key="frame" x="0.0" y="286" width="414" height="140"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -381,7 +381,7 @@
                             <constraint firstAttribute="bottom" secondItem="NPY-v4-nOi" secondAttribute="bottom" constant="30" id="826-wM-RzB"/>
                             <constraint firstItem="MgN-0c-XLZ" firstAttribute="top" secondItem="OQZ-gJ-oW5" secondAttribute="bottom" constant="8" id="IOk-HX-fbY"/>
                             <constraint firstItem="OQZ-gJ-oW5" firstAttribute="width" secondItem="Neq-wj-Jfz" secondAttribute="width" multiplier="0.5" id="Je5-wx-pCJ"/>
-                            <constraint firstAttribute="bottom" secondItem="MgN-0c-XLZ" secondAttribute="bottom" constant="507" id="JmL-nG-Oq1"/>
+                            <constraint firstAttribute="bottom" secondItem="MgN-0c-XLZ" secondAttribute="bottom" constant="470" id="JmL-nG-Oq1"/>
                             <constraint firstItem="KvY-HG-eEM" firstAttribute="leading" secondItem="OQZ-gJ-oW5" secondAttribute="trailing" id="NFg-Bp-POG"/>
                             <constraint firstItem="W0M-5L-Jxb" firstAttribute="leading" secondItem="OQZ-gJ-oW5" secondAttribute="trailing" id="OQv-hA-ot1"/>
                             <constraint firstAttribute="trailing" secondItem="W0M-5L-Jxb" secondAttribute="trailing" id="R1U-pC-Tmx"/>
@@ -433,9 +433,6 @@
         <image name="Circle.png" width="768" height="290"/>
         <image name="animal_logo.png" width="400" height="400"/>
         <image name="sheep.png" width="1920" height="1905"/>
-        <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="scrollViewTexturedBackgroundColor">
             <color red="0.43529411764705878" green="0.44313725490196082" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
