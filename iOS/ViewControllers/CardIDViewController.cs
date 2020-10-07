@@ -2,7 +2,6 @@ using System;
 using FFImageLoading;
 using UIKit;
 using Sheep_Wolf_NetStandardLibrary;
-using CoreGraphics;
 
 namespace Sheep_Wolf.iOS
 {
@@ -104,12 +103,9 @@ namespace Sheep_Wolf.iOS
                 UIImageView imageStar = new UIImageView();
                 imageStar.HeightAnchor.ConstraintEqualTo(70).Active = true;
                 imageStar.WidthAnchor.ConstraintEqualTo(70).Active = true;
-                //starsLayout.Distribution = UIStackViewDistribution.EqualSpacing;
-                //starsLayout.Alignment = UIStackViewAlignment.Center;
                 starsLayout.AddArrangedSubview(imageStar);
                 imageStar.Image = UIImage.FromBundle("star.png");
                 imageStar.ContentMode = UIViewContentMode.ScaleAspectFit;
-                //starsLayout.BackgroundColor = UIColor.Green;
             }
         }
     }

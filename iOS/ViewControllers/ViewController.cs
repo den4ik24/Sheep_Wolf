@@ -9,10 +9,8 @@ namespace Sheep_Wolf.iOS
         AnimalPickerModel picker;
         UIPickerView uiPicker;
         readonly IBusinessLogic businessLogic = new BusinessLogic();
-         
-        public ViewController(IntPtr handle) : base(handle)
-        {
-        }
+
+        public ViewController(IntPtr handle) : base(handle) { }
 
         public override void ViewDidLoad()
         {
@@ -29,6 +27,7 @@ namespace Sheep_Wolf.iOS
             animalChoice.InputView = uiPicker;
             CircleOfLife.Image = CircleOfLife.Image.ImageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
             picker.ValueChanged += AnimalChoice_ItemSelected;
+            businessLogic.DataChanged += DataSetChanged;
         }
 
         private void AnimalChoice_ItemSelected(object sender, EventArgs e)
@@ -101,8 +100,9 @@ namespace Sheep_Wolf.iOS
             else
             {
                 CountAnimal();
-                listOfSheeps.ReloadData();
+                DeleteKeyboard();
             }
+            listOfSheeps.ReloadData();
         }
 
         public void DeleteKeyboard()
@@ -113,6 +113,14 @@ namespace Sheep_Wolf.iOS
         public void CountAnimal()
         {
             LabelNumberAnimal.Text = businessLogic.AnimalModel().Count.ToString();
+        }
+
+        public void DataSetChanged(object sender, EventArgs e)
+        {
+            InvokeOnMainThread(() =>
+            {
+                listOfSheeps.ReloadData();
+            });
         }
     }
 }

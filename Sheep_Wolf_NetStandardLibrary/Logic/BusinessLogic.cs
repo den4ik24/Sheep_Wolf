@@ -127,8 +127,6 @@ namespace Sheep_Wolf_NetStandardLibrary
                         fillPrey(animal, item);
                         Notify?.Invoke(this, dataTransfer);
 
-
-
                         for (int k = animalModelsArray.Count - 1; k >= 0; --k)
                         {
                             var hunt = animalModelsArray[k];
