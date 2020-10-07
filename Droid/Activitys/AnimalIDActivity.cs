@@ -134,7 +134,6 @@ namespace Sheep_Wolf.Droid
                 imageStar.LayoutParameters = lPar;
                 starsLayout.AddView(imageStar);
                 imageStar.SetImageResource(Resource.Drawable.star);
-                Console.WriteLine($"звезда {i}");
             }
         }
     }
