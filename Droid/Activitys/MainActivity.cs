@@ -202,7 +202,7 @@ namespace Sheep_Wolf.Droid
         {
             textViewNumbSheep.Text = businessLogic.AnimalModel().Count.ToString();
         }
-        // на IOS
+
         public void DisplayKillMessage(object sender, DataTransfer transferData)
         {
             if (transferData.TypeKiller == KillerAnnotation.HUNTER_KILL_WOLF)
@@ -231,7 +231,6 @@ namespace Sheep_Wolf.Droid
                 imageToast.SetImageResource(picture);
                 toastContainer.SetBackgroundColor(Color.Transparent);
                 toast.Show();
-
             });
         }
 

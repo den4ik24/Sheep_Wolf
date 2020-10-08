@@ -116,6 +116,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CvE-6P-cHg" userLabel="Foto Wolf">
+                                                    <rect key="frame" x="310.5" y="0.0" width="103.5" height="60"/>
+                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9go-ry-0Cs" userLabel="Text Table View Wolves Name">
                                                     <rect key="frame" x="0.0" y="0.0" width="310.5" height="60"/>
                                                     <color key="backgroundColor" systemColor="systemBlueColor"/>
@@ -131,9 +134,6 @@
                                                     <nil key="highlightedColor"/>
                                                     <size key="shadowOffset" width="0.0" height="0.0"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CvE-6P-cHg" userLabel="Foto Wolf">
-                                                    <rect key="frame" x="310.5" y="0.0" width="103.5" height="60"/>
-                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="CvE-6P-cHg" secondAttribute="trailing" id="5mg-4Y-wky"/>
@@ -237,32 +237,50 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="ПРОВЕРКА" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="h3X-Kh-7C3">
-                                <rect key="frame" x="87" y="384" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pictureToast" translatesAutoresizingMaskIntoConstraints="NO" id="Fwe-g5-6TR" misplaced="YES" ambiguous="YES">
+                                <rect key="frame" x="30" y="384" width="354" height="128"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gT2-3o-gpx" misplaced="YES">
+                                <rect key="frame" x="20" y="788" width="374" height="66"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="UNG-8g-8hi">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="66"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="oLw-ym-bm1" secondAttribute="trailing" id="14634"/>
                             <constraint firstItem="oLw-ym-bm1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="14638"/>
+                            <constraint firstItem="gT2-3o-gpx" firstAttribute="top" secondItem="oLw-ym-bm1" secondAttribute="bottom" constant="600" id="40D-YN-PFK"/>
                             <constraint firstAttribute="trailing" secondItem="17500" secondAttribute="trailing" id="4qD-WX-8uX"/>
                             <constraint firstItem="GE8-B5-WFc" firstAttribute="top" secondItem="oLw-ym-bm1" secondAttribute="bottom" constant="20" id="EhN-zc-KWd"/>
                             <constraint firstItem="GE8-B5-WFc" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="Ey9-zh-uej"/>
                             <constraint firstItem="17500" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="G1B-3z-d8P"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gT2-3o-gpx" secondAttribute="trailing" id="GAW-ya-c9y"/>
                             <constraint firstItem="17500" firstAttribute="top" secondItem="lKx-1h-y2K" secondAttribute="bottom" constant="20" id="HAm-cT-e75"/>
+                            <constraint firstItem="3jB-Ek-vXM" firstAttribute="top" secondItem="gT2-3o-gpx" secondAttribute="bottom" constant="8" symbolic="YES" id="HCf-UT-F7l"/>
                             <constraint firstAttribute="trailing" secondItem="GE8-B5-WFc" secondAttribute="trailing" id="HHx-gH-CL5"/>
                             <constraint firstItem="ZUM-ry-mAe" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="KCd-1I-gse"/>
                             <constraint firstItem="lKx-1h-y2K" firstAttribute="top" secondItem="oLw-ym-bm1" secondAttribute="bottom" constant="20" id="Qws-g8-yu4"/>
+                            <constraint firstItem="Fwe-g5-6TR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="Zb6-J0-C30"/>
+                            <constraint firstItem="gT2-3o-gpx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="ac0-Eo-qBQ"/>
                             <constraint firstItem="ZUM-ry-mAe" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="cKO-MD-ZfF"/>
                             <constraint firstItem="17500" firstAttribute="top" secondItem="GE8-B5-WFc" secondAttribute="bottom" constant="20" id="efD-tJ-7ht"/>
                             <constraint firstItem="lKx-1h-y2K" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="fBy-J0-I3a"/>
                             <constraint firstItem="ZUM-ry-mAe" firstAttribute="top" secondItem="xke-zk-Bzv" secondAttribute="bottom" constant="8" symbolic="YES" id="jwL-lp-35L"/>
                             <constraint firstItem="3jB-Ek-vXM" firstAttribute="top" secondItem="17500" secondAttribute="bottom" id="qYB-71-UYX"/>
+                            <constraint firstItem="Fwe-g5-6TR" firstAttribute="top" secondItem="oLw-ym-bm1" secondAttribute="bottom" constant="196" id="qi2-gC-iFm"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Fwe-g5-6TR" secondAttribute="trailing" constant="10" id="t8P-Bu-3nc"/>
                             <constraint firstItem="oLw-ym-bm1" firstAttribute="top" secondItem="ZUM-ry-mAe" secondAttribute="bottom" constant="20" id="wAa-ac-05Z"/>
                             <constraint firstItem="lKx-1h-y2K" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="yEE-zh-Tmz"/>
                         </constraints>
@@ -280,12 +298,15 @@
                         <outlet property="LabelNumberAnimal" destination="ZUM-ry-mAe" id="name-outlet-ZUM-ry-mAe"/>
                         <outlet property="animalChoice" destination="GE8-B5-WFc" id="name-outlet-GE8-B5-WFc"/>
                         <outlet property="listOfSheeps" destination="17500" id="name-outlet-17500"/>
+                        <outlet property="pictureToast" destination="Fwe-g5-6TR" id="name-outlet-Fwe-g5-6TR"/>
                         <outlet property="textNameOfAnimals" destination="oLw-ym-bm1" id="name-outlet-oLw-ym-bm1"/>
+                        <outlet property="toastView" destination="gT2-3o-gpx" id="name-outlet-gT2-3o-gpx"/>
+                        <outlet property="toastIOS" destination="UNG-8g-8hi" id="name-outlet-UNG-8g-8hi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="337.6812" y="-62.27679"/>
+            <point key="canvasLocation" x="337.6812" y="-63.61607"/>
         </scene>
         <!--CardID View Controller-->
         <scene sceneID="4zV-j3-RGc">
@@ -441,18 +462,6 @@
         <image name="Circle.png" width="768" height="290"/>
         <image name="animal_logo.png" width="400" height="400"/>
         <image name="sheep.png" width="1920" height="1905"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="scrollViewTexturedBackgroundColor">
-            <color red="0.43529411764705878" green="0.44313725490196082" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

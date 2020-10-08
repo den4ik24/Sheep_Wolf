@@ -9,7 +9,6 @@ namespace Sheep_Wolf.iOS
         AnimalPickerModel picker;
         UIPickerView uiPicker;
         readonly IBusinessLogic businessLogic = new BusinessLogic();
-
         public ViewController(IntPtr handle) : base(handle) { }
 
         public override void ViewDidLoad()
@@ -28,6 +27,7 @@ namespace Sheep_Wolf.iOS
             CircleOfLife.Image = CircleOfLife.Image.ImageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
             picker.ValueChanged += AnimalChoice_ItemSelected;
             businessLogic.DataChanged += DataSetChanged;
+            businessLogic.Notify += DisplayKillMessage;
         }
 
         private void AnimalChoice_ItemSelected(object sender, EventArgs e)
@@ -113,6 +113,34 @@ namespace Sheep_Wolf.iOS
         public void CountAnimal()
         {
             LabelNumberAnimal.Text = businessLogic.AnimalModel().Count.ToString();
+        }
+
+        public void DisplayKillMessage(object sender, DataTransfer transferData)
+        {
+            InvokeOnMainThread(() =>
+            {
+                if (transferData.TypeKiller == KillerAnnotation.HUNTER_KILL_WOLF)
+            {
+                pictureToast.Image = UIImage.FromBundle("hunter_kill_wolf.png");
+                ImageToast(transferData.Message);
+            }
+            else if (transferData.TypeKiller == KillerAnnotation.WOLF_EAT_HUNTER)
+            {
+                pictureToast.Image = UIImage.FromBundle("wolf_kill_hunter.png");
+                ImageToast(transferData.Message);
+            }
+            else if (transferData.TypeKiller == KillerAnnotation.WOLF_EAT_SHEEP)
+            {
+                pictureToast.Image = UIImage.FromBundle("wolf_kill.png");
+                ImageToast(transferData.Message);
+            }
+            });
+
+        }
+        public void ImageToast(string message)
+        {
+            toastIOS.BackgroundColor = UIColor.White;
+            toastIOS.Text = message;
         }
 
         public void DataSetChanged(object sender, EventArgs e)

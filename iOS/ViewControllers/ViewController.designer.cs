@@ -35,7 +35,19 @@ namespace Sheep_Wolf.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIImageView pictureToast { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITextField textNameOfAnimals { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITextView toastIOS { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIView toastView { get; set; }
         [Action ("ButtonAddAnimal_TouchUpInside:")]
         partial void ButtonAddAnimal_TouchUpInside (UIKit.UIButton sender);
 
@@ -66,9 +78,24 @@ namespace Sheep_Wolf.iOS
                 listOfSheeps = null;
             }
 
+            if (pictureToast != null) {
+                pictureToast.Dispose ();
+                pictureToast = null;
+            }
+
             if (textNameOfAnimals != null) {
                 textNameOfAnimals.Dispose ();
                 textNameOfAnimals = null;
+            }
+
+            if (toastIOS != null) {
+                toastIOS.Dispose ();
+                toastIOS = null;
+            }
+
+            if (toastView != null) {
+                toastView.Dispose ();
+                toastView = null;
             }
         }
     }
