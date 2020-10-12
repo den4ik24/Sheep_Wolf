@@ -21,6 +21,16 @@ namespace Sheep_Wolf.Droid
         ImageView imageAnimal;
         LinearLayout starsLayout;
 
+        //int GetImage(AnimalModel model)
+        //{
+        //    if(model is DuckModel)
+        //    {
+        //        return Resource.Drawable.duck;
+        //    }
+
+        //    throw new Exception();
+        //}
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -41,87 +51,72 @@ namespace Sheep_Wolf.Droid
             var star = dataBase.GetID<Prey>(animalID);
 
             textSheepsName.Text = animal.Name;
-            Picasso.Get()
-                   .Load(animal.URL)
-                   .Into(animalsFoto);
 
-            if (animal is SheepModel)
-            {
-                imageAnimal.SetImageResource(Resource.Drawable.sheep);
-                animalType.Text = AnimalType.SHEEP.ToString();
-            }
-            if (animal is DuckModel)
-            {
-                imageAnimal.SetImageResource(Resource.Drawable.duck);
-                animalType.Text = AnimalType.DUCK.ToString();
-            }
-            if (animal is WolfModel)
-            {
-                imageAnimal.SetImageResource(Resource.Drawable.wolf);
-                animalType.Text = AnimalType.WOLF.ToString();
-            }
-            if(animal is HunterModel)
-            {
-                imageAnimal.SetImageResource(Resource.Drawable.hunter);
-                animalType.Text = AnimalType.HUNTER.ToString();
-            }
+            //if (animal is SheepModel)
+            //{
+            //    imageAnimal.SetImageResource(Resource.Drawable.sheep);
+            //    animalType.Text = AnimalType.SHEEP.ToString();
+            //}
+            //if (animal is DuckModel)
+            //{
+            //    imageAnimal.SetImageResource(Resource.Drawable.duck);
+            //    animalType.Text = AnimalType.DUCK.ToString();
+            //}
+            //if (animal is WolfModel)
+            //{
+            //    imageAnimal.SetImageResource(Resource.Drawable.wolf);
+            //    animalType.Text = AnimalType.WOLF.ToString();
+            //}
+            //if (animal is HunterModel)
+            //{
+            //    imageAnimal.SetImageResource(Resource.Drawable.hunter);
+            //    animalType.Text = AnimalType.HUNTER.ToString();
+            //}
+            //imageAnimal.SetImageResource(GetImage(animal));
+            animalType.Text = bl.getAnimalType(animal);
+            var animalState = bl.getAnimalState(animal);
+            imageAnimal.SetImageResource(AnimalModelImager.GetAnimalImage(animal, animalState));
+            StarPicture(star);
+            whoKillMe.Text = GetText(animal);
+            AddBottomImage(animal);
 
-            if (animal.Killer != null)
-            {
-                if (animal is WolfModel)
-                {
-                    animalType.Text = $"This {AnimalType.WOLF} tear to pieces {animal.Killer}";
-                    Toast.MakeText(this, $"Этот волк растерзал на клочки {animal.WhoKilledMe}", ToastLength.Short).Show();
-                    imageAnimal.SetImageResource(Resource.Drawable.killer);
-                    StarPicture(star);
-                }
-                if(animal is HunterModel)
-                {
-                    animalType.Text = $"This {AnimalType.HUNTER} just kill a {animal.Killer}";
-                    Toast.MakeText(this, $"Этот киллер только что завалил волка {animal.WhoKilledMe}", ToastLength.Short).Show();
-                    imageAnimal.SetImageResource(Resource.Drawable.hunter_killer);
-                    StarPicture(star);
-                }
-            }
-            if (animal.WhoKilledMe != null)
-            {
-                if (animal is SheepModel)
-                {
-                    whoKillMe.Text = $"This {AnimalType.SHEEP} eliminated by {animal.WhoKilledMe}";
-                    Toast.MakeText(this, $"Эта овечка была растерзана на клочки волком {animal.WhoKilledMe}", ToastLength.Short).Show();
-                }
-                if (animal is WolfModel)
-                {
-                    whoKillMe.Text = $"This {AnimalType.WOLF} is killed by a hunter {animal.WhoKilledMe}";
-                    Toast.MakeText(this, $"Этот волк завален доблестным охотником {animal.WhoKilledMe}", ToastLength.Short).Show();
-                }
-                if (animal is HunterModel)
-                {
-                    whoKillMe.Text = $"This {AnimalType.HUNTER} is tear to pieces by a wolf {animal.WhoKilledMe}";
-                    Toast.MakeText(this, $"Этот охотник растерзан на клочки волком {animal.WhoKilledMe}", ToastLength.Short).Show();
-                }
-            }
+            //if (animal.Killer != null)
+            //{
+            //    if (animal is WolfModel)
+            //    {
+            //        animalType.Text = $"This {AnimalType.WOLF} tear to pieces {animal.Killer}";
+            //        //Toast.MakeText(this, $"Этот волк растерзал на клочки {animal.WhoKilledMe}", ToastLength.Short).Show();
+            //        imageAnimal.SetImageResource(Resource.Drawable.killer);
+            //        StarPicture(star);
+            //    }
+            //    if(animal is HunterModel)
+            //    {
+            //        animalType.Text = $"This {AnimalType.HUNTER} just kill a {animal.Killer}";
+            //        //Toast.MakeText(this, $"Этот киллер только что завалил волка {animal.WhoKilledMe}", ToastLength.Short).Show();
+            //        imageAnimal.SetImageResource(Resource.Drawable.hunter_killer);
+            //        StarPicture(star);
+            //    }
+            //}
+            //if (animal.WhoKilledMe != null)
+            //{
+            //    if (animal is SheepModel)
+            //    {
+            //        whoKillMe.Text = $"This {AnimalType.SHEEP} eliminated by {animal.WhoKilledMe}";
+            //        Toast.MakeText(this, $"Эта овечка была растерзана на клочки волком {animal.WhoKilledMe}", ToastLength.Short).Show();
+            //    }
+            //    if (animal is WolfModel)
+            //    {
+            //        whoKillMe.Text = $"This {AnimalType.WOLF} is killed by a hunter {animal.WhoKilledMe}";
+            //        Toast.MakeText(this, $"Этот волк завален доблестным охотником {animal.WhoKilledMe}", ToastLength.Short).Show();
+            //    }
+            //    if (animal is HunterModel)
+            //    {
+            //        whoKillMe.Text = $"This {AnimalType.HUNTER} is tear to pieces by a wolf {animal.WhoKilledMe}";
+            //        Toast.MakeText(this, $"Этот охотник растерзан на клочки волком {animal.WhoKilledMe}", ToastLength.Short).Show();
+            //    }
+            //}
 
-            if (animal.IsDead)
-            {
-                if (animal is SheepModel)
-                {
-                    imageAnimal.SetImageResource(Resource.Drawable.rip);
-                }
-                else if (animal is WolfModel)
-                {
-                    imageAnimal.SetImageResource(Resource.Drawable.wolf_rip);
-                }
-                else if (animal is HunterModel)
-                {
-                    imageAnimal.SetImageResource(Resource.Drawable.hunter_rip);
-                }
 
-                Picasso.Get()
-                       .Load(animal.URL)
-                       .Transform(new GrayscaleTransformation())
-                       .Into(animalsFoto);
-            }
 
         }
 
@@ -134,6 +129,31 @@ namespace Sheep_Wolf.Droid
                 imageStar.LayoutParameters = lPar;
                 starsLayout.AddView(imageStar);
                 imageStar.SetImageResource(Resource.Drawable.star);
+            }
+        }
+
+        public void AddBottomImage(AnimalModel animal)
+        {
+            var load = Picasso.Get()
+                       .Load(animal.URL);
+            if (animal.IsDead)
+            {
+                load.Transform(new GrayscaleTransformation());
+            }
+            load.Into(animalsFoto);
+
+        }
+}
+
+static class AnimalModelImager
+{
+    int GetAnimalImage(AnimalModel model, AnimalState state)
+    {
+        if(model is SheepModel)
+        {
+            if (state.Alive)
+            {
+                return Resource.Drawable.sheep;
             }
         }
     }
