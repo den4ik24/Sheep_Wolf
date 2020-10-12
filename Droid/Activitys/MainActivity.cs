@@ -63,8 +63,8 @@ namespace Sheep_Wolf.Droid
         private void AnimalChoice_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             animalChoice = sender as Spinner;
-            string selectedAnimal = string.Format($"Выбрано животное - {animalChoice.GetItemAtPosition(e.Position)}");
-            Toast.MakeText(this, selectedAnimal, ToastLength.Short).Show();
+            //string selectedAnimal = string.Format($"Выбрано животное - {animalChoice.GetItemAtPosition(e.Position)}");
+            //Toast.MakeText(this, selectedAnimal, ToastLength.Short).Show();
             var resIcon = ContextCompat.GetDrawable(this, Resource.Drawable.animal_logo);
             var item = menu.FindItem(Resource.Id.addAnimals);
             if (animalChoice.SelectedItemPosition is (int)AnimalType.DUCK ||
@@ -72,7 +72,7 @@ namespace Sheep_Wolf.Droid
             {
                 SetEnabledIconState(item, resIcon, true);
                 textNameOfAnimal.Enabled = false;
-                textNameOfAnimal.Text = "Жми ЛАПКУ и добавляй без ввода имени";
+                textNameOfAnimal.Text = Keys.ENTERthePAW;
             }
             else
             {
@@ -140,7 +140,7 @@ namespace Sheep_Wolf.Droid
                 case Resource.Id.addAnimals:
                     if (SheepAndWolfSelected())
                     {
-                        var toast = Toast.MakeText(this, "Укажите имя существа", ToastLength.Short);
+                        var toast = Toast.MakeText(this, Keys.ENTERtheNAME, ToastLength.Short);
                         toast.SetGravity(GravityFlags.Center, 0, 0);
                         var toastContainer = (LinearLayout)toast.View;
                         toastContainer.SetBackgroundColor(Color.Transparent);
@@ -172,16 +172,16 @@ namespace Sheep_Wolf.Droid
             var isSheep = animalChoice.SelectedItemPosition;
             if (isSheep is (int)AnimalType.WOLF)
             {
-                Toast.MakeText(this, "Волк выходит на тропу жратвы.", ToastLength.Short).Show();
+                Toast.MakeText(this, Keys.ENTERtheWOLF, ToastLength.Short).Show();
             }
             else if (isSheep is (int)AnimalType.HUNTER)
             {
-                Toast.MakeText(this, "Охотники рядом. Охотники здесь", ToastLength.Short).Show();
+                Toast.MakeText(this, Keys.ENTERtheHUNTER, ToastLength.Short).Show();
             }
 
             if (businessLogic.AddAnimal(isSheep, textNameOfAnimal.Text))
             {
-                var toast = Toast.MakeText(this, "Существо с таким именем уже существует.\n Измените имя", ToastLength.Short);
+                var toast = Toast.MakeText(this, Keys.REPEATtheNAME, ToastLength.Short);
                 toast.SetGravity(GravityFlags.Center, 0, 0);
                 var toastContainer = (LinearLayout)toast.View;
                 var imageToast = new ImageView(this);

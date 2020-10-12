@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Timers;
 using Sheep_Wolf_NetStandardLibrary;
 using UIKit;
 
@@ -10,6 +11,8 @@ namespace Sheep_Wolf.iOS
         UIPickerView uiPicker;
         readonly IBusinessLogic businessLogic = new BusinessLogic();
         public ViewController(IntPtr handle) : base(handle) { }
+        Timer timer = new Timer(5000);
+        int alfa;
 
         public override void ViewDidLoad()
         {
@@ -25,9 +28,20 @@ namespace Sheep_Wolf.iOS
             uiPicker.Model.Selected(uiPicker, 0, 0);
             animalChoice.InputView = uiPicker;
             CircleOfLife.Image = CircleOfLife.Image.ImageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
+            CircleOfLife.Clicked += CircleOfLife_Clicked;
             picker.ValueChanged += AnimalChoice_ItemSelected;
             businessLogic.DataChanged += DataSetChanged;
             businessLogic.Notify += DisplayKillMessage;
+            toastView.Layer.BorderWidth = 1;
+            toastView.Layer.BorderColor = UIColor.Gray.CGColor;
+            toastView.Layer.CornerRadius = 30;
+        }
+
+        private void CircleOfLife_Clicked(object sender, EventArgs e)
+        {
+            string message = "";
+            string picture = "INFORMATION.png";
+            ImageToast(message, picture);
         }
 
         private void AnimalChoice_ItemSelected(object sender, EventArgs e)
@@ -37,7 +51,7 @@ namespace Sheep_Wolf.iOS
             {
                 ButtonAddAnimal.Enabled = true;
                 textNameOfAnimals.Enabled = false;
-                textNameOfAnimals.Text = "Жми ЛАПКУ и добавляй без ввода имени";
+                textNameOfAnimals.Text = Keys.ENTERthePAW;
             }
             else
             {
@@ -72,7 +86,7 @@ namespace Sheep_Wolf.iOS
             if (SheepAndWolfSelected())
             {
                 var alertController = UIAlertController.Create
-                    ("WARNING", "Введите имя животного", UIAlertControllerStyle.Alert);
+                    ("WARNING", Keys.ENTERtheNAME, UIAlertControllerStyle.Alert);
                 alertController.AddAction(UIAlertAction.Create
                     ("OK", UIAlertActionStyle.Default, null));
                 PresentViewController(alertController, true, null);
@@ -89,13 +103,24 @@ namespace Sheep_Wolf.iOS
         public void AddRandomAnimal()
         {
             var isSheep = picker.SelectedValue;
-            if(businessLogic.AddAnimal(picker.SelectedRow, textNameOfAnimals.Text))
+
+            if (isSheep == AnimalType.WOLF.ToString())
+            {
+                ImageToast(Keys.ENTERtheWOLF, "wolf.png");
+            }
+            else if (isSheep == AnimalType.HUNTER.ToString())
+            {
+                ImageToast(Keys.ENTERtheHUNTER, "hunter_killer.png");
+            }
+
+            if (businessLogic.AddAnimal(picker.SelectedRow, textNameOfAnimals.Text))
             {
                 var alertController = UIAlertController.Create
-                ("WARNING", "Животное с таким именем уже существует.Измените имя", UIAlertControllerStyle.Alert);
+                ("WARNING", Keys.REPEATtheNAME, UIAlertControllerStyle.Alert);
                 alertController.AddAction(UIAlertAction.Create
                     ("OK", UIAlertActionStyle.Default, null));
                 PresentViewController(alertController, true, null);
+                ImageToast(Keys.REPEATtheNAME, "INFORMATION.png");
             }
             else
             {
@@ -119,28 +144,55 @@ namespace Sheep_Wolf.iOS
         {
             InvokeOnMainThread(() =>
             {
+                string picture;
                 if (transferData.TypeKiller == KillerAnnotation.HUNTER_KILL_WOLF)
-            {
-                pictureToast.Image = UIImage.FromBundle("hunter_kill_wolf.png");
-                ImageToast(transferData.Message);
-            }
-            else if (transferData.TypeKiller == KillerAnnotation.WOLF_EAT_HUNTER)
-            {
-                pictureToast.Image = UIImage.FromBundle("wolf_kill_hunter.png");
-                ImageToast(transferData.Message);
-            }
-            else if (transferData.TypeKiller == KillerAnnotation.WOLF_EAT_SHEEP)
-            {
-                pictureToast.Image = UIImage.FromBundle("wolf_kill.png");
-                ImageToast(transferData.Message);
-            }
+                {
+                    picture = "hunter_kill_wolf.png";
+                ImageToast(transferData.Message, picture);
+                }
+                if (transferData.TypeKiller == KillerAnnotation.WOLF_EAT_HUNTER)
+                {
+                    picture = "wolf_kill_hunter.png";
+                ImageToast(transferData.Message, picture);
+                }
+                if (transferData.TypeKiller == KillerAnnotation.WOLF_EAT_SHEEP)
+                {
+                    picture = "wolf_kill.png";
+                ImageToast(transferData.Message, picture);
+                }
+
             });
 
         }
-        public void ImageToast(string message)
+        public void ImageToast(string message, string picture)
         {
-            toastIOS.BackgroundColor = UIColor.White;
+            timer.Elapsed += (o, args) => { NullToast(); };
+            timer.AutoReset = true;
+            timer.Enabled = true;
+            alfa = 1;
+            Anime(alfa);
             toastIOS.Text = message;
+            pictureToast.Image = UIImage.FromBundle(picture);
+            
+       
+        }
+
+        public void NullToast()
+        {
+            InvokeOnMainThread(() =>
+            {
+                alfa = 0;
+                Anime(alfa);
+                timer.Stop();
+                timer.AutoReset = false;
+                timer.Enabled = false;
+            });
+        }
+
+        public void Anime(int alfa)
+        {
+            UIView.Animate(2, () => { toastView.Alpha = alfa; pictureToast.Alpha = alfa; });
+            
         }
 
         public void DataSetChanged(object sender, EventArgs e)

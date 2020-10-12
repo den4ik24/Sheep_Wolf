@@ -237,24 +237,29 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pictureToast" translatesAutoresizingMaskIntoConstraints="NO" id="Fwe-g5-6TR" misplaced="YES" ambiguous="YES">
-                                <rect key="frame" x="30" y="384" width="354" height="128"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pictureToast" translatesAutoresizingMaskIntoConstraints="NO" id="Fwe-g5-6TR" misplaced="YES" alpha="0.0">
+                                <rect key="frame" x="30" y="228" width="354" height="460"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gT2-3o-gpx" misplaced="YES">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gT2-3o-gpx" misplaced="YES" alpha="0.0">
                                 <rect key="frame" x="20" y="788" width="374" height="66"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="UNG-8g-8hi">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="66"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="textColor" systemColor="labelColor"/>
-                                        <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" editable="NO" text="example" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="UNG-8g-8hi" misplaced="YES">
+                                        <rect key="frame" x="10" y="10" width="354" height="46"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="UNG-8g-8hi" firstAttribute="leading" secondItem="gT2-3o-gpx" secondAttribute="leading" constant="10" id="4MV-uW-FxV"/>
+                                    <constraint firstItem="UNG-8g-8hi" firstAttribute="top" secondItem="gT2-3o-gpx" secondAttribute="top" constant="10" id="HpQ-Hi-joi"/>
+                                    <constraint firstAttribute="bottom" secondItem="UNG-8g-8hi" secondAttribute="bottom" constant="10" id="lSc-Hv-Bu0"/>
+                                    <constraint firstAttribute="trailing" secondItem="UNG-8g-8hi" secondAttribute="trailing" constant="10" id="rhr-7A-ZuR"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -272,14 +277,17 @@
                             <constraint firstAttribute="trailing" secondItem="GE8-B5-WFc" secondAttribute="trailing" id="HHx-gH-CL5"/>
                             <constraint firstItem="ZUM-ry-mAe" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="KCd-1I-gse"/>
                             <constraint firstItem="lKx-1h-y2K" firstAttribute="top" secondItem="oLw-ym-bm1" secondAttribute="bottom" constant="20" id="Qws-g8-yu4"/>
+                            <constraint firstItem="gT2-3o-gpx" firstAttribute="top" secondItem="Fwe-g5-6TR" secondAttribute="bottom" constant="100" id="Qz3-Fh-jnt"/>
                             <constraint firstItem="Fwe-g5-6TR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="Zb6-J0-C30"/>
                             <constraint firstItem="gT2-3o-gpx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="ac0-Eo-qBQ"/>
                             <constraint firstItem="ZUM-ry-mAe" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="cKO-MD-ZfF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Fwe-g5-6TR" secondAttribute="trailing" constant="10" id="dZ8-8j-tu6"/>
                             <constraint firstItem="17500" firstAttribute="top" secondItem="GE8-B5-WFc" secondAttribute="bottom" constant="20" id="efD-tJ-7ht"/>
                             <constraint firstItem="lKx-1h-y2K" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="fBy-J0-I3a"/>
                             <constraint firstItem="ZUM-ry-mAe" firstAttribute="top" secondItem="xke-zk-Bzv" secondAttribute="bottom" constant="8" symbolic="YES" id="jwL-lp-35L"/>
+                            <constraint firstItem="Fwe-g5-6TR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="kra-Uh-CZY"/>
                             <constraint firstItem="3jB-Ek-vXM" firstAttribute="top" secondItem="17500" secondAttribute="bottom" id="qYB-71-UYX"/>
-                            <constraint firstItem="Fwe-g5-6TR" firstAttribute="top" secondItem="oLw-ym-bm1" secondAttribute="bottom" constant="196" id="qi2-gC-iFm"/>
+                            <constraint firstItem="Fwe-g5-6TR" firstAttribute="top" secondItem="oLw-ym-bm1" secondAttribute="bottom" constant="40" id="qi2-gC-iFm"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Fwe-g5-6TR" secondAttribute="trailing" constant="10" id="t8P-Bu-3nc"/>
                             <constraint firstItem="oLw-ym-bm1" firstAttribute="top" secondItem="ZUM-ry-mAe" secondAttribute="bottom" constant="20" id="wAa-ac-05Z"/>
                             <constraint firstItem="lKx-1h-y2K" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="yEE-zh-Tmz"/>
@@ -300,8 +308,8 @@
                         <outlet property="listOfSheeps" destination="17500" id="name-outlet-17500"/>
                         <outlet property="pictureToast" destination="Fwe-g5-6TR" id="name-outlet-Fwe-g5-6TR"/>
                         <outlet property="textNameOfAnimals" destination="oLw-ym-bm1" id="name-outlet-oLw-ym-bm1"/>
-                        <outlet property="toastView" destination="gT2-3o-gpx" id="name-outlet-gT2-3o-gpx"/>
                         <outlet property="toastIOS" destination="UNG-8g-8hi" id="name-outlet-UNG-8g-8hi"/>
+                        <outlet property="toastView" destination="gT2-3o-gpx" id="name-outlet-gT2-3o-gpx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

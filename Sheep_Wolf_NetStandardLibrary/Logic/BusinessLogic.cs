@@ -301,7 +301,6 @@ namespace Sheep_Wolf_NetStandardLibrary
                 aTimer.Elapsed += (o, args) => { AnimalKiller(animal); };
                 aTimer.AutoReset = true;
                 aTimer.Enabled = true;
-                Console.WriteLine("проверка потока");
             }
         }
 
@@ -309,7 +308,6 @@ namespace Sheep_Wolf_NetStandardLibrary
         {
             aTimer.AutoReset = false;
             aTimer.Enabled = false;
-            Console.WriteLine("отключение таймера");
         }
 
     }
