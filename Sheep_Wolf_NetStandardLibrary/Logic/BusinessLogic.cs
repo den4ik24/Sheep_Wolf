@@ -12,6 +12,7 @@ namespace Sheep_Wolf_NetStandardLibrary
         void GetListAnimals();
         AnimalType TypeOfAnimal(AnimalModel animal);
         AnimalModel GetAnimal(int animalID, int typeOfAnimal);
+        AnimalState GetAnimalState(AnimalModel animal);
         event EventHandler<DataTransfer> Notify;
         event EventHandler DataChanged;
     }
@@ -214,7 +215,6 @@ namespace Sheep_Wolf_NetStandardLibrary
                             DataChanged?.Invoke(this, EventArgs.Empty);
                             StopTimer();
                         }
-
                         break;
                     }
                 }
@@ -269,13 +269,6 @@ namespace Sheep_Wolf_NetStandardLibrary
             return null;
         }
 
-        public void DuckFlyAway()
-        {
-            animalModelsArray.RemoveAll(a => a is DuckModel);
-            dataBase.Delete<DuckModel>();
-            duckCount = 0;
-        }
-
         public void WhoKilledWho(AnimalModel sacrifice, AnimalModel killer)
         {
             sacrifice.IsDead = true;
@@ -283,6 +276,32 @@ namespace Sheep_Wolf_NetStandardLibrary
             killer.Killer = sacrifice.Name;
             dataBase.Update(sacrifice);
             dataBase.Update(killer);
+        }
+
+        public AnimalState GetAnimalState(AnimalModel animal)
+        {
+            if (animal.IsDead == true)
+            {
+                return AnimalState.DEAD;
+            }
+
+            if(animal.IsDead !=true && animal.Killer == null)
+            {
+                return AnimalState.ALIVE;
+            }
+
+            if(animal.Killer != null)
+            {
+                return AnimalState.KILLER;
+            }
+            throw new Exception();
+        }
+
+        public void DuckFlyAway()
+        {
+            animalModelsArray.RemoveAll(a => a is DuckModel);
+            dataBase.Delete<DuckModel>();
+            duckCount = 0;
         }
 
         public void fillPrey(AnimalModel kilerID, AnimalModel victimID)
@@ -309,7 +328,6 @@ namespace Sheep_Wolf_NetStandardLibrary
             aTimer.AutoReset = false;
             aTimer.Enabled = false;
         }
-
     }
     public class DataTransfer : EventArgs
     {
@@ -321,5 +339,11 @@ namespace Sheep_Wolf_NetStandardLibrary
         WOLF_EAT_SHEEP,
         WOLF_EAT_HUNTER,
         HUNTER_KILL_WOLF
+    }
+    public enum AnimalState
+    {
+        DEAD,
+        ALIVE,
+        KILLER
     }
 }
