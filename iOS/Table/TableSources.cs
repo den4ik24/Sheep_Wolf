@@ -59,7 +59,7 @@ namespace Sheep_Wolf.iOS
             NabvigateTo(animalId, (int)type);
         }
 
-        public void NabvigateTo(int animalId, int type)
+        public void NabvigateTo(string animalId, int type)
         {
             CardIDViewController cardIDViewController = controller.Storyboard.InstantiateViewController("CardIDViewController") as CardIDViewController;
             controller.NavigationController.PushViewController(cardIDViewController, true);

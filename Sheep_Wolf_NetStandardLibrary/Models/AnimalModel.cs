@@ -4,8 +4,8 @@ namespace Sheep_Wolf_NetStandardLibrary
 {
     public class AnimalModel
     {
-        [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
+        [PrimaryKey]
+        public string Id { get; set; }
         public string Name { get; set; }
         public string URL { get; set; }
         public string Killer { get; set; }

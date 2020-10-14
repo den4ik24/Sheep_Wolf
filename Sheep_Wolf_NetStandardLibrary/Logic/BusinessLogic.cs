@@ -11,7 +11,7 @@ namespace Sheep_Wolf_NetStandardLibrary
         bool AddAnimal(int iS, string aN);
         void GetListAnimals();
         AnimalType TypeOfAnimal(AnimalModel animal);
-        AnimalModel GetAnimal(int animalID, int typeOfAnimal);
+        AnimalModel GetAnimal(string animalID, int typeOfAnimal);
         AnimalState GetAnimalState(AnimalModel animal);
         event EventHandler<DataTransfer> Notify;
         event EventHandler DataChanged;
@@ -24,7 +24,6 @@ namespace Sheep_Wolf_NetStandardLibrary
         int duckCount;
         public event EventHandler<DataTransfer> Notify;
         public event EventHandler DataChanged;
-        Prey prey = new Prey();
         Timer aTimer = new Timer();
 
         public List<AnimalModel> AnimalModel()
@@ -250,7 +249,7 @@ namespace Sheep_Wolf_NetStandardLibrary
             return type;
         }
 
-        public AnimalModel GetAnimal(int animalID, int typeOfAnimal)
+        public AnimalModel GetAnimal(string animalID, int typeOfAnimal)
         {
             var type = (AnimalType)typeOfAnimal;
             switch (type)
@@ -280,12 +279,12 @@ namespace Sheep_Wolf_NetStandardLibrary
 
         public AnimalState GetAnimalState(AnimalModel animal)
         {
-            if (animal.IsDead == true)
+            if (animal.IsDead)
             {
                 return AnimalState.DEAD;
             }
 
-            if(animal.IsDead !=true && animal.Killer == null)
+            if(!animal.IsDead && animal.Killer == null)
             {
                 return AnimalState.ALIVE;
             }
@@ -306,8 +305,9 @@ namespace Sheep_Wolf_NetStandardLibrary
 
         public void fillPrey(AnimalModel kilerID, AnimalModel victimID)
         {
-            prey.killerId = kilerID.Id;
-            prey.victimId = victimID.Id;
+            var prey = new Prey();
+            prey.KillerId = kilerID.Id;
+            prey.VictimId = victimID.Id;
             dataBase.InsertID(prey);
         }
 

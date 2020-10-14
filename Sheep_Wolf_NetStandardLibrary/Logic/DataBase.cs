@@ -14,8 +14,8 @@ namespace Sheep_Wolf_NetStandardLibrary
         void Insert(AnimalModel animal);
         void Update(AnimalModel animal);
         void Delete<T>() where T : AnimalModel, new();
-        AnimalModel GetItem<T>(int N) where T: AnimalModel, new();
-        int GetID<T>(int id) where T : Prey, new();
+        AnimalModel GetItem<T>(string N) where T: AnimalModel, new();
+        int GetID<T>(string id) where T : Prey, new();
     }
 
     public class DataBase : IDataBase
@@ -65,7 +65,7 @@ namespace Sheep_Wolf_NetStandardLibrary
             connection.DeleteAll<T>();
         }
 
-        public AnimalModel GetItem<T>(int N) where T: AnimalModel, new()
+        public AnimalModel GetItem<T>(string N) where T: AnimalModel, new()
         {
             var connection = new SQLiteConnection(dbPath);
             return connection.Table<T>().FirstOrDefault(a => a.Id == N);
@@ -77,10 +77,20 @@ namespace Sheep_Wolf_NetStandardLibrary
             connection.Insert(prey);
         }
 
-        public int GetID<T>(int id) where T : Prey, new()
+        public int GetID<T>(string id) where T : Prey, new()
         {
+            Console.WriteLine($"GetID: {id}");
+
             var connection = new SQLiteConnection(dbPath);
-            var o = connection.Table<T>().Where(a => a.victimId == id);
+            var o = connection.Table<T>().Where(a => a.KillerId == id);
+
+            var a1 = connection.Table<T>();
+            foreach(var abc in a1)
+            {
+                Console.WriteLine($"KillerId: {abc.KillerId} VictimId: {abc.VictimId} ");
+            }
+
+
             return o.Count();
         }
     }

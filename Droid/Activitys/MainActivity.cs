@@ -63,8 +63,6 @@ namespace Sheep_Wolf.Droid
         private void AnimalChoice_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             animalChoice = sender as Spinner;
-            //string selectedAnimal = string.Format($"Выбрано животное - {animalChoice.GetItemAtPosition(e.Position)}");
-            //Toast.MakeText(this, selectedAnimal, ToastLength.Short).Show();
             var resIcon = ContextCompat.GetDrawable(this, Resource.Drawable.animal_logo);
             var item = menu.FindItem(Resource.Id.addAnimals);
             if (animalChoice.SelectedItemPosition is (int)AnimalType.DUCK ||

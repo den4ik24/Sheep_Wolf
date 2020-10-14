@@ -24,6 +24,7 @@ namespace Sheep_Wolf_NetStandardLibrary
         public static AnimalModel GetSheep()
         {
             var sheep = new SheepModel();
+            sheep.Id = Guid.NewGuid().ToString();
             sheep.URL = GetRandomImage();
             return sheep;
         }

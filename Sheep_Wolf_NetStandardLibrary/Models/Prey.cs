@@ -7,8 +7,8 @@ namespace Sheep_Wolf_NetStandardLibrary
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-        public int killerId { get; set; }
-        public int victimId { get; set; }
+        public string KillerId { get; set; }
+        public string VictimId { get; set; }
 
         public Prey()
         {

@@ -21,16 +21,6 @@ namespace Sheep_Wolf.Droid
         ImageView imageAnimal;
         LinearLayout starsLayout;
 
-        //int GetImage(AnimalModel model)
-        //{
-        //    if(model is DuckModel)
-        //    {
-        //        return Resource.Drawable.duck;
-        //    }
-
-        //    throw new Exception();
-        //}
-
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -42,70 +32,18 @@ namespace Sheep_Wolf.Droid
             whoKillMe = FindViewById<TextView>(Resource.Id.whoKillMe);
             imageAnimal = FindViewById<ImageView>(Resource.Id.imageAnimal);
             var typeOfAnimal = Intent.Extras.GetInt(Keys.TYPEofANIMAL);
-            var animalID = Intent.Extras.GetInt(Keys.ANIMAL_ID);
+            var animalID = Intent.Extras.GetString(Keys.ANIMAL_ID);
             var animal = businessLogic.GetAnimal(animalID, typeOfAnimal);
             var star = dataBase.GetID<Prey>(animalID);
             textSheepsName.Text = animal.Name;
 
-            //if (animal is SheepModel)
-            //{
-            //    imageAnimal.SetImageResource(Resource.Drawable.sheep);
-            //    animalType.Text = AnimalType.SHEEP.ToString();
-            //}
-            //if (animal is DuckModel)
-            //{
-            //    imageAnimal.SetImageResource(Resource.Drawable.duck);
-            //    animalType.Text = AnimalType.DUCK.ToString();
-            //}
-            //if (animal is WolfModel)
-            //{
-            //    imageAnimal.SetImageResource(Resource.Drawable.wolf);
-            //    animalType.Text = AnimalType.WOLF.ToString();
-            //}
-            //if (animal is HunterModel)
-            //{
-            //    imageAnimal.SetImageResource(Resource.Drawable.hunter);
-            //    animalType.Text = AnimalType.HUNTER.ToString();
-            //}
-            //imageAnimal.SetImageResource(GetImage(animal));
-
-            animalType.Text = businessLogic.TypeOfAnimal(animal).ToString();
+            animalType.Text = KillText(animal);
+               // businessLogic.TypeOfAnimal(animal).ToString();
             var animalState = businessLogic.GetAnimalState(animal);
             imageAnimal.SetImageResource(AnimalModelImager.GetAnimalImage(animal, animalState));
             StarPicture(star);
             whoKillMe.Text = GetText(animal);
             AddBottomImage(animal);
-
-            //if (animal.Killer != null)
-            //{
-            //    if (animal is WolfModel)
-            //    {
-            //        animalType.Text = $"This {AnimalType.WOLF} tear to pieces {animal.Killer}";
-            //        imageAnimal.SetImageResource(Resource.Drawable.killer);
-            //        StarPicture(star);
-            //    }
-            //    if(animal is HunterModel)
-            //    {
-            //        animalType.Text = $"This {AnimalType.HUNTER} just kill a {animal.Killer}";
-            //        imageAnimal.SetImageResource(Resource.Drawable.hunter_killer);
-            //        StarPicture(star);
-            //    }
-            //}
-            //if (animal.WhoKilledMe != null)
-            //{
-            //    if (animal is SheepModel)
-            //    {
-            //        whoKillMe.Text = $"This {AnimalType.SHEEP} eliminated by {animal.WhoKilledMe}";
-            //    }
-            //    if (animal is WolfModel)
-            //    {
-            //        whoKillMe.Text = $"This {AnimalType.WOLF} is killed by a hunter {animal.WhoKilledMe}";
-            //    }
-            //    if (animal is HunterModel)
-            //    {
-            //        whoKillMe.Text = $"This {AnimalType.HUNTER} is tear to pieces by a wolf {animal.WhoKilledMe}";
-            //    }
-            //}
         }
 
         public void StarPicture(int star)
@@ -148,7 +86,25 @@ namespace Sheep_Wolf.Droid
                     return $"This {AnimalType.HUNTER} is tear to pieces by a wolf {animal.WhoKilledMe}";
                 }
             }
-            return null;
+            return "Title";
+        }
+
+        public string KillText(AnimalModel animal)
+        {
+            if (animal.Killer != null)
+            {
+                if (animal is WolfModel)
+                {
+                    //StarPicture(star);
+                    return $"This {AnimalType.WOLF} tear to pieces {animal.Killer}";
+                }
+                if (animal is HunterModel)
+                {
+                    //StarPicture(star);
+                    return $"This {AnimalType.HUNTER} just kill a {animal.Killer}";
+                }
+            }
+            return businessLogic.TypeOfAnimal(animal).ToString();
         }
     }
 

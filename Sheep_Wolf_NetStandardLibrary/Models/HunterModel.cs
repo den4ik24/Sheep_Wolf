@@ -37,6 +37,7 @@ namespace Sheep_Wolf_NetStandardLibrary
         public static AnimalModel GetHunter()
         {
             var hunter = new HunterModel();
+            hunter.Id = Guid.NewGuid().ToString();
             hunter.URL = GetRandomImage();
             hunter.Name = GetRandomName();
             return hunter;
