@@ -130,11 +130,31 @@ namespace Sheep_Wolf.Droid
             }
             load.Into(animalsFoto);
         }
+
+        public string GetText(AnimalModel animal)
+        {
+            if(animal.WhoKilledMe != null)
+            {
+                if (animal is SheepModel)
+                {
+                    return $"This {AnimalType.SHEEP} eliminated by {animal.WhoKilledMe}";
+                }
+                if (animal is WolfModel)
+                {
+                    return $"This {AnimalType.WOLF} is killed by a hunter {animal.WhoKilledMe}";
+                }
+                if (animal is HunterModel)
+                {
+                    return $"This {AnimalType.HUNTER} is tear to pieces by a wolf {animal.WhoKilledMe}";
+                }
+            }
+            return null;
+        }
     }
 
-    static class AnimalModelImager
+    public static class AnimalModelImager
     {
-        int GetAnimalImage(AnimalModel model, AnimalState state)
+        public static int GetAnimalImage(AnimalModel model, AnimalState state)
         {
             if (model is SheepModel)
             {
@@ -144,11 +164,7 @@ namespace Sheep_Wolf.Droid
                 }
                 if(state == AnimalState.DEAD)
                 {
-
-                }
-                if(state == AnimalState.KILLER)
-                {
-
+                    return Resource.Drawable.rip;
                 }
             }
 
@@ -160,11 +176,11 @@ namespace Sheep_Wolf.Droid
                 }
                 if (state == AnimalState.DEAD)
                 {
-
+                    return Resource.Drawable.wolf_rip;
                 }
                 if (state == AnimalState.KILLER)
                 {
-
+                    return Resource.Drawable.killer;
                 }
             }
 
@@ -176,11 +192,11 @@ namespace Sheep_Wolf.Droid
                 }
                 if (state == AnimalState.DEAD)
                 {
-
+                    return Resource.Drawable.hunter_rip;
                 }
                 if (state == AnimalState.KILLER)
                 {
-
+                    return Resource.Drawable.hunter_killer;
                 }
             }
 
