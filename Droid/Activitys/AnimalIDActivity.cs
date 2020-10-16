@@ -37,12 +37,12 @@ namespace Sheep_Wolf.Droid
             var star = dataBase.GetID<Prey>(animalID);
             textSheepsName.Text = animal.Name;
 
-            animalType.Text = KillText(animal);
+            animalType.Text = businessLogic.TextKill(animal);
+            whoKillMe.Text = businessLogic.NameofKiller(animal);
             var animalState = businessLogic.GetAnimalState(animal);
             imageAnimal.SetImageResource(AnimalModelImager.GetAnimalImage(animal, animalState));
             StarPicture(star);
             AddBottomImage(animal);
-            whoKillMe.Text = GetText(animal);
         }
 
         public void StarPicture(int star)
@@ -66,43 +66,6 @@ namespace Sheep_Wolf.Droid
                 load.Transform(new GrayscaleTransformation());
             }
             load.Into(animalsFoto);
-        }
-
-        public string GetText(AnimalModel animal)
-        {
-            if (animal.IsDead)
-            {
-                var killName = businessLogic.NameofKiller(animal);
-                if (animal is SheepModel)
-                {
-                    return $"This {AnimalType.SHEEP} eliminated by {killName}";
-                }
-                if (animal is WolfModel)
-                {
-                    return $"This {AnimalType.WOLF} is killed by a hunter {killName}";
-                }
-                if (animal is HunterModel)
-                {
-                    return $"This {AnimalType.HUNTER} is tear to pieces by a wolf {killName}";
-                }
-            }
-            return "Title";
-        }
-
-        public string KillText(AnimalModel animal)
-        {
-            if (animal.Killer != null)
-            {
-                if (animal is WolfModel)
-                {
-                    return $"This {AnimalType.WOLF} tear to pieces {animal.Killer}";
-                }
-                if (animal is HunterModel)
-                {
-                    return $"This {AnimalType.HUNTER} just kill a {animal.Killer}";
-                }
-            }
-            return businessLogic.TypeOfAnimal(animal).ToString();
         }
     }
 

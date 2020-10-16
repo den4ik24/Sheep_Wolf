@@ -16,6 +16,7 @@ namespace Sheep_Wolf_NetStandardLibrary
         event EventHandler<DataTransfer> Notify;
         event EventHandler DataChanged;
         string NameofKiller(AnimalModel animal);
+        string TextKill(AnimalModel animal);
     }
 
     public class BusinessLogic : IBusinessLogic
@@ -223,9 +224,9 @@ namespace Sheep_Wolf_NetStandardLibrary
 
         public void GetListAnimals()
         {
-            dataBase.SelectTableID();
-            animalModelsArray.AddRange(dataBase.SelectTable());
+            animalModelsArray.AddRange(dataBase.SelectTable().OrderBy(a=>a.Order));
             animalModelsArray = animalModelsArray.OrderBy(a => a.Order).ToList();
+            dataBase.SelectTableID();
         }
 
         public AnimalType TypeOfAnimal(AnimalModel animal)
@@ -269,11 +270,41 @@ namespace Sheep_Wolf_NetStandardLibrary
             return null;
         }
 
+        public string TextKill(AnimalModel animal)
+        {
+            if (animal.Killer != null)
+            {
+                if (animal is WolfModel)
+                {
+                    return $"This {AnimalType.WOLF} tear to pieces {animal.Killer}";
+                }
+                if (animal is HunterModel)
+                {
+                    return $"This {AnimalType.HUNTER} just kill a {animal.Killer}";
+                }
+            }
+            return TypeOfAnimal(animal).ToString();
+        }
+
         public string NameofKiller(AnimalModel animal)
         {
-
-            return dataBase.GetKillerID<Prey>(animal.Id);
-
+            if (animal.IsDead)
+            {
+                var killName = dataBase.GetKillerID<Prey>(animal);
+                if (animal is SheepModel)
+                {
+                    return $"This {AnimalType.SHEEP} eliminated by {killName}";
+                }
+                if (animal is WolfModel)
+                {
+                    return $"This {AnimalType.WOLF} is killed by a hunter {killName}";
+                }
+                if (animal is HunterModel)
+                {
+                    return $"This {AnimalType.HUNTER} is tear to pieces by a wolf {killName}";
+                }
+            }
+            return "Title";
         }
 
         public void WhoKilledWho(AnimalModel sacrifice, AnimalModel killer)

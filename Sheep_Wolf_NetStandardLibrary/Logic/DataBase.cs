@@ -16,15 +16,14 @@ namespace Sheep_Wolf_NetStandardLibrary
         void Delete<T>() where T : AnimalModel, new();
         AnimalModel GetItem<T>(string N) where T: AnimalModel, new();
         int GetID<T>(string id) where T : Prey, new();
-        string GetKillerID<T>(string victimID) where T : Prey, new();
+        string GetKillerID<T>(AnimalModel animal) where T : Prey, new();
     }
 
     public class DataBase : IDataBase
     {
-
         private readonly string dbPath = Path.Combine
             (Environment.GetFolderPath(Environment.SpecialFolder.Personal), "dataBase.db3");
-    
+
         public IEnumerable<AnimalModel> SelectTable()
         {
             var connection = new SQLiteConnection(dbPath);
@@ -78,30 +77,39 @@ namespace Sheep_Wolf_NetStandardLibrary
             connection.Insert(prey);
         }
 
-        public string GetKillerID<T>(string victimID) where T : Prey, new()
+        public string GetKillerID<T>(AnimalModel animal) where T : Prey, new()
         {
             var connection = new SQLiteConnection(dbPath);
-            var victimModel = connection.Table<T>().FirstOrDefault(a => a.VictimId == victimID);
+            var victimModel = connection.Table<T>().FirstOrDefault(a => a.VictimId == animal.Id);
             var killID = victimModel.KillerId;
             var typeKiller = victimModel.TypeOfKiller;
 
-            //switch (typeKiller)
+            switch (typeKiller)
+            {
+                case (int)AnimalType.HUNTER:
+                    return connection.Table<HunterModel>().FirstOrDefault(a => a.Id == killID).Name;
+                case (int)AnimalType.WOLF:
+                    return connection.Table<WolfModel>().FirstOrDefault(a => a.Id == killID).Name;
+            }
+
+            //if (typeKiller == (int)AnimalType.HUNTER)
             //{
-            //    case (int)AnimalType.HUNTER:
-            //        return connection.Table<HunterModel>().FirstOrDefault(a => a.Name == killID).Name;
-            //    case (int)AnimalType.WOLF:
-            //        return connection.Table<WolfModel>().FirstOrDefault(a => a.Name == killID).Name;
+            //    //return connection.Table<HunterModel>().FirstOrDefault(a => a.Name == killID).Name;
+
+            //    return connection.Table<HunterModel>().AsEnumerable().FirstOrDefault(a =>
+            //    {
+            //        if (a.Id == killID)
+            //        {
+            //            return true;
+            //        }
+            //        return false;
+            //    }).Name;
             //}
 
-            if (typeKiller == (int)AnimalType.HUNTER)
-            {
-                return connection.Table<HunterModel>().FirstOrDefault(a => a.Name == killID).Name;
-            }
-
-            if (typeKiller == (int)AnimalType.WOLF)
-            {
-                return connection.Table<WolfModel>().FirstOrDefault(a => a.Name == killID).Name;
-            }
+            //if (typeKiller == (int)AnimalType.WOLF)
+            //{
+            //    return connection.Table<WolfModel>().FirstOrDefault(a => a.Name == killID).Name;
+            //}
 
             return null;
         }
