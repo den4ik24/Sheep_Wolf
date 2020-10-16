@@ -9,6 +9,7 @@ namespace Sheep_Wolf_NetStandardLibrary
         public int Id { get; set; }
         public string KillerId { get; set; }
         public string VictimId { get; set; }
+        public int TypeOfKiller { get; set; }
 
         public Prey()
         {

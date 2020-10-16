@@ -16,6 +16,7 @@ namespace Sheep_Wolf_NetStandardLibrary
         void Delete<T>() where T : AnimalModel, new();
         AnimalModel GetItem<T>(string N) where T: AnimalModel, new();
         int GetID<T>(string id) where T : Prey, new();
+        string GetKillerID<T>(string victimID) where T : Prey, new();
     }
 
     public class DataBase : IDataBase
@@ -65,10 +66,10 @@ namespace Sheep_Wolf_NetStandardLibrary
             connection.DeleteAll<T>();
         }
 
-        public AnimalModel GetItem<T>(string N) where T: AnimalModel, new()
+        public AnimalModel GetItem<T>(string animalID) where T: AnimalModel, new()
         {
             var connection = new SQLiteConnection(dbPath);
-            return connection.Table<T>().FirstOrDefault(a => a.Id == N);
+            return connection.Table<T>().FirstOrDefault(a => a.Id == animalID);
         }
 
         public void InsertID(Prey prey)
@@ -77,20 +78,47 @@ namespace Sheep_Wolf_NetStandardLibrary
             connection.Insert(prey);
         }
 
+        public string GetKillerID<T>(string victimID) where T : Prey, new()
+        {
+            var connection = new SQLiteConnection(dbPath);
+            var victimModel = connection.Table<T>().FirstOrDefault(a => a.VictimId == victimID);
+            var killID = victimModel.KillerId;
+            var typeKiller = victimModel.TypeOfKiller;
+
+            //switch (typeKiller)
+            //{
+            //    case (int)AnimalType.HUNTER:
+            //        return connection.Table<HunterModel>().FirstOrDefault(a => a.Name == killID).Name;
+            //    case (int)AnimalType.WOLF:
+            //        return connection.Table<WolfModel>().FirstOrDefault(a => a.Name == killID).Name;
+            //}
+
+            if (typeKiller == (int)AnimalType.HUNTER)
+            {
+                return connection.Table<HunterModel>().FirstOrDefault(a => a.Name == killID).Name;
+            }
+
+            if (typeKiller == (int)AnimalType.WOLF)
+            {
+                return connection.Table<WolfModel>().FirstOrDefault(a => a.Name == killID).Name;
+            }
+
+            return null;
+        }
+
         public int GetID<T>(string id) where T : Prey, new()
         {
             Console.WriteLine($"GetID: {id}");
 
             var connection = new SQLiteConnection(dbPath);
             var o = connection.Table<T>().Where(a => a.KillerId == id);
-
+            ////////////////////////////////////////////////////////////////////
             var a1 = connection.Table<T>();
             foreach(var abc in a1)
             {
                 Console.WriteLine($"KillerId: {abc.KillerId} VictimId: {abc.VictimId} ");
             }
-
-
+            ////////////////////////////////////////////////////////////////////
             return o.Count();
         }
     }

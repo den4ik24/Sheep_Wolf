@@ -38,12 +38,11 @@ namespace Sheep_Wolf.Droid
             textSheepsName.Text = animal.Name;
 
             animalType.Text = KillText(animal);
-               // businessLogic.TypeOfAnimal(animal).ToString();
             var animalState = businessLogic.GetAnimalState(animal);
             imageAnimal.SetImageResource(AnimalModelImager.GetAnimalImage(animal, animalState));
             StarPicture(star);
-            whoKillMe.Text = GetText(animal);
             AddBottomImage(animal);
+            whoKillMe.Text = GetText(animal);
         }
 
         public void StarPicture(int star)
@@ -71,19 +70,20 @@ namespace Sheep_Wolf.Droid
 
         public string GetText(AnimalModel animal)
         {
-            if(animal.WhoKilledMe != null)
+            if (animal.IsDead)
             {
+                var killName = businessLogic.NameofKiller(animal);
                 if (animal is SheepModel)
                 {
-                    return $"This {AnimalType.SHEEP} eliminated by {animal.WhoKilledMe}";
+                    return $"This {AnimalType.SHEEP} eliminated by {killName}";
                 }
                 if (animal is WolfModel)
                 {
-                    return $"This {AnimalType.WOLF} is killed by a hunter {animal.WhoKilledMe}";
+                    return $"This {AnimalType.WOLF} is killed by a hunter {killName}";
                 }
                 if (animal is HunterModel)
                 {
-                    return $"This {AnimalType.HUNTER} is tear to pieces by a wolf {animal.WhoKilledMe}";
+                    return $"This {AnimalType.HUNTER} is tear to pieces by a wolf {killName}";
                 }
             }
             return "Title";
@@ -95,12 +95,10 @@ namespace Sheep_Wolf.Droid
             {
                 if (animal is WolfModel)
                 {
-                    //StarPicture(star);
                     return $"This {AnimalType.WOLF} tear to pieces {animal.Killer}";
                 }
                 if (animal is HunterModel)
                 {
-                    //StarPicture(star);
                     return $"This {AnimalType.HUNTER} just kill a {animal.Killer}";
                 }
             }

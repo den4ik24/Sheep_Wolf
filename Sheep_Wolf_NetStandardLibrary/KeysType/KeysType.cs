@@ -8,6 +8,20 @@
         HUNTER
     }
 
+    public enum AnimalState
+    {
+        DEAD,
+        ALIVE,
+        KILLER
+    }
+
+    public enum KillerAnnotation
+    {
+        WOLF_EAT_SHEEP,
+        WOLF_EAT_HUNTER,
+        HUNTER_KILL_WOLF
+    }
+
     public static class Keys
     {
         public static string NAMEofANIMAL = "NAMEofANIMAL";

@@ -15,6 +15,7 @@ namespace Sheep_Wolf_NetStandardLibrary
         AnimalState GetAnimalState(AnimalModel animal);
         event EventHandler<DataTransfer> Notify;
         event EventHandler DataChanged;
+        string NameofKiller(AnimalModel animal);
     }
 
     public class BusinessLogic : IBusinessLogic
@@ -25,7 +26,7 @@ namespace Sheep_Wolf_NetStandardLibrary
         public event EventHandler<DataTransfer> Notify;
         public event EventHandler DataChanged;
         Timer aTimer = new Timer();
-
+        Prey prey = new Prey();
         public List<AnimalModel> AnimalModel()
         {
             return animalModelsArray;
@@ -124,7 +125,7 @@ namespace Sheep_Wolf_NetStandardLibrary
                             Message = $"Волк {animal.Name} сожрал овцу {item.Name}",
                             TypeKiller = KillerAnnotation.WOLF_EAT_SHEEP
                         };
-                        fillPrey(animal, item);
+                        fillPrey(animal, item, AnimalType.WOLF);
                         Notify?.Invoke(this, dataTransfer);
                         DataChanged?.Invoke(this, EventArgs.Empty);
 
@@ -144,7 +145,7 @@ namespace Sheep_Wolf_NetStandardLibrary
                                     Message = $"Охотник {hunt.Name} завалил волка {animal.Name}",
                                     TypeKiller = KillerAnnotation.HUNTER_KILL_WOLF
                                 };
-                                fillPrey(hunt, animal);
+                                fillPrey(hunt, animal, AnimalType.HUNTER);
                                 Notify?.Invoke(this, dataTrans);
                                 DataChanged?.Invoke(this, EventArgs.Empty);
                                 dataBase.Update(animal);
@@ -172,7 +173,7 @@ namespace Sheep_Wolf_NetStandardLibrary
                         };
                         Notify?.Invoke(this, dataTransfer);
                         DataChanged?.Invoke(this, EventArgs.Empty);
-                        fillPrey(animal, item);
+                        fillPrey(animal, item, AnimalType.WOLF);
                         break;
                     }
                 }
@@ -201,14 +202,14 @@ namespace Sheep_Wolf_NetStandardLibrary
                         Notify?.Invoke(this, dataTransfer);
                         DataChanged?.Invoke(this, EventArgs.Empty);
                         dataBase.Update(animal);
-                        fillPrey(animal, item);
+                        fillPrey(animal, item, AnimalType.HUNTER);
 
                         if (wolfLiveCount/2 > hunterLiveCount)
                         {
                             animal.IsDead = true;
-                            animal.WhoKilledMe = item.Name;
+                            //animal.WhoKilledMe = item.Name;
                             item.Killer = animal.Name;
-                            fillPrey(item, animal);
+                            fillPrey(item, animal, AnimalType.WOLF);
                             dataBase.Update(animal);
                             dataBase.Update(item);
                             DataChanged?.Invoke(this, EventArgs.Empty);
@@ -268,10 +269,17 @@ namespace Sheep_Wolf_NetStandardLibrary
             return null;
         }
 
+        public string NameofKiller(AnimalModel animal)
+        {
+
+            return dataBase.GetKillerID<Prey>(animal.Id);
+
+        }
+
         public void WhoKilledWho(AnimalModel sacrifice, AnimalModel killer)
         {
             sacrifice.IsDead = true;
-            sacrifice.WhoKilledMe = killer.Name;
+            //sacrifice.WhoKilledMe = killer.Name;
             killer.Killer = sacrifice.Name;
             dataBase.Update(sacrifice);
             dataBase.Update(killer);
@@ -303,11 +311,11 @@ namespace Sheep_Wolf_NetStandardLibrary
             duckCount = 0;
         }
 
-        public void fillPrey(AnimalModel kilerID, AnimalModel victimID)
+        public void fillPrey(AnimalModel killer, AnimalModel victim, AnimalType typeOfKiller)
         {
-            var prey = new Prey();
-            prey.KillerId = kilerID.Id;
-            prey.VictimId = victimID.Id;
+            prey.KillerId = killer.Id;
+            prey.VictimId = victim.Id;
+            prey.TypeOfKiller = (int)typeOfKiller;
             dataBase.InsertID(prey);
         }
 
@@ -329,21 +337,10 @@ namespace Sheep_Wolf_NetStandardLibrary
             aTimer.Enabled = false;
         }
     }
+
     public class DataTransfer : EventArgs
     {
         public string Message { get; set; }
         public KillerAnnotation TypeKiller { get; set; }
-    }
-    public enum KillerAnnotation
-    {
-        WOLF_EAT_SHEEP,
-        WOLF_EAT_HUNTER,
-        HUNTER_KILL_WOLF
-    }
-    public enum AnimalState
-    {
-        DEAD,
-        ALIVE,
-        KILLER
     }
 }

@@ -9,7 +9,7 @@ namespace Sheep_Wolf.iOS
     {
         IBusinessLogic businessLogic = new BusinessLogic();
         IDataBase dataBase = new DataBase();
-        public int animalId;
+        public string animalId;
         public int type;
         public CardIDViewController(IntPtr handle) : base(handle) { }
 
