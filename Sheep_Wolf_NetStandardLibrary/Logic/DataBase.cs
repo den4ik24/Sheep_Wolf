@@ -92,41 +92,13 @@ namespace Sheep_Wolf_NetStandardLibrary
                     return connection.Table<WolfModel>().FirstOrDefault(a => a.Id == killID).Name;
             }
 
-            //if (typeKiller == (int)AnimalType.HUNTER)
-            //{
-            //    //return connection.Table<HunterModel>().FirstOrDefault(a => a.Name == killID).Name;
-
-            //    return connection.Table<HunterModel>().AsEnumerable().FirstOrDefault(a =>
-            //    {
-            //        if (a.Id == killID)
-            //        {
-            //            return true;
-            //        }
-            //        return false;
-            //    }).Name;
-            //}
-
-            //if (typeKiller == (int)AnimalType.WOLF)
-            //{
-            //    return connection.Table<WolfModel>().FirstOrDefault(a => a.Name == killID).Name;
-            //}
-
             return null;
         }
 
         public int GetID<T>(string id) where T : Prey, new()
         {
-            Console.WriteLine($"GetID: {id}");
-
             var connection = new SQLiteConnection(dbPath);
             var o = connection.Table<T>().Where(a => a.KillerId == id);
-            ////////////////////////////////////////////////////////////////////
-            var a1 = connection.Table<T>();
-            foreach(var abc in a1)
-            {
-                Console.WriteLine($"KillerId: {abc.KillerId} VictimId: {abc.VictimId} ");
-            }
-            ////////////////////////////////////////////////////////////////////
             return o.Count();
         }
     }
