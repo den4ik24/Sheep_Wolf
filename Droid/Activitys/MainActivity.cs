@@ -16,7 +16,7 @@ using V7Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace Sheep_Wolf.Droid
 {
-    [Activity(Label = "Circle of Life", Icon = "@mipmap/icon", MainLauncher = true)]
+    [Activity(Label = "Circle of Life", Icon = "@drawable/Circle", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
         TextView textViewNumbSheep;

@@ -20,80 +20,14 @@ namespace Sheep_Wolf.iOS
             var animal = businessLogic.GetAnimal(animalId, type);
             var star = dataBase.GetID<Prey>(animalId);
             labelAnimalName.Text = animal.Name;
+            //ImageService.Instance.LoadUrl(animal.URL).Into(animalFoto);
 
-            ImageService.Instance.LoadUrl(animal.URL).Into(animalFoto);
-
-            if(animal is SheepModel)
-            {
-                ImageAnimal.Image = UIImage.FromBundle("sheep.png");
-                NameAnimalID.Text = AnimalType.SHEEP.ToString();
-            }
-            if(animal is WolfModel)
-            {
-                ImageAnimal.Image = UIImage.FromBundle("wolf.png");
-                NameAnimalID.Text = AnimalType.WOLF.ToString();
-            }
-
-            if(animal is HunterModel)
-            {
-                ImageAnimal.Image = UIImage.FromBundle("hunter.png");
-                NameAnimalID.Text = AnimalType.HUNTER.ToString();
-            }
-
-            if(animal is DuckModel)
-            {
-                ImageAnimal.Image = UIImage.FromBundle("duck.png");
-                NameAnimalID.Text = AnimalType.DUCK.ToString();
-            }
-
-            if (animal.Killer != null)
-            {
-                if(animal is WolfModel)
-                {
-                    NameAnimalID.Text = $"This {AnimalType.WOLF} tear to pieces {animal.Killer}";
-                    ImageAnimal.Image = UIImage.FromBundle("killer.png");
-                    StarPicture(star);
-                }
-                if(animal is HunterModel)
-                {
-                    NameAnimalID.Text = $"This {AnimalType.HUNTER} just kill a {animal.Killer}";
-                    ImageAnimal.Image = UIImage.FromBundle("hunter_killer.png");
-                    StarPicture(star);
-                }
-            }
-
-            if (animal.WhoKilledMe != null)
-            {
-                if (animal is SheepModel)
-                {
-                    whoKillMe.Text = $"This {AnimalType.SHEEP} eliminated by {animal.WhoKilledMe}";
-                }
-                if (animal is WolfModel)
-                {
-                    whoKillMe.Text = $"This {AnimalType.WOLF} is killed by a hunter {animal.WhoKilledMe}";
-                }
-                if (animal is HunterModel)
-                {
-                    whoKillMe.Text = $"This {AnimalType.HUNTER} is tear to pieces by a wolf {animal.WhoKilledMe}";
-                }
-            }
-
-            if (animal.IsDead)
-            {
-                if(animal is SheepModel)
-                {
-                    ImageAnimal.Image = UIImage.FromBundle("rip.png");
-                }
-                if(animal is WolfModel)
-                {
-                    ImageAnimal.Image = UIImage.FromBundle("wolf-rip.png");
-                }
-                if(animal is HunterModel)
-                {
-                    ImageAnimal.Image = UIImage.FromBundle("hunter-rip.png");
-                }
-                ImageService.Instance.LoadUrl(animal.URL).Transform(new GrayscaleTransformation()).Into(animalFoto);
-            }
+            whoKillMe.Text = businessLogic.NameofKiller(animal);
+            NameAnimalID.Text = businessLogic.TextKill(animal);
+            var animalState = businessLogic.GetAnimalState(animal);
+            ImageAnimal.Image = UIImage.FromBundle(AnimalModelImager.GetAnimalImage(animal, animalState));
+            StarPicture(star);
+            AddBottomImage(animal);
         }
 
         public void StarPicture(int star)
@@ -107,6 +41,77 @@ namespace Sheep_Wolf.iOS
                 imageStar.Image = UIImage.FromBundle("star.png");
                 imageStar.ContentMode = UIViewContentMode.ScaleAspectFit;
             }
+        }
+
+        public void AddBottomImage(AnimalModel animal)
+        {
+            var load = ImageService.Instance.LoadUrl(animal.URL);
+            if (animal.IsDead)
+            {
+                load.Transform(new GrayscaleTransformation());
+                //ImageService.Instance.LoadUrl(animal.URL).Transform(new GrayscaleTransformation()).Into(animalFoto);
+            }
+            load.Into(animalFoto);
+        }
+    }
+
+    public static class AnimalModelImager
+    {
+        public static string GetAnimalImage(AnimalModel model, AnimalState state)
+        {
+            if (model is SheepModel)
+            {
+                if (state == AnimalState.ALIVE)
+                {
+                    return "sheep.png";
+                }
+                if (state == AnimalState.DEAD)
+                {
+                    return "rip.png";
+                }
+            }
+
+            if (model is WolfModel)
+            {
+                if (state == AnimalState.ALIVE)
+                {
+                    return "wolf.png";
+                }
+                if (state == AnimalState.DEAD)
+                {
+                    return "wolf-rip.png";
+                }
+                if (state == AnimalState.KILLER)
+                {
+                    return "killer.png";
+                }
+            }
+
+            if (model is HunterModel)
+            {
+                if (state == AnimalState.ALIVE)
+                {
+                    return "hunter.png";
+                }
+                if (state == AnimalState.DEAD)
+                {
+                    return "hunter-rip.png";
+                }
+                if (state == AnimalState.KILLER)
+                {
+                    return "hunter_killer.png";
+                }
+            }
+
+            if (model is DuckModel)
+            {
+                if (state == AnimalState.ALIVE)
+                {
+                    return "duck.png";
+                }
+            }
+
+            throw new Exception();
         }
     }
 }

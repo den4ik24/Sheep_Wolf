@@ -37,8 +37,8 @@ namespace Sheep_Wolf.Droid
             var star = dataBase.GetID<Prey>(animalID);
             textSheepsName.Text = animal.Name;
 
-            animalType.Text = businessLogic.TextKill(animal);
             whoKillMe.Text = businessLogic.NameofKiller(animal);
+            animalType.Text = businessLogic.TextKill(animal);
             var animalState = businessLogic.GetAnimalState(animal);
             imageAnimal.SetImageResource(AnimalModelImager.GetAnimalImage(animal, animalState));
             StarPicture(star);
@@ -79,7 +79,7 @@ namespace Sheep_Wolf.Droid
                 {
                     return Resource.Drawable.sheep;
                 }
-                if(state == AnimalState.DEAD)
+                if (state == AnimalState.DEAD)
                 {
                     return Resource.Drawable.rip;
                 }
@@ -117,13 +117,14 @@ namespace Sheep_Wolf.Droid
                 }
             }
 
-            if(model is DuckModel)
+            if (model is DuckModel)
             {
                 if (state == AnimalState.ALIVE)
                 {
                     return Resource.Drawable.duck;
                 }
             }
+
             throw new Exception();
         }
     }

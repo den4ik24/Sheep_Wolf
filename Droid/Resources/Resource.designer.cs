@@ -2957,127 +2957,130 @@ namespace Sheep_Wolf.Droid
 			public const int avd_show_password = 2131230812;
 			
 			// aapt resource value: 0x7F08005D
-			public const int design_bottom_navigation_item_background = 2131230813;
+			public const int Circle = 2131230813;
 			
 			// aapt resource value: 0x7F08005E
-			public const int design_fab_background = 2131230814;
+			public const int design_bottom_navigation_item_background = 2131230814;
 			
 			// aapt resource value: 0x7F08005F
-			public const int design_ic_visibility = 2131230815;
+			public const int design_fab_background = 2131230815;
 			
 			// aapt resource value: 0x7F080060
-			public const int design_ic_visibility_off = 2131230816;
+			public const int design_ic_visibility = 2131230816;
 			
 			// aapt resource value: 0x7F080061
-			public const int design_password_eye = 2131230817;
+			public const int design_ic_visibility_off = 2131230817;
 			
 			// aapt resource value: 0x7F080062
-			public const int design_snackbar_background = 2131230818;
+			public const int design_password_eye = 2131230818;
 			
 			// aapt resource value: 0x7F080063
-			public const int duck = 2131230819;
+			public const int design_snackbar_background = 2131230819;
 			
 			// aapt resource value: 0x7F080064
-			public const int duck_logo = 2131230820;
+			public const int duck = 2131230820;
 			
 			// aapt resource value: 0x7F080065
-			public const int hunter = 2131230821;
-			
-			// aapt resource value: 0x7F080067
-			public const int hunter_killer = 2131230823;
+			public const int duck_logo = 2131230821;
 			
 			// aapt resource value: 0x7F080066
-			public const int hunter_kill_wolf = 2131230822;
+			public const int hunter = 2131230822;
 			
 			// aapt resource value: 0x7F080068
-			public const int hunter_rip = 2131230824;
+			public const int hunter_killer = 2131230824;
+			
+			// aapt resource value: 0x7F080067
+			public const int hunter_kill_wolf = 2131230823;
 			
 			// aapt resource value: 0x7F080069
-			public const int ic_mtrl_chip_checked_black = 2131230825;
+			public const int hunter_rip = 2131230825;
 			
 			// aapt resource value: 0x7F08006A
-			public const int ic_mtrl_chip_checked_circle = 2131230826;
+			public const int ic_mtrl_chip_checked_black = 2131230826;
 			
 			// aapt resource value: 0x7F08006B
-			public const int ic_mtrl_chip_close_circle = 2131230827;
+			public const int ic_mtrl_chip_checked_circle = 2131230827;
 			
 			// aapt resource value: 0x7F08006C
-			public const int INFORMATION = 2131230828;
+			public const int ic_mtrl_chip_close_circle = 2131230828;
 			
 			// aapt resource value: 0x7F08006D
-			public const int killer = 2131230829;
+			public const int INFORMATION = 2131230829;
 			
 			// aapt resource value: 0x7F08006E
-			public const int mtrl_snackbar_background = 2131230830;
+			public const int killer = 2131230830;
 			
 			// aapt resource value: 0x7F08006F
-			public const int mtrl_tabs_default_indicator = 2131230831;
+			public const int mtrl_snackbar_background = 2131230831;
 			
 			// aapt resource value: 0x7F080070
-			public const int navigation_empty_icon = 2131230832;
+			public const int mtrl_tabs_default_indicator = 2131230832;
 			
 			// aapt resource value: 0x7F080071
-			public const int notification_action_background = 2131230833;
+			public const int navigation_empty_icon = 2131230833;
 			
 			// aapt resource value: 0x7F080072
-			public const int notification_bg = 2131230834;
+			public const int notification_action_background = 2131230834;
 			
 			// aapt resource value: 0x7F080073
-			public const int notification_bg_low = 2131230835;
+			public const int notification_bg = 2131230835;
 			
 			// aapt resource value: 0x7F080074
-			public const int notification_bg_low_normal = 2131230836;
+			public const int notification_bg_low = 2131230836;
 			
 			// aapt resource value: 0x7F080075
-			public const int notification_bg_low_pressed = 2131230837;
+			public const int notification_bg_low_normal = 2131230837;
 			
 			// aapt resource value: 0x7F080076
-			public const int notification_bg_normal = 2131230838;
+			public const int notification_bg_low_pressed = 2131230838;
 			
 			// aapt resource value: 0x7F080077
-			public const int notification_bg_normal_pressed = 2131230839;
+			public const int notification_bg_normal = 2131230839;
 			
 			// aapt resource value: 0x7F080078
-			public const int notification_icon_background = 2131230840;
+			public const int notification_bg_normal_pressed = 2131230840;
 			
 			// aapt resource value: 0x7F080079
-			public const int notification_template_icon_bg = 2131230841;
+			public const int notification_icon_background = 2131230841;
 			
 			// aapt resource value: 0x7F08007A
-			public const int notification_template_icon_low_bg = 2131230842;
+			public const int notification_template_icon_bg = 2131230842;
 			
 			// aapt resource value: 0x7F08007B
-			public const int notification_tile_bg = 2131230843;
+			public const int notification_template_icon_low_bg = 2131230843;
 			
 			// aapt resource value: 0x7F08007C
-			public const int notify_panel_notification_icon_bg = 2131230844;
+			public const int notification_tile_bg = 2131230844;
 			
 			// aapt resource value: 0x7F08007D
-			public const int rip = 2131230845;
+			public const int notify_panel_notification_icon_bg = 2131230845;
 			
 			// aapt resource value: 0x7F08007E
-			public const int sheep = 2131230846;
+			public const int rip = 2131230846;
 			
 			// aapt resource value: 0x7F08007F
-			public const int star = 2131230847;
+			public const int sheep = 2131230847;
 			
 			// aapt resource value: 0x7F080080
-			public const int tooltip_frame_dark = 2131230848;
+			public const int star = 2131230848;
 			
 			// aapt resource value: 0x7F080081
-			public const int tooltip_frame_light = 2131230849;
+			public const int tooltip_frame_dark = 2131230849;
 			
 			// aapt resource value: 0x7F080082
-			public const int wolf = 2131230850;
+			public const int tooltip_frame_light = 2131230850;
 			
 			// aapt resource value: 0x7F080083
-			public const int wolf_kill = 2131230851;
+			public const int wolf = 2131230851;
 			
 			// aapt resource value: 0x7F080084
-			public const int wolf_kill_hunter = 2131230852;
+			public const int wolf_kill = 2131230852;
 			
 			// aapt resource value: 0x7F080085
-			public const int wolf_rip = 2131230853;
+			public const int wolf_kill_hunter = 2131230853;
+			
+			// aapt resource value: 0x7F080086
+			public const int wolf_rip = 2131230854;
 			
 			static Drawable()
 			{
