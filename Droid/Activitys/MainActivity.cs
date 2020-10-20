@@ -70,10 +70,12 @@ namespace Sheep_Wolf.Droid
             {
                 SetEnabledIconState(item, resIcon, true);
                 _textNameOfAnimal.Enabled = false;
-                _textNameOfAnimal.Text = Keys.ENTERthePAW;
+                //_textNameOfAnimal.Text = Keys.ENTERthePAW;
+                _textNameOfAnimal.Visibility = ViewStates.Gone;
             }
             else
             {
+                _textNameOfAnimal.Visibility = ViewStates.Visible;
                 SetIconColorDisabled(item, resIcon);
                 _textNameOfAnimal.Enabled = true;
                 _textNameOfAnimal.Text = "";
@@ -242,7 +244,6 @@ namespace Sheep_Wolf.Droid
             RunOnUiThread(() =>
             {
                 _adapter.NotifyDataSetChanged();
-                Console.WriteLine("REFRESH");
             });
         }
     }

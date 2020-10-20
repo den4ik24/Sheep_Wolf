@@ -304,7 +304,7 @@ namespace Sheep_Wolf_NetStandardLibrary
                     return $"This {AnimalType.HUNTER} is tear to pieces by a wolf {killName}";
                 }
             }
-            return "Title";
+            return "";
         }
 
         public void WhoKilledWho(AnimalModel sacrifice, AnimalModel killer)

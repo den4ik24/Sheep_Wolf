@@ -37,7 +37,7 @@ namespace Sheep_Wolf.Droid
             var star = dataBase.GetID<Prey>(animalID);
             _textSheepsName.Text = animal.Name;
 
-            _whoKillMe.Text = businessLogic.NameofKiller(animal);
+            KillersName(animal);
             _animalType.Text = businessLogic.TextKill(animal);
             var animalState = businessLogic.GetAnimalState(animal);
             _imageAnimal.SetImageResource(AnimalModelImager.GetAnimalImage(animal, animalState));
@@ -54,6 +54,16 @@ namespace Sheep_Wolf.Droid
                 _imageStar.LayoutParameters = lPar;
                 _starsLayout.AddView(_imageStar);
                 _imageStar.SetImageResource(Resource.Drawable.star);
+            }
+        }
+
+        public void KillersName(AnimalModel  animal)
+        {
+            var name =businessLogic.NameofKiller(animal);
+            if (name != "")
+            {
+                _whoKillMe.Text = name;
+                _whoKillMe.Visibility = ViewStates.Visible;
             }
         }
 
