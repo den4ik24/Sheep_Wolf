@@ -34,7 +34,6 @@
         public static string ENTERtheHUNTER = "Охотники рядом. Охотники здесь";
         public static string REPEATtheNAME = "Существо с таким именем уже существует.\n Измените имя";
         public static string ENTERtheNAME = "Укажите имя существа";
-        public static string ENTERthePAW = "Жми ЛАПКУ и добавляй без ввода имени";
     }
 
     public static class Foto
@@ -53,6 +52,5 @@
         public static string HUNTER_KILL_WOLF = "hunter_kill_wolf.png";
         public static string DUCK = "duck.png";
         public static string INFO = "INFORMATION.png";
-
     }
 }

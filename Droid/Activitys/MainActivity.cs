@@ -70,7 +70,6 @@ namespace Sheep_Wolf.Droid
             {
                 SetEnabledIconState(item, resIcon, true);
                 _textNameOfAnimal.Enabled = false;
-                //_textNameOfAnimal.Text = Keys.ENTERthePAW;
                 _textNameOfAnimal.Visibility = ViewStates.Gone;
             }
             else
