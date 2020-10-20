@@ -21,13 +21,13 @@ namespace Sheep_Wolf_NetStandardLibrary
 
     public class BusinessLogic : IBusinessLogic
     {
-        IDataBase dataBase = new DataBase();
+        IDataBase _dataBase = new DataBase();
         public List<AnimalModel> animalModelsArray = new List<AnimalModel>();
         int duckCount;
         public event EventHandler<DataTransfer> Notify;
         public event EventHandler DataChanged;
-        Timer aTimer = new Timer();
-        Prey prey = new Prey();
+        Timer _aTimer = new Timer();
+        Prey _prey = new Prey();
         public List<AnimalModel> AnimalModel()
         {
             return animalModelsArray;
@@ -59,7 +59,7 @@ namespace Sheep_Wolf_NetStandardLibrary
 
             else
             {
-                if (animal.IsDead == false && aTimer.Enabled == false)
+                if (animal.IsDead == false && _aTimer.Enabled == false)
                 {
                     StartTimer(animal);
                 }
@@ -97,7 +97,7 @@ namespace Sheep_Wolf_NetStandardLibrary
         {
             AssignAnimal(animalName, animal);
             AnimalKiller(animal);
-            dataBase.Insert(animal);
+            _dataBase.Insert(animal);
         }
 
         public void AssignAnimal(string animalName, AnimalModel animal)
@@ -149,7 +149,7 @@ namespace Sheep_Wolf_NetStandardLibrary
                                 fillPrey(hunt, animal, AnimalType.HUNTER);
                                 Notify?.Invoke(this, dataTrans);
                                 DataChanged?.Invoke(this, EventArgs.Empty);
-                                dataBase.Update(animal);
+                                _dataBase.Update(animal);
                                 _timer.Stop();
                                 _timer.Dispose();
                                 break;
@@ -202,7 +202,7 @@ namespace Sheep_Wolf_NetStandardLibrary
                         };
                         Notify?.Invoke(this, dataTransfer);
                         DataChanged?.Invoke(this, EventArgs.Empty);
-                        dataBase.Update(animal);
+                        _dataBase.Update(animal);
                         fillPrey(animal, item, AnimalType.HUNTER);
 
                         if (wolfLiveCount/2 > hunterLiveCount)
@@ -211,8 +211,8 @@ namespace Sheep_Wolf_NetStandardLibrary
                             //animal.WhoKilledMe = item.Name;
                             item.Killer = animal.Name;
                             fillPrey(item, animal, AnimalType.WOLF);
-                            dataBase.Update(animal);
-                            dataBase.Update(item);
+                            _dataBase.Update(animal);
+                            _dataBase.Update(item);
                             DataChanged?.Invoke(this, EventArgs.Empty);
                             StopTimer();
                         }
@@ -224,9 +224,9 @@ namespace Sheep_Wolf_NetStandardLibrary
 
         public void GetListAnimals()
         {
-            animalModelsArray.AddRange(dataBase.SelectTable().OrderBy(a=>a.Order));
+            animalModelsArray.AddRange(_dataBase.SelectTable().OrderBy(a=>a.Order));
             animalModelsArray = animalModelsArray.OrderBy(a => a.Order).ToList();
-            dataBase.SelectTableID();
+            _dataBase.SelectTableID();
         }
 
         public AnimalType TypeOfAnimal(AnimalModel animal)
@@ -257,13 +257,13 @@ namespace Sheep_Wolf_NetStandardLibrary
             switch (type)
             {
                 case AnimalType.SHEEP:
-                    return dataBase.GetItem<SheepModel>(animalID);
+                    return _dataBase.GetItem<SheepModel>(animalID);
                 case AnimalType.DUCK:
-                    return dataBase.GetItem<DuckModel>(animalID);
+                    return _dataBase.GetItem<DuckModel>(animalID);
                 case AnimalType.WOLF:
-                    return dataBase.GetItem<WolfModel>(animalID);
+                    return _dataBase.GetItem<WolfModel>(animalID);
                 case AnimalType.HUNTER:
-                    return dataBase.GetItem<HunterModel>(animalID);
+                    return _dataBase.GetItem<HunterModel>(animalID);
                 default:
                     break;
             }
@@ -290,7 +290,7 @@ namespace Sheep_Wolf_NetStandardLibrary
         {
             if (animal.IsDead)
             {
-                var killName = dataBase.GetKillerID<Prey>(animal);
+                var killName = _dataBase.GetKillerID<Prey>(animal);
                 if (animal is SheepModel)
                 {
                     return $"This {AnimalType.SHEEP} eliminated by {killName}";
@@ -312,8 +312,8 @@ namespace Sheep_Wolf_NetStandardLibrary
             sacrifice.IsDead = true;
             //sacrifice.WhoKilledMe = killer.Name;
             killer.Killer = sacrifice.Name;
-            dataBase.Update(sacrifice);
-            dataBase.Update(killer);
+            _dataBase.Update(sacrifice);
+            _dataBase.Update(killer);
         }
 
         public AnimalState GetAnimalState(AnimalModel animal)
@@ -338,34 +338,34 @@ namespace Sheep_Wolf_NetStandardLibrary
         public void DuckFlyAway()
         {
             animalModelsArray.RemoveAll(a => a is DuckModel);
-            dataBase.Delete<DuckModel>();
+            _dataBase.Delete<DuckModel>();
             duckCount = 0;
         }
 
         public void fillPrey(AnimalModel killer, AnimalModel victim, AnimalType typeOfKiller)
         {
-            prey.KillerId = killer.Id;
-            prey.VictimId = victim.Id;
-            prey.TypeOfKiller = (int)typeOfKiller;
-            dataBase.InsertID(prey);
+            _prey.KillerId = killer.Id;
+            _prey.VictimId = victim.Id;
+            _prey.TypeOfKiller = (int)typeOfKiller;
+            _dataBase.InsertID(_prey);
         }
 
         public void StartTimer(AnimalModel animal)
         {
-            if (aTimer.Enabled == false)
+            if (_aTimer.Enabled == false)
             {
-                aTimer.Start();
-                aTimer.Interval = 5000;
-                aTimer.Elapsed += (o, args) => { AnimalKiller(animal); };
-                aTimer.AutoReset = true;
-                aTimer.Enabled = true;
+                _aTimer.Start();
+                _aTimer.Interval = 5000;
+                _aTimer.Elapsed += (o, args) => { AnimalKiller(animal); };
+                _aTimer.AutoReset = true;
+                _aTimer.Enabled = true;
             }
         }
 
         public void StopTimer()
         {
-            aTimer.AutoReset = false;
-            aTimer.Enabled = false;
+            _aTimer.AutoReset = false;
+            _aTimer.Enabled = false;
         }
     }
 

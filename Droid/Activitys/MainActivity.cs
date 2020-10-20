@@ -16,15 +16,15 @@ using V7Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace Sheep_Wolf.Droid
 {
-    [Activity(Label = "Circle of Life", Icon = "@drawable/Circle", MainLauncher = true)]
+    [Activity(Label = "Circle of Life", Icon = "@mipmap/icon", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
-        TextView textViewNumbSheep;
-        RecyclerView listOfAnimals;
-        EditText textNameOfAnimal;
-        Spinner animalChoice;
-        AnimalAdapter adapter;
-        V7Toolbar myToolbar;
+        TextView _textViewNumbSheep;
+        RecyclerView _listOfAnimals;
+        EditText _textNameOfAnimal;
+        Spinner _animalChoice;
+        AnimalAdapter _adapter;
+        V7Toolbar _myToolbar;
         IMenu menu;
         readonly IBusinessLogic businessLogic = new BusinessLogic();
 
@@ -33,57 +33,57 @@ namespace Sheep_Wolf.Droid
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Main);
 
-            myToolbar = FindViewById<V7Toolbar>(Resource.Id.my_toolbar);
-            textViewNumbSheep = FindViewById<TextView>(Resource.Id.textViewNumbSheep);
-            listOfAnimals = FindViewById<RecyclerView>(Resource.Id.listOfAnimals);
-            textNameOfAnimal = FindViewById<EditText>(Resource.Id.textNameOfAnimal);
-            animalChoice = FindViewById<Spinner>(Resource.Id.animalChoice);
+            _myToolbar = FindViewById<V7Toolbar>(Resource.Id.my_toolbar);
+            _textViewNumbSheep = FindViewById<TextView>(Resource.Id.textViewNumbSheep);
+            _listOfAnimals = FindViewById<RecyclerView>(Resource.Id.listOfAnimals);
+            _textNameOfAnimal = FindViewById<EditText>(Resource.Id.textNameOfAnimal);
+            _animalChoice = FindViewById<Spinner>(Resource.Id.animalChoice);
             
-            SetSupportActionBar(myToolbar);
+            SetSupportActionBar(_myToolbar);
             var layoutManager = new LinearLayoutManager(this);
             var adapterSpinner = ArrayAdapter<string>.CreateFromResource(this, Resource.Array.type_animal, Android.Resource.Layout.SimpleSpinnerItem);
-            adapter = new AnimalAdapter();
+            _adapter = new AnimalAdapter();
             
-            listOfAnimals.SetLayoutManager(layoutManager);
+            _listOfAnimals.SetLayoutManager(layoutManager);
             businessLogic.GetListAnimals();
-            CountAnimal();
-            adapter.animalModelsArray = businessLogic.AnimalModel();
-            adapter.ItemClick += ListOfAnimals_ItemClick;
-            listOfAnimals.SetAdapter(adapter);
-            animalChoice.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(AnimalChoice_ItemSelected);
+            ChangeAnimalCount();
+            _adapter.animalModelsArray = businessLogic.AnimalModel();
+            _adapter.ItemClick += ListOfAnimals_ItemClick;
+            _listOfAnimals.SetAdapter(_adapter);
+            _animalChoice.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(AnimalChoice_ItemSelected);
             adapterSpinner.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
-            animalChoice.Adapter = adapterSpinner;
-            animalChoice.SetSelection(0);
+            _animalChoice.Adapter = adapterSpinner;
+            _animalChoice.SetSelection(0);
             businessLogic.Notify += DisplayKillMessage;
             businessLogic.DataChanged += DataSetChanged;
 
-            textNameOfAnimal.TextChanged += TextNameOfAnimal_TextChanged;
+            _textNameOfAnimal.TextChanged += TextNameOfAnimal_TextChanged;
         }
 
         private void AnimalChoice_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
-            animalChoice = sender as Spinner;
+            _animalChoice = sender as Spinner;
             var resIcon = ContextCompat.GetDrawable(this, Resource.Drawable.animal_logo);
             var item = menu.FindItem(Resource.Id.addAnimals);
-            if (animalChoice.SelectedItemPosition is (int)AnimalType.DUCK ||
-                animalChoice.SelectedItemPosition is (int) AnimalType.HUNTER)
+            if (_animalChoice.SelectedItemPosition is (int)AnimalType.DUCK ||
+                _animalChoice.SelectedItemPosition is (int) AnimalType.HUNTER)
             {
                 SetEnabledIconState(item, resIcon, true);
-                textNameOfAnimal.Enabled = false;
-                textNameOfAnimal.Text = Keys.ENTERthePAW;
+                _textNameOfAnimal.Enabled = false;
+                _textNameOfAnimal.Text = Keys.ENTERthePAW;
             }
             else
             {
                 SetIconColorDisabled(item, resIcon);
-                textNameOfAnimal.Enabled = true;
-                textNameOfAnimal.Text = "";
+                _textNameOfAnimal.Enabled = true;
+                _textNameOfAnimal.Text = "";
             }
         }
 
         private void ListOfAnimals_ItemClick(object sender, int e)
         {
             var intent = new Intent(this, typeof(AnimalIDActivity));
-            var animal = adapter.ElementPosition(e);
+            var animal = _adapter.ElementPosition(e);
             DataTransmission(animal, intent);
             StartActivity(intent);
         }
@@ -148,7 +148,7 @@ namespace Sheep_Wolf.Droid
                     {
                         DeleteKeyboard();
                         AddRandomAnimal();
-                        textNameOfAnimal.Text = "";
+                        _textNameOfAnimal.Text = "";
                     }
                     return true;
 
@@ -159,15 +159,15 @@ namespace Sheep_Wolf.Droid
 
         public bool SheepAndWolfSelected()
         {
-            var sw = string.IsNullOrEmpty(textNameOfAnimal.Text) &&
-               (animalChoice.SelectedItemPosition is (int)AnimalType.SHEEP ||
-                animalChoice.SelectedItemPosition is (int)AnimalType.WOLF);
+            var sw = string.IsNullOrEmpty(_textNameOfAnimal.Text) &&
+               (_animalChoice.SelectedItemPosition is (int)AnimalType.SHEEP ||
+                _animalChoice.SelectedItemPosition is (int)AnimalType.WOLF);
             return sw;
         }
 
         public void AddRandomAnimal()
         {
-            var isSheep = animalChoice.SelectedItemPosition;
+            var isSheep = _animalChoice.SelectedItemPosition;
             if (isSheep is (int)AnimalType.WOLF)
             {
                 Toast.MakeText(this, Keys.ENTERtheWOLF, ToastLength.Short).Show();
@@ -177,7 +177,7 @@ namespace Sheep_Wolf.Droid
                 Toast.MakeText(this, Keys.ENTERtheHUNTER, ToastLength.Short).Show();
             }
 
-            if (businessLogic.AddAnimal(isSheep, textNameOfAnimal.Text))
+            if (businessLogic.AddAnimal(isSheep, _textNameOfAnimal.Text))
             {
                 var toast = Toast.MakeText(this, Keys.REPEATtheNAME, ToastLength.Short);
                 toast.SetGravity(GravityFlags.Center, 0, 0);
@@ -190,15 +190,15 @@ namespace Sheep_Wolf.Droid
             }
             else
             {
-                CountAnimal();
+                ChangeAnimalCount();
                 DeleteKeyboard();
             }
-            adapter.NotifyDataSetChanged();
+            _adapter.NotifyDataSetChanged();
         }
 
-        public void CountAnimal()
+        public void ChangeAnimalCount()
         {
-            textViewNumbSheep.Text = businessLogic.AnimalModel().Count.ToString();
+            _textViewNumbSheep.Text = businessLogic.AnimalModel().Count.ToString();
         }
 
         public void DisplayKillMessage(object sender, DataTransfer transferData)
@@ -235,13 +235,13 @@ namespace Sheep_Wolf.Droid
         public void DeleteKeyboard()
         {
             InputMethodManager imm = (InputMethodManager)GetSystemService(InputMethodService);
-            imm.HideSoftInputFromWindow(textNameOfAnimal.WindowToken, 0);
+            imm.HideSoftInputFromWindow(_textNameOfAnimal.WindowToken, 0);
         }
         public void DataSetChanged(object sender, EventArgs e)
         {
             RunOnUiThread(() =>
             {
-                adapter.NotifyDataSetChanged();
+                _adapter.NotifyDataSetChanged();
                 Console.WriteLine("REFRESH");
             });
         }

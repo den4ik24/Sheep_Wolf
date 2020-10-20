@@ -129,6 +129,7 @@
     <Folder Include="Table\" />
     <Folder Include="Storyboard\" />
     <Folder Include="Transformations\" />
+    <Folder Include="ModelImager\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -170,6 +171,7 @@
     <Compile Include="Table\TableViewCellHunters.designer.cs">
       <DependentUpon>TableViewCellHunters.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModelImager\AnimalModelImager.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\sheep.png" />

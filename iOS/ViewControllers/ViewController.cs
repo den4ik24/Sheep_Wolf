@@ -40,14 +40,14 @@ namespace Sheep_Wolf.iOS
         private void CircleOfLife_Clicked(object sender, EventArgs e)
         {
             string message = "";
-            string picture = "INFORMATION.png";
+            string picture = Foto.INFO;
             ImageToast(message, picture);
         }
 
         private void AnimalChoice_ItemSelected(object sender, EventArgs e)
         {
             if (picker.SelectedValue == AnimalType.DUCK.ToString() ||
-               picker.SelectedValue == AnimalType.HUNTER.ToString())
+                picker.SelectedValue == AnimalType.HUNTER.ToString())
             {
                 ButtonAddAnimal.Enabled = true;
                 textNameOfAnimals.Enabled = false;
@@ -106,11 +106,11 @@ namespace Sheep_Wolf.iOS
 
             if (isSheep == AnimalType.WOLF.ToString())
             {
-                ImageToast(Keys.ENTERtheWOLF, "wolf.png");
+                ImageToast(Keys.ENTERtheWOLF, Foto.WOLF);
             }
             else if (isSheep == AnimalType.HUNTER.ToString())
             {
-                ImageToast(Keys.ENTERtheHUNTER, "hunter_killer.png");
+                ImageToast(Keys.ENTERtheHUNTER, Foto.HUNTER_KILLER);
             }
 
             if (businessLogic.AddAnimal(picker.SelectedRow, textNameOfAnimals.Text))
@@ -120,7 +120,7 @@ namespace Sheep_Wolf.iOS
                 alertController.AddAction(UIAlertAction.Create
                     ("OK", UIAlertActionStyle.Default, null));
                 PresentViewController(alertController, true, null);
-                ImageToast(Keys.REPEATtheNAME, "INFORMATION.png");
+                ImageToast(Keys.REPEATtheNAME, Foto.INFO);
             }
             else
             {
@@ -147,20 +147,19 @@ namespace Sheep_Wolf.iOS
                 string picture;
                 if (transferData.TypeKiller == KillerAnnotation.HUNTER_KILL_WOLF)
                 {
-                    picture = "hunter_kill_wolf.png";
+                    picture = Foto.HUNTER_KILL_WOLF;
                 ImageToast(transferData.Message, picture);
                 }
                 if (transferData.TypeKiller == KillerAnnotation.WOLF_EAT_HUNTER)
                 {
-                    picture = "wolf_kill_hunter.png";
+                    picture = Foto.WOLF_KILL_HUNTER;
                 ImageToast(transferData.Message, picture);
                 }
                 if (transferData.TypeKiller == KillerAnnotation.WOLF_EAT_SHEEP)
                 {
-                    picture = "wolf_kill.png";
+                    picture = Foto.WOLF_KILL;
                 ImageToast(transferData.Message, picture);
                 }
-
             });
 
         }

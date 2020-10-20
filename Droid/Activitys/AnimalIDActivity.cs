@@ -14,33 +14,33 @@ namespace Sheep_Wolf.Droid
     {
         IBusinessLogic businessLogic = new BusinessLogic();
         IDataBase dataBase = new DataBase();
-        TextView textSheepsName;
-        ImageView animalsFoto;
-        TextView animalType;
-        TextView whoKillMe;
-        ImageView imageAnimal;
-        LinearLayout starsLayout;
+        TextView _textSheepsName;
+        ImageView _animalsFoto;
+        TextView _animalType;
+        TextView _whoKillMe;
+        ImageView _imageAnimal;
+        LinearLayout _starsLayout;
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.AnimalIDLayout);
-            starsLayout = FindViewById<LinearLayout>(Resource.Id.starsLayout);
-            textSheepsName = FindViewById<TextView>(Resource.Id.textViewSheepsName);
-            animalsFoto = FindViewById<ImageView>(Resource.Id.animalsFoto);
-            animalType = FindViewById<TextView>(Resource.Id.animalType);
-            whoKillMe = FindViewById<TextView>(Resource.Id.whoKillMe);
-            imageAnimal = FindViewById<ImageView>(Resource.Id.imageAnimal);
+            _starsLayout = FindViewById<LinearLayout>(Resource.Id.starsLayout);
+            _textSheepsName = FindViewById<TextView>(Resource.Id.textViewSheepsName);
+            _animalsFoto = FindViewById<ImageView>(Resource.Id.animalsFoto);
+            _animalType = FindViewById<TextView>(Resource.Id.animalType);
+            _whoKillMe = FindViewById<TextView>(Resource.Id.whoKillMe);
+            _imageAnimal = FindViewById<ImageView>(Resource.Id.imageAnimal);
             var typeOfAnimal = Intent.Extras.GetInt(Keys.TYPEofANIMAL);
             var animalID = Intent.Extras.GetString(Keys.ANIMAL_ID);
             var animal = businessLogic.GetAnimal(animalID, typeOfAnimal);
             var star = dataBase.GetID<Prey>(animalID);
-            textSheepsName.Text = animal.Name;
+            _textSheepsName.Text = animal.Name;
 
-            whoKillMe.Text = businessLogic.NameofKiller(animal);
-            animalType.Text = businessLogic.TextKill(animal);
+            _whoKillMe.Text = businessLogic.NameofKiller(animal);
+            _animalType.Text = businessLogic.TextKill(animal);
             var animalState = businessLogic.GetAnimalState(animal);
-            imageAnimal.SetImageResource(AnimalModelImager.GetAnimalImage(animal, animalState));
+            _imageAnimal.SetImageResource(AnimalModelImager.GetAnimalImage(animal, animalState));
             StarPicture(star);
             AddBottomImage(animal);
         }
@@ -50,10 +50,10 @@ namespace Sheep_Wolf.Droid
             for (int i = 0; i < star; i++)
             {
                 var lPar = new TableLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent, 1);
-                ImageView imageStar = new ImageView(this);
-                imageStar.LayoutParameters = lPar;
-                starsLayout.AddView(imageStar);
-                imageStar.SetImageResource(Resource.Drawable.star);
+                ImageView _imageStar = new ImageView(this);
+                _imageStar.LayoutParameters = lPar;
+                _starsLayout.AddView(_imageStar);
+                _imageStar.SetImageResource(Resource.Drawable.star);
             }
         }
 
@@ -65,67 +65,7 @@ namespace Sheep_Wolf.Droid
             {
                 load.Transform(new GrayscaleTransformation());
             }
-            load.Into(animalsFoto);
-        }
-    }
-
-    public static class AnimalModelImager
-    {
-        public static int GetAnimalImage(AnimalModel model, AnimalState state)
-        {
-            if (model is SheepModel)
-            {
-                if (state == AnimalState.ALIVE)
-                {
-                    return Resource.Drawable.sheep;
-                }
-                if (state == AnimalState.DEAD)
-                {
-                    return Resource.Drawable.rip;
-                }
-            }
-
-            if (model is WolfModel)
-            {
-                if (state == AnimalState.ALIVE)
-                {
-                    return Resource.Drawable.wolf;
-                }
-                if (state == AnimalState.DEAD)
-                {
-                    return Resource.Drawable.wolf_rip;
-                }
-                if (state == AnimalState.KILLER)
-                {
-                    return Resource.Drawable.killer;
-                }
-            }
-
-            if (model is HunterModel)
-            {
-                if (state == AnimalState.ALIVE)
-                {
-                    return Resource.Drawable.hunter;
-                }
-                if (state == AnimalState.DEAD)
-                {
-                    return Resource.Drawable.hunter_rip;
-                }
-                if (state == AnimalState.KILLER)
-                {
-                    return Resource.Drawable.hunter_killer;
-                }
-            }
-
-            if (model is DuckModel)
-            {
-                if (state == AnimalState.ALIVE)
-                {
-                    return Resource.Drawable.duck;
-                }
-            }
-
-            throw new Exception();
+            load.Into(_animalsFoto);
         }
     }
 }
