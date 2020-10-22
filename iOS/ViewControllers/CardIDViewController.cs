@@ -20,7 +20,7 @@ namespace Sheep_Wolf.iOS
             var star = dataBase.GetID<Prey>(animalId);
             labelAnimalName.Text = animal.Name;
 
-            whoKillMe.Text = businessLogic.NameofKiller(animal);
+            KillersName(animal);
             NameAnimalID.Text = businessLogic.TextKill(animal);
             var animalState = businessLogic.GetAnimalState(animal);
             ImageAnimal.Image = UIImage.FromBundle(AnimalModelImager.GetAnimalImage(animal, animalState));
@@ -38,6 +38,20 @@ namespace Sheep_Wolf.iOS
                 starsLayout.AddArrangedSubview(_imageStar);
                 _imageStar.Image = UIImage.FromBundle(Foto.STAR);
                 _imageStar.ContentMode = UIViewContentMode.ScaleAspectFit;
+            }
+        }
+
+        public void KillersName(AnimalModel animal)
+        {
+            var name = businessLogic.NameofKiller(animal);
+            if(name != "")
+            {
+                whoKillMe.Text = name;
+                whoKillMe.Alpha = 1;
+                NameAnimalID.Constraints.SetValue(whoKillMe, 10);
+                NameAnimalID.UpdateConstraintsIfNeeded();
+                NameAnimalID.UpdateConstraints();
+                NameAnimalID.SetNeedsUpdateConstraints();
             }
         }
 

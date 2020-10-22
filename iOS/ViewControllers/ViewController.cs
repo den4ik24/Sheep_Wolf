@@ -28,21 +28,29 @@ namespace Sheep_Wolf.iOS
             uiPicker.Model.Selected(uiPicker, 0, 0);
             animalChoice.InputView = uiPicker;
             CircleOfLife.Image = CircleOfLife.Image.ImageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
-            CircleOfLife.Clicked += CircleOfLife_Clicked;
+            //CircleOfLife.Clicked += CircleOfLife_Clicked;
             picker.ValueChanged += AnimalChoice_ItemSelected;
             businessLogic.DataChanged += DataSetChanged;
             businessLogic.Notify += DisplayKillMessage;
             toastView.Layer.BorderWidth = 1;
             toastView.Layer.BorderColor = UIColor.Gray.CGColor;
             toastView.Layer.CornerRadius = 30;
+            CircleOfLife.Clicked += CircleOfLife_Clicked1;
         }
 
-        private void CircleOfLife_Clicked(object sender, EventArgs e)
+        private void CircleOfLife_Clicked1(object sender, EventArgs e)
         {
-            string message = "";
-            string picture = Foto.INFO;
-            ImageToast(message, picture);
+            textNameOfAnimals.TopAnchor.ConstraintEqualTo(LabelNumberAnimal.TopAnchor, constant: 50).Active = true;
+            typeOfAnimal.TopAnchor.ConstraintEqualTo(textNameOfAnimals.TopAnchor, constant: 50).Active = true;
+            animalChoice.TopAnchor.ConstraintEqualTo(textNameOfAnimals.TopAnchor,constant: 50).Active = true;
         }
+
+        //private void CircleOfLife_Clicked(object sender, EventArgs e)
+        //{
+        //    string message = "";
+        //    string picture = Foto.INFO;
+        //    ImageToast(message, picture);
+        //}
 
         private void AnimalChoice_ItemSelected(object sender, EventArgs e)
         {
@@ -51,10 +59,21 @@ namespace Sheep_Wolf.iOS
             {
                 ButtonAddAnimal.Enabled = true;
                 textNameOfAnimals.Enabled = false;
-                textNameOfAnimals.Text = Keys.ENTERthePAW;
+                textNameOfAnimals.Alpha = 0;
+
+
+                //typeOfAnimal.TrailingAnchor.ConstraintEqualTo(LabelNumberAnimal.TrailingAnchor, constant: 50).Active = true;
+                //animalChoice.TrailingAnchor.ConstraintEqualTo(LabelNumberAnimal.TrailingAnchor, constant: 50).Active = true;
             }
             else
             {
+                textNameOfAnimals.Alpha = 1;
+
+
+                typeOfAnimal.TopAnchor.ConstraintEqualTo(textNameOfAnimals.TopAnchor, constant: 50).Active = true;
+                animalChoice.TopAnchor.ConstraintEqualTo(textNameOfAnimals.TopAnchor, constant: 50).Active = true;
+
+
                 ButtonAddAnimal.Enabled = false;
                 textNameOfAnimals.Enabled = true;
                 textNameOfAnimals.Text = "";

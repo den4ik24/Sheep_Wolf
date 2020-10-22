@@ -59,7 +59,7 @@ namespace Sheep_Wolf.Droid
 
         public void KillersName(AnimalModel  animal)
         {
-            var name =businessLogic.NameofKiller(animal);
+            var name = businessLogic.NameofKiller(animal);
             if (name != "")
             {
                 _whoKillMe.Text = name;

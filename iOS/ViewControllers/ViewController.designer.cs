@@ -48,6 +48,10 @@ namespace Sheep_Wolf.iOS
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIView toastView { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel typeOfAnimal { get; set; }
         [Action ("ButtonAddAnimal_TouchUpInside:")]
         partial void ButtonAddAnimal_TouchUpInside (UIKit.UIButton sender);
 
@@ -96,6 +100,11 @@ namespace Sheep_Wolf.iOS
             if (toastView != null) {
                 toastView.Dispose ();
                 toastView = null;
+            }
+
+            if (typeOfAnimal != null) {
+                typeOfAnimal.Dispose ();
+                typeOfAnimal = null;
             }
         }
     }
