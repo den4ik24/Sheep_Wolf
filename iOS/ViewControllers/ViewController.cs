@@ -36,13 +36,15 @@ namespace Sheep_Wolf.iOS
             toastView.Layer.BorderColor = UIColor.Gray.CGColor;
             toastView.Layer.CornerRadius = 30;
             CircleOfLife.Clicked += CircleOfLife_Clicked1;
+            NameOfAnimalsConstraint();
         }
 
         private void CircleOfLife_Clicked1(object sender, EventArgs e)
         {
-            textNameOfAnimals.TopAnchor.ConstraintEqualTo(LabelNumberAnimal.TopAnchor, constant: 50).Active = true;
-            typeOfAnimal.TopAnchor.ConstraintEqualTo(textNameOfAnimals.TopAnchor, constant: 50).Active = true;
-            animalChoice.TopAnchor.ConstraintEqualTo(textNameOfAnimals.TopAnchor,constant: 50).Active = true;
+            typeOfAnimal.TopAnchor.ConstraintEqualTo(LabelNumberAnimal.TopAnchor, 60).Active = false;
+            animalChoice.TopAnchor.ConstraintEqualTo(LabelNumberAnimal.TopAnchor, 60).Active = false;
+            typeOfAnimal.TopAnchor.ConstraintEqualTo(textNameOfAnimals.TopAnchor, constant: 60).Active = true;
+            animalChoice.TopAnchor.ConstraintEqualTo(textNameOfAnimals.TopAnchor, constant: 60).Active = true;
         }
 
         //private void CircleOfLife_Clicked(object sender, EventArgs e)
@@ -51,6 +53,18 @@ namespace Sheep_Wolf.iOS
         //    string picture = Foto.INFO;
         //    ImageToast(message, picture);
         //}
+        private void NameOfAnimalsConstraint()
+        {
+            textNameOfAnimals.Alpha = 1;
+            textNameOfAnimals.TranslatesAutoresizingMaskIntoConstraints = false;
+            var nameConstraint = new[]
+                {
+                    textNameOfAnimals.TopAnchor.ConstraintEqualTo(LabelNumberAnimal.TopAnchor, 45),
+                    textNameOfAnimals.TrailingAnchor.ConstraintEqualTo(LabelNumberAnimal.TrailingAnchor),
+                    textNameOfAnimals.LeadingAnchor.ConstraintEqualTo(LabelNumberAnimal.LeadingAnchor)
+                };
+            NSLayoutConstraint.ActivateConstraints(nameConstraint);
+        }
 
         private void AnimalChoice_ItemSelected(object sender, EventArgs e)
         {
@@ -61,18 +75,19 @@ namespace Sheep_Wolf.iOS
                 textNameOfAnimals.Enabled = false;
                 textNameOfAnimals.Alpha = 0;
 
-
-                //typeOfAnimal.TrailingAnchor.ConstraintEqualTo(LabelNumberAnimal.TrailingAnchor, constant: 50).Active = true;
-                //animalChoice.TrailingAnchor.ConstraintEqualTo(LabelNumberAnimal.TrailingAnchor, constant: 50).Active = true;
             }
             else
             {
-                textNameOfAnimals.Alpha = 1;
+                NameOfAnimalsConstraint();
+                //textNameOfAnimals.TopAnchor.ConstraintEqualTo(LabelNumberAnimal.TopAnchor, 45).Active = true;
+                //textNameOfAnimals.TrailingAnchor.ConstraintEqualTo(LabelNumberAnimal.TrailingAnchor).Active = true;
+                //textNameOfAnimals.LeadingAnchor.ConstraintEqualTo(LabelNumberAnimal.LeadingAnchor).Active = true;
 
 
-                typeOfAnimal.TopAnchor.ConstraintEqualTo(textNameOfAnimals.TopAnchor, constant: 50).Active = true;
-                animalChoice.TopAnchor.ConstraintEqualTo(textNameOfAnimals.TopAnchor, constant: 50).Active = true;
-
+                //typeOfAnimal.TopAnchor.ConstraintEqualTo(textNameOfAnimals.TopAnchor, constant: 60).Active = true;
+                //animalChoice.TopAnchor.ConstraintEqualTo(textNameOfAnimals.TopAnchor, constant: 60).Active = true;
+                //typeOfAnimal.TranslatesAutoresizingMaskIntoConstraints = true;
+                //animalChoice.TranslatesAutoresizingMaskIntoConstraints = true;
 
                 ButtonAddAnimal.Enabled = false;
                 textNameOfAnimals.Enabled = true;
