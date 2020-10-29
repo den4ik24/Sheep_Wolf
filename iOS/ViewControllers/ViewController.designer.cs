@@ -35,6 +35,10 @@ namespace Sheep_Wolf.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIView mainView { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIImageView pictureToast { get; set; }
 
         [Outlet]
@@ -80,6 +84,11 @@ namespace Sheep_Wolf.iOS
             if (listOfSheeps != null) {
                 listOfSheeps.Dispose ();
                 listOfSheeps = null;
+            }
+
+            if (mainView != null) {
+                mainView.Dispose ();
+                mainView = null;
             }
 
             if (pictureToast != null) {

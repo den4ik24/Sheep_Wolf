@@ -28,31 +28,30 @@ namespace Sheep_Wolf.iOS
             uiPicker.Model.Selected(uiPicker, 0, 0);
             animalChoice.InputView = uiPicker;
             CircleOfLife.Image = CircleOfLife.Image.ImageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
-            //CircleOfLife.Clicked += CircleOfLife_Clicked;
+            CircleOfLife.Clicked += CircleOfLife_Clicked;
             picker.ValueChanged += AnimalChoice_ItemSelected;
             businessLogic.DataChanged += DataSetChanged;
             businessLogic.Notify += DisplayKillMessage;
             toastView.Layer.BorderWidth = 1;
             toastView.Layer.BorderColor = UIColor.Gray.CGColor;
             toastView.Layer.CornerRadius = 30;
-            CircleOfLife.Clicked += CircleOfLife_Clicked1;
+            //CircleOfLife.Clicked += CircleOfLife_Clicked1;
             NameOfAnimalsConstraint();
         }
 
-        private void CircleOfLife_Clicked1(object sender, EventArgs e)
-        {
-            typeOfAnimal.TopAnchor.ConstraintEqualTo(LabelNumberAnimal.TopAnchor, 60).Active = false;
-            animalChoice.TopAnchor.ConstraintEqualTo(LabelNumberAnimal.TopAnchor, 60).Active = false;
-            typeOfAnimal.TopAnchor.ConstraintEqualTo(textNameOfAnimals.TopAnchor, constant: 60).Active = true;
-            animalChoice.TopAnchor.ConstraintEqualTo(textNameOfAnimals.TopAnchor, constant: 60).Active = true;
-        }
-
-        //private void CircleOfLife_Clicked(object sender, EventArgs e)
+        //private void CircleOfLife_Clicked1(object sender, EventArgs e)
         //{
-        //    string message = "";
-        //    string picture = Foto.INFO;
-        //    ImageToast(message, picture);
+        //    textNameOfAnimals.TopAnchor.ConstraintEqualTo(LabelNumberAnimal.TopAnchor, 45).Active = true;
+        //    textNameOfAnimals.TrailingAnchor.ConstraintEqualTo(LabelNumberAnimal.TrailingAnchor).Active = true;
+        //    textNameOfAnimals.LeadingAnchor.ConstraintEqualTo(LabelNumberAnimal.LeadingAnchor).Active = true;
         //}
+
+        private void CircleOfLife_Clicked(object sender, EventArgs e)
+        {
+            string message = "";
+            string picture = Foto.INFO;
+            ImageToast(message, picture);
+        }
         private void NameOfAnimalsConstraint()
         {
             textNameOfAnimals.Alpha = 1;
@@ -79,15 +78,33 @@ namespace Sheep_Wolf.iOS
             else
             {
                 NameOfAnimalsConstraint();
-                //textNameOfAnimals.TopAnchor.ConstraintEqualTo(LabelNumberAnimal.TopAnchor, 45).Active = true;
-                //textNameOfAnimals.TrailingAnchor.ConstraintEqualTo(LabelNumberAnimal.TrailingAnchor).Active = true;
-                //textNameOfAnimals.LeadingAnchor.ConstraintEqualTo(LabelNumberAnimal.LeadingAnchor).Active = true;
 
+                NSLayoutConstraint.DeactivateConstraints(typeOfAnimal.Constraints);
+                NSLayoutConstraint.DeactivateConstraints(animalChoice.Constraints);
+                typeOfAnimal.TranslatesAutoresizingMaskIntoConstraints = false;
+                animalChoice.TranslatesAutoresizingMaskIntoConstraints = false;
+                var typeOfAnimalConstraints = new[]
+                {
+                    typeOfAnimal.TopAnchor.ConstraintEqualTo(LabelNumberAnimal.TopAnchor, constant: 120),
+                    typeOfAnimal.LeadingAnchor.ConstraintEqualTo(mainView.LeadingAnchor, 0),
+                    typeOfAnimal.TrailingAnchor.ConstraintEqualTo(animalChoice.LeadingAnchor, 0),
+                    typeOfAnimal.HeightAnchor.ConstraintEqualTo(50)
+                };
 
-                //typeOfAnimal.TopAnchor.ConstraintEqualTo(textNameOfAnimals.TopAnchor, constant: 60).Active = true;
-                //animalChoice.TopAnchor.ConstraintEqualTo(textNameOfAnimals.TopAnchor, constant: 60).Active = true;
-                //typeOfAnimal.TranslatesAutoresizingMaskIntoConstraints = true;
-                //animalChoice.TranslatesAutoresizingMaskIntoConstraints = true;
+                var animalChoiseConstraint = new[]
+                {
+                    animalChoice.TopAnchor.ConstraintEqualTo(LabelNumberAnimal.TopAnchor, constant: 120),
+                    animalChoice.LeadingAnchor.ConstraintEqualTo(typeOfAnimal.TrailingAnchor, 0),
+                    animalChoice.TrailingAnchor.ConstraintEqualTo(mainView.TrailingAnchor, 0),
+                    animalChoice.HeightAnchor.ConstraintEqualTo(50)
+                };
+
+                NSLayoutConstraint.ActivateConstraints(typeOfAnimalConstraints);
+                NSLayoutConstraint.ActivateConstraints(animalChoiseConstraint);
+                //typeOfAnimal.TopAnchor.ConstraintEqualTo(LabelNumberAnimal.TopAnchor, constant: 120).Active = true;
+                //animalChoice.TopAnchor.ConstraintEqualTo(textNameOfAnimals.TopAnchor, constant: 120).Active = true;
+                typeOfAnimal.TranslatesAutoresizingMaskIntoConstraints = true;
+                animalChoice.TranslatesAutoresizingMaskIntoConstraints = true;
 
                 ButtonAddAnimal.Enabled = false;
                 textNameOfAnimals.Enabled = true;
