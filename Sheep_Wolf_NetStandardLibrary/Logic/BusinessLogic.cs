@@ -208,7 +208,6 @@ namespace Sheep_Wolf_NetStandardLibrary
                         if (wolfLiveCount/2 > hunterLiveCount)
                         {
                             animal.IsDead = true;
-                            //animal.WhoKilledMe = item.Name;
                             item.Killer = animal.Name;
                             fillPrey(item, animal, AnimalType.WOLF);
                             _dataBase.Update(animal);
@@ -310,7 +309,6 @@ namespace Sheep_Wolf_NetStandardLibrary
         public void WhoKilledWho(AnimalModel sacrifice, AnimalModel killer)
         {
             sacrifice.IsDead = true;
-            //sacrifice.WhoKilledMe = killer.Name;
             killer.Killer = sacrifice.Name;
             _dataBase.Update(sacrifice);
             _dataBase.Update(killer);

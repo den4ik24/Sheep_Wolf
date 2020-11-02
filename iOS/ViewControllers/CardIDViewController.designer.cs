@@ -28,11 +28,19 @@ namespace Sheep_Wolf.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel labelName { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel NameAnimalID { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIStackView starsLayout { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIView viewID { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -55,6 +63,11 @@ namespace Sheep_Wolf.iOS
                 labelAnimalName = null;
             }
 
+            if (labelName != null) {
+                labelName.Dispose ();
+                labelName = null;
+            }
+
             if (NameAnimalID != null) {
                 NameAnimalID.Dispose ();
                 NameAnimalID = null;
@@ -63,6 +76,11 @@ namespace Sheep_Wolf.iOS
             if (starsLayout != null) {
                 starsLayout.Dispose ();
                 starsLayout = null;
+            }
+
+            if (viewID != null) {
+                viewID.Dispose ();
+                viewID = null;
             }
 
             if (whoKillMe != null) {
