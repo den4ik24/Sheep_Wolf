@@ -47,67 +47,15 @@ namespace Sheep_Wolf.iOS
             {
                 whoKillMe.Text = name;
                 whoKillMe.Alpha = 1;
-                //NameAnimalID.Constraints.SetValue(whoKillMe, 10);
-                //NameAnimalID.UpdateConstraintsIfNeeded();
-                //NameAnimalID.UpdateConstraints();
-                //NameAnimalID.SetNeedsUpdateConstraints();
+
             }
             else
             {
                 whoKillMe.Text = "";
                 whoKillMe.Alpha = 0;
                 NSLayoutConstraint.DeactivateConstraints(whoKillMe.Constraints);
-
-                whoKillMe.HeightAnchor.ConstraintEqualTo(0).Active = true;
-
-                var c = viewID.Constraints.FirstOrDefault(a => a.FirstItem == whoKillMe && a.SecondItem == labelAnimalName);
-                c.Active = false;
-
-                //var b = viewID.Constraints.FirstOrDefault(a =>
-                //{
-                //    if (a.FirstItem == whoKillMe)
-                //    {
-                //        return true;
-                //    }
-                //    if (a.SecondItem == labelAnimalName)
-                //    {
-                //        return true;
-                //    }
-                //    return false;
-                //});
-
-                //b.Active = false;
-
-                var b = viewID.Constraints.FirstOrDefault(a => a.FirstItem == NameAnimalID && a.SecondItem == whoKillMe);
-                b.Active = false;
-
+                viewID.Constraints.FirstOrDefault(a => a.FirstItem == NameAnimalID && a.SecondItem == whoKillMe).Active = false;
                 NameAnimalID.TopAnchor.ConstraintEqualTo(labelAnimalName.BottomAnchor, 10).Active = true;
-
-                //whoKillMe.BottomAnchor.ConstraintEqualTo(NameAnimalID.TopAnchor, 0).Active = true;
-
-
-                //var obj = (new[]{ new{ Name = 1, Age = 2 }, new{ Name = 2, Age =3} }).ToList();
-                //obj.Where(a => a.Age == 3);
-                //foreach (var o in obj)
-                //{
-                //    if (o.Age == 3)
-                //    {
-                //        Console.WriteLine("!!!");
-                //    }
-                //}
-
-                //for (int i = 0; i < obj.Length; i++)
-                //{
-                //    var o = obj[i];
-                //    if (o.Age == 3)
-                //    {
-                //        break;
-                //    }
-                //}
-
-                //whoKillMe.HeightAnchor.ConstraintEqualTo(70).Active = true;
-                //whoKillMe.TrailingAnchor.ConstraintEqualTo(viewID.TrailingAnchor, 0).Active = true;
-                //whoKillMe.LeadingAnchor.ConstraintEqualTo(ImageAnimal.TrailingAnchor, 0).Active = true;
             }
         }
 

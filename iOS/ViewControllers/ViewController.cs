@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Timers;
 using Sheep_Wolf_NetStandardLibrary;
 using UIKit;
@@ -35,16 +36,7 @@ namespace Sheep_Wolf.iOS
             toastView.Layer.BorderWidth = 1;
             toastView.Layer.BorderColor = UIColor.Gray.CGColor;
             toastView.Layer.CornerRadius = 30;
-            //CircleOfLife.Clicked += CircleOfLife_Clicked1;
-            NameOfAnimalsVisibleConstraint();
         }
-
-        //private void CircleOfLife_Clicked1(object sender, EventArgs e)
-        //{
-        //    textNameOfAnimals.TopAnchor.ConstraintEqualTo(LabelNumberAnimal.TopAnchor, 45).Active = true;
-        //    textNameOfAnimals.TrailingAnchor.ConstraintEqualTo(LabelNumberAnimal.TrailingAnchor).Active = true;
-        //    textNameOfAnimals.LeadingAnchor.ConstraintEqualTo(LabelNumberAnimal.LeadingAnchor).Active = true;
-        //}
 
         private void CircleOfLife_Clicked(object sender, EventArgs e)
         {
@@ -52,36 +44,23 @@ namespace Sheep_Wolf.iOS
             string picture = Foto.INFO;
             ImageToast(message, picture);
         }
+
         private void NameOfAnimalsVisibleConstraint()
         {
             textNameOfAnimals.Alpha = 1;
-            //textNameOfAnimals.TranslatesAutoresizingMaskIntoConstraints = false;
-            //var nameConstraint = new[]
-            //    {
-            //        textNameOfAnimals.TopAnchor.ConstraintEqualTo(LabelNumberAnimal.TopAnchor, 45),
-            //        textNameOfAnimals.TrailingAnchor.ConstraintEqualTo(LabelNumberAnimal.TrailingAnchor),
-            //        textNameOfAnimals.LeadingAnchor.ConstraintEqualTo(LabelNumberAnimal.LeadingAnchor)
-            //    };
-            //NSLayoutConstraint.ActivateConstraints(nameConstraint);
-    
-            NSLayoutConstraint.DeactivateConstraints(typeOfAnimal.Constraints);
-            NSLayoutConstraint.DeactivateConstraints(animalChoice.Constraints);
-            NSLayoutConstraint.DeactivateConstraints(LabelNumberAnimal.Constraints);
-            typeOfAnimal.HeightAnchor.ConstraintEqualTo(40).Active = true;
-            animalChoice.HeightAnchor.ConstraintEqualTo(40).Active = true;
-            LabelNumberAnimal.HeightAnchor.ConstraintEqualTo(40).Active = true;
-
+            mainView.Constraints.FirstOrDefault(a => a.FirstItem == typeOfAnimal && a.SecondItem == LabelNumberAnimal).Active = false;
+            mainView.Constraints.FirstOrDefault(a => a.FirstItem == animalChoice && a.SecondItem == LabelNumberAnimal).Active = false;
+            typeOfAnimal.TopAnchor.ConstraintEqualTo(textNameOfAnimals.BottomAnchor, 10).Active = true;
+            animalChoice.TopAnchor.ConstraintEqualTo(textNameOfAnimals.BottomAnchor, 10).Active = true;
         }
 
         private void NameOfAnimalsInvisibleConstraint()
         {
             textNameOfAnimals.Alpha = 0;
-            NSLayoutConstraint.DeactivateConstraints(typeOfAnimal.Constraints);
-            NSLayoutConstraint.DeactivateConstraints(animalChoice.Constraints);
-            NSLayoutConstraint.DeactivateConstraints(LabelNumberAnimal.Constraints);
-            typeOfAnimal.HeightAnchor.ConstraintEqualTo(65).Active = true;
-            animalChoice.HeightAnchor.ConstraintEqualTo(65).Active = true;
-            LabelNumberAnimal.HeightAnchor.ConstraintEqualTo(65).Active = true;
+            mainView.Constraints.FirstOrDefault(a => a.FirstItem == typeOfAnimal && a.SecondItem == textNameOfAnimals).Active = false;
+            mainView.Constraints.FirstOrDefault(a => a.FirstItem == animalChoice && a.SecondItem == textNameOfAnimals).Active = false;
+            typeOfAnimal.TopAnchor.ConstraintEqualTo(LabelNumberAnimal.BottomAnchor, 10).Active = true;
+            animalChoice.TopAnchor.ConstraintEqualTo(LabelNumberAnimal.BottomAnchor, 10).Active = true;
         }
 
         private void AnimalChoice_ItemSelected(object sender, EventArgs e)
@@ -92,39 +71,10 @@ namespace Sheep_Wolf.iOS
                 ButtonAddAnimal.Enabled = true;
                 textNameOfAnimals.Enabled = false;
                 NameOfAnimalsInvisibleConstraint();
-
             }
             else
             {
                 NameOfAnimalsVisibleConstraint();
-
-                //NSLayoutConstraint.DeactivateConstraints(typeOfAnimal.Constraints);
-                //NSLayoutConstraint.DeactivateConstraints(animalChoice.Constraints);
-                //typeOfAnimal.TranslatesAutoresizingMaskIntoConstraints = false;
-                //animalChoice.TranslatesAutoresizingMaskIntoConstraints = false;
-                //var typeOfAnimalConstraints = new[]
-                //{
-                //    typeOfAnimal.TopAnchor.ConstraintEqualTo(LabelNumberAnimal.TopAnchor, constant: 120),
-                //    typeOfAnimal.LeadingAnchor.ConstraintEqualTo(mainView.LeadingAnchor, 0),
-                //    typeOfAnimal.TrailingAnchor.ConstraintEqualTo(animalChoice.LeadingAnchor, 0),
-                //    typeOfAnimal.HeightAnchor.ConstraintEqualTo(50)
-                //};
-
-                //var animalChoiseConstraint = new[]
-                //{
-                //    animalChoice.TopAnchor.ConstraintEqualTo(LabelNumberAnimal.TopAnchor, constant: 120),
-                //    animalChoice.LeadingAnchor.ConstraintEqualTo(typeOfAnimal.TrailingAnchor, 0),
-                //    animalChoice.TrailingAnchor.ConstraintEqualTo(mainView.TrailingAnchor, 0),
-                //    animalChoice.HeightAnchor.ConstraintEqualTo(50)
-                //};
-
-                //NSLayoutConstraint.ActivateConstraints(typeOfAnimalConstraints);
-                //NSLayoutConstraint.ActivateConstraints(animalChoiseConstraint);
-                //typeOfAnimal.TopAnchor.ConstraintEqualTo(LabelNumberAnimal.TopAnchor, constant: 120).Active = true;
-                //animalChoice.TopAnchor.ConstraintEqualTo(textNameOfAnimals.TopAnchor, constant: 120).Active = true;
-                //typeOfAnimal.TranslatesAutoresizingMaskIntoConstraints = true;
-                //animalChoice.TranslatesAutoresizingMaskIntoConstraints = true;
-
                 ButtonAddAnimal.Enabled = false;
                 textNameOfAnimals.Enabled = true;
                 textNameOfAnimals.Text = "";
