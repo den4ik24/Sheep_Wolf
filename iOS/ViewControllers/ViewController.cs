@@ -57,6 +57,18 @@ namespace Sheep_Wolf.iOS
         private void NameOfAnimalsInvisibleConstraint()
         {
             textNameOfAnimals.Alpha = 0;
+            //mainView.Constraints.FirstOrDefault(a =>
+            //{
+            //    if (a.FirstItem == typeOfAnimal)
+            //    {
+            //        return true;
+            //    }
+            //    if (a.SecondItem == textNameOfAnimals)
+            //    {
+            //        return true;
+            //    }
+            //    return false;
+            //}).Active = false;
             mainView.Constraints.FirstOrDefault(a => a.FirstItem == typeOfAnimal && a.SecondItem == textNameOfAnimals).Active = false;
             mainView.Constraints.FirstOrDefault(a => a.FirstItem == animalChoice && a.SecondItem == textNameOfAnimals).Active = false;
             typeOfAnimal.TopAnchor.ConstraintEqualTo(LabelNumberAnimal.BottomAnchor, 10).Active = true;
@@ -70,11 +82,17 @@ namespace Sheep_Wolf.iOS
             {
                 ButtonAddAnimal.Enabled = true;
                 textNameOfAnimals.Enabled = false;
-                NameOfAnimalsInvisibleConstraint();
+                if (textNameOfAnimals.Alpha != 0)
+                {
+                    NameOfAnimalsInvisibleConstraint();
+                }
             }
             else
             {
-                NameOfAnimalsVisibleConstraint();
+                if(textNameOfAnimals.Alpha != 1)
+                {
+                    NameOfAnimalsVisibleConstraint();
+                }
                 ButtonAddAnimal.Enabled = false;
                 textNameOfAnimals.Enabled = true;
                 textNameOfAnimals.Text = "";
