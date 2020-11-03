@@ -36,6 +36,7 @@ namespace Sheep_Wolf.iOS
             toastView.Layer.BorderWidth = 1;
             toastView.Layer.BorderColor = UIColor.Gray.CGColor;
             toastView.Layer.CornerRadius = 30;
+            ButtonAddAnimal.Enabled = false;
         }
 
         private void CircleOfLife_Clicked(object sender, EventArgs e)
@@ -47,55 +48,36 @@ namespace Sheep_Wolf.iOS
 
         private void NameOfAnimalsVisibleConstraint()
         {
-            textNameOfAnimals.Alpha = 1;
-            mainView.Constraints.FirstOrDefault(a => a.FirstItem == typeOfAnimal && a.SecondItem == LabelNumberAnimal).Active = false;
-            mainView.Constraints.FirstOrDefault(a => a.FirstItem == animalChoice && a.SecondItem == LabelNumberAnimal).Active = false;
-            typeOfAnimal.TopAnchor.ConstraintEqualTo(textNameOfAnimals.BottomAnchor, 10).Active = true;
-            animalChoice.TopAnchor.ConstraintEqualTo(textNameOfAnimals.BottomAnchor, 10).Active = true;
+            if (textNameOfAnimals.Alpha == 0)
+            {
+                textNameOfAnimals.Alpha = 1;
+                mainView.Constraints.FirstOrDefault(a => a.FirstItem == animalChoice && a.SecondItem == LabelNumberAnimal).Active = false;
+                animalChoice.TopAnchor.ConstraintEqualTo(textNameOfAnimals.BottomAnchor, 10).Active = true;
+            }
         }
 
         private void NameOfAnimalsInvisibleConstraint()
         {
-            textNameOfAnimals.Alpha = 0;
-            //mainView.Constraints.FirstOrDefault(a =>
-            //{
-            //    if (a.FirstItem == typeOfAnimal)
-            //    {
-            //        return true;
-            //    }
-            //    if (a.SecondItem == textNameOfAnimals)
-            //    {
-            //        return true;
-            //    }
-            //    return false;
-            //}).Active = false;
-            mainView.Constraints.FirstOrDefault(a => a.FirstItem == typeOfAnimal && a.SecondItem == textNameOfAnimals).Active = false;
-            mainView.Constraints.FirstOrDefault(a => a.FirstItem == animalChoice && a.SecondItem == textNameOfAnimals).Active = false;
-            typeOfAnimal.TopAnchor.ConstraintEqualTo(LabelNumberAnimal.BottomAnchor, 10).Active = true;
-            animalChoice.TopAnchor.ConstraintEqualTo(LabelNumberAnimal.BottomAnchor, 10).Active = true;
+            if (textNameOfAnimals.Alpha == 1)
+            {
+                textNameOfAnimals.Alpha = 0;
+                mainView.Constraints.FirstOrDefault(a => a.FirstItem == animalChoice && a.SecondItem == textNameOfAnimals).Active = false;
+                animalChoice.TopAnchor.ConstraintEqualTo(LabelNumberAnimal.BottomAnchor, 10).Active = true;
+            }
         }
 
         private void AnimalChoice_ItemSelected(object sender, EventArgs e)
         {
-            if (picker.SelectedValue == AnimalType.DUCK.ToString() ||
-                picker.SelectedValue == AnimalType.HUNTER.ToString())
+            ClearText();
+            if (SheepAndWolfSelected())
             {
-                ButtonAddAnimal.Enabled = true;
-                textNameOfAnimals.Enabled = false;
-                if (textNameOfAnimals.Alpha != 0)
-                {
-                    NameOfAnimalsInvisibleConstraint();
-                }
+                ButtonAddAnimal.Enabled = false;
+                NameOfAnimalsVisibleConstraint();
             }
             else
             {
-                if(textNameOfAnimals.Alpha != 1)
-                {
-                    NameOfAnimalsVisibleConstraint();
-                }
-                ButtonAddAnimal.Enabled = false;
-                textNameOfAnimals.Enabled = true;
-                textNameOfAnimals.Text = "";
+                ButtonAddAnimal.Enabled = true;
+                NameOfAnimalsInvisibleConstraint();
             }
         }
 
@@ -113,10 +95,10 @@ namespace Sheep_Wolf.iOS
 
         public bool SheepAndWolfSelected()
         {
-            var sw = string.IsNullOrEmpty(textNameOfAnimals.Text) &&
+            return string.IsNullOrEmpty(textNameOfAnimals.Text) &&
                 (picker.SelectedValue == AnimalType.SHEEP.ToString() ||
                  picker.SelectedValue == AnimalType.WOLF.ToString());
-            return sw;
+
         }
 
         private void ButtonAddAnimal_Clicked(object sender, EventArgs e)
@@ -133,12 +115,13 @@ namespace Sheep_Wolf.iOS
             {
                 DeleteKeyboard();
                 AddRandomAnimal();
-                textNameOfAnimals.Text = "";
+                ClearText();
                 ButtonAddAnimal.Enabled = true;
             }
         }
 
-        public void AddRandomAnimal()
+
+        private void AddRandomAnimal()
         {
             var isSheep = picker.SelectedValue;
 
@@ -176,6 +159,11 @@ namespace Sheep_Wolf.iOS
         public void CountAnimal()
         {
             LabelNumberAnimal.Text = businessLogic.AnimalModel().Count.ToString();
+        }
+
+        public void ClearText()
+        {
+            textNameOfAnimals.Text = "";
         }
 
         public void DisplayKillMessage(object sender, DataTransfer transferData)
