@@ -3,3 +3,6 @@
 */bin
 .pdb
 .vs
+*.
+.DS_Store
+*.p7s

@@ -15,8 +15,11 @@ namespace Sheep_Wolf_NetStandardLibrary
         void Update(AnimalModel animal);
         void Delete<T>() where T : AnimalModel, new();
         AnimalModel GetItem<T>(string N) where T: AnimalModel, new();
+        bool nameVerification<T>(string N) where T : AnimalModel, new();
         int GetID<T>(string id) where T : Prey, new();
         string GetKillerID<T>(AnimalModel animal) where T : Prey, new();
+        int countAnimal<T>() where T : AnimalModel, new();
+        int animalLiveCount<T>() where T : AnimalModel, new();
     }
 
     public class DataBase : IDataBase
@@ -48,7 +51,7 @@ namespace Sheep_Wolf_NetStandardLibrary
         }
 
         public void Insert(AnimalModel animal)
-        { 
+        {
             var connection = new SQLiteConnection(dbPath);
             connection.Insert(animal);
         }
@@ -59,16 +62,22 @@ namespace Sheep_Wolf_NetStandardLibrary
             connection.Update(animal);
         }
 
-        public void Delete<T>() where T: AnimalModel, new()
+        public void Delete<T>() where T : AnimalModel, new()
         {
             var connection = new SQLiteConnection(dbPath);
             connection.DeleteAll<T>();
         }
 
-        public AnimalModel GetItem<T>(string animalID) where T: AnimalModel, new()
+        public AnimalModel GetItem<T>(string animalID) where T : AnimalModel, new()
         {
             var connection = new SQLiteConnection(dbPath);
             return connection.Table<T>().FirstOrDefault(a => a.Id == animalID);
+        }
+
+        public bool nameVerification<T>(string animalName) where T : AnimalModel, new()
+        {
+            var connection = new SQLiteConnection(dbPath);
+            return connection.Table<T>().Where(a => a.Name == animalName).Any();
         }
 
         public void InsertID(Prey prey)
@@ -77,7 +86,7 @@ namespace Sheep_Wolf_NetStandardLibrary
             connection.Insert(prey);
         }
 
-        public string GetKillerID<T>(AnimalModel animal) where T : Prey, new()
+        public string GetKillerID<T>(AnimalModel animal) where T : Prey, new()
         {
             var connection = new SQLiteConnection(dbPath);
             var victimModel = connection.Table<T>().FirstOrDefault(a => a.VictimId == animal.Id);
@@ -98,8 +107,28 @@ namespace Sheep_Wolf_NetStandardLibrary
         public int GetID<T>(string id) where T : Prey, new()
         {
             var connection = new SQLiteConnection(dbPath);
-            var o = connection.Table<T>().Where(a => a.KillerId == id);
-            return o.Count();
+            return connection.Table<T>().Where(a => a.KillerId == id).Count();
         }
+
+        public int countAnimal<T>() where T : AnimalModel, new()
+        {
+            var connection = new SQLiteConnection(dbPath);
+            if (connection.Table<T>().Count() == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                return connection.Table<T>().Max(a => a.Order);
+            }
+        }
+
+        public int animalLiveCount<T>() where T : AnimalModel, new()
+        {
+            var connection = new SQLiteConnection(dbPath);
+            return connection.Table<T>().Count(a => a is T && !a.IsDead);
+        }
+
+
     }
 }

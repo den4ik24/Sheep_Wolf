@@ -40,8 +40,8 @@ namespace Sheep_Wolf_NetStandardLibrary
                 isSheep is (int)AnimalType.SHEEP ||
                 isSheep is (int)AnimalType.WOLF)
             {
-                var repeatAnimal = animalModelsArray.Where(a => a.Name == animalName);
-                if (repeatAnimal.Any())
+                if (_dataBase.nameVerification<SheepModel>(animalName) ||
+                    _dataBase.nameVerification<WolfModel>(animalName))
                 {
                     return true;
                 }
@@ -56,7 +56,6 @@ namespace Sheep_Wolf_NetStandardLibrary
                     return false;
                 }
             }
-
             else
             {
                 if (animal.IsDead == false && _aTimer.Enabled == false)
@@ -102,16 +101,26 @@ namespace Sheep_Wolf_NetStandardLibrary
 
         public void AssignAnimal(string animalName, AnimalModel animal)
         {
-            animal.Order = animalModelsArray.Count;
+            
+            var countSheep = _dataBase.countAnimal<SheepModel>();
+            var countWolf = _dataBase.countAnimal<WolfModel>();
+            var countDuck = _dataBase.countAnimal<DuckModel>();
+            var countHunter = _dataBase.countAnimal<HunterModel>();
+            int[] nums = { countSheep, countWolf, countDuck, countHunter };
+            int allCount = nums.Max()+1;
+            animal.Order += allCount;
             animal.Name = animalName;
-            animalModelsArray.Add(animal);
+            //animalModelsArray.Add(animal);
         }
 
         public void AnimalKiller(AnimalModel animal)
         {
-            double wolfLiveCount = animalModelsArray.Count(a => a is WolfModel && !a.IsDead);
-            double hunterLiveCount = animalModelsArray.Count(a => a is HunterModel && !a.IsDead);
-            
+            //double wolfLiveCount = animalModelsArray.Count(a => a is WolfModel && !a.IsDead);
+            //double hunterLiveCount = animalModelsArray.Count(a => a is HunterModel && !a.IsDead);
+
+            double wolfLiveCount = _dataBase.animalLiveCount<WolfModel>();
+            double hunterLiveCount = _dataBase.animalLiveCount<HunterModel>();
+
             if (animal is WolfModel)
             {
                 for (var i = animalModelsArray.Count - 1; i >= 0; --i)
@@ -225,6 +234,7 @@ namespace Sheep_Wolf_NetStandardLibrary
         {
             animalModelsArray.AddRange(_dataBase.SelectTable().OrderBy(a=>a.Order));
             animalModelsArray = animalModelsArray.OrderBy(a => a.Order).ToList();
+            
             _dataBase.SelectTableID();
         }
 
