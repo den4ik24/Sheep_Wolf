@@ -110,22 +110,23 @@ namespace Sheep_Wolf_NetStandardLibrary
             int allCount = nums.Max()+1;
             animal.Order += allCount;
             animal.Name = animalName;
-            //animalModelsArray.Add(animal);
+            ///
+            animalModelsArray.Add(animal);
+
         }
 
         public void AnimalKiller(AnimalModel animal)
         {
-            //double wolfLiveCount = animalModelsArray.Count(a => a is WolfModel && !a.IsDead);
-            //double hunterLiveCount = animalModelsArray.Count(a => a is HunterModel && !a.IsDead);
-
             double wolfLiveCount = _dataBase.animalLiveCount<WolfModel>();
             double hunterLiveCount = _dataBase.animalLiveCount<HunterModel>();
+            var allCount = _dataBase.AnimalModelCount<AnimalModel>();
 
             if (animal is WolfModel)
             {
-                for (var i = animalModelsArray.Count - 1; i >= 0; --i)
+                for (var i = allCount - 1; i >= 0; --i)
                 {
-                    var item = animalModelsArray[i];
+                    var item_ = animalModelsArray[i];
+                    var item = _dataBase.GetAnimalModels()[i];
                     //волки жрут овцу
                     if (item is SheepModel && !item.IsDead)
                     {
@@ -135,13 +136,13 @@ namespace Sheep_Wolf_NetStandardLibrary
                             Message = $"Волк {animal.Name} сожрал овцу {item.Name}",
                             TypeKiller = KillerAnnotation.WOLF_EAT_SHEEP
                         };
-                        fillPrey(animal, item, AnimalType.WOLF);
+                        FillPrey(animal, item, AnimalType.WOLF);
                         Notify?.Invoke(this, dataTransfer);
                         DataChanged?.Invoke(this, EventArgs.Empty);
 
-                        for (int k = animalModelsArray.Count - 1; k >= 0; --k)
+                        for (int k = allCount - 1; k >= 0; --k)
                         {
-                            var hunt = animalModelsArray[k];
+                            var hunt = _dataBase.GetAnimalModels()[k];
                             if (hunt is HunterModel && !hunt.IsDead)
                             {
                                 DuckFlyAway();
@@ -155,7 +156,7 @@ namespace Sheep_Wolf_NetStandardLibrary
                                     Message = $"Охотник {hunt.Name} завалил волка {animal.Name}",
                                     TypeKiller = KillerAnnotation.HUNTER_KILL_WOLF
                                 };
-                                fillPrey(hunt, animal, AnimalType.HUNTER);
+                                FillPrey(hunt, animal, AnimalType.HUNTER);
                                 Notify?.Invoke(this, dataTrans);
                                 DataChanged?.Invoke(this, EventArgs.Empty);
                                 _dataBase.Update(animal);
@@ -183,7 +184,7 @@ namespace Sheep_Wolf_NetStandardLibrary
                         };
                         Notify?.Invoke(this, dataTransfer);
                         DataChanged?.Invoke(this, EventArgs.Empty);
-                        fillPrey(animal, item, AnimalType.WOLF);
+                        FillPrey(animal, item, AnimalType.WOLF);
                         break;
                     }
                 }
@@ -212,13 +213,13 @@ namespace Sheep_Wolf_NetStandardLibrary
                         Notify?.Invoke(this, dataTransfer);
                         DataChanged?.Invoke(this, EventArgs.Empty);
                         _dataBase.Update(animal);
-                        fillPrey(animal, item, AnimalType.HUNTER);
+                        FillPrey(animal, item, AnimalType.HUNTER);
 
                         if (wolfLiveCount/2 > hunterLiveCount)
                         {
                             animal.IsDead = true;
                             item.Killer = animal.Name;
-                            fillPrey(item, animal, AnimalType.WOLF);
+                            FillPrey(item, animal, AnimalType.WOLF);
                             _dataBase.Update(animal);
                             _dataBase.Update(item);
                             DataChanged?.Invoke(this, EventArgs.Empty);
@@ -350,7 +351,7 @@ namespace Sheep_Wolf_NetStandardLibrary
             duckCount = 0;
         }
 
-        public void fillPrey(AnimalModel killer, AnimalModel victim, AnimalType typeOfKiller)
+        public void FillPrey(AnimalModel killer, AnimalModel victim, AnimalType typeOfKiller)
         {
             _prey.KillerId = killer.Id;
             _prey.VictimId = victim.Id;

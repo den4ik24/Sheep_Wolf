@@ -20,6 +20,8 @@ namespace Sheep_Wolf_NetStandardLibrary
         string GetKillerID<T>(AnimalModel animal) where T : Prey, new();
         int countAnimal<T>() where T : AnimalModel, new();
         int animalLiveCount<T>() where T : AnimalModel, new();
+        int AnimalModelCount<T>() where T : AnimalModel, new();
+        List<AnimalModel> GetAnimalModels();
     }
 
     public class DataBase : IDataBase
@@ -126,9 +128,38 @@ namespace Sheep_Wolf_NetStandardLibrary
         public int animalLiveCount<T>() where T : AnimalModel, new()
         {
             var connection = new SQLiteConnection(dbPath);
-            return connection.Table<T>().Count(a => a is T && !a.IsDead);
+            return connection.Table<T>().AsEnumerable().Count(a => a is T && !a.IsDead);
+            //return connection.Table<T>().AsEnumerable().Count(a =>
+            //{
+            //    if (a is T && !a.IsDead)
+            //    {
+            //        return true;
+            //    }
+            //    return false;
+            //});
         }
 
+        public int AnimalModelCount<T>() where T : AnimalModel, new()
+        {
+            var connection = new SQLiteConnection(dbPath);
+            // return connection.Table<T>().Count();
+            var tableSheep = connection.Table<SheepModel>().Count();
+            var tableWolf = connection.Table<WolfModel>().Count();
+            var tableDuck = connection.Table<DuckModel>().Count();
+            var tableHunter = connection.Table<HunterModel>().Count();
+            return tableSheep + tableWolf + tableDuck + tableHunter;
 
+        }
+
+        public List<AnimalModel> GetAnimalModels()
+        {
+            var connection = new SQLiteConnection(dbPath);
+
+            var tableSheep = connection.Table<SheepModel>();
+            var tableWolf = connection.Table<WolfModel>();
+            var tableDuck = connection.Table<DuckModel>();
+            var tableHunter = connection.Table<HunterModel>();
+            return tableSheep.Union(tableWolf.Union(tableDuck.Union<AnimalModel>(tableHunter))).OrderBy(a => a.Order).ToList();
+        }
     }
 }
