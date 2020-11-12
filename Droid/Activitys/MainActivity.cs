@@ -194,6 +194,7 @@ namespace Sheep_Wolf.Droid
                 ChangeAnimalCount();
                 DeleteKeyboard();
             }
+            _adapter.animalModelsArray = businessLogic.AnimalModel();
             _adapter.NotifyDataSetChanged();
         }
 
@@ -238,8 +239,10 @@ namespace Sheep_Wolf.Droid
             InputMethodManager imm = (InputMethodManager)GetSystemService(InputMethodService);
             imm.HideSoftInputFromWindow(_textNameOfAnimal.WindowToken, 0);
         }
-        public void DataSetChanged(object sender, EventArgs e)
+
+        public void DataSetChanged(object sender, TransferModels transfer)
         {
+            _adapter.animalModelsArray = transfer.Model;
             RunOnUiThread(() =>
             {
                 _adapter.NotifyDataSetChanged();

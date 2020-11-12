@@ -14,7 +14,7 @@ namespace Sheep_Wolf_NetStandardLibrary
         AnimalModel GetAnimal(string animalID, int typeOfAnimal);
         AnimalState GetAnimalState(AnimalModel animal);
         event EventHandler<DataTransfer> Notify;
-        event EventHandler DataChanged;
+        event EventHandler <TransferModels> DataChanged;
         string NameofKiller(AnimalModel animal);
         string TextKill(AnimalModel animal);
     }
@@ -22,15 +22,17 @@ namespace Sheep_Wolf_NetStandardLibrary
     public class BusinessLogic : IBusinessLogic
     {
         IDataBase _dataBase = new DataBase();
-        public List<AnimalModel> animalModelsArray = new List<AnimalModel>();
+        //public List<AnimalModel> animalModelsArray = new List<AnimalModel>();
         int duckCount;
         public event EventHandler<DataTransfer> Notify;
-        public event EventHandler DataChanged;
-        Timer _aTimer = new Timer();
-        Prey _prey = new Prey();
+        public event EventHandler <TransferModels> DataChanged;
+        readonly Timer _aTimer = new Timer();
+        readonly Prey _prey = new Prey();
+
         public List<AnimalModel> AnimalModel()
         {
-            return animalModelsArray;
+            //return animalModelsArray;
+            return _dataBase.GetAnimalModels();
         }
 
         public bool AddAnimal(int isSheep, string animalName)
@@ -110,9 +112,7 @@ namespace Sheep_Wolf_NetStandardLibrary
             int allCount = nums.Max()+1;
             animal.Order += allCount;
             animal.Name = animalName;
-            ///
-            animalModelsArray.Add(animal);
-
+            //animalModelsArray.Add(animal);
         }
 
         public void AnimalKiller(AnimalModel animal)
@@ -120,13 +120,17 @@ namespace Sheep_Wolf_NetStandardLibrary
             double wolfLiveCount = _dataBase.animalLiveCount<WolfModel>();
             double hunterLiveCount = _dataBase.animalLiveCount<HunterModel>();
             var allCount = _dataBase.AnimalModelCount<AnimalModel>();
-
+            var allAnimals = _dataBase.GetAnimalModels();
+            var transferModels = new TransferModels
+            {
+                Model = allAnimals
+            };
             if (animal is WolfModel)
             {
                 for (var i = allCount - 1; i >= 0; --i)
                 {
-                    var item_ = animalModelsArray[i];
-                    var item = _dataBase.GetAnimalModels()[i];
+                    //var item_ = animalModelsArray[i];
+                    var item = allAnimals[i];
                     //волки жрут овцу
                     if (item is SheepModel && !item.IsDead)
                     {
@@ -138,11 +142,11 @@ namespace Sheep_Wolf_NetStandardLibrary
                         };
                         FillPrey(animal, item, AnimalType.WOLF);
                         Notify?.Invoke(this, dataTransfer);
-                        DataChanged?.Invoke(this, EventArgs.Empty);
+                        DataChanged?.Invoke(this, transferModels);
 
                         for (int k = allCount - 1; k >= 0; --k)
                         {
-                            var hunt = _dataBase.GetAnimalModels()[k];
+                            var hunt = allAnimals[k];
                             if (hunt is HunterModel && !hunt.IsDead)
                             {
                                 DuckFlyAway();
@@ -158,7 +162,7 @@ namespace Sheep_Wolf_NetStandardLibrary
                                 };
                                 FillPrey(hunt, animal, AnimalType.HUNTER);
                                 Notify?.Invoke(this, dataTrans);
-                                DataChanged?.Invoke(this, EventArgs.Empty);
+                                DataChanged?.Invoke(this, transferModels);
                                 _dataBase.Update(animal);
                                 _timer.Stop();
                                 _timer.Dispose();
@@ -183,7 +187,7 @@ namespace Sheep_Wolf_NetStandardLibrary
                             TypeKiller = KillerAnnotation.WOLF_EAT_HUNTER
                         };
                         Notify?.Invoke(this, dataTransfer);
-                        DataChanged?.Invoke(this, EventArgs.Empty);
+                        DataChanged?.Invoke(this, transferModels);
                         FillPrey(animal, item, AnimalType.WOLF);
                         break;
                     }
@@ -192,9 +196,9 @@ namespace Sheep_Wolf_NetStandardLibrary
 
             if (animal is HunterModel)
             {
-                for (var i = animalModelsArray.Count - 1; i >= 0; --i)
+                for (var i = allCount - 1; i >= 0; --i)
                 {
-                    var item = animalModelsArray[i];
+                    var item = allAnimals[i];
                     //охотник валит волка
                     if (item is WolfModel && !item.IsDead)
                     {
@@ -211,7 +215,7 @@ namespace Sheep_Wolf_NetStandardLibrary
                             TypeKiller = KillerAnnotation.HUNTER_KILL_WOLF
                         };
                         Notify?.Invoke(this, dataTransfer);
-                        DataChanged?.Invoke(this, EventArgs.Empty);
+                        DataChanged?.Invoke(this, transferModels);
                         _dataBase.Update(animal);
                         FillPrey(animal, item, AnimalType.HUNTER);
 
@@ -222,7 +226,7 @@ namespace Sheep_Wolf_NetStandardLibrary
                             FillPrey(item, animal, AnimalType.WOLF);
                             _dataBase.Update(animal);
                             _dataBase.Update(item);
-                            DataChanged?.Invoke(this, EventArgs.Empty);
+                            DataChanged?.Invoke(this, transferModels);
                             StopTimer();
                         }
                         break;
@@ -233,9 +237,9 @@ namespace Sheep_Wolf_NetStandardLibrary
 
         public void GetListAnimals()
         {
-            animalModelsArray.AddRange(_dataBase.SelectTable().OrderBy(a=>a.Order));
-            animalModelsArray = animalModelsArray.OrderBy(a => a.Order).ToList();
-            
+            //animalModelsArray.AddRange(_dataBase.SelectTable().OrderBy(a=>a.Order));
+            //animalModelsArray = animalModelsArray.OrderBy(a => a.Order).ToList();
+            _dataBase.SelectTable().OrderBy(a => a.Order).ToList();
             _dataBase.SelectTableID();
         }
 
@@ -346,7 +350,7 @@ namespace Sheep_Wolf_NetStandardLibrary
 
         public void DuckFlyAway()
         {
-            animalModelsArray.RemoveAll(a => a is DuckModel);
+            //animalModelsArray.RemoveAll(a => a is DuckModel);
             _dataBase.Delete<DuckModel>();
             duckCount = 0;
         }
@@ -382,5 +386,10 @@ namespace Sheep_Wolf_NetStandardLibrary
     {
         public string Message { get; set; }
         public KillerAnnotation TypeKiller { get; set; }
+    }
+
+    public class TransferModels : EventArgs
+    {
+        public List<AnimalModel> Model { get; set; }
     }
 }

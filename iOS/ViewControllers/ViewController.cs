@@ -148,6 +148,7 @@ namespace Sheep_Wolf.iOS
                 CountAnimal();
                 DeleteKeyboard();
             }
+            listOfSheeps.Source = new TableSource(businessLogic.AnimalModel(), this);
             listOfSheeps.ReloadData();
         }
 
@@ -220,8 +221,9 @@ namespace Sheep_Wolf.iOS
             
         }
 
-        public void DataSetChanged(object sender, EventArgs e)
+        public void DataSetChanged(object sender, TransferModels transfer)
         {
+            listOfSheeps.Source = new TableSource(transfer.Model, this);
             InvokeOnMainThread(() =>
             {
                 listOfSheeps.ReloadData();

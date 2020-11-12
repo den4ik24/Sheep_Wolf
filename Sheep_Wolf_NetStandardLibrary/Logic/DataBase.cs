@@ -36,7 +36,6 @@ namespace Sheep_Wolf_NetStandardLibrary
             connection.CreateTable<WolfModel>();
             connection.CreateTable<DuckModel>();
             connection.CreateTable<HunterModel>();
-
             var tableSheep = connection.Table<SheepModel>();
             var tableWolf = connection.Table<WolfModel>();
             var tableDuck = connection.Table<DuckModel>();
@@ -129,32 +128,21 @@ namespace Sheep_Wolf_NetStandardLibrary
         {
             var connection = new SQLiteConnection(dbPath);
             return connection.Table<T>().AsEnumerable().Count(a => a is T && !a.IsDead);
-            //return connection.Table<T>().AsEnumerable().Count(a =>
-            //{
-            //    if (a is T && !a.IsDead)
-            //    {
-            //        return true;
-            //    }
-            //    return false;
-            //});
         }
 
         public int AnimalModelCount<T>() where T : AnimalModel, new()
         {
             var connection = new SQLiteConnection(dbPath);
-            // return connection.Table<T>().Count();
             var tableSheep = connection.Table<SheepModel>().Count();
             var tableWolf = connection.Table<WolfModel>().Count();
             var tableDuck = connection.Table<DuckModel>().Count();
             var tableHunter = connection.Table<HunterModel>().Count();
             return tableSheep + tableWolf + tableDuck + tableHunter;
-
         }
 
         public List<AnimalModel> GetAnimalModels()
         {
             var connection = new SQLiteConnection(dbPath);
-
             var tableSheep = connection.Table<SheepModel>();
             var tableWolf = connection.Table<WolfModel>();
             var tableDuck = connection.Table<DuckModel>();
