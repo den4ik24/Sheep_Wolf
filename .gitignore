@@ -6,6 +6,3 @@
 *.
 .DS_Store
 *.p7s
-
-/packages/*
-packages/
