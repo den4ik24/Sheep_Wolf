@@ -21,7 +21,7 @@ namespace Sheep_Wolf.iOS
             ButtonAddAnimal.Clicked += ButtonAddAnimal_Clicked;
             textNameOfAnimals.EditingChanged += TextNameOfAnimals_EditingChanged;
             businessLogic.GetListAnimals();
-            listOfSheeps.Source = new TableSource(businessLogic.AnimalModel(), this);
+            listOfSheeps.Source = new TableSource(businessLogic.GetAnimalModel(), this);
             CountAnimal();
             picker = new AnimalPickerModel(animalChoice);
             uiPicker = new UIPickerView();
@@ -148,7 +148,7 @@ namespace Sheep_Wolf.iOS
                 CountAnimal();
                 DeleteKeyboard();
             }
-            listOfSheeps.Source = new TableSource(businessLogic.AnimalModel(), this);
+            listOfSheeps.Source = new TableSource(businessLogic.GetAnimalModel(), this);
             listOfSheeps.ReloadData();
         }
 
@@ -159,7 +159,7 @@ namespace Sheep_Wolf.iOS
 
         public void CountAnimal()
         {
-            LabelNumberAnimal.Text = businessLogic.AnimalModel().Count.ToString();
+            LabelNumberAnimal.Text = businessLogic.GetAnimalModel().Count.ToString();
         }
 
         public void ClearText()
@@ -167,7 +167,7 @@ namespace Sheep_Wolf.iOS
             textNameOfAnimals.Text = "";
         }
 
-        public void DisplayKillMessage(object sender, DataTransfer transferData)
+        public void DisplayKillMessage(object sender, DataTransferEventArgs transferData)
         {
             InvokeOnMainThread(() =>
             {
@@ -221,7 +221,7 @@ namespace Sheep_Wolf.iOS
             
         }
 
-        public void DataSetChanged(object sender, TransferModels transfer)
+        public void DataSetChanged(object sender, TransferModelsEventArgs transfer)
         {
             listOfSheeps.Source = new TableSource(transfer.Model, this);
             InvokeOnMainThread(() =>

@@ -127,7 +127,7 @@ namespace Sheep_Wolf_NetStandardLibrary
         public int animalLiveCount<T>() where T : AnimalModel, new()
         {
             var connection = new SQLiteConnection(dbPath);
-            return connection.Table<T>().AsEnumerable().Count(a => a is T && !a.IsDead);
+            return connection.Table<T>().Where(a => !a.IsDead).Count();
         }
 
         public int AnimalModelCount<T>() where T : AnimalModel, new()

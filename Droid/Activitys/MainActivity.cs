@@ -47,7 +47,7 @@ namespace Sheep_Wolf.Droid
             _listOfAnimals.SetLayoutManager(layoutManager);
             businessLogic.GetListAnimals();
             ChangeAnimalCount();
-            _adapter.animalModelsArray = businessLogic.AnimalModel();
+            _adapter.animalModelsArray = businessLogic.GetAnimalModel();
             _adapter.ItemClick += ListOfAnimals_ItemClick;
             _listOfAnimals.SetAdapter(_adapter);
             _animalChoice.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(AnimalChoice_ItemSelected);
@@ -194,28 +194,30 @@ namespace Sheep_Wolf.Droid
                 ChangeAnimalCount();
                 DeleteKeyboard();
             }
-            _adapter.animalModelsArray = businessLogic.AnimalModel();
+            _adapter.animalModelsArray = businessLogic.GetAnimalModel();
             _adapter.NotifyDataSetChanged();
         }
 
         public void ChangeAnimalCount()
         {
-            _textViewNumbSheep.Text = businessLogic.AnimalModel().Count.ToString();
+            _textViewNumbSheep.Text = businessLogic.GetAnimalModel().Count.ToString();
         }
 
-        public void DisplayKillMessage(object sender, DataTransfer transferData)
+        public void DisplayKillMessage(object sender, DataTransferEventArgs transferData)  
         {
+            Console.WriteLine("DisplayKillMessage");
             if (transferData.TypeKiller == KillerAnnotation.HUNTER_KILL_WOLF)
             {
                 ImageToast(transferData.Message, Resource.Drawable.hunter_kill_wolf);
             }
-            else if (transferData.TypeKiller == KillerAnnotation.WOLF_EAT_HUNTER)
+            if (transferData.TypeKiller == KillerAnnotation.WOLF_EAT_HUNTER)
             {
                 ImageToast(transferData.Message, Resource.Drawable.wolf_kill_hunter);
             }
-            else if (transferData.TypeKiller == KillerAnnotation.WOLF_EAT_SHEEP)
+            if (transferData.TypeKiller == KillerAnnotation.WOLF_EAT_SHEEP)
             {
                 ImageToast(transferData.Message, Resource.Drawable.wolf_kill);
+                Toast.MakeText(this, transferData.Message, ToastLength.Short).Show();
             }
         }
 
@@ -240,8 +242,9 @@ namespace Sheep_Wolf.Droid
             imm.HideSoftInputFromWindow(_textNameOfAnimal.WindowToken, 0);
         }
 
-        public void DataSetChanged(object sender, TransferModels transfer)
+        public void DataSetChanged(object sender, TransferModelsEventArgs transfer)
         {
+            Console.WriteLine("DataSetChanged");
             _adapter.animalModelsArray = transfer.Model;
             RunOnUiThread(() =>
             {
