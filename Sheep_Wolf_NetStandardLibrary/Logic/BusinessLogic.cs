@@ -400,6 +400,7 @@ namespace Sheep_Wolf_NetStandardLibrary
 
         public void StartTimer(AnimalModel animal)
         {
+            double wolfLiveCount = _dataBase.animalLiveCount<WolfModel>();
             if (_aTimer.Enabled == false)
             {
                 _aTimer.Interval = 5000;
@@ -407,6 +408,10 @@ namespace Sheep_Wolf_NetStandardLibrary
                 _aTimer.Start();
                 _aTimer.AutoReset = true;
                 _aTimer.Enabled = true;
+                if (wolfLiveCount == 0)
+                {
+                    StopTimer();
+                }
             }
         }
 
