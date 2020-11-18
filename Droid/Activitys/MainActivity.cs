@@ -168,17 +168,15 @@ namespace Sheep_Wolf.Droid
 
         public void AddRandomAnimal()
         {
-            var isSheep = _animalChoice.SelectedItemPosition;
-            if (isSheep is (int)AnimalType.WOLF)
-            {
-                Toast.MakeText(this, Keys.ENTERtheWOLF, ToastLength.Short).Show();
-            }
-            else if (isSheep is (int)AnimalType.HUNTER)
-            {
-                Toast.MakeText(this, Keys.ENTERtheHUNTER, ToastLength.Short).Show();
-            }
+            ChoiceAnimal(_animalChoice.SelectedItemPosition);
+            _adapter.animalModelsArray = businessLogic.GetAnimalModel();
+            _adapter.NotifyDataSetChanged();
+        }
 
-            if (businessLogic.AddAnimal(isSheep, _textNameOfAnimal.Text))
+        public void ChoiceAnimal(int choiceSelectedAnimal)
+        {
+            ShowEnterToast(choiceSelectedAnimal);
+            if (businessLogic.AddAnimal(choiceSelectedAnimal, _textNameOfAnimal.Text))
             {
                 var toast = Toast.MakeText(this, Keys.REPEATtheNAME, ToastLength.Short);
                 toast.SetGravity(GravityFlags.Center, 0, 0);
@@ -194,8 +192,18 @@ namespace Sheep_Wolf.Droid
                 ChangeAnimalCount();
                 DeleteKeyboard();
             }
-            _adapter.animalModelsArray = businessLogic.GetAnimalModel();
-            _adapter.NotifyDataSetChanged();
+        }
+
+        public void ShowEnterToast(int choiceSelectedAnimal)
+        {
+            if (choiceSelectedAnimal is (int)AnimalType.WOLF)
+            {
+                Toast.MakeText(this, Keys.ENTERtheWOLF, ToastLength.Short).Show();
+            }
+            else if (choiceSelectedAnimal is (int)AnimalType.HUNTER)
+            {
+                Toast.MakeText(this, Keys.ENTERtheHUNTER, ToastLength.Short).Show();
+            }
         }
 
         public void ChangeAnimalCount()

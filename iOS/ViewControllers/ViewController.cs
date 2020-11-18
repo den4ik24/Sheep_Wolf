@@ -171,22 +171,20 @@ namespace Sheep_Wolf.iOS
         {
             InvokeOnMainThread(() =>
             {
-                string picture;
+                string picture = null;
                 if (transferData.TypeKiller == KillerAnnotation.HUNTER_KILL_WOLF)
                 {
                     picture = Foto.HUNTER_KILL_WOLF;
-                ImageToast(transferData.Message, picture);
                 }
                 if (transferData.TypeKiller == KillerAnnotation.WOLF_EAT_HUNTER)
                 {
                     picture = Foto.WOLF_KILL_HUNTER;
-                ImageToast(transferData.Message, picture);
                 }
                 if (transferData.TypeKiller == KillerAnnotation.WOLF_EAT_SHEEP)
                 {
                     picture = Foto.WOLF_KILL;
-                ImageToast(transferData.Message, picture);
                 }
+                ImageToast(transferData.Message, picture);
             });
 
         }

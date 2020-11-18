@@ -33,40 +33,41 @@ namespace Sheep_Wolf_NetStandardLibrary
             return _dataBase.GetAnimalModels();
         }
 
-        public bool AddAnimal(int isSheep, string animalName)
+        public bool AddAnimal(int choiceSelectedAnimal, string animalName)
         {
-            var animal = ChoiceAnimal(isSheep);
-            if (isSheep is (int)AnimalType.DUCK ||
-                isSheep is (int)AnimalType.SHEEP ||
-                isSheep is (int)AnimalType.WOLF)
+            var animal = ChoiceAnimal(choiceSelectedAnimal);
+            switch (choiceSelectedAnimal)
             {
-                if (_dataBase.nameVerification<SheepModel>(animalName) ||
-                    _dataBase.nameVerification<WolfModel>(animalName))
-                {
-                    return true;
-                }
-                else
-                {
-                    if (animal is DuckModel)
+                case (int)AnimalType.SHEEP:
+                    if (_dataBase.nameVerification<SheepModel>(animalName))
                     {
-                        animal.Name = $"Duck_{++duckCount}";
-                        animalName = animal.Name;
+                        return true;
                     }
                     ActionWithCreatures(animalName, animal);
                     return false;
-                }
+                case (int)AnimalType.WOLF:
+                    if (_dataBase.nameVerification<WolfModel>(animalName))
+                    {
+                        return true;
+                    }
+                    ActionWithCreatures(animalName, animal);
+                    return false;
+                case (int)AnimalType.DUCK:
+                    animal.Name = $"Duck_{++duckCount}";
+                    animalName = animal.Name;
+                    ActionWithCreatures(animalName, animal);
+                    return false;
+                case (int)AnimalType.HUNTER:
+                    if (animal.IsDead == false && _aTimer.Enabled == false)
+                    {
+                        StartTimer(animal);
+                    }
+                    animalName = animal.Name;
+                    ActionWithCreatures(animalName, animal);
+                    return false;
+                default: break;
             }
-            else
-            {
-                if (animal.IsDead == false && _aTimer.Enabled == false)
-                {
-                    StartTimer(animal);
-                }
-
-                animalName = animal.Name;
-                ActionWithCreatures(animalName, animal);
-                return false;
-            }
+            throw new Exception();
         }
 
         public AnimalModel ChoiceAnimal(int isSheep)
@@ -114,108 +115,142 @@ namespace Sheep_Wolf_NetStandardLibrary
 
         public void AnimalKiller(AnimalModel animal)
         {
-            double wolfLiveCount = _dataBase.animalLiveCount<WolfModel>();
-            double hunterLiveCount = _dataBase.animalLiveCount<HunterModel>();
+            Console.WriteLine("отработка AnimalKiller");
+            switch (animal)
+            {
+                case WolfModel:
+                    WolfIsKiller(animal);
+                    return;
+
+                case HunterModel:
+                    HunterIsKiller(animal);
+                    return;
+            }
+        }
+        public void WolfIsKiller(AnimalModel animal)
+        {
             var allCount = _dataBase.AnimalModelCount<AnimalModel>();
             var allAnimals = _dataBase.GetAnimalModels();
-            if (animal is WolfModel)
+            for (var i = allCount - 1; i >= 0; --i)
             {
-                for (var i = allCount - 1; i >= 0; --i)
+                var item = allAnimals[i];
+                //волки жрут овцу
+                if (item is SheepModel && !item.IsDead)
                 {
-                    var item = allAnimals[i];
-                    //волки жрут овцу
-                    if (item is SheepModel && !item.IsDead)
-                    {
-                        WhoKilledWho(item, animal);
-                        FillPrey(animal, item, AnimalType.WOLF);
-                        //WolfEatSheepInvoke(animal, item);
-                        string message = $"Волк {animal.Name} сожрал овцу {item.Name}";
-                        NotifyKillInvoke(message, KillerAnnotation.WOLF_EAT_SHEEP);
-
-                        for (int k = allCount - 1; k >= 0; --k)
-                        {
-                            var hunt = allAnimals[k];
-                            if (hunt is HunterModel && !hunt.IsDead)
-                            {
-                                DuckFlyAway();
-                                Timer _timer = new Timer(5000);
-                                _timer.Elapsed += (o, args) => { WhoKilledWho(animal, hunt); };
-                                _timer.AutoReset = true;
-                                _timer.Enabled = true;
-                                Console.WriteLine("завалили съевшего овцу");
-                                FillPrey(hunt, animal, AnimalType.HUNTER);
-                                //HunterKillWolfInvoke(hunt, animal);
-                                message = $"Охотник {hunt.Name} завалил волка {animal.Name}";
-                                NotifyKillInvoke(message, KillerAnnotation.HUNTER_KILL_WOLF);
-                                _dataBase.Update(animal);
-                                _timer.Stop();
-                                _timer.Dispose();
-                                break;
-                            }
-                        }
-                        break;
-                    }
-                    //волки жрут охотника
-                    else if (item is HunterModel && !item.IsDead)
-                    {
-                        if (hunterLiveCount <= 1)
-                        {
-                            StopTimer();
-                        }
-                        WhoKilledWho(item, animal);
-                        DuckFlyAway();
-                        //WolfEatHunterInvoke(animal, item);
-                        string message = $"Волк {animal.Name} разодрал охотника {item.Name}";
-                        NotifyKillInvoke(message, KillerAnnotation.WOLF_EAT_HUNTER);
-                        FillPrey(animal, item, AnimalType.WOLF);
-                        break;
-                    }
+                    WolfKiller_WolfKillSheep(animal, item);
+                    break;
+                }
+                //волки жрут охотника
+                else if (item is HunterModel && !item.IsDead)
+                {
+                    WolfKiller_WolfKillHunter(animal, item);
+                    break;
                 }
             }
+            DataChangedInvoke(allAnimals);
+        }
 
-            if (animal is HunterModel)
+        public void HunterIsKiller(AnimalModel animal)
+        {
+            var allCount = _dataBase.AnimalModelCount<AnimalModel>();
+            var allAnimals = _dataBase.GetAnimalModels();
+            for (var i = allCount - 1; i >= 0; --i)
             {
-                for (var i = allCount - 1; i >= 0; --i)
+                var item = allAnimals[i];
+                //охотник валит волка
+                if (item is WolfModel && !item.IsDead)
                 {
-                    var item = allAnimals[i];
-                    //охотник валит волка
-                    if (item is WolfModel && !item.IsDead)
-                    {
-                        if (hunterLiveCount <= 1)
-                        {
-                            StopTimer();
-                        }
-                        WhoKilledWho(item, animal);
-                        DuckFlyAway();
-                        Console.WriteLine("охотник валит волка");
-                        //HunterKillWolfInvoke(animal, item);
-                        string message = $"Охотник {animal.Name} завалил волка {item.Name}";
-                        NotifyKillInvoke(message, KillerAnnotation.HUNTER_KILL_WOLF);
-                        _dataBase.Update(animal);
-                        FillPrey(animal, item, AnimalType.HUNTER);
-
-                        if (wolfLiveCount / 2 > hunterLiveCount && hunterLiveCount!=0)
-                        {
-                            animal.IsDead = true;
-                            item.Killer = animal.Name;
-                            DuckFlyAway();
-                            FillPrey(item, animal, AnimalType.WOLF);
-                            _dataBase.Update(animal);
-                            _dataBase.Update(item);
-                            //WolfEatHunterInvoke(item, animal);
-                            message = $"Волк {item.Name} разодрал охотника {animal.Name}";
-                            NotifyKillInvoke(message, KillerAnnotation.WOLF_EAT_HUNTER);
-                            StopTimer();
-                        }
-                        break;
-                    }
+                    HunterKiller_HunterKillWolf(animal, item);
+                    break;
                 }
             }
-            if (wolfLiveCount == 0)
+            DataChangedInvoke(allAnimals);
+        }
+
+        public void HunterKiller_HunterKillWolf(AnimalModel animal, AnimalModel item)
+        {
+            double hunterLiveCount = _dataBase.animalLiveCount<HunterModel>();
+            if (hunterLiveCount <= 1)
             {
                 StopTimer();
             }
-            DataChangedInvoke(allAnimals);
+            WhoKilledWho(item, animal);
+            DuckFlyAway();
+            string message = $"Охотник {animal.Name} завалил волка {item.Name}";
+            NotifyKillInvoke(message, KillerAnnotation.HUNTER_KILL_WOLF);
+            _dataBase.Update(animal);
+            FillPrey(animal, item, AnimalType.HUNTER);
+            //волк валит охотника
+            HunterKiller_WolfKillHunter(animal, item);
+        }
+
+        public void HunterKiller_WolfKillHunter(AnimalModel animal, AnimalModel item)
+        {
+            double hunterLiveCount = _dataBase.animalLiveCount<HunterModel>();
+            double wolfLiveCount = _dataBase.animalLiveCount<WolfModel>();
+            if (wolfLiveCount / 2 > hunterLiveCount && hunterLiveCount != 0)
+            {
+                animal.IsDead = true;
+                item.Killer = animal.Name;
+                DuckFlyAway();
+                FillPrey(item, animal, AnimalType.WOLF);
+                _dataBase.Update(animal);
+                _dataBase.Update(item);
+                string message = $"Волк {item.Name} разодрал охотника {animal.Name}";
+                NotifyKillInvoke(message, KillerAnnotation.WOLF_EAT_HUNTER);
+                StopTimer();
+            }
+        }
+
+        public void WolfKiller_WolfKillHunter(AnimalModel animal, AnimalModel item)
+        {
+            double hunterLiveCount = _dataBase.animalLiveCount<HunterModel>();
+            if (hunterLiveCount <= 1)
+            {
+                StopTimer();
+            }
+            WhoKilledWho(item, animal);
+            DuckFlyAway();
+            string message = $"Волк {animal.Name} разодрал охотника {item.Name}";
+            NotifyKillInvoke(message, KillerAnnotation.WOLF_EAT_HUNTER);
+            FillPrey(animal, item, AnimalType.WOLF);
+        }
+
+        public void WolfKiller_WolfKillSheep(AnimalModel animal, AnimalModel item)
+        {
+            var allCount = _dataBase.AnimalModelCount<AnimalModel>();
+            var allAnimals = _dataBase.GetAnimalModels();
+            WhoKilledWho(item, animal);
+            FillPrey(animal, item, AnimalType.WOLF);
+            string message = $"Волк {animal.Name} сожрал овцу {item.Name}";
+            NotifyKillInvoke(message, KillerAnnotation.WOLF_EAT_SHEEP);
+            for (int k = allCount - 1; k >= 0; --k)
+            {
+                var hunt = allAnimals[k];
+                if (hunt is HunterModel && !hunt.IsDead)
+                {
+                    WolfKiller_HunterKillWolf(animal, hunt);
+                    break;
+                }
+            }
+        }
+
+        public void WolfKiller_HunterKillWolf(AnimalModel animal, AnimalModel hunt)
+        {
+            DuckFlyAway();
+            Timer _timer = new Timer(5000);
+            _aTimer.Start();
+            _timer.Elapsed += (o, args) => { WhoKilledWho(animal, hunt); };
+            _timer.AutoReset = true;
+            _timer.Enabled = true;
+            Console.WriteLine("завалили съевшего овцу");
+            FillPrey(hunt, animal, AnimalType.HUNTER);
+            string message = $"Охотник {hunt.Name} завалил волка {animal.Name}";
+            NotifyKillInvoke(message, KillerAnnotation.HUNTER_KILL_WOLF);
+            _dataBase.Update(animal);
+            _dataBase.Update(hunt);
+            _timer.Stop();
+            _timer.Dispose();
         }
 
         public void NotifyKillInvoke(string message, KillerAnnotation killAnnotation)
@@ -323,6 +358,7 @@ namespace Sheep_Wolf_NetStandardLibrary
 
         public void WhoKilledWho(AnimalModel sacrifice, AnimalModel killer)
         {
+            Console.WriteLine("отработка WhoKilledWho");
             sacrifice.IsDead = true;
             killer.Killer = sacrifice.Name;
             _dataBase.Update(sacrifice);
@@ -366,9 +402,9 @@ namespace Sheep_Wolf_NetStandardLibrary
         {
             if (_aTimer.Enabled == false)
             {
-                _aTimer.Start();
                 _aTimer.Interval = 5000;
-                _aTimer.Elapsed += (o, args) => { AnimalKiller(animal); };
+                _aTimer.Elapsed += (o, args) => {AnimalKiller(animal); };
+                _aTimer.Start();
                 _aTimer.AutoReset = true;
                 _aTimer.Enabled = true;
             }

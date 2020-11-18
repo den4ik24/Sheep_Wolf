@@ -58,7 +58,6 @@ namespace Sheep_Wolf.iOS
                     return Foto.DUCK;
                 }
             }
-
             throw new Exception();
         }
     }
