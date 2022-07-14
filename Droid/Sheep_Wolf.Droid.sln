@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.810.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sheep_Wolf.Droid", "Sheep_Wolf.Droid.csproj", "{A642566C-F28D-43AE-B9E0-3B1826F2E286}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A642566C-F28D-43AE-B9E0-3B1826F2E286}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A642566C-F28D-43AE-B9E0-3B1826F2E286}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A642566C-F28D-43AE-B9E0-3B1826F2E286}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A642566C-F28D-43AE-B9E0-3B1826F2E286}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B202143E-701C-4F2A-9C30-6A3507629626}
+	EndGlobalSection
+EndGlobal

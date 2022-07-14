@@ -56,7 +56,6 @@ namespace Sheep_Wolf.Droid
             _animalChoice.SetSelection(0);
             businessLogic.Notify += DisplayKillMessage;
             businessLogic.DataChanged += DataSetChanged;
-
             _textNameOfAnimal.TextChanged += TextNameOfAnimal_TextChanged;
         }
 
@@ -128,7 +127,7 @@ namespace Sheep_Wolf.Droid
         
         public void SetIconColorDisabled(IMenuItem item, Drawable resIcon)
         {
-            resIcon.Mutate().SetColorFilter(Color.DarkGray, PorterDuff.Mode.SrcIn);
+            resIcon.Mutate().SetColorFilter(new BlendModeColorFilter(Color.DarkGray, BlendMode.SrcIn));
             SetEnabledIconState(item, resIcon, false);
         }
 

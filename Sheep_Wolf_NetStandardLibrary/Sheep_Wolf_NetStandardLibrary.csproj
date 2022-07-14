@@ -27,6 +27,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
   </ItemGroup>
 </Project>
